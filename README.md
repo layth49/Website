@@ -1,6 +1,3 @@
-<a name="readme-top"></a>
-
-
 <!-- PROJECT LOGO -->
 <br />
 <div align="center">
@@ -24,11 +21,6 @@
 ![CSS]
 
 ![JS]
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-
-
 
 [product-video]: assets/showcase.mp4
 
