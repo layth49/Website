@@ -1,0 +1,76 @@
+* {
+  font-family: "Montserrat", sans-serif;
+}
+
+body {
+  background-color: #0f1011;
+  
+}
+
+.navBar {
+  z-index: 2;
+  display: grid;
+  grid-template-columns: [start] 1.5fr [logo-end] 10fr [menu-start] 5fr [menu-end];
+  grid-template-rows: 60px;
+  padding: 1em;
+  color: white;
+  font-family: "Montserrat", sans-serif;
+}
+
+.logo {
+  z-index: 2;
+  align-self: center;
+  padding-left: 1em;
+  padding-top: 1em;
+  width: 300px;
+}
+
+.menuItems {
+  z-index: 2;
+  grid-column: menu-start/menu-end;
+  display: grid;
+  grid-template-columns: 3fr 3fr 3fr;
+  align-content: center;
+  justify-content: center;
+  font-family: "Montserrat", sans-serif;
+  font-size: larger;
+}
+.menuItems > div {
+  padding-right: 1em;
+  z-index: 2;
+  opacity: 0.6;
+  justify-self: center;
+  align-self: center;
+  text-align: center;
+  font-family: Montserrat, sans-serif;
+}
+.menuItems > div.active {
+  z-index: 2;
+  font-family: Montserrat, sans-serif;
+  font-weight: bold;
+  transition: font-family 0.2s;
+  opacity: 1;
+}
+
+.menuItems > div:hover {
+  z-index: 2;
+  font-family: Montserrat, sans-serif;
+  transition: font-family 0.2s;
+  opacity: 1;
+  transition: opacity 0.2s;
+}
+
+a {
+  color: inherit;
+
+  text-decoration-color: inherit;
+  font-family: inherit;
+  font-size: inherit;
+}
+a:hover {
+  color: inherit;
+
+  text-decoration-color: inherit;
+  font-family: inherit;
+  font-size: inherit;
+}

@@ -1,0 +1,21 @@
+.hacked {
+  display: grid;
+  place-items: center;
+  height: 89vh;
+  background-color: black;
+  margin: 0rem;
+  overflow: hidden;
+}
+
+h2 {
+  font-family: "Noto Sans Mono", "monospace";
+  font-size: clamp(10rem, 10vw, 10rem);
+  color: white;
+  padding: 0rem clamp(1rem, 2vw, 3rem);
+  border-radius: clamp(0.4rem, 0.75vw, 1rem);
+}
+
+h2:hover {
+  background-color: rgb(24, 26, 27);
+  color: white;
+}
