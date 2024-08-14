@@ -13,16 +13,15 @@ body {
   scrollbar-width: none; /* Firefox */
 }
 
-.padding {
-  background-color: black;
-}
-
-.center {
+.flexbox {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
   text-align: center;
   background-color: black;
 }
 
-.product-description {
+.project {
   display: inline-grid;
   width: 370px;
   height: 400px;

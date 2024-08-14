@@ -1,10 +1,6 @@
-* {
-  font-family: "Montserrat", sans-serif;
-}
-
 body {
   background-color: #0f1011;
-  
+  font-family: "Montserrat", sans-serif;
 }
 
 .navBar {
@@ -14,7 +10,6 @@ body {
   grid-template-rows: 60px;
   padding: 1em;
   color: white;
-  font-family: "Montserrat", sans-serif;
 }
 
 .logo {
@@ -22,19 +17,20 @@ body {
   align-self: center;
   padding-left: 1em;
   padding-top: 1em;
-  width: 300px;
+  width: 100%;
+  max-width: 300px;
 }
 
 .menuItems {
   z-index: 2;
   grid-column: menu-start/menu-end;
   display: grid;
-  grid-template-columns: 3fr 3fr 3fr;
+  grid-template-columns: repeat(3, 1fr);
   align-content: center;
   justify-content: center;
-  font-family: "Montserrat", sans-serif;
   font-size: larger;
 }
+
 .menuItems > div {
   padding-right: 1em;
   z-index: 2;
@@ -42,11 +38,10 @@ body {
   justify-self: center;
   align-self: center;
   text-align: center;
-  font-family: Montserrat, sans-serif;
 }
+
 .menuItems > div.active {
   z-index: 2;
-  font-family: Montserrat, sans-serif;
   font-weight: bold;
   transition: font-family 0.2s;
   opacity: 1;
@@ -54,7 +49,6 @@ body {
 
 .menuItems > div:hover {
   z-index: 2;
-  font-family: Montserrat, sans-serif;
   transition: font-family 0.2s;
   opacity: 1;
   transition: opacity 0.2s;
@@ -62,15 +56,76 @@ body {
 
 a {
   color: inherit;
-
   text-decoration-color: inherit;
-  font-family: inherit;
   font-size: inherit;
 }
+
 a:hover {
   color: inherit;
-
   text-decoration-color: inherit;
-  font-family: inherit;
   font-size: inherit;
+}
+
+.hamburger {
+  display: none;
+  background: none;
+  outline: none;
+  border: none;
+  z-index: 2;
+  grid-column: menu-start/menu-end;
+  justify-self: end;
+  align-self: center;
+  padding-right: 1em;
+}
+
+.hamburger:hover {
+  opacity: 0.8;
+}
+
+@media screen and (max-width: 1600px) {
+  /*For Mobile only*/
+  .logo {
+    width: 200px;
+    align-self: flex-start;
+    justify-self: start;
+    padding-left: 0;
+    padding-top: 0em;
+  }
+
+  .navBar {
+    grid-template-columns: [start] 1fr [logo-end] 1fr [menu-start] 1fr [menu-end];
+    grid-template-rows: repeat(2, 50px);
+  }
+}
+
+@media screen and (max-width: 700px) {
+  /*For Mobile only*/
+  .logo {
+    width: 200px;
+  }
+  .menuItems {
+    display: none;
+    grid-row: 2;
+    grid-column: start/menu-end;
+    align-self: flex-end;
+    justify-self: end;
+    font-size: medium;
+    margin-right: 1em;
+  }
+  .menuItems > div {
+    justify-self: end;
+    align-self: flex-end;
+    padding: 1em;
+
+    text-align: right;
+  }
+
+  .hamburger {
+    display: block;
+  }
+}
+@media screen and (max-height: 1000px) {
+  .navBar {
+    grid-template-rows: 40px;
+  }
 }
