@@ -1,4 +1,4 @@
-window.onload = function() {
+window.onload = function () {
   const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
   let interval = null;
   let iteration = 0;
@@ -8,12 +8,19 @@ window.onload = function() {
   // Initial jumbled animation on page load
   startJumbledAnimation();
 
-  h2Element.onmouseover = event => {
+  h2Element.onmouseover = (event) => {
     // Stop the jumbled animation on hover
     clearInterval(interval);
-    
+
     // Start the normal animation on hover
     startNormalAnimation(event.target.dataset.value);
+  };
+
+  // Add a new function to restart the jumbled animation when the mouse stops hovering
+  h2Element.onmouseout = () => {
+    interval = null;
+    iteration = 0;
+    startJumbledAnimation();
   };
 
   function startJumbledAnimation() {
@@ -32,14 +39,14 @@ window.onload = function() {
       h2Element.innerText = h2Element.innerText
         .split("")
         .map((letter, index) => {
-          if(index < iteration) {
+          if (index < iteration) {
             return targetValue[index];
           }
           return letters[Math.floor(Math.random() * 26)];
         })
         .join("");
 
-      if(iteration >= targetValue.length){ 
+      if (iteration >= targetValue.length) {
         clearInterval(interval);
       }
 
