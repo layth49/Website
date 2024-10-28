@@ -1,0 +1,72 @@
+html {
+  font-family: "Montserrat", sans-serif;
+  background-color: black;
+}
+
+.navBar {
+  background-color: #0f1011;
+  z-index: 2;
+  display: grid;
+  grid-template-columns: [start] 1.5fr [logo-end] 10fr [menu-start] 5fr [menu-end];
+  grid-template-rows: 60px;
+  padding: 1em;
+  color: white;
+}
+
+.logo {
+  z-index: 2;
+  align-self: center;
+  padding-left: 1em;
+  padding-top: 1em;
+  width: 100px;
+}
+
+.menuItems {
+  z-index: 2;
+  grid-column: menu-start/menu-end;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  align-content: center;
+  justify-content: center;
+  font-size: larger;
+}
+
+.menuItems > div {
+  padding-right: 1em;
+  z-index: 2;
+  opacity: 0.6;
+  justify-self: center;
+  align-self: center;
+  text-align: center;
+}
+
+.menuItems > div.active {
+  z-index: 2;
+  font-weight: bold;
+  transition: font-family 0.2s;
+  opacity: 1;
+}
+
+.menuItems > div:hover {
+  z-index: 2;
+  transition: font-family 0.2s;
+  opacity: 1;
+  transition: opacity 0.2s;
+}
+
+a {
+  color: inherit;
+  text-decoration-color: inherit;
+  font-size: inherit;
+}
+
+a:hover {
+  color: inherit;
+  text-decoration-color: inherit;
+  font-size: inherit;
+}
+
+.sticky {
+  position: sticky;
+  top: 0;
+}
