@@ -1,3 +1,8 @@
+html {
+  overflow: scroll;
+  overflow-x: hidden;
+}
+
 /* Hide scrollbar for Chrome, Safari and Opera */
 ::-webkit-scrollbar {
   display: none;
@@ -9,24 +14,44 @@ body {
   scrollbar-width: none; /* Firefox */
 }
 
-.flexbox {
+.cards {
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
+  justify-content: space-evenly;
   text-align: center;
   background-color: black;
+  margin-left: 10vh;
+  margin-right: 10vh;
+  margin-top: 10vh;
 }
 
-.project {
+.cards .card {
   display: inline-grid;
-  width: 370px;
-  height: 400px;
-  margin: 20px;
+  width: 47vh;
+  height: 51vh;
+  margin: 2.5vh;
+  justify-content: space-evenly;
+
   background-color: black;
   color: white; /* This is for the text */
-  border: 5px solid #303436;
-  border-radius: 25px;
-  padding: 20px;
+  border-radius: 3vh;
+  padding: 2.5vh;
+  transition: 400ms;
+  box-shadow: 2vh 2vh 3.8vh rgb(25, 25, 25),
+             -2vh -2vh 3.8vh rgb(60, 60, 60)
+}
+
+.card > a:hover {
+  background-image: linear-gradient(180deg, rgb(0, 183, 255), );
+}
+
+.cards .card:hover {
+  transform: scale(1.1, 1.1);
+}
+
+.cards:hover > .card:not(:hover) {
+  filter: blur(1.3vh);
+  transform: scale(0.9, 0.9);
 }
 
 video {
@@ -34,7 +59,7 @@ video {
   display: block;
   margin: 0 auto;
   width: 100%;
-  padding-bottom: 10px;
+  padding-bottom: 1.3vh;
 }
 
 h1 {
