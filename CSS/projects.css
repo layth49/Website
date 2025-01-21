@@ -17,19 +17,19 @@ body {
 .cards {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-evenly;
+  justify-content: center;
   text-align: center;
   background-color: black;
-  margin-left: 10vh;
-  margin-right: 10vh;
-  margin-top: 10vh;
+  margin-left: 15vh;
+  margin-right: 15vh;
+  margin-top: 15vh;
 }
 
 .cards .card {
   display: inline-grid;
   width: 47vh;
   height: 51vh;
-  margin: 2.5vh;
+  margin: 3vh;
   justify-content: space-evenly;
 
   background-color: black;
@@ -37,12 +37,7 @@ body {
   border-radius: 3vh;
   padding: 2.5vh;
   transition: 400ms;
-  box-shadow: 2vh 2vh 3.8vh rgb(25, 25, 25),
-             -2vh -2vh 3.8vh rgb(60, 60, 60)
-}
-
-.card > a:hover {
-  background-image: linear-gradient(180deg, rgb(0, 183, 255), );
+  box-shadow: 2vh 2vh 3.8vh rgb(25, 25, 25), -2vh -2vh 3.8vh rgb(60, 60, 60);
 }
 
 .cards .card:hover {
