@@ -20,9 +20,7 @@ body {
   justify-content: center;
   text-align: center;
   background-color: black;
-  margin-left: 15vh;
-  margin-right: 15vh;
-  margin-top: 15vh;
+  margin-top: 10vh;
 }
 
 .cards .card {
