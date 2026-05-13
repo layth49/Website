@@ -5,11 +5,13 @@
   text-align: center;
   overflow: hidden;
   margin-top: 25vh;
+  text-align: left;
 }
 
 h2 {
   font-family: "Noto Sans Mono", "monospace";
-  font-size: clamp(18.5vh, 17.8vh, 18.5vh);
+  font-size: clamp(12vh, 11vh, 12vh);
+  /* Reduced size for longer text */
   color: white;
   padding: 0vh clamp(2vh, 3.5vh, 2vh);
   border-radius: clamp(0.75vh, 1.3vh, 2vh);
@@ -18,4 +20,211 @@ h2 {
 h2:hover {
   background-color: rgb(24, 26, 27);
   color: white;
+}
+
+@media screen and (max-width: 768px) {
+  .hacked {
+    margin-top: 15vh;
+  }
+
+  h2 {
+    font-size: 8vw;
+    /* Adjusted for mobile */
+    padding: 0 1rem;
+  }
+}
+
+.intro-section {
+  text-align: center;
+  margin-top: 10vh;
+  color: white;
+}
+
+.intro-text {
+  margin-bottom: 8vh;
+}
+
+.role {
+  font-family: "Noto Sans Mono", monospace;
+  font-size: 1.8rem;
+  letter-spacing: 2px;
+  opacity: 0.9;
+  margin-bottom: 1vh;
+}
+
+.description {
+  font-size: 1.5rem;
+  opacity: 0.7;
+}
+
+.latest-projects {
+  margin-top: 10vh;
+}
+
+.latest-projects h3 {
+  font-size: 1.8rem;
+  margin-bottom: 4vh;
+  color: #ffd700;
+}
+
+.project-preview {
+  display: flex;
+  justify-content: center;
+  gap: 4vw;
+}
+
+.preview-item {
+  background: rgba(255, 255, 255, 0.05);
+  padding: 2vh 3vw;
+  border-radius: 8px;
+  transition: transform 0.3s;
+  cursor: pointer;
+}
+
+.preview-item:hover {
+  transform: translateY(-5px);
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.project-title {
+  font-size: 1.4rem;
+  font-weight: bold;
+  color: #fff;
+  display: block;
+  margin-bottom: 1vh;
+}
+
+.preview-item p {
+  opacity: 0.6;
+}
+
+.featured {
+  margin: 12vh auto 0;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 3vw;
+  max-width: 1200px;
+  width: 80%;
+}
+
+.featured-item {
+  background: rgba(255, 255, 255, 0.03);
+  padding: 3vh 4vw;
+  border-radius: 4px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transition: all 0.3s ease;
+}
+
+.featured-item:hover {
+  background: rgba(255, 255, 255, 0.05);
+  transform: translateY(-5px);
+}
+
+.featured-item h3 {
+  font-size: 2rem;
+  margin-bottom: 1.5vh;
+}
+
+.featured-item p {
+  font-size: 1.2rem;
+}
+
+.skills-section {
+  text-align: center;
+  margin: 12vh auto 0;
+  padding: 4vh 0;
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(5px);
+  max-width: 1200px;
+  width: 80%;
+  border-radius: 8px;
+}
+
+.skills-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 4vw;
+  padding: 2vh;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.skills-container img {
+  height: 50px;
+  transition: all 0.3s ease;
+  opacity: 0.7;
+  position: relative;
+}
+
+.skill-tooltip {
+  position: absolute;
+  bottom: -30px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(255, 255, 255, 0.1);
+  color: white;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 0.8rem;
+  opacity: 0;
+  transition: opacity 0.3s;
+  white-space: nowrap;
+  pointer-events: none;
+}
+
+.skill-item {
+  position: relative;
+  display: inline-block;
+}
+
+.skill-item:hover .skill-tooltip {
+  opacity: 1;
+}
+
+.skills-container img:hover {
+  transform: translateY(-5px);
+  opacity: 1;
+}
+
+.static-text {
+  opacity: 0.8;
+  text-align: left;
+}
+
+.animate-text {
+  color: red;
+}
+
+@media screen and (max-width: 768px) {
+  .role {
+    font-size: 1.4rem;
+  }
+
+  .description {
+    font-size: 1.2rem;
+  }
+
+  .project-preview {
+    flex-direction: column;
+    gap: 2vh;
+  }
+
+  .preview-item {
+    margin: 0 2vw;
+  }
+
+  .featured {
+    grid-template-columns: 1fr;
+    gap: 2vh;
+  }
+
+  .skills-container {
+    flex-wrap: wrap;
+    gap: 3vh 4vw;
+  }
+
+  .skills-container img {
+    height: 32px;
+  }
 }
