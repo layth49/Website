@@ -10,8 +10,10 @@ html {
 
 /* Hide scrollbar for IE, Edge and Firefox */
 body {
-  -ms-overflow-style: none; /* IE and Edge */
-  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none;
+  /* IE and Edge */
+  scrollbar-width: none;
+  /* Firefox */
 }
 
 .cards {
@@ -26,24 +28,26 @@ body {
 .cards .card {
   display: inline-grid;
   width: 47vh;
-  height: 51vh;
+  height: 55vh;
   margin: 3vh;
   justify-content: space-evenly;
 
   background-color: black;
-  color: white; /* This is for the text */
+  color: white;
+  /* This is for the text */
   border-radius: 3vh;
   padding: 2.5vh;
-  transition: 400ms;
+  transition: all 400ms ease;
+  transform: scale(1);
   box-shadow: 2vh 2vh 3.8vh rgb(25, 25, 25), -2vh -2vh 3.8vh rgb(60, 60, 60);
+  margin-bottom: 10vh;
 }
 
 .cards .card:hover {
   transform: scale(1.1, 1.1);
 }
 
-.cards:hover > .card:not(:hover) {
-  filter: blur(1.3vh);
+.cards:hover>.card:not(:hover) {
   transform: scale(0.9, 0.9);
 }
 
@@ -61,4 +65,28 @@ h1 {
   color: white;
   font-size: x-large;
   font-weight: bold;
+}
+
+p {
+  text-align: center;
+}
+
+@media screen and (max-width: 768px) {
+  .cards .card {
+    width: 90%;
+    height: auto;
+    margin: 2vh auto;
+  }
+
+  .cards .card:hover {
+    transform: scale(1.05, 1.05);
+  }
+
+  h1 {
+    font-size: large;
+  }
+
+  p {
+    font-size: 14px;
+  }
 }

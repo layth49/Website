@@ -11,9 +11,12 @@ html {
 
 /* Hide scrollbar for IE, Edge and Firefox */
 body {
-  -ms-overflow-style: none; /* IE and Edge */
-  scrollbar-width: none; /* Firefox */
-  overflow: -moz-scrollbars-none; /* Fallback for older browsers */
+  -ms-overflow-style: none;
+  /* IE and Edge */
+  scrollbar-width: none;
+  /* Firefox */
+  overflow: -moz-scrollbars-none;
+  /* Fallback for older browsers */
 }
 
 .navBar {
@@ -24,6 +27,7 @@ body {
   grid-template-rows: 60px;
   padding: 1em;
   color: white;
+  border-radius: 3vh;
 }
 
 .logo {
@@ -44,7 +48,7 @@ body {
   font-size: larger;
 }
 
-.menuItems > div {
+.menuItems>div {
   padding-right: 1em;
   z-index: 2;
   opacity: 0.6;
@@ -53,14 +57,14 @@ body {
   text-align: center;
 }
 
-.menuItems > div.active {
+.menuItems>div.active {
   z-index: 2;
   font-weight: bold;
   transition: font-family 0.2s;
   opacity: 1;
 }
 
-.menuItems > div:hover {
+.menuItems>div:hover {
   z-index: 2;
   transition: font-family 0.2s;
   opacity: 1;
@@ -88,4 +92,31 @@ a:active {
 .sticky {
   position: sticky;
   top: 0;
+}
+
+@media screen and (max-width: 768px) {
+  .navBar {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto;
+    padding: 0.5em;
+  }
+
+  .logo {
+    justify-self: center;
+    padding: 0.5em;
+  }
+
+  .menuItems {
+    grid-column: 1;
+    grid-row: 2;
+    margin-top: 0.5em;
+  }
+
+  .menuItems>div {
+    padding: 0.5em;
+  }
+
+  a:hover {
+    font-size: 18px;
+  }
 }

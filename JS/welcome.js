@@ -3,21 +3,17 @@ window.onload = function () {
   let interval = null;
   let iteration = 0;
 
-  const h2Element = document.querySelector("h2");
+  const animatedText = document.querySelector(".animate-text");
 
   // Initial jumbled animation on page load
   startJumbledAnimation();
 
-  h2Element.onmouseover = (event) => {
-    // Stop the jumbled animation on hover
+  animatedText.onmouseover = (event) => {
     clearInterval(interval);
-
-    // Start the normal animation on hover
     startNormalAnimation(event.target.dataset.value);
   };
 
-  // Add a new function to restart the jumbled animation when the mouse stops hovering
-  h2Element.onmouseout = () => {
+  animatedText.onmouseout = () => {
     interval = null;
     iteration = 0;
     startJumbledAnimation();
@@ -25,7 +21,7 @@ window.onload = function () {
 
   function startJumbledAnimation() {
     interval = setInterval(() => {
-      h2Element.innerText = h2Element.innerText
+      animatedText.innerText = animatedText.innerText
         .split("")
         .map(() => letters[Math.floor(Math.random() * 26)])
         .join("");
@@ -36,7 +32,7 @@ window.onload = function () {
     clearInterval(interval);
 
     interval = setInterval(() => {
-      h2Element.innerText = h2Element.innerText
+      animatedText.innerText = animatedText.innerText
         .split("")
         .map((letter, index) => {
           if (index < iteration) {

@@ -7,7 +7,8 @@ html {
 
 .construction-container {
   width: 100%;
-  min-height: calc(100vh - 60px); /* Subtract navbar height */
+  min-height: calc(100vh - 60px);
+  /* Subtract navbar height */
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -16,13 +17,11 @@ html {
 .stripe-border {
   height: 80px;
   width: 100%;
-  background: repeating-linear-gradient(
-    45deg,
-    #ffd700,
-    #ffd700 40px,
-    #222 40px,
-    #222 70px
-  );
+  background: repeating-linear-gradient(45deg,
+      #ffd700,
+      #ffd700 40px,
+      #222 40px,
+      #222 70px);
 }
 
 .content {
@@ -61,5 +60,24 @@ html {
 
   .text-small {
     font-size: 8vw;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .stripe-border {
+    height: 40px;
+  }
+
+  .text {
+    font-size: 48px;
+    padding: 0px 5px;
+  }
+
+  .text-small {
+    font-size: 24px;
+  }
+
+  .content {
+    margin: 2vh 0;
   }
 }
