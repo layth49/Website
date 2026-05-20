@@ -1,31 +1,36 @@
 <!DOCTYPE html>
 <html lang="en-US">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>About Me</title>
+  <title>About · layth49</title>
 
-  <!-- Favicon -->
   <link rel="icon" href="../assets/logo.ico" />
 
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700;800&family=Geist:wght@400;500;600;700&display=swap"
+    rel="stylesheet" />
+
+  <!-- Icon font -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+
   <!-- Stylesheets -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.0/css/bulma.min.css" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
-  <link rel="stylesheet" href="../CSS/socials.css" />
+  <link rel="stylesheet" href="../CSS/base.css" />
   <link rel="stylesheet" href="../CSS/navBar.css" />
+  <link rel="stylesheet" href="../CSS/socials.css" />
   <link rel="stylesheet" href="../CSS/about.css" />
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:400"  />
 
   <!-- Scripts -->
-  <script
-    type="text/javascript"
-    src="../JS/hackedEffect.js"
-  ></script>
+  <script defer src="../JS/hackedEffect.js"></script>
 </head>
 
 <body>
-  <!-- Navigation Bar -->
-  <div class="navBar">
+  <!-- NAV -->
+  <nav class="navBar">
     <div class="logo">
       <a href="../index.html">
         <img src="../assets/logo.png" alt="layth49" />
@@ -44,25 +49,199 @@
       </div>
     </div>
 
-    <aside class="social-link">
-      <a
-        href="https://github.com/layth49"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        <i class="fa fa-github"></i>
-      </a>
-    </aside>
-  </div>
-
-  <!-- Construction Section -->
-  <div class="construction-container">
-    <div class="stripe-border"></div>
-    <div class="content">
-      <div class="text hackedEffect">UNDER</div>
-      <div class="text-small hackedEffect">CONSTRUCTION</div>
+    <div class="nav-end">
+      <span class="status-pill"><span class="dot"></span> AVAILABLE</span>
     </div>
-    <div class="stripe-border"></div>
-  </div>
+  </nav>
+
+  <!-- FLOATING SOCIALS -->
+  <aside class="social-link">
+    <a href="https://github.com/layth49" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+      <i class="fa-brands fa-github"></i>
+    </a>
+    <a href="mailto:laythandamin@gmail.com" aria-label="Email">
+      <i class="fa-regular fa-envelope"></i>
+    </a>
+  </aside>
+
+  <main class="container">
+    <!-- HERO -->
+    <section class="about-hero">
+      <div>
+        <div class="eyebrow">
+          <span class="line"></span>
+          <span>FILE / ABOUT.MD</span>
+        </div>
+        <h1 class="hackedEffect">About</h1>
+        <p class="lede">
+          <strong>I build things that automate the boring parts.</strong>
+          Software developer, automation engineer, and serial creator of "wait, can I script that?" projects.
+        </p>
+      </div>
+
+      <aside class="id-card" aria-label="ID card">
+        <div class="row">
+          <span class="k">Name</span>
+          <span class="v">Layth Hammad</span>
+        </div>
+        <div class="row">
+          <span class="k">Handle</span>
+          <span class="v accent">layth49</span>
+        </div>
+        <div class="row">
+          <span class="k">Role</span>
+          <span class="v">Dev · Automation</span>
+        </div>
+        <div class="row">
+          <span class="k">Status</span>
+          <span class="v ok">● Online</span>
+        </div>
+        <div class="row">
+          <span class="k">Focus</span>
+          <span class="v">AI assistants, bots, tooling</span>
+        </div>
+        <div class="row">
+          <span class="k">Email</span>
+          <span class="v">laythandamin@gmail.com</span>
+        </div>
+      </aside>
+    </section>
+
+    <!-- BIO -->
+    <section class="about-section">
+      <div class="section-head">
+        <h2 class="section-title">Bio</h2>
+        <span class="section-meta">[ The short version ]</span>
+      </div>
+
+      <div class="bio">
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore 
+          magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo 
+          consequat.
+        </p>
+        <p>
+          Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+           Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+        </p>
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna 
+          aliqua.
+        </p>
+      </div>
+    </section>
+
+    <!-- DISCIPLINES -->
+    <section class="about-section">
+      <div class="section-head">
+        <h2 class="section-title">What I Do</h2>
+        <span class="section-meta">[ 04 disciplines ]</span>
+      </div>
+
+      <div class="disciplines">
+        <article class="discipline">
+          <span class="num">// 01</span>
+          <h3>Automation</h3>
+          <p>
+            Scripts, bots, and tools that handle repetitive work. If it
+            happens twice, it should run on its own the third time.
+          </p>
+        </article>
+
+        <article class="discipline">
+          <span class="num">// 02</span>
+          <h3>AI &amp; Assistants</h3>
+          <p>
+            Voice interfaces, LLM-powered helpers, dictation pipelines, and
+            anything that lets a computer take instructions in plain English.
+          </p>
+        </article>
+
+        <article class="discipline">
+          <span class="num">// 03</span>
+          <h3>Game Dev</h3>
+          <p>
+            Unity / C# for the fun stuff: small games, prototypes, and
+            experiments. Flappy Bird and Pong were just the warm-up.
+          </p>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- Stripe homage to old construction page -->
+    <div class="stack-stripe" role="presentation"></div>
+
+    <!-- TIMELINE -->
+    <section class="about-section" style="border-top: none; padding-top: 0;">
+      <div class="section-head">
+        <h2 class="section-title">Timeline</h2>
+        <span class="section-meta">[ MILESTONES ]</span>
+      </div>
+
+      <div class="timeline">
+        <div class="entry">
+          <div class="dot-wrap"></div>
+          <div class="body">
+            <span class="when">EARLY</span>
+            <h3 class="title">First scripts</h3>
+            <p>Discovered that programs can click things faster than humans. The aim, typing, reaction, and memory bots followed.</p>
+          </div>
+        </div>
+
+        <div class="entry">
+          <div class="dot-wrap"></div>
+          <div class="body">
+            <span class="when">THEN</span>
+            <h3 class="title">Auto Search &amp; small utilities</h3>
+            <p>Built a quick search helper to Google stuff without leaving the editor. It later evolved into something much bigger.</p>
+          </div>
+        </div>
+
+        <div class="entry">
+          <div class="dot-wrap"></div>
+          <div class="body">
+            <span class="when">ALSO</span>
+            <h3 class="title">Unity detours</h3>
+            <p>Made Flappy Bird and Pong in Unity to break up the script-everything routine. Both shipped, both playable.</p>
+          </div>
+        </div>
+
+        <div class="entry">
+          <div class="dot-wrap"></div>
+          <div class="body">
+            <span class="when">NOW</span>
+            <h3 class="title">L.A.I.T.H.49</h3>
+            <p>A personal AI assistant that subsumes a bunch of older tools and keeps growing new features. Forever a work in progress.</p>
+          </div>
+        </div>
+
+        <div class="entry">
+          <div class="dot-wrap"></div>
+          <div class="body">
+            <span class="when">2026</span>
+            <h3 class="title">Door Opener</h3>
+            <p>Automating software isn't enough anymore. The physical world needs automation too. Arduinos, motors, and Raspberry Pis.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT CTA -->
+    <section class="about-cta">
+      <span class="kicker">// LETS BUILD SOMETHING</span>
+      <h2 class="hackedEffect">SAY HI</h2>
+      <p>Open to collabs, weird ideas, and projects that need automating. Drop a line.</p>
+      <div class="links">
+        <a href="mailto:laythandamin@gmail.com" class="btn primary">
+          Email Me <span class="arrow">→</span>
+        </a>
+        <a href="https://github.com/layth49" target="_blank" rel="noopener noreferrer" class="btn">
+          <i class="fa-brands fa-github"></i> GitHub
+        </a>
+      </div>
+    </section>
+  </main>
 </body>
+
 </html>

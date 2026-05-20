@@ -4,29 +4,35 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>layth49.com</title>
+  <title>layth49 · software & automation</title>
+  <meta name="description" content="Layth, software developer and automation engineer. Building tools, bots, and personal AI assistants." />
 
   <!-- Favicon -->
   <link rel="icon" href="./assets/logo.ico" />
 
-  <!-- Stylesheets -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.0/css/bulma.min.css" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat" />
+  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Mono:wght@600&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="./CSS/socials.css" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700;800&family=Geist:wght@400;500;600;700&display=swap"
+    rel="stylesheet" />
+
+  <!-- Icon font -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="./CSS/base.css" />
   <link rel="stylesheet" href="./CSS/navBar.css" />
+  <link rel="stylesheet" href="./CSS/socials.css" />
   <link rel="stylesheet" href="./CSS/welcome.css" />
 
   <!-- Scripts -->
-  <script language="javascript" type="text/javascript" src="./JS/welcome.js"></script>
-  <script language="javascript" type="text/javascript" src="./JS/hackedEffect.js"></script>
+  <script defer src="./JS/welcome.js"></script>
+  <script defer src="./JS/hackedEffect.js"></script>
 </head>
 
 <body>
+  <!-- NAV -->
   <nav class="navBar">
     <div class="logo">
       <a href="./index.html">
@@ -45,73 +51,176 @@
         <a href="./HTML/about.html" class="hackedEffect">ABOUT</a>
       </div>
     </div>
+
+    <div class="nav-end">
+      <span class="status-pill"><span class="dot"></span> AVAILABLE</span>
+    </div>
   </nav>
 
+  <!-- FLOATING SOCIAL RAIL -->
   <aside class="social-link">
-    <a href="https://github.com/layth49" target="_blank" rel="noopener noreferrer">
-      <i class="fa fa-github"></i>
+    <a href="https://github.com/layth49" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+      <i class="fa-brands fa-github"></i>
+    </a>
+    <a href="mailto:laythandamin@gmail.com" aria-label="Email">
+      <i class="fa-regular fa-envelope"></i>
     </a>
   </aside>
 
-  <div class="hacked">
-    <h2><span class="static-text">Hi, <br> I'm </span><span class="animate-text" data-value="Layth">Layth</span></h2>
-  </div>
 
-  <div class="intro-section">
-    <p class="role hackedEffect">SOFTWARE DEVELOPER & AUTOMATION ENGINEER</p>
+  <br />
+  <h1>TODO: Fix bozos character icons (1:1 square, 512×512 )</h1>
+  <main class="container">
+    <!-- HERO -->
+    <section class="hero">
+      <div class="hero-left">
+        <div class="hero-eyebrow">
+          <span class="line"></span>
+          <span>PORTFOLIO / v2026</span>
+        </div>
 
-    <div class="skills-section">
+        <div class="hacked">
+          <h2>
+            <span class="static-text">Hi, I'm</span>
+            <span class="animate-text" data-value="Layth">Layth</span>
+          </h2>
+        </div>
+
+        <p class="hero-subtitle">
+          <strong>Software developer &amp; automation addict.</strong>
+          I build assistants, bots, and small tools that automate the small stuff.
+        </p>
+
+        <div class="hero-actions">
+          <a href="./HTML/projects.html" class="btn primary">
+            View Projects <span class="arrow">→</span>
+          </a>
+          <a href="./HTML/about.html" class="btn">
+            About Me
+          </a>
+        </div>
+      </div>
+
+      <div class="hero-status" aria-hidden="true">
+        <div class="row">
+          <span class="label">Status</span>
+          <span class="val ok">● Online</span>
+        </div>
+        <div class="row">
+          <span class="label">Role</span>
+          <span class="val">Dev / Automation</span>
+        </div>
+        <div class="row">
+          <span class="label">Stack</span>
+          <span class="val">Python · JS · C#</span>
+        </div>
+        <div class="row">
+          <span class="label">Latest</span>
+          <span class="val accent">L.A.I.T.H.49</span>
+        </div>
+        <pre class="ascii">   ╱╲      L.Λ.I.T.H.49
+  ╱  ╲     ────────────────
+ ╱────╲    &gt; assistant online</pre>
+        <div class="row">
+          <span class="label">Location</span>
+          <span class="val">U.S.A.</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- SKILLS -->
+    <section class="section skills-section">
+      <div class="section-head">
+        <h2 class="section-title">Stack</h2>
+        <span class="section-meta">[ 07 PRIMARY TOOLS ]</span>
+      </div>
+
       <div class="skills-container">
         <div class="skill-item">
-          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" height="40"
-            alt="html5 logo" />
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" alt="HTML5" />
           <span class="skill-tooltip">HTML</span>
         </div>
         <div class="skill-item">
-          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" height="40"
-            alt="css3 logo" />
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" alt="CSS3" />
           <span class="skill-tooltip">CSS</span>
         </div>
         <div class="skill-item">
-          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" height="40"
-            alt="javascript logo" />
-          <span class="skill-tooltip">JavaScript</span>
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" alt="JavaScript" />
+          <span class="skill-tooltip">JS</span>
         </div>
         <div class="skill-item">
-          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" height="40"
-            alt="python logo" />
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" alt="Python" />
           <span class="skill-tooltip">Python</span>
         </div>
         <div class="skill-item">
-          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/csharp/csharp-original.svg" height="40"
-            alt="csharp logo" />
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/csharp/csharp-original.svg" alt="C#" />
           <span class="skill-tooltip">C#</span>
         </div>
         <div class="skill-item">
-          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/arduino/arduino-original.svg" height="40"
-            alt="arduino logo" />
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/arduino/arduino-original.svg" alt="Arduino" />
           <span class="skill-tooltip">Arduino</span>
         </div>
         <div class="skill-item">
-          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/swift/swift-original.svg" height="40"
-            alt="swift logo" />
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/swift/swift-original.svg" alt="Swift" />
           <span class="skill-tooltip">Swift</span>
         </div>
       </div>
-    </div>
+    </section>
 
-    <div class="featured">
-      <a href="./HTML/projects.html" class="featured-item">
-        <h3 class="hackedEffect">L.A.I.T.H.49</h3>
-        <p>Personal AI Assistant</p>
-      </a>
-      <a href="./HTML/projects.html" class="featured-item">
-        <h3 class="hackedEffect">AUTOMATION SUITE</h3>
-        <p>Speed Tools Collection</p>
-      </a>
-    </div>
-  </div>
+    <!-- FEATURED -->
+    <section class="section">
+      <div class="section-head">
+        <h2 class="section-title">Featured</h2>
+        <a href="./HTML/projects.html" class="section-meta hackedEffect">SEE ALL →</a>
+      </div>
 
+      <div class="featured">
+        <a href="./HTML/laith.html" class="featured-item">
+          <div class="meta">
+            <span>PROJECT 01 · ACTIVE</span>
+            <span class="tag accent">IN PROGRESS</span>
+          </div>
+          <h3 class="hackedEffect">L.Λ.I.T.H.49</h3>
+          <p>Personal AI assistant: voice control, automation hooks, ever-growing feature set. The flagship.</p>
+          <div class="footer">
+            <div class="tags">
+              <span class="tag">C#</span>
+              <span class="tag">Gemini</span>
+              <span class="tag">Voice</span>
+            </div>
+            <span class="arrow">→</span>
+          </div>
+        </a>
+
+        <a href="./HTML/projects.html" class="featured-item">
+          <div class="meta">
+            <span>PROJECT 02 · SHIPPED</span>
+            <span class="tag ok">COMPLETE</span>
+          </div>
+          <h3 class="hackedEffect">AUTOMATION SUITE</h3>
+          <p>Benchmark-busting speed tools: aim, typing, reaction, memory tests automated faster than humanly possible.</p>
+          <div class="footer">
+            <div class="tags">
+              <span class="tag">Python</span>
+              <span class="tag">CV</span>
+              <span class="tag">Automation</span>
+            </div>
+            <span class="arrow">→</span>
+          </div>
+        </a>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta">
+      <span class="kicker">// AVAILABLE FOR COLLAB</span>
+      <h2 class="hackedEffect">GOT AN IDEA?</h2>
+      <p>If it should be automated, scripted, or have an AI shoved inside it, let's talk.</p>
+      <a href="mailto:laythandamin@gmail.com" class="btn primary">
+        Get In Touch <span class="arrow">→</span>
+      </a>
+    </section>
+  </main>
 </body>
 
 </html>

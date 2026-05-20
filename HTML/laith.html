@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>L.A.I.T.H.49 · layth49</title>
+  <meta name="description" content="L.A.I.T.H.49 (Logical Assistant for Intelligent Task Handling). A personal voice assistant with AI, smart home, and computer control." />
+
+  <link rel="icon" href="../assets/logo.ico" />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700;800&family=Geist:wght@400;500;600;700&display=swap"
+    rel="stylesheet" />
+
+  <!-- Icon font -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="../CSS/base.css" />
+  <link rel="stylesheet" href="../CSS/navBar.css" />
+  <link rel="stylesheet" href="../CSS/socials.css" />
+  <link rel="stylesheet" href="../CSS/laith.css" />
+
+  <!-- Scripts -->
+  <script defer src="../JS/hackedEffect.js"></script>
+</head>
+
+<body>
+  <!-- NAV -->
+  <nav class="navBar">
+    <div class="logo">
+      <a href="../index.html">
+        <img src="../assets/logo.png" alt="layth49" />
+      </a>
+    </div>
+
+    <div class="menuItems">
+      <div>
+        <a href="../index.html" class="hackedEffect">HOME</a>
+      </div>
+      <div class="active">
+        <a href="./projects.html" class="hackedEffect">PROJECTS</a>
+      </div>
+      <div>
+        <a href="./about.html" class="hackedEffect">ABOUT</a>
+      </div>
+    </div>
+
+    <div class="nav-end">
+      <span class="status-pill"><span class="dot"></span> AVAILABLE</span>
+    </div>
+  </nav>
+
+  <!-- FLOATING SOCIALS -->
+  <aside class="social-link">
+    <a href="https://github.com/layth49/Personal-Assistant" target="_blank" rel="noopener noreferrer" aria-label="L.A.I.T.H.49 on GitHub">
+      <i class="fa-brands fa-github"></i>
+    </a>
+    <a href="mailto:laythandamin@gmail.com" aria-label="Email">
+      <i class="fa-regular fa-envelope"></i>
+    </a>
+  </aside>
+
+  <main class="container">
+    <!-- HERO -->
+    <section class="laith-hero">
+      <div>
+        <div class="eyebrow">
+          <span class="line"></span>
+          <span>PROJECT FILE / 01 · FLAGSHIP</span>
+        </div>
+
+        <span class="wakeword">
+          <span class="pulse"></span>
+          // say "Hey 49"
+        </span>
+
+        <h1 class="hackedEffect">L.Λ.I.T.H.49</h1>
+        <p class="tagline">Logical Assistant for Intelligent Task Handling</p>
+        <p class="lede">
+          <strong>My personal voice assistant.</strong> Wakes on
+          <em>"Hey&nbsp;49"</em>, transcribes the command, runs it, and
+          speaks the response with an animated speech-bubble overlay.
+          Azure for speech, Gemini for general Q&amp;A, and a pile of
+          integrations for smart-home, gaming, and system control.
+          All routed through one event loop in C#.
+        </p>
+
+        <div class="actions">
+          <a href="https://github.com/layth49/Personal-Assistant" target="_blank" rel="noopener noreferrer" class="btn primary">
+            <i class="fa-brands fa-github"></i> View on GitHub <span class="arrow">→</span>
+          </a>
+          <a href="./projects.html" class="btn">
+            ← All Projects
+          </a>
+        </div>
+      </div>
+
+      <div class="laith-hero-media">
+        <div class="window-chrome">
+          <span></span><span></span><span></span>
+        </div>
+        <span class="label">LIVE · /bot.mp4</span>
+        <video loop autoplay muted playsinline webkit-playsinline poster="../assets/logo.png">
+          <source src="../assets/videos/bot.mp4" type="video/mp4" />
+        </video>
+      </div>
+    </section>
+
+    <!-- STATS -->
+    <div class="laith-stats">
+      <div class="stat">
+        <div class="label">Status</div>
+        <div class="val warn">In Progress</div>
+      </div>
+      <div class="stat">
+        <div class="label">Wake Word</div>
+        <div class="val accent">"Hey 49"</div>
+      </div>
+      <div class="stat">
+        <div class="label">Runtime</div>
+        <div class="val">.NET 4.8.1 + Py 3.12</div>
+      </div>
+      <div class="stat">
+        <div class="label">LLM</div>
+        <div class="val">Gemini 2.5 Flash</div>
+      </div>
+      <div class="stat">
+        <div class="label">Speech</div>
+        <div class="val">Azure Neural</div>
+      </div>
+      <div class="stat">
+        <div class="label">Integrations</div>
+        <div class="val accent">11+</div>
+      </div>
+    </div>
+
+    <!-- WHAT IT DOES -->
+    <section class="laith-section">
+      <div class="head">
+        <h2 class="title">What it does</h2>
+        <span class="meta">[ 13 commands · 4 domains ]</span>
+      </div>
+
+      <p class="blurb">
+        L.A.I.T.H.49 listens for the wake word, then routes whatever you say
+        through a command dispatcher. Recognized verbs control devices and apps
+        directly; anything else falls through to Gemini for a conversational
+        answer (with Google Search grounding for current events).
+      </p>
+
+      <div class="feature-group">
+        <h3>Voice &amp; AI <span class="count">[ 03 ]</span></h3>
+        <div class="features-grid">
+          <div class="feature">
+            <span class="icon"><i class="fa-solid fa-microphone"></i></span>
+            <div class="text">
+              <span class="cmd">"Hey 49"</span>
+              <span class="what">Custom on-device wake word</span>
+            </div>
+          </div>
+          <div class="feature">
+            <span class="icon"><i class="fa-solid fa-brain"></i></span>
+            <div class="text">
+              <span class="cmd">anything else</span>
+              <span class="what">Falls through to Gemini for Q&amp;A</span>
+            </div>
+          </div>
+          <div class="feature">
+            <span class="icon"><i class="fa-solid fa-comment-dots"></i></span>
+            <div class="text">
+              <span class="cmd">greetings + replies</span>
+              <span class="what">Time-of-day-aware, randomized greetings</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="feature-group">
+        <h3>Smart Home <span class="count">[ 03 ]</span></h3>
+        <div class="features-grid">
+          <div class="feature">
+            <span class="icon"><i class="fa-solid fa-lightbulb"></i></span>
+            <div class="text">
+              <span class="cmd">"turn on/off the LED / bedroom lights"</span>
+              <span class="what">Control lights over local network</span>
+            </div>
+          </div>
+          <div class="feature">
+            <span class="icon"><i class="fa-solid fa-door-open"></i></span>
+            <div class="text">
+              <span class="cmd">"open/close the door"</span>
+              <span class="what">Arduino-driven door actuator</span>
+            </div>
+          </div>
+          <div class="feature">
+            <span class="icon"><i class="fa-solid fa-gamepad"></i></span>
+            <div class="text">
+              <span class="cmd">"turn on the PlayStation"</span>
+              <span class="what">PS5 power + game launching</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="feature-group">
+        <h3>Information <span class="count">[ 04 ]</span></h3>
+        <div class="features-grid">
+          <div class="feature">
+            <span class="icon"><i class="fa-solid fa-cloud-sun"></i></span>
+            <div class="text">
+              <span class="cmd">"what's the weather?"</span>
+              <span class="what">Local weather via OpenWeatherMap</span>
+            </div>
+          </div>
+          <div class="feature">
+            <span class="icon"><i class="fa-solid fa-clock"></i></span>
+            <div class="text">
+              <span class="cmd">"what time / day is it?"</span>
+              <span class="what">Local clock and date readout</span>
+            </div>
+          </div>
+          <div class="feature">
+            <span class="icon"><i class="fa-solid fa-mosque"></i></span>
+            <div class="text">
+              <span class="cmd">"prayer times"</span>
+              <span class="what">Location-aware daily prayer times</span>
+            </div>
+          </div>
+          <div class="feature">
+            <span class="icon"><i class="fa-solid fa-comment-sms"></i></span>
+            <div class="text">
+              <span class="cmd">"text [contact]"</span>
+              <span class="what">SMS lookup + send from contacts</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="feature-group">
+        <h3>Computer Control <span class="count">[ 04 ]</span></h3>
+        <div class="features-grid">
+          <div class="feature">
+            <span class="icon"><i class="fa-brands fa-google"></i></span>
+            <div class="text">
+              <span class="cmd">"search up / google [x]"</span>
+              <span class="what">Opens Google with the query</span>
+            </div>
+          </div>
+          <div class="feature">
+            <span class="icon"><i class="fa-brands fa-youtube"></i></span>
+            <div class="text">
+              <span class="cmd">"youtube" → "open" or "search for"</span>
+              <span class="what">Multi-turn YouTube dispatch</span>
+            </div>
+          </div>
+          <div class="feature">
+            <span class="icon"><i class="fa-solid fa-code"></i></span>
+            <div class="text">
+              <span class="cmd">"open visual studio"</span>
+              <span class="what">Launches the IDE</span>
+            </div>
+          </div>
+          <div class="feature">
+            <span class="icon"><i class="fa-solid fa-power-off"></i></span>
+            <div class="text">
+              <span class="cmd">"shut down" / "restart"</span>
+              <span class="what">With voice confirmation step</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ARCHITECTURE -->
+    <section class="laith-section">
+      <div class="head">
+        <h2 class="title">Architecture</h2>
+        <span class="meta">[ REQUEST FLOW ]</span>
+      </div>
+
+      <p class="blurb">
+        A single C# event loop drives the whole thing. Speech in,
+        dispatch on intent, fall through to the LLM if nothing matches,
+        then speak the result back. Python services (bubble UI, SMS,
+        PS5 control) sit alongside via a live <code>pythonnet</code>
+        bridge, sharing the same process, just behind <code>Py.GIL()</code>.
+      </p>
+
+      <div class="flow">
+        <div class="step">
+          <div class="n">01</div>
+          <div class="body">
+            <span class="label">WAKE</span>
+            <span class="what">Azure on-device <code>KeywordRecognizer</code> matches <code>"Hey 49"</code></span>
+            <span class="why">Reused across cycles so WASAPI doesn't re-init the mic every loop. The keyword catches first-try instead of after a retry.</span>
+          </div>
+        </div>
+        <div class="step">
+          <div class="n">02</div>
+          <div class="body">
+            <span class="label">GREET</span>
+            <span class="what">Time-of-day greeting via Azure TTS (<code>en-US-AndrewMultilingualNeural</code>)</span>
+            <span class="why">Synthesizer's TLS connection is pre-opened at startup so the first phoneme isn't clipped.</span>
+          </div>
+        </div>
+        <div class="step">
+          <div class="n">03</div>
+          <div class="body">
+            <span class="label">LISTEN</span>
+            <span class="what"><code>SpeechRecognizer.RecognizeOnceAsync()</code> → transcript</span>
+            <span class="why">Optional custom recognition endpoint via <code>SPEECH_ENDPOINT_ID</code> if you've trained one. Contact names are pushed into the recognizer's phrase list for accuracy.</span>
+          </div>
+        </div>
+        <div class="step">
+          <div class="n">04</div>
+          <div class="body">
+            <span class="label">DISPATCH</span>
+            <span class="what">Intent matched against a chain of <code>lower.Contains(...)</code> rules</span>
+            <span class="why">Lights, door, PS5, weather, prayer times, contacts, IDE, shutdown. Each handler is a separate service class.</span>
+          </div>
+        </div>
+        <div class="step">
+          <div class="n">05</div>
+          <div class="body">
+            <span class="label">FALLBACK</span>
+            <span class="what">No match → <code>GeminiService.GenerateGeminiResponse()</code></span>
+            <span class="why">Gemini 2.5 Flash with Google Search grounding so current-events questions still work. System prompt enforces a terse voice-friendly tone.</span>
+          </div>
+        </div>
+        <div class="step">
+          <div class="n">06</div>
+          <div class="body">
+            <span class="label">SPEAK</span>
+            <span class="what">TTS + pygame bubble run in parallel; can be interrupted</span>
+            <span class="why">A side-channel <code>ListenForInterruptionAsync()</code> runs alongside every <code>Say()</code>. Hearing "Hey 49" mid-response cancels the synthesizer, retracts the bubble, and skips the next greeting.</span>
+          </div>
+        </div>
+      </div>
+
+      <h3 style="font-family: var(--font-mono); font-size: 0.85rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent); margin: 2.5rem 0 0;">// Stack</h3>
+      <div class="stack-grid">
+        <div class="item">
+          <div class="role">Core</div>
+          <div class="name">C# / .NET 4.8.1</div>
+          <div class="note">Event loop, service classes, command dispatch.</div>
+        </div>
+        <div class="item">
+          <div class="role">Bridge</div>
+          <div class="name">pythonnet</div>
+          <div class="note">Hosts Python 3.12 in-process. C# calls Python via <code>Py.GIL()</code>; the runtime pre-releases the GIL with <code>BeginAllowThreads()</code>.</div>
+        </div>
+        <div class="item">
+          <div class="role">Speech</div>
+          <div class="name">Azure Cognitive Services</div>
+          <div class="note">On-device wake-word (Custom Keyword), cloud STT, neural TTS with SSML support.</div>
+        </div>
+        <div class="item">
+          <div class="role">LLM</div>
+          <div class="name">Gemini 2.5 Flash</div>
+          <div class="note">Q&amp;A fallback with <code>google_search</code> grounding. <code>maxOutputTokens=200</code> keeps replies voice-appropriate.</div>
+        </div>
+        <div class="item">
+          <div class="role">Overlay</div>
+          <div class="name">pygame</div>
+          <div class="note">Animated speech-bubble drawn on a borderless, click-through window. DPI-aware, fonts kept warm between calls.</div>
+        </div>
+        <div class="item">
+          <div class="role">SMS</div>
+          <div class="name">pyautogui + Phone Link</div>
+          <div class="note">No carrier API (too expensive). Drives Windows Phone Link UI via image-matching against reference assets.</div>
+        </div>
+        <div class="item">
+          <div class="role">Smart Home</div>
+          <div class="name">TP-Link Kasa + Arduino</div>
+          <div class="note">Local-network plugs/switches for lights; Arduino over IP for the door actuator.</div>
+        </div>
+        <div class="item">
+          <div class="role">Location</div>
+          <div class="name">GeoCoordinateWatcher</div>
+          <div class="note">Windows location API. Single fix cached process-wide, shared by weather and prayer-time math.</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ENGINEERING DETAILS / OPTIMIZATIONS -->
+    <section class="laith-section">
+      <div class="head">
+        <h2 class="title">Why it feels fast</h2>
+        <span class="meta">[ optimizations ]</span>
+      </div>
+
+      <p class="blurb">
+        Voice UX lives and dies on latency. A few small choices keep the
+        round-trip from wake word to first audio under the "is it broken?"
+        threshold.
+      </p>
+
+      <div class="opts">
+        <article class="opt">
+          <div class="head-row">
+            <span class="badge">REUSE</span>
+          </div>
+          <h4>Keyword recognizer lives across cycles</h4>
+          <p>Building a new <code>KeywordRecognizer</code> per cycle re-opens WASAPI audio capture that takes <strong>~9 seconds</strong> on some machines. Constructing it once and reusing it every loop iteration kills the dead air.</p>
+        </article>
+
+        <article class="opt">
+          <div class="head-row">
+            <span class="badge">PARALLEL</span>
+          </div>
+          <h4>Speech bubble + TTS run side-by-side</h4>
+          <p><code>Say()</code> fires TTS on the threadpool and immediately calls <code>SpeechBubble()</code>, which blocks until shared state flips. The synth's completion callback flips the state, retracting the bubble exactly when audio ends. Awaiting TTS first would leave the bubble stuck open.</p>
+        </article>
+
+        <article class="opt">
+          <div class="head-row">
+            <span class="badge">ISOLATE</span>
+          </div>
+          <h4>Two <code>SpeechConfig</code> instances, never shared</h4>
+          <p>The recognition config can target a custom Azure STT endpoint via <code>EndpointId</code>. The synth config <em>never</em> gets that property, applying it to the synthesizer causes silent TTS failures with no error.</p>
+        </article>
+
+        <article class="opt">
+          <div class="head-row">
+            <span class="badge">HOT</span>
+          </div>
+          <h4>Pygame display dies, fonts stay warm</h4>
+          <p>The bubble calls <code>pygame.display.quit()</code> after each speech, not <code>pygame.quit()</code>. Fonts stay loaded in module state, so the next bubble re-inits in milliseconds instead of seconds. Hiding the SDL window instead hangs <code>set_mode</code> for ~20s.</p>
+        </article>
+
+        <article class="opt">
+          <div class="head-row">
+            <span class="badge">DPI</span>
+          </div>
+          <h4>Process-wide DPI awareness, set first</h4>
+          <p><code>SetProcessDpiAwareness(2)</code> runs at the very top of <code>SpeechBubble.py</code>, <em>before</em> <code>import pygame</code>. If pyautogui later flips DPI mode mid-process, pygame's window shrinks to a quarter of its size</p>
+        </article>
+
+        <article class="opt">
+          <div class="head-row">
+            <span class="badge">SSML</span>
+          </div>
+          <h4>IPA phonemes for prayer names</h4>
+          <p>An English neural voice mangles "Fajr," "Maghrib," "Isha." Wrapping the names in SSML <code>&lt;phoneme&gt;</code> tags with IPA pronunciations makes the synthesizer say them correctly.</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- CODE EXCERPT -->
+    <section class="laith-section">
+      <div class="head">
+        <h2 class="title">Code, briefly</h2>
+        <span class="meta">[ Program.cs / main loop ]</span>
+      </div>
+
+      <p class="blurb">
+        The whole dispatch is a flat <code>if/else</code> chain. Boring on
+        purpose: fast to read, easy to add the next command without standing
+        up a router.
+      </p>
+
+      <div class="code-block">
+        <div class="topbar">
+          <span><i class="fa-regular fa-file-code"></i></span>
+          <span class="filename">Program.cs</span>
+          <span class="lang">C#</span>
+        </div>
+<pre><span class="kw">while</span> (<span class="kw">true</span>) {
+    <span class="kw">await</span> speechManager.<span class="fn">KeywordRecognizer</span>();          <span class="com">// wait for "Hey 49"</span>
+    <span class="kw">var</span> greeting = <span class="fn">PickGreeting</span>(DateTime.Now.Hour);
+    <span class="kw">await</span> speechManager.<span class="fn">Say</span>(<span class="str">"Hey 49"</span>, greeting);
+
+    <span class="kw">var</span> result = <span class="kw">await</span> speechRecognizer.<span class="fn">RecognizeOnceAsync</span>();
+    <span class="kw">string</span> lower = result.Text?.<span class="fn">ToLower</span>() ?? <span class="str">""</span>;
+
+    <span class="kw">if</span> (lower.<span class="fn">Contains</span>(<span class="str">"turn on"</span>) &amp;&amp; lower.<span class="fn">Contains</span>(<span class="str">"light"</span>))
+        <span class="kw">await</span> lightControl.<span class="fn">TurnOnLights</span>(...);
+    <span class="kw">else if</span> (lower.<span class="fn">Contains</span>(<span class="str">"door"</span>))
+        <span class="kw">await</span> arduino.<span class="fn">ArduinoCommunication</span>(<span class="str">"OPEN"</span>);
+    <span class="kw">else if</span> (lower.<span class="fn">Contains</span>(<span class="str">"weather"</span>))
+        <span class="kw">await</span> weather.<span class="fn">GetWeatherData</span>();
+    <span class="com">// ...11 more handlers...</span>
+    <span class="kw">else if</span> (result.Reason != ResultReason.NoMatch) {
+        <span class="kw">var</span> reply = <span class="kw">await</span> GeminiService.<span class="fn">GenerateGeminiResponse</span>(result.Text);
+        <span class="kw">await</span> speechManager.<span class="fn">Say</span>(result.Text, reply);
+    }
+}</pre>
+      </div>
+    </section>
+
+    <!-- ROADMAP -->
+    <section class="laith-section">
+      <div class="head">
+        <h2 class="title">Roadmap</h2>
+        <span class="meta">[ EVER-GROWING ]</span>
+      </div>
+
+      <div class="roadmap">
+        <div class="row done">
+          <div class="check"></div>
+          <div class="what">Custom "Hey 49" on-device wake word</div>
+          <div class="when">SHIPPED</div>
+        </div>
+        <div class="row done">
+          <div class="check"></div>
+          <div class="what">Gemini fallback with Google Search grounding</div>
+          <div class="when">SHIPPED</div>
+        </div>
+        <div class="row done">
+          <div class="check"></div>
+          <div class="what">Arduino-driven door + IP-based lights</div>
+          <div class="when">SHIPPED</div>
+        </div>
+        <div class="row done">
+          <div class="check"></div>
+          <div class="what">PS5 power-on + game launching</div>
+          <div class="when">SHIPPED</div>
+        </div>
+        <div class="row done">
+          <div class="check"></div>
+          <div class="what">Location-aware prayer times</div>
+          <div class="when">SHIPPED</div>
+        </div>
+        <div class="row done">
+          <div class="check"></div>
+          <div class="what">Mid-response interruption (say "Hey 49" again to cut it off)</div>
+          <div class="when">SHIPPED</div>
+        </div>
+        <div class="row in-progress">
+          <div class="check"></div>
+          <div class="what">Multi-turn context (keep a short dialogue history across cycles)</div>
+          <div class="when">IN PROGRESS</div>
+        </div>
+        <div class="row">
+          <div class="check"></div>
+          <div class="what">More integrations + commands (rolling)</div>
+          <div class="when">FOREVER</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ACKNOWLEDGEMENTS -->
+    <section class="laith-section">
+      <div class="head">
+        <h2 class="title">Acknowledgements</h2>
+        <span class="meta">[ CREDITS ]</span>
+      </div>
+
+      <div class="credits">
+        Prayer times calculation adapted from
+        <a href="https://github.com/nyongrand/pray-times" target="_blank" rel="noopener noreferrer">Nyong's pray-times</a>.
+        Wake-word, speech-to-text, and neural TTS via Microsoft
+        Azure Cognitive Services. Conversational responses by Google Gemini.
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="laith-cta">
+      <span class="kicker">// SEE THE SOURCE</span>
+      <h2 class="hackedEffect">DIG IN</h2>
+      <p>Everything from the dispatcher to the Arduino serial commands is open. Star it, fork it, copy a service, whatever.</p>
+      <div class="links">
+        <a href="https://github.com/layth49/Personal-Assistant" target="_blank" rel="noopener noreferrer" class="btn primary">
+          <i class="fa-brands fa-github"></i> Open Repository <span class="arrow">→</span>
+        </a>
+        <a href="./projects.html" class="btn">
+          ← Other Projects
+        </a>
+      </div>
+    </section>
+  </main>
+</body>
+
+</html>
