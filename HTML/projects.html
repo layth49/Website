@@ -4,25 +4,34 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>My Projects</title>
+  <title>Projects · layth49</title>
 
-  <!-- Favicon -->
   <link rel="icon" href="../assets/logo.ico" />
 
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700;800&family=Geist:wght@400;500;600;700&display=swap"
+    rel="stylesheet" />
+
+  <!-- Icon font -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+
   <!-- Stylesheets -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.0/css/bulma.min.css" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:400" />
-  <link rel="stylesheet" href="../CSS/socials.css" />
+  <link rel="stylesheet" href="../CSS/base.css" />
   <link rel="stylesheet" href="../CSS/navBar.css" />
+  <link rel="stylesheet" href="../CSS/socials.css" />
   <link rel="stylesheet" href="../CSS/projects.css" />
 
   <!-- Scripts -->
-  <script type="text/javascript" src="../JS/hackedEffect.js"></script>
+  <script defer src="../JS/hackedEffect.js"></script>
+  <script defer src="../JS/projects.js"></script>
 </head>
 
 <body>
-  <div class="navBar sticky">
+  <!-- NAV -->
+  <nav class="navBar">
     <div class="logo">
       <a href="../index.html">
         <img src="../assets/logo.png" alt="layth49" />
@@ -41,161 +50,334 @@
       </div>
     </div>
 
-    <aside class="social-link">
-      <a href="https://github.com/layth49" target="_blank" rel="noopener noreferrer">
-        <i class="fa fa-github"></i>
-      </a>
-    </aside>
-  </div>
+    <div class="nav-end">
+      <span class="status-pill"><span class="dot"></span> AVAILABLE</span>
+    </div>
+  </nav>
 
-  <div>
+  <!-- FLOATING SOCIALS -->
+  <aside class="social-link">
+    <a href="https://github.com/layth49" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+      <i class="fa-brands fa-github"></i>
+    </a>
+    <a href="mailto:laythandamin@gmail.com" aria-label="Email">
+      <i class="fa-regular fa-envelope"></i>
+    </a>
+  </aside>
+
+  <main class="container">
+    <!-- HERO -->
+    <section class="projects-hero">
+      <div class="eyebrow">
+        <span class="line"></span>
+        <span>INDEX / 17 projects</span>
+      </div>
+      <h1 class="hackedEffect">Projects</h1>
+      <p>A running log of bots, automations, games, and pranks. Some are shipped, one is forever in progress, and some are failed experiments.</p>
+    </section>
+
+    <!-- FILTER BAR -->
+    <div class="filter-bar">
+      <span class="label">Filter:</span>
+      <div class="filters">
+        <button class="chip active" data-filter="all">All</button>
+        <button class="chip" data-filter="ok">Complete</button>
+        <button class="chip" data-filter="warn">In Progress</button>
+        <button class="chip" data-filter="archived">Archived</button>
+        <button class="chip" data-filter="bad">Failed</button>
+      </div>
+    </div>
+
+    <!-- CARDS -->
     <div class="cards">
 
-      <!-- Card: Aim Speed -->
-      <div class="card">
-        <h1>Aim Speed</h1>
-        <video loop autoplay muted playsinline webkit-playsinline>
-          <a href="https://humanbenchmark.com/tests/aim"></a>
-          <source src="../assets/videos/aim.mp4" type="video/mp4" />
-        </video>
-        <p><b>Progress:</b> <b style="color: green">Complete</b></p>
-        <p>This program looks for the target and clicks on it. It can be extremely fast depending on browser and PC
-          hardware</p>
+      <!-- L.A.I.T.H.49: featured, spans 2, links to deep-dive -->
+      <a class="card featured" data-status="warn" href="./laith.html" style="text-decoration: none;">
+        <div class="card-head">
+          <span class="num">// 01</span>
+          <span class="status warn">In Progress</span>
+        </div>
+        <h1 class="hackedEffect">L.Λ.I.T.H.49</h1>
+        <p class="subtitle">Logical Assistant for Intelligent Task Handling</p>
+        <div class="card-media">
+          <span class="badge">FLAGSHIP · CLICK FOR DEEP-DIVE</span>
+          <video loop autoplay muted playsinline webkit-playsinline>
+            <source src="../assets/videos/bot.mp4" type="video/mp4" />
+          </video>
+        </div>
+        <p>My personal assistant, my biggest and favorite software project. Never really "done" because I'm always adding new features.</p>
+        <div class="card-foot">
+          <span>C# · GEMINI · AZURE</span>
+          <span class="arrow">→</span>
+        </div>
+      </a>
+
+      
+      <!-- Door Opener -->
+      <div class="card" data-status="warn">
+        <div class="card-head">
+          <span class="num">// 02</span>
+          <span class="status warn">In Progress</span>
+        </div>
+        <h1 class="hackedEffect">Mechanical Door Opener</h1>
+        <p>My biggest (and first) hardware project yet. An Arduino-based device that uses a servo motor to open/close doors wirelessly. Can communicate with L.A.I.T.H.49 and Siri.</p>
+        <div class="card-foot">
+          <span>ARDUINO · ELECTRONICS</span>
+        </div>
       </div>
 
-      <!-- Card: Typing Speed -->
-      <div class="card">
-        <h1>Typing Speed</h1>
-        <video loop autoplay muted playsinline webkit-playsinline>
-          <a href="https://humanbenchmark.com/tests/typing"></a>
-          <source src="../assets/videos/type.mp4" type="video/mp4" />
-        </video>
-        <p><b>Progress:</b> <b style="color: green">Complete</b></p>
-        <p>This program takes the displayed text types it into the input field. It's extremely fast and gets 3000+ WPM
-          almost every time</p>
+      <!-- Bozo's Adventure: featured, spans 2, links to deep-dive -->
+      <a class="card featured" data-status="archived" href="./bozos.html" style="text-decoration: none;">
+        <div class="card-head">
+          <span class="num">// 03</span>
+          <span class="status archived">Archived</span>
+        </div>
+        <h1 class="hackedEffect">Bozo's Adventure</h1>
+        <p class="subtitle">A Unity platformer about teleporting bozos</p>
+        <div class="card-media no-media bozos-preview">
+          <span class="badge">GAME · ARCHIVED · CLICK FOR DEEP-DIVE</span>
+        </div>
+        <p>Three playable characters with incompatible movement: <b>49</b> teleports to your cursor, <b>Slime</b> double-jumps. Swap with <code>E</code>. Shipped through v0.2, then lost steam mid-v0.3 and got shelved. Repo's still up.</p>
+        <div class="card-foot">
+          <span>UNITY · C#</span>
+          <span class="arrow">→</span>
+        </div>
+      </a>
+
+      <!-- Aim Speed -->
+      <div class="card" data-status="ok">
+        <div class="card-head">
+          <span class="num">// 04</span>
+          <span class="status ok">Complete</span>
+        </div>
+        <h1 class="hackedEffect">Aim Speed</h1>
+        <div class="card-media">
+          <video loop autoplay muted playsinline webkit-playsinline>
+            <source src="../assets/videos/aim.mp4" type="video/mp4" />
+          </video>
+        </div>
+        <p>Locks onto the target and clicks.</p>
+        <div class="card-foot">
+          <span>PYTHON · CV</span>
+        </div>
       </div>
 
-      <!-- Card: Reaction Speed -->
-      <div class="card">
-        <h1>Reaction Speed</h1>
-        <video loop autoplay muted playsinline webkit-playsinline>
-          <a href="https://humanbenchmark.com/tests/reactiontime"></a>
-          <source src="../assets/videos/react.mp4" type="video/mp4" />
-        </video>
-        <p><b>Progress:</b> <b style="color: green">Complete</b></p>
-        <p>This program waits for the color green to appear and clicks. It can be extremely fast depending on browser
-          and PC
-          hardware</p>
+      <!-- Typing Speed -->
+      <div class="card" data-status="ok">
+        <div class="card-head">
+          <span class="num">// 05</span>
+          <span class="status ok">Complete</span>
+        </div>
+        <h1 class="hackedEffect">Typing Speed</h1>
+        <div class="card-media">
+          <video loop autoplay muted playsinline webkit-playsinline>
+            <source src="../assets/videos/type.mp4" type="video/mp4" />
+          </video>
+        </div>
+        <p>Reads the displayed text and types it back. Pulls 3000+ WPM almost every time.</p>
+        <div class="card-foot">
+          <span>PYTHON · AUTOMATION</span>
+        </div>
       </div>
 
-      <!-- Card: Verbal Memory -->
-      <div class="card">
-        <h1>Verbal Memory</h1>
-        <video loop autoplay muted playsinline webkit-playsinline>
-          <a href="https://humanbenchmark.com/tests/verbal-memory"></a>
-          <source src="../assets/videos/verbal.mp4" type="video/mp4" />
-        </video>
-        <p><b>Progress:</b> <b style="color: green">Complete</b></p>
-        <p>
-          This program takes the word displayed and adds it to a
-          list. If the word is already there, press <b>SEEN</b>; if not, press
-          <b>NEW</b> and add it to the list. This goes on forever and is
-          insanely fast.
-        </p>
+      <!-- Reaction Speed -->
+      <div class="card" data-status="ok">
+        <div class="card-head">
+          <span class="num">// 06</span>
+          <span class="status ok">Complete</span>
+        </div>
+        <h1 class="hackedEffect">Reaction Speed</h1>
+        <div class="card-media">
+          <video loop autoplay muted playsinline webkit-playsinline>
+            <source src="../assets/videos/react.mp4" type="video/mp4" />
+          </video>
+        </div>
+        <p>Waits for green, fires the click. As fast as the browser will let it.</p>
+        <div class="card-foot">
+          <span>PYTHON · PIXEL OPS</span>
+        </div>
       </div>
 
-      <!-- Card: Number Memory -->
-      <div class="card">
-        <h1>Number Memory</h1>
-        <video loop autoplay muted playsinline webkit-playsinline>
-          <a href="https://humanbenchmark.com/tests/number-memory"></a>
-          <source src="../assets/videos/num.mp4" type="video/mp4" />
-        </video>
-        <p><b>Progress:</b> <b style="color: green">Complete</b></p>
-        <p>
-          Like a lesser version of Verbal Memory. This program grabs the
-          number displayed and types it into the input box. This can go on
-          forever.
-        </p>
+      <!-- Verbal Memory -->
+      <div class="card" data-status="ok">
+        <div class="card-head">
+          <span class="num">// 07</span>
+          <span class="status ok">Complete</span>
+        </div>
+        <h1 class="hackedEffect">Verbal Memory</h1>
+        <div class="card-media">
+          <video loop autoplay muted playsinline webkit-playsinline>
+            <source src="../assets/videos/verbal.mp4" type="video/mp4" />
+          </video>
+        </div>
+        <p>Builds a list of seen words and presses <b>SEEN</b> / <b>NEW</b> accordingly. Goes forever. (Footage is NOT sped up)</p>
+        <div class="card-foot">
+          <span>PYTHON · OCR</span>
+        </div>
       </div>
 
-      <!-- Card: Auto Search -->
-      <div class="card">
-        <h1>Auto Search</h1>
-        <video loop autoplay muted playsinline webkit-playsinline>
-          <source src="../assets/videos/auto.mp4" type="video/mp4" />
-        </video>
-        <p><b>Progress:</b> <b style="color: green">Complete</b></p>
-        <p>
-          Before I made L.A.I.T.H.49, I made this program that would let me search
-          stuff on Google <i>while</i> I code.
-        </p>
+      <!-- Number Memory -->
+      <div class="card" data-status="ok">
+        <div class="card-head">
+          <span class="num">// 08</span>
+          <span class="status ok">Complete</span>
+        </div>
+        <h1 class="hackedEffect">Number Memory</h1>
+        <div class="card-media">
+          <video loop autoplay muted playsinline webkit-playsinline>
+            <source src="../assets/videos/num.mp4" type="video/mp4" />
+          </video>
+        </div>
+        <p>Reads the number, types it back. Typing Speed's simpler version. Also can go forever.</p>
+        <div class="card-foot">
+          <span>PYTHON · OCR</span>
+        </div>
       </div>
 
-      <!-- Card: BOT49 -->
-      <div class="card">
-        <h1>L./\.I.T.H.49</h1>
-        <p style="font-size:1.5vh;">Logical Assistant for Intelligent Task Handling</p>
-        <video loop autoplay muted playsinline webkit-playsinline>
-          <source src="../assets/videos/bot.mp4" type="video/mp4" />
-        </video>
-        <p>
-          <b>Progress:</b> <b style="color: orange">In Progress (forever)</b>
-        </p>
-        <p>
-          This program is my own personal assistant. This is my biggest and
-          favorite project. I'm always adding new features to it, so
-          it's never really done. To know more, click on the card.
-        </p>
+      <!-- Auto Search -->
+      <div class="card" data-status="ok">
+        <div class="card-head">
+          <span class="num">// 09</span>
+          <span class="status ok">Complete</span>
+        </div>
+        <h1 class="hackedEffect">Auto Search</h1>
+        <div class="card-media">
+          <video loop autoplay muted playsinline webkit-playsinline>
+            <source src="../assets/videos/auto.mp4" type="video/mp4" />
+          </video>
+        </div>
+        <p>Before L.A.I.T.H.49 existed, this little script let me Google things <i>while</i> I coded.</p>
+        <div class="card-foot">
+          <span>PYTHON · UTILITY</span>
+        </div>
       </div>
 
-      <!-- Card: BSOD Prank -->
-      <div class="card">
-        <h1>BSOD Prank</h1>
-        <video loop autoplay muted playsinline webkit-playsinline>
-          <source src="../assets/videos/prank.mp4" type="video/mp4" />
-        </video>
-        <p><b>Progress:</b> <b style="color: red">Failed</b></p>
-        <p>
-          While I <b><i>was</i></b> close. It ultimately is obvious that it's
-          <b style="color: red">fake</b>.
-        </p>
+      <!-- Flappy Bird -->
+      <div class="card" data-status="ok">
+        <div class="card-head">
+          <span class="num">// 10</span>
+          <span class="status ok">Complete</span>
+        </div>
+        <h1 class="hackedEffect">Flappy Bird</h1>
+        <div class="card-media">
+          <video loop autoplay muted playsinline webkit-playsinline>
+            <source src="../assets/videos/flappybirb.mp4" type="video/mp4" />
+          </video>
+        </div>
+        <p>Simple Flappy Bird clone, made in Unity. Tap the bird, dodge the pipes.</p>
+        <div class="card-foot">
+          <span>UNITY · C#</span>
+        </div>
       </div>
 
-      <!-- Card: Flappy Bird -->
-      <div class="card">
-        <h1>Flappy Bird</h1>
-        <video loop autoplay muted playsinline webkit-playsinline>
-          <source src="../assets/videos/flappybirb.mp4" type="video/mp4" />
-        </video>
-        <p><b>Progress:</b> <b style="color: green">Complete</b></p>
-        <p>Simple Flappy Bird game made in Unity.</p>
+      <!-- Pong -->
+      <div class="card" data-status="ok">
+        <div class="card-head">
+          <span class="num">// 11</span>
+          <span class="status ok">Complete</span>
+        </div>
+        <h1 class="hackedEffect">Pong</h1>
+        <div class="card-media">
+          <video loop autoplay muted playsinline webkit-playsinline>
+            <source src="../assets/videos/pong.mp4" type="video/mp4" />
+          </video>
+        </div>
+        <p>Unity Pong with local PvP and a basic "AI" opponent.</p>
+        <div class="card-foot">
+          <span>UNITY · C#</span>
+        </div>
       </div>
 
-      <!-- Card: Pong -->
-      <div class="card">
-        <h1>Pong</h1>
-        <video loop autoplay muted playsinline webkit-playsinline>
-          <source src="../assets/videos/pong.mp4" type="video/mp4" />
-        </video>
-        <p><b>Progress:</b> <b style="color: green">Complete</b></p>
-        <p>Simple Pong game made in Unity with support for local play and "AI".</p>
+      <!-- AI Voice Dictator -->
+      <div class="card" data-status="ok">
+        <div class="card-head">
+          <span class="num">// 12</span>
+          <span class="status ok">Complete</span>
+        </div>
+        <h1 class="hackedEffect">AI Voice Dictator</h1>
+        <div class="card-media">
+          <video loop autoplay muted playsinline webkit-playsinline>
+            <source src="../assets/videos/----.mp4" type="video/mp4" />
+          </video>
+        </div>
+        <p>Real-time voice → formatted text. AI transcription with a clean output pipeline.</p>
+        <div class="card-foot">
+          <span>PYTHON · WHISPER</span>
+        </div>
       </div>
 
-      <!-- Card: AI Voice Dictator -->
-      <div class="card">
-        <h1>AI Voice Dictator</h1>
-        <video loop autoplay muted playsinline webkit-playsinline>
-          <source src="../assets/videos/----.mp4" type="video/mp4" />
-        </video>
-        <p><b>Progress:</b> <b style="color: green">Complete</b></p>
-        <p>
-          A voice dictation app that uses AI to transcribe and format text in real-time.
-        </p>
+      <!-- RMP Scraper -->
+      <div class="card" data-status="ok">
+        <div class="card-head">
+          <span class="num">// 13</span>
+          <span class="status ok">Complete</span>
+        </div>
+        <h1 class="hackedEffect">RMP Scraper</h1>
+        <p>Pulls a UNO course schedule CSV and enriches it with Rate My Professor ratings. Fuzzy-matches professor names so "tba" and typos don't slip through.</p>
+        <div class="card-foot">
+          <span>PYTHON · SCRAPING</span>
+        </div>
+      </div>
+
+      <!-- Nitro-Type Bot -->
+      <div class="card" data-status="ok">
+        <div class="card-head">
+          <span class="num">// 14</span>
+          <span class="status ok">Complete</span>
+        </div>
+        <h1 class="hackedEffect">Nitro-Type Bot</h1>
+        <p>OCRs the race prompt off the screen and types it back. Same idea as Typing Speed, built specifically for Nitro-Type's layout. (This gets you banned instantly btw lol)</p>
+        <div class="card-foot">
+          <span>PYTHON · OCR</span>
+        </div>
+      </div>
+
+      <!-- Audio Visualizer -->
+      <div class="card" data-status="ok">
+        <div class="card-head">
+          <span class="num">// 15</span>
+          <span class="status ok">Complete</span>
+        </div>
+        <h1 class="hackedEffect">Audio Visualizer</h1>
+        <p>Floating click-through overlay that draws 70 FFT bars from your mic input in real time. 20Hz–24kHz range, 0.96 smoothing factor so it doesn't spaz out on transients. Was actually gonna be a feature in L.A.I.T.H.49. but it was scrapped.</p>
+        <div class="card-foot">
+          <span>PYTHON · PYGAME · FFT</span>
+        </div>
+      </div>
+
+      <!-- BSOD Prank -->
+      <div class="card" data-status="bad">
+        <div class="card-head">
+          <span class="num">// 16</span>
+          <span class="status bad">Failed</span>
+        </div>
+        <h1 class="hackedEffect">BSOD Prank</h1>
+        <div class="card-media">
+          <video loop autoplay muted playsinline webkit-playsinline>
+            <source src="../assets/videos/prank.mp4" type="video/mp4" />
+          </video>
+        </div>
+        <p>Got close. But it's <b style="color: var(--bad);">obviously fake</b>.</p>
+        <div class="card-foot">
+          <span>PYTHON · WINDOWS</span>
+        </div>
+      </div>
+
+      <!-- RageBaiter -->
+      <div class="card" data-status="warn">
+        <div class="card-head">
+          <span class="num">// 17</span>
+          <span class="status warn">In Progress</span>
+        </div>
+        <h1 class="hackedEffect">RageBaiter</h1>
+        <p>AI bot that texts my friends stereotypical old-white-guy phrases: "<i>hey watch it pal!</i>", "<i>you're on thin ice, bucko!</i>". Generated on-demand via Gemini so it responds properly. Successor to the BSOD Prank.</p>
+        <div class="card-foot">
+          <span>PYTHON · GEMINI · PRANK</span>
+        </div>
       </div>
 
     </div>
-  </div>
+  </main>
 </body>
 
 </html>
