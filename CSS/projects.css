@@ -149,21 +149,28 @@
   z-index: 2;
 }
 
+/* All cards: red border + accent top-line on hover */
 .cards .card:hover {
-  transform: translateY(-6px);
   border-color: var(--border-accent);
   background: var(--bg-card-hover);
-  box-shadow: 0 24px 48px -24px rgba(255, 48, 48, 0.18);
 }
 
 .cards .card:hover::before {
   opacity: 1;
 }
 
-.cards:hover > .card:not(:hover) {
-  transform: scale(1);
-  opacity: 0.7;
-  filter: saturate(0.6);
+/* Featured cards (LAITH + Bozos, the ones with their own page):
+   also lift up and cast a red shadow */
+.cards .card.featured:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 24px 48px -24px rgba(255, 48, 48, 0.18);
+}
+
+/* Dimming: only when a featured card is hovered, dim every other card.
+   Hovering a non-featured card leaves the rest alone. */
+.cards:has(> .card.featured:hover) > .card:not(:hover) {
+  opacity: 0.6;
+  filter: saturate(0.5);
 }
 
 .cards .card .card-media {
@@ -336,6 +343,16 @@
   line-height: 1.5;
   text-align: left;
   margin: 0;
+}
+
+/* Text-only cards (no .card-media): let the body text fill the
+   vertical space so there's no awkward gap above the foot when
+   the card is stretched to match a media-card neighbor. */
+.cards .card:not(:has(.card-media)) > p {
+  flex: 1 0 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .cards .card .subtitle {
