@@ -1,52 +1,28 @@
 window.onload = function () {
   const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-  let interval = null;
+  const animatedText = document.querySelector(".animate-text");
+  if (!animatedText) return;
+
+  const targetValue = animatedText.dataset.value || animatedText.innerText;
   let iteration = 0;
 
-  const animatedText = document.querySelector(".animate-text");
+  // Scramble on page load, then settle to the name. Runs once and stops.
+  const interval = setInterval(() => {
+    animatedText.innerText = animatedText.innerText
+      .split("")
+      .map((letter, index) => {
+        if (index < iteration) {
+          return targetValue[index];
+        }
+        return letters[Math.floor(Math.random() * 26)];
+      })
+      .join("");
 
-  // Initial jumbled animation on page load
-  startJumbledAnimation();
+    if (iteration >= targetValue.length) {
+      animatedText.innerText = targetValue;
+      clearInterval(interval);
+    }
 
-  animatedText.onmouseover = (event) => {
-    clearInterval(interval);
-    startNormalAnimation(event.target.dataset.value);
-  };
-
-  animatedText.onmouseout = () => {
-    interval = null;
-    iteration = 0;
-    startJumbledAnimation();
-  };
-
-  function startJumbledAnimation() {
-    interval = setInterval(() => {
-      animatedText.innerText = animatedText.innerText
-        .split("")
-        .map(() => letters[Math.floor(Math.random() * 26)])
-        .join("");
-    }, 50);
-  }
-
-  function startNormalAnimation(targetValue) {
-    clearInterval(interval);
-
-    interval = setInterval(() => {
-      animatedText.innerText = animatedText.innerText
-        .split("")
-        .map((letter, index) => {
-          if (index < iteration) {
-            return targetValue[index];
-          }
-          return letters[Math.floor(Math.random() * 26)];
-        })
-        .join("");
-
-      if (iteration >= targetValue.length) {
-        clearInterval(interval);
-      }
-
-      iteration += 1 / 3;
-    }, 50);
-  }
+    iteration += 1 / 3;
+  }, 50);
 };

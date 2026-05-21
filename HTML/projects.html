@@ -120,6 +120,12 @@
           <span class="status warn">In Progress</span>
         </div>
         <h1 class="hackedEffect">Mechanical Door Opener</h1>
+        <!-- TODO: drop ../assets/videos/door.mp4 (or swap the <video> for an <img src="../assets/videos/door.jpg">) -->
+        <div class="card-media">
+          <video loop autoplay muted playsinline webkit-playsinline>
+            <source src="../assets/videos/door.mp4" type="video/mp4" />
+          </video>
+        </div>
         <p>My biggest (and first) hardware project yet. An Arduino-based device that uses a servo motor to open/close doors wirelessly. Can communicate with L.A.I.T.H.49 and Siri.</p>
         <div class="card-foot">
           <span>ARDUINO · ELECTRONICS</span>
@@ -144,10 +150,60 @@
         </div>
       </a>
 
-      <!-- Aim Speed -->
+      <!-- RMP Scraper -->
       <div class="card" data-status="ok">
         <div class="card-head">
           <span class="num">// 04</span>
+          <span class="status ok">Complete</span>
+        </div>
+        <h1 class="hackedEffect">RMP Scraper</h1>
+        <p>Pulls a UNO course schedule CSV and enriches it with Rate My Professor ratings. Fuzzy-matches professor names so "tba" and typos don't slip through.</p>
+        <div class="card-foot">
+          <span>PYTHON · SCRAPING</span>
+        </div>
+      </div>
+
+      <!-- Auto Search -->
+      <div class="card" data-status="ok">
+        <div class="card-head">
+          <span class="num">// 05</span>
+          <span class="status ok">Complete</span>
+        </div>
+        <h1 class="hackedEffect">Auto Search</h1>
+        <div class="card-media">
+          <video loop autoplay muted playsinline webkit-playsinline>
+            <source src="../assets/videos/auto.mp4" type="video/mp4" />
+          </video>
+        </div>
+        <p>Before L.A.I.T.H.49 existed, this little script let me Google things <i>while</i> I coded.</p>
+        <div class="card-foot">
+          <span>PYTHON · UTILITY</span>
+        </div>
+      </div>
+
+      <!-- Audio Visualizer -->
+      <div class="card" data-status="ok">
+        <div class="card-head">
+          <span class="num">// 06</span>
+          <span class="status ok">Complete</span>
+        </div>
+        <h1 class="hackedEffect">Audio Visualizer</h1>
+        <!-- TODO: drop ../assets/videos/audio.mp4 (or swap the <video> for an <img>) -->
+        <div class="card-media">
+          <video loop autoplay muted playsinline webkit-playsinline>
+            <source src="../assets/videos/audio.mp4" type="video/mp4" />
+          </video>
+        </div>
+        <p>Floating click-through overlay that draws 70 FFT bars from your mic input in real time. 20Hz–24kHz range, 0.96 smoothing factor so it doesn't spaz out on transients. Was actually gonna be a feature in L.A.I.T.H.49. but it was scrapped.</p>
+        <div class="card-foot">
+          <span>PYTHON · PYGAME · FFT</span>
+        </div>
+      </div>
+
+      <!-- Aim Speed -->
+      <div class="card" data-status="ok">
+        <div class="card-head">
+          <span class="num">// 07</span>
           <span class="status ok">Complete</span>
         </div>
         <h1 class="hackedEffect">Aim Speed</h1>
@@ -165,7 +221,7 @@
       <!-- Typing Speed -->
       <div class="card" data-status="ok">
         <div class="card-head">
-          <span class="num">// 05</span>
+          <span class="num">// 08</span>
           <span class="status ok">Complete</span>
         </div>
         <h1 class="hackedEffect">Typing Speed</h1>
@@ -183,7 +239,7 @@
       <!-- Reaction Speed -->
       <div class="card" data-status="ok">
         <div class="card-head">
-          <span class="num">// 06</span>
+          <span class="num">// 09</span>
           <span class="status ok">Complete</span>
         </div>
         <h1 class="hackedEffect">Reaction Speed</h1>
@@ -201,7 +257,7 @@
       <!-- Verbal Memory -->
       <div class="card" data-status="ok">
         <div class="card-head">
-          <span class="num">// 07</span>
+          <span class="num">// 10</span>
           <span class="status ok">Complete</span>
         </div>
         <h1 class="hackedEffect">Verbal Memory</h1>
@@ -219,7 +275,7 @@
       <!-- Number Memory -->
       <div class="card" data-status="ok">
         <div class="card-head">
-          <span class="num">// 08</span>
+          <span class="num">// 11</span>
           <span class="status ok">Complete</span>
         </div>
         <h1 class="hackedEffect">Number Memory</h1>
@@ -234,28 +290,10 @@
         </div>
       </div>
 
-      <!-- Auto Search -->
-      <div class="card" data-status="ok">
-        <div class="card-head">
-          <span class="num">// 09</span>
-          <span class="status ok">Complete</span>
-        </div>
-        <h1 class="hackedEffect">Auto Search</h1>
-        <div class="card-media">
-          <video loop autoplay muted playsinline webkit-playsinline>
-            <source src="../assets/videos/auto.mp4" type="video/mp4" />
-          </video>
-        </div>
-        <p>Before L.A.I.T.H.49 existed, this little script let me Google things <i>while</i> I coded.</p>
-        <div class="card-foot">
-          <span>PYTHON · UTILITY</span>
-        </div>
-      </div>
-
       <!-- Flappy Bird -->
       <div class="card" data-status="ok">
         <div class="card-head">
-          <span class="num">// 10</span>
+          <span class="num">// 12</span>
           <span class="status ok">Complete</span>
         </div>
         <h1 class="hackedEffect">Flappy Bird</h1>
@@ -273,7 +311,7 @@
       <!-- Pong -->
       <div class="card" data-status="ok">
         <div class="card-head">
-          <span class="num">// 11</span>
+          <span class="num">// 13</span>
           <span class="status ok">Complete</span>
         </div>
         <h1 class="hackedEffect">Pong</h1>
@@ -291,7 +329,7 @@
       <!-- AI Voice Dictator -->
       <div class="card" data-status="ok">
         <div class="card-head">
-          <span class="num">// 12</span>
+          <span class="num">// 14</span>
           <span class="status ok">Complete</span>
         </div>
         <h1 class="hackedEffect">AI Voice Dictator</h1>
@@ -306,42 +344,22 @@
         </div>
       </div>
 
-      <!-- RMP Scraper -->
-      <div class="card" data-status="ok">
-        <div class="card-head">
-          <span class="num">// 13</span>
-          <span class="status ok">Complete</span>
-        </div>
-        <h1 class="hackedEffect">RMP Scraper</h1>
-        <p>Pulls a UNO course schedule CSV and enriches it with Rate My Professor ratings. Fuzzy-matches professor names so "tba" and typos don't slip through.</p>
-        <div class="card-foot">
-          <span>PYTHON · SCRAPING</span>
-        </div>
-      </div>
-
       <!-- Nitro-Type Bot -->
-      <div class="card" data-status="ok">
-        <div class="card-head">
-          <span class="num">// 14</span>
-          <span class="status ok">Complete</span>
-        </div>
-        <h1 class="hackedEffect">Nitro-Type Bot</h1>
-        <p>OCRs the race prompt off the screen and types it back. Same idea as Typing Speed, built specifically for Nitro-Type's layout. (This gets you banned instantly btw lol)</p>
-        <div class="card-foot">
-          <span>PYTHON · OCR</span>
-        </div>
-      </div>
-
-      <!-- Audio Visualizer -->
       <div class="card" data-status="ok">
         <div class="card-head">
           <span class="num">// 15</span>
           <span class="status ok">Complete</span>
         </div>
-        <h1 class="hackedEffect">Audio Visualizer</h1>
-        <p>Floating click-through overlay that draws 70 FFT bars from your mic input in real time. 20Hz–24kHz range, 0.96 smoothing factor so it doesn't spaz out on transients. Was actually gonna be a feature in L.A.I.T.H.49. but it was scrapped.</p>
+        <h1 class="hackedEffect">Nitro-Type Bot</h1>
+        <!-- TODO: drop ../assets/videos/nitro.mp4 (or swap the <video> for an <img>) -->
+        <div class="card-media">
+          <video loop autoplay muted playsinline webkit-playsinline>
+            <source src="../assets/videos/nitro.mp4" type="video/mp4" />
+          </video>
+        </div>
+        <p>OCRs the race prompt off the screen and types it back. Same idea as Typing Speed, built specifically for Nitro-Type's layout. (This gets you banned instantly btw lol)</p>
         <div class="card-foot">
-          <span>PYTHON · PYGAME · FFT</span>
+          <span>PYTHON · OCR</span>
         </div>
       </div>
 
@@ -370,7 +388,7 @@
           <span class="status warn">In Progress</span>
         </div>
         <h1 class="hackedEffect">RageBaiter</h1>
-        <p>AI bot that texts my friends stereotypical old-white-guy phrases: "<i>hey watch it pal!</i>", "<i>you're on thin ice, bucko!</i>". Generated on-demand via Gemini so it responds properly. Successor to the BSOD Prank.</p>
+        <p display="">AI bot that texts my friends stereotypical old-white-guy phrases: "<i>hey watch it pal!</i>", "<i>you're on thin ice, bucko!</i>". Generated on-demand via Gemini so it responds properly. Successor to the BSOD Prank.</p>
         <div class="card-foot">
           <span>PYTHON · GEMINI · PRANK</span>
         </div>
