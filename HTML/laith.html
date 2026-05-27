@@ -5,7 +5,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>L.A.I.T.H.49 · layth49</title>
-  <meta name="description" content="L.A.I.T.H.49 (Logical Assistant for Intelligent Task Handling). A personal voice assistant with AI, smart home, and computer control." />
+  <meta name="description" content="L.A.I.T.H.49 (Logical Assistant for Intelligent Task Handling). A personal voice assistant with AI, smart home, and computer control. Ships in cloud (Azure + Gemini) and fully local (faster-whisper + Kokoro + LM Studio + searxng) builds." />
 
   <link rel="icon" href="../assets/logo.ico" />
 
@@ -85,9 +85,9 @@
           <strong>My personal voice assistant.</strong> Wakes on
           <em>"Hey&nbsp;49"</em>, transcribes the command, runs it, and
           speaks the response with an animated speech-bubble overlay.
-          Azure for speech, Gemini for general Q&amp;A, and a pile of
-          integrations for smart-home, gaming, and system control.
-          All routed through one event loop in C#.
+          Two builds: a cloud one (Azure + Gemini) and a fully local one
+          (faster-whisper + Kokoro + LM Studio + searxng). Same dispatcher,
+          same integrations, same C# event loop driving both.
         </p>
 
         <div class="actions">
@@ -127,15 +127,15 @@
       </div>
       <div class="stat">
         <div class="label">LLM</div>
-        <div class="val">Gemini 2.5 Flash</div>
+        <div class="val">Gemini · Llama 3.2 3B</div>
       </div>
       <div class="stat">
         <div class="label">Speech</div>
-        <div class="val">Azure Neural</div>
+        <div class="val">Azure · Kokoro</div>
       </div>
       <div class="stat">
-        <div class="label">Integrations</div>
-        <div class="val accent">11+</div>
+        <div class="label">Builds</div>
+        <div class="val accent">Cloud + Local</div>
       </div>
     </div>
 
@@ -276,6 +276,51 @@
       </div>
     </section>
 
+    <!-- TWO BUILDS -->
+    <section class="laith-section">
+      <div class="head">
+        <h2 class="title">Two builds</h2>
+        <span class="meta">[ CLOUD + LOCAL ]</span>
+      </div>
+
+      <p class="blurb">
+        Same dispatcher, same integrations, two ways to handle speech and AI.
+        The <code>main</code> branch leans on Azure and Gemini for the best
+        voices and the smartest LLM. The <code>local</code> branch swaps them
+        for open-source equivalents that run on the same machine, so no
+        internet and no API keys.
+      </p>
+
+      <div class="opts">
+        <article class="opt">
+          <div class="head-row">
+            <span class="badge">main</span>
+          </div>
+          <h4>Cloud build</h4>
+          <p>Best quality. Needs internet + paid API keys.</p>
+          <ul class="build-list">
+            <li><strong>STT</strong>: Azure SpeechRecognizer</li>
+            <li><strong>TTS</strong>: Azure neural voices</li>
+            <li><strong>LLM</strong>: Gemini 2.5 Flash with <code>google_search</code> grounding</li>
+          </ul>
+        </article>
+
+        <article class="opt">
+          <div class="head-row">
+            <span class="badge">local</span>
+          </div>
+          <h4>Local build</h4>
+          <p>Runs offline. No API keys, no rate limits, no telemetry.</p>
+          <ul class="build-list">
+            <li><strong>STT</strong>: faster-whisper</li>
+            <li><strong>TTS</strong>: Kokoro</li>
+            <li><strong>LLM</strong>: LM Studio serving <code>llama-3.2-3b-instruct</code></li>
+            <li><strong>Search</strong>: searxng (replaces <code>google_search</code> grounding)</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
     <!-- ARCHITECTURE -->
     <section class="laith-section">
       <div class="head">
@@ -304,16 +349,16 @@
           <div class="n">02</div>
           <div class="body">
             <span class="label">GREET</span>
-            <span class="what">Time-of-day greeting via Azure TTS (<code>en-US-AndrewMultilingualNeural</code>)</span>
-            <span class="why">Synthesizer's TLS connection is pre-opened at startup so the first phoneme isn't clipped.</span>
+            <span class="what">Time-of-day greeting, spoken through whichever TTS the build is wired to.</span>
+            <span class="why">Cloud: Azure neural voice (<code>en-US-AndrewMultilingualNeural</code>) with its TLS connection pre-opened at startup so the first phoneme isn't clipped. Local: Kokoro running on-device.</span>
           </div>
         </div>
         <div class="step">
           <div class="n">03</div>
           <div class="body">
             <span class="label">LISTEN</span>
-            <span class="what"><code>SpeechRecognizer.RecognizeOnceAsync()</code> → transcript</span>
-            <span class="why">Optional custom recognition endpoint via <code>SPEECH_ENDPOINT_ID</code> if you've trained one. Contact names are pushed into the recognizer's phrase list for accuracy.</span>
+            <span class="what">Transcribe the command.</span>
+            <span class="why">Cloud: Azure <code>SpeechRecognizer.RecognizeOnceAsync()</code>, with an optional custom endpoint via <code>SPEECH_ENDPOINT_ID</code> and contact names pushed into the phrase list for accuracy. Local: faster-whisper running on-device.</span>
           </div>
         </div>
         <div class="step">
@@ -328,8 +373,8 @@
           <div class="n">05</div>
           <div class="body">
             <span class="label">FALLBACK</span>
-            <span class="what">No match → <code>GeminiService.GenerateGeminiResponse()</code></span>
-            <span class="why">Gemini 2.5 Flash with Google Search grounding so current-events questions still work. System prompt enforces a terse voice-friendly tone.</span>
+            <span class="what">No match → hand it to the LLM.</span>
+            <span class="why">Cloud: Gemini 2.5 Flash with <code>google_search</code> grounding so current-events questions still work. Local: LM Studio serving <code>llama-3.2-3b-instruct</code>, with searxng providing the search results. Same system prompt across both, enforcing a terse voice-friendly tone.</span>
           </div>
         </div>
         <div class="step">
@@ -356,13 +401,13 @@
         </div>
         <div class="item">
           <div class="role">Speech</div>
-          <div class="name">Azure Cognitive Services</div>
-          <div class="note">On-device wake-word (Custom Keyword), cloud STT, neural TTS with SSML support.</div>
+          <div class="name">Azure · faster-whisper · Kokoro</div>
+          <div class="note">Wake word is on-device Azure Custom Keyword in both builds. Cloud build uses Azure SpeechRecognizer + neural voices (SSML-capable). Local build swaps in faster-whisper for STT and Kokoro for TTS.</div>
         </div>
         <div class="item">
           <div class="role">LLM</div>
-          <div class="name">Gemini 2.5 Flash</div>
-          <div class="note">Q&amp;A fallback with <code>google_search</code> grounding. <code>maxOutputTokens=200</code> keeps replies voice-appropriate.</div>
+          <div class="name">Gemini · Llama 3.2 3B</div>
+          <div class="note">Cloud: Gemini 2.5 Flash with <code>google_search</code> grounding. Local: LM Studio hosting <code>llama-3.2-3b-instruct</code>, with searxng providing search results. Both capped near 200 output tokens to keep replies voice-friendly.</div>
         </div>
         <div class="item">
           <div class="role">Overlay</div>
@@ -446,7 +491,15 @@
             <span class="badge">SSML</span>
           </div>
           <h4>IPA phonemes for prayer names</h4>
-          <p>An English neural voice mangles "Fajr," "Maghrib," "Isha." Wrapping the names in SSML <code>&lt;phoneme&gt;</code> tags with IPA pronunciations makes the synthesizer say them correctly.</p>
+          <p>An English neural voice mangles "Fajr," "Maghrib," "Isha." Wrapping the names in SSML <code>&lt;phoneme&gt;</code> tags with IPA pronunciations makes the synthesizer say them correctly. (Cloud-only; the local Kokoro path uses a different pronunciation tweak.)</p>
+        </article>
+
+        <article class="opt">
+          <div class="head-row">
+            <span class="badge">SWAP</span>
+          </div>
+          <h4>STT, TTS, and LLM hide behind shared interfaces</h4>
+          <p>Each external service sits behind a small abstraction so the cloud and local builds share the same dispatcher and event loop. Swapping Azure for faster-whisper, or Gemini for an LM Studio model, is a constructor change. Nothing in <code>Program.cs</code> knows whether you're online.</p>
         </article>
       </div>
     </section>
@@ -531,6 +584,11 @@
           <div class="what">Mid-response interruption (say "Hey 49" again to cut it off)</div>
           <div class="when">SHIPPED</div>
         </div>
+        <div class="row done">
+          <div class="check"></div>
+          <div class="what">Fully local branch (faster-whisper + Kokoro + LM Studio + searxng)</div>
+          <div class="when">SHIPPED</div>
+        </div>
         <div class="row in-progress">
           <div class="check"></div>
           <div class="what">Multi-turn context (keep a short dialogue history across cycles)</div>
@@ -554,8 +612,18 @@
       <div class="credits">
         Prayer times calculation adapted from
         <a href="https://github.com/nyongrand/pray-times" target="_blank" rel="noopener noreferrer">Nyong's pray-times</a>.
-        Wake-word, speech-to-text, and neural TTS via Microsoft
-        Azure Cognitive Services. Conversational responses by Google Gemini.
+        Wake word in both builds via Microsoft Azure Custom Keyword.
+        Cloud build: Azure Cognitive Services for STT and neural TTS,
+        Google Gemini for conversation. Local build:
+        <a href="https://github.com/SYSTRAN/faster-whisper" target="_blank" rel="noopener noreferrer">faster-whisper</a>
+        for STT,
+        <a href="https://github.com/hexgrad/kokoro" target="_blank" rel="noopener noreferrer">Kokoro</a>
+        for TTS,
+        <a href="https://lmstudio.ai/" target="_blank" rel="noopener noreferrer">LM Studio</a>
+        hosting
+        <a href="https://huggingface.co/meta-llama/Llama-3.2-3B-Instruct" target="_blank" rel="noopener noreferrer">llama-3.2-3b-instruct</a>,
+        and <a href="https://github.com/searxng/searxng" target="_blank" rel="noopener noreferrer">searxng</a>
+        for the search grounding.
       </div>
     </section>
 
