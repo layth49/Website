@@ -21,14 +21,57 @@
   --bu-line: rgba(234, 231, 221, 0.12);
 }
 
-/* Re-theme the page body to the app's accent. Scoped to <main> so
-   the nav and floating socials keep the site's red and the page
-   still reads as part of layth49.com. */
-main.container {
+/* Re-theme the WHOLE page to the app's accent, chrome included. This
+   loads after base.css, so rebinding the four accent vars at :root
+   carries the nav, the socials rail, ::selection and the buttons over
+   to sage in one go. It is a product landing page, so it wears the
+   product's colour rather than the site's red.
+   To put the red chrome back, scope this block to main.container. */
+:root {
   --accent: #7cc4a4;
   --accent-soft: rgba(124, 196, 164, 0.12);
   --accent-glow: rgba(124, 196, 164, 0.3);
   --border-accent: rgba(124, 196, 164, 0.4);
+}
+
+/* The rest of the red on this page is hard-coded rather than var-driven,
+   so the rebind above can't reach it. Left red, these would sit next to
+   sage chrome and read as a mistake. */
+
+/* navBar.css: logo drop-shadow, resting and hover */
+.navBar .logo img {
+  filter: drop-shadow(0 0 12px rgba(124, 196, 164, 0.25));
+}
+
+.navBar .logo img:hover {
+  filter: drop-shadow(0 0 18px rgba(124, 196, 164, 0.55));
+}
+
+/* socials.css: the rail's outer glow, resting and hover */
+.social-link {
+  box-shadow:
+    -4px 0 0 0 var(--accent),
+    -20px 0 40px rgba(124, 196, 164, 0.08);
+}
+
+.social-link:hover {
+  box-shadow:
+    -4px 0 0 0 var(--accent),
+    -24px 0 64px rgba(124, 196, 164, 0.28);
+}
+
+@media (max-width: 768px) {
+  .social-link {
+    box-shadow:
+      0 -4px 0 0 var(--accent),
+      0 0 24px rgba(124, 196, 164, 0.15);
+  }
+
+  .social-link:hover {
+    box-shadow:
+      0 -4px 0 0 var(--accent),
+      0 0 32px rgba(124, 196, 164, 0.3);
+  }
 }
 
 /* BUTTONS --------------------------------------------------
