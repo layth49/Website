@@ -226,28 +226,431 @@
   backdrop-filter: blur(4px);
 }
 
-/* Bozo's Adventure card variant: archived/muted, no "no preview" text */
-.cards .card .card-media.bozos-preview {
-  /* Override the red-tinted hatching with a neutral gray version */
+/* L.A.I.T.H.49 card: compact port of the "speech bubble" demo that lives
+   on laith.html (.bubble-demo / .glass-bubble / .timer-widget) --
+   resized to fit .card-media's 16:10 box instead of a full hero. Replaces
+   the old bot.mp4 clip, which showed a plain terminal readout that no
+   longer reflects the current glass-bubble UI. */
+.cards .card .card-media.laith-bubble-preview {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 0.55rem;
+  padding: 1.5rem 1.1rem 1.1rem;
   background:
-    linear-gradient(135deg, var(--bg-elevated) 0%, var(--bg-card) 100%),
-    repeating-linear-gradient(
-      45deg,
-      transparent 0,
-      transparent 12px,
-      rgba(113, 113, 122, 0.06) 12px,
-      rgba(113, 113, 122, 0.06) 13px
-    );
+    linear-gradient(180deg, rgba(0, 0, 0, 0.05) 0%, rgba(0, 0, 0, 0.4) 100%),
+    url("../assets/laith-wallpaper.png") center / cover no-repeat;
 }
-.cards .card .card-media.bozos-preview::after { display: none; }
-.cards .card .card-media.bozos-preview .badge {
-  position: static;
+.cards .card .card-media.laith-bubble-preview::after { display: none; }
+
+.laith-bubble-preview .lb-glass-bubble {
+  width: 100%;
+  max-width: 280px;
+  border-radius: 16px;
+  padding: 0.85rem 1rem;
+  background: rgba(20, 20, 26, 0.55);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  backdrop-filter: blur(16px) saturate(140%);
+  -webkit-backdrop-filter: blur(16px) saturate(140%);
+  box-shadow:
+    0 20px 48px -18px rgba(0, 0, 0, 0.8),
+    0 0 0 1px rgba(255, 255, 255, 0.04) inset;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  animation: lb-bubble-rise 0.7s var(--ease) both;
+}
+
+@keyframes lb-bubble-rise {
+  from { transform: translateY(16px); opacity: 0; }
+  to   { transform: translateY(0); opacity: 1; }
+}
+
+.laith-bubble-preview .lb-you {
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.02em;
+  color: var(--ink-dim);
+}
+.laith-bubble-preview .lb-you span { color: var(--ink-muted); }
+
+.laith-bubble-preview .lb-49 {
+  font-family: var(--font-sans);
+  font-size: 0.82rem;
+  line-height: 1.35;
+  color: var(--ink);
+  font-weight: 500;
+}
+
+.laith-bubble-preview .lb-timer-widget {
+  align-self: flex-end;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.35rem 0.7rem;
+  border-radius: var(--radius);
+  background: rgba(255, 48, 48, 0.1);
+  border: 1px solid var(--border-accent);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  font-family: var(--font-mono);
+  animation: lb-bubble-rise 0.7s var(--ease) 0.15s both;
+}
+
+.laith-bubble-preview .lb-tw-label {
+  font-size: 0.52rem;
+  letter-spacing: 0.16em;
+  color: var(--accent);
+}
+
+.laith-bubble-preview .lb-tw-count {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--ink);
+  letter-spacing: 0.03em;
+}
+
+/* l.a.i.t.h Instagram bot card variant: Instagram-tinted, no "no preview" text */
+/* l.a.i.t.h card: live chat-bubble mockup instead of a video/badge.
+   Compact port of the hero-sized mockup that used to live on the (now
+   removed) igbot.html deep-dive page -- resized to fit .card-media's
+   16:10 box instead of a full hero. */
+.cards .card .card-media.igchat-preview {
+  display: flex;
+  align-items: center;
+  background:
+    radial-gradient(ellipse at 70% 0%, rgba(255, 48, 48, 0.08), transparent 60%),
+    linear-gradient(160deg, #0a0a0f 0%, #050506 100%);
+}
+.cards .card .card-media.igchat-preview::after { display: none; }
+
+.igchat-preview .ig-chat {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 1rem;
+  width: 100%;
+}
+
+.igchat-preview .ig-msg {
+  max-width: 82%;
+  padding: 0.5rem 0.7rem;
+  border-radius: 14px;
+  font-family: var(--font-sans);
   font-size: 0.78rem;
-  padding: 0.5rem 0.85rem;
-  border: 1px dashed rgba(113, 113, 122, 0.4);
-  background: rgba(0, 0, 0, 0.4);
-  color: var(--archived);
+  line-height: 1.35;
+  animation: ig-bubble-rise 0.6s var(--ease) both;
 }
+
+.igchat-preview .ig-msg .ig-from {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 0.55rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-dim);
+  margin-bottom: 0.15rem;
+}
+
+.igchat-preview .ig-msg.in {
+  align-self: flex-start;
+  background: #1c1c22;
+  border: 1px solid var(--border);
+  color: var(--ink);
+  border-bottom-left-radius: 5px;
+}
+.igchat-preview .ig-msg.in .ig-tag { color: #6aa8ff; font-weight: 600; }
+
+.igchat-preview .ig-msg.out {
+  align-self: flex-end;
+  background: linear-gradient(135deg, #a033ff 0%, #ff4d6d 55%, #ff8a3d 100%);
+  color: #fff;
+  border-bottom-right-radius: 5px;
+  box-shadow: 0 6px 18px -8px rgba(255, 77, 109, 0.5);
+}
+.igchat-preview .ig-msg.out .ig-from { color: rgba(255, 255, 255, 0.75); }
+
+.igchat-preview .ig-typing {
+  align-self: flex-end;
+  display: inline-flex;
+  gap: 3px;
+  padding: 0.55rem 0.75rem;
+  border-radius: 14px;
+  border-bottom-right-radius: 5px;
+  background: #1c1c22;
+  border: 1px solid var(--border);
+  animation: ig-bubble-rise 0.6s var(--ease) both;
+}
+
+.igchat-preview .ig-typing span {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--ink-dim);
+  animation: ig-blink 1.4s var(--ease) infinite both;
+}
+.igchat-preview .ig-typing span:nth-child(2) { animation-delay: 0.2s; }
+.igchat-preview .ig-typing span:nth-child(3) { animation-delay: 0.4s; }
+
+@keyframes ig-bubble-rise {
+  from { transform: translateY(10px); opacity: 0; }
+  to   { transform: translateY(0); opacity: 1; }
+}
+
+@keyframes ig-blink {
+  0%, 60%, 100% { opacity: 0.3; transform: translateY(0); }
+  30% { opacity: 1; transform: translateY(-3px); }
+}
+
+/* Trade Bot card: a compact equity-curve chart -- the bot's backtest
+   return vs. SPY, resized to fit .card-media's 16:10 box, same pattern
+   as the l.a.i.t.h chat preview above. The bot's line finishes visibly
+   below SPY's -- that gap is the whole card. */
+.cards .card .card-media.tradebot-preview {
+  background:
+    radial-gradient(ellipse at 30% 0%, rgba(239, 68, 68, 0.09), transparent 60%),
+    linear-gradient(160deg, #0a0a0f 0%, #050506 100%);
+}
+.cards .card .card-media.tradebot-preview::after { display: none; }
+
+.tradebot-preview .tb-chart {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.tradebot-preview .tb-grid {
+  stroke: var(--border);
+  stroke-width: 1;
+  stroke-dasharray: 3 4;
+}
+
+.tradebot-preview .tb-line {
+  fill: none;
+  stroke-width: 3;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-dasharray: 100;
+  stroke-dashoffset: 100;
+  animation: tb-draw 1.6s var(--ease) 0.1s forwards;
+}
+
+.tradebot-preview .tb-line.spy { stroke: var(--ink-muted); }
+.tradebot-preview .tb-line.bot { stroke: var(--bad); }
+
+@keyframes tb-draw {
+  to { stroke-dashoffset: 0; }
+}
+
+.tradebot-preview .tb-dot {
+  opacity: 0;
+  animation: tb-dot-in 0.4s var(--ease) 1.5s forwards;
+}
+.tradebot-preview .tb-dot.spy { fill: var(--ink-muted); }
+.tradebot-preview .tb-dot.bot { fill: var(--bad); }
+
+@keyframes tb-dot-in {
+  to { opacity: 1; }
+}
+
+.tradebot-preview .tb-chart-legend {
+  position: absolute;
+  top: 0.75rem;
+  right: 0.75rem;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.35rem;
+  z-index: 2;
+}
+
+.tradebot-preview .tb-lab {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.04em;
+  color: var(--ink-dim);
+  padding: 0.28rem 0.55rem;
+  background: rgba(0, 0, 0, 0.55);
+  backdrop-filter: blur(6px);
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-sm);
+}
+
+.tradebot-preview .tb-lab i {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  display: inline-block;
+}
+.tradebot-preview .tb-lab.spy i { background: var(--ink-muted); }
+.tradebot-preview .tb-lab.bot i { background: var(--bad); }
+
+.tradebot-preview .tb-lab b {
+  color: var(--ink);
+  font-weight: 700;
+  margin-left: 0.1rem;
+}
+.tradebot-preview .tb-lab.bot b { color: var(--bad); }
+
+/* Burhan card wears the app's own accent instead of the site red.
+   .card:hover and .card::before both read these two vars, so
+   rebinding them here re-tints the border and the top hairline. */
+.cards .card.burhan-card {
+  --accent: #7cc4a4;
+  --border-accent: rgba(124, 196, 164, 0.45);
+}
+
+/* .featured:hover hard-codes a red glow, so it needs its own value */
+.cards .card.featured.burhan-card:hover {
+  box-shadow: 0 24px 48px -24px rgba(124, 196, 164, 0.22);
+}
+
+/* App icon beside the card title */
+.bu-card-head {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+}
+
+.bu-card-head .bu-logo {
+  width: 34px;
+  height: 34px;
+  flex-shrink: 0;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px -4px rgba(0, 0, 0, 0.6);
+}
+
+/* Burhan card: a scaled-down reproduction of the actual app screen --
+   warm field, centred wordmark, search field, the always-on scope
+   line, and a result card with the citation in sage and English
+   above Arabic. Same "shrink the real UI into the 16:10 box" pattern
+   as the l.a.i.t.h chat and Trade Bot chart above. */
+.cards .card .card-media.burhan-preview {
+  display: flex;
+  align-items: center;
+  background: #141410;
+}
+.cards .card .card-media.burhan-preview::after { display: none; }
+
+.burhan-preview .bu-card-app {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.55rem;
+  padding: 1.1rem 1.25rem;
+  width: 100%;
+  min-width: 0;
+  font-family: var(--font-sans);
+  text-align: center;
+  color: #eae7dd;
+}
+
+.burhan-preview .bu-card-title {
+  font-size: 0.82rem;
+  font-weight: 500;
+}
+
+.burhan-preview .bu-card-wordmark {
+  font-family: "Scheherazade New", "Noto Naskh Arabic", serif;
+  /* Arabic diacritics stack above and below the baseline -- this
+     needs real leading or the marks clip against the line box. */
+  font-size: 2.1rem;
+  line-height: 2;
+}
+
+.burhan-preview .bu-card-tagline {
+  font-size: 0.72rem;
+  line-height: 1.4;
+  max-width: 38ch;
+  margin-top: -0.3rem;
+}
+
+.burhan-preview .bu-card-search {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  width: 100%;
+  padding: 0.6rem 0.85rem;
+  border-radius: 10px;
+  background: #2b2b24;
+  font-size: 0.76rem;
+  line-height: 1.35;
+  text-align: left;
+}
+
+.burhan-preview .bu-card-search i { flex-shrink: 0; font-size: 0.78rem; opacity: 0.9; }
+
+.burhan-preview .bu-card-scope {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+  width: 100%;
+  padding: 0 0.2rem;
+  font-size: 0.68rem;
+  line-height: 1.4;
+  color: #a9a59a;
+  text-align: left;
+}
+
+.burhan-preview .bu-card-scope i { flex-shrink: 0; margin-top: 0.1rem; font-size: 0.72rem; }
+
+.burhan-preview .bu-card-result {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  width: 100%;
+  padding: 0.85rem 0.95rem;
+  border-radius: 12px;
+  background: #1e1e18;
+  text-align: left;
+}
+
+.burhan-preview .bu-card-ref {
+  font-size: 0.76rem;
+  font-weight: 600;
+  color: #7cc4a4;
+}
+
+.burhan-preview .bu-card-en {
+  font-family: "Gentium Book Plus", Georgia, serif;
+  font-size: 0.85rem;
+  line-height: 1.5;
+}
+
+.burhan-preview .bu-card-ayah {
+  font-family: "Scheherazade New", "Noto Naskh Arabic", serif;
+  font-size: 1.3rem;
+  line-height: 2;
+  text-align: right;
+  padding-top: 0.65rem;
+  border-top: 1px solid rgba(234, 231, 221, 0.12);
+}
+
+.burhan-preview .bu-card-src {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-size: 0.7rem;
+  color: #a9a59a;
+}
+
+/* Below 720px the featured card drops to a single column, so the
+   16:10 media box is ~1/3 the height. A verse is a fixed amount of
+   text and the fix is not to crop scripture -- let this one card
+   size to its content, and drop the wordmark lockup. */
+@media (max-width: 720px) {
+  .cards .card .card-media.burhan-preview { aspect-ratio: auto; }
+  /* content now fills the box, so leave room for the floating badge */
+  .burhan-preview .bu-card-app { gap: 0.45rem; padding: 3.4rem 0.9rem 0.9rem; }
+  .burhan-preview .bu-card-wordmark,
+  .burhan-preview .bu-card-tagline { display: none; }
+  .burhan-preview .bu-card-ayah { font-size: 1.15rem; line-height: 2.05; }
+}
+
 
 .cards .card .card-media .badge {
   position: absolute;
