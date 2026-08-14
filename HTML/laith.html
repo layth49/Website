@@ -5,7 +5,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>L.A.I.T.H.49 · layth49</title>
-  <meta name="description" content="L.A.I.T.H.49 (Logical Assistant for Intelligent Task Handling). A personal voice assistant with AI, smart home, and computer control. Ships in cloud (Azure + Gemini) and fully local (faster-whisper + Kokoro + LM Studio + searxng) builds." />
+  <meta name="description" content="L.A.I.T.H.49 (Logical Assistant for Intelligent Task Handling). My voice assistant for Windows. Say &quot;Hey 49&quot; and an LLM decides which of its ~30 tools to run, or just answers you. Glass speech bubble, floating timer widgets, and you can cut it off mid-sentence. Two builds: cloud on Azure + Gemini, or fully offline on faster-whisper, Kokoro, LM Studio and SearxNG." />
 
   <link rel="icon" href="../assets/logo.ico" />
 
@@ -82,12 +82,13 @@
         <h1 class="hackedEffect">L.Λ.I.T.H.49</h1>
         <p class="tagline">Logical Assistant for Intelligent Task Handling</p>
         <p class="lede">
-          <strong>My personal voice assistant.</strong> Wakes on
-          <em>"Hey&nbsp;49"</em>, transcribes the command, runs it, and
-          speaks the response with an animated speech-bubble overlay.
-          Two builds: a cloud one (Azure + Gemini) and a fully local one
-          (faster-whisper + Kokoro + LM Studio + searxng). Same dispatcher,
-          same integrations, same C# event loop driving both.
+          <strong>My voice assistant for Windows.</strong> Say
+          <em>"Hey&nbsp;49"</em>, ask for something, and an LLM decides whether
+          to fire one of its <strong>~30 tools</strong> or just answer you.
+          A glass speech bubble shows the conversation, timers get their own
+          floating countdown, and you can cut it off mid-sentence by saying the
+          wake word again. Same C# core, two builds: cloud on Azure + Gemini,
+          or fully local on faster-whisper, Kokoro, LM Studio and SearxNG.
         </p>
 
         <div class="actions">
@@ -126,12 +127,8 @@
         <div class="val">.NET 4.8.1 + Py 3.12</div>
       </div>
       <div class="stat">
-        <div class="label">LLM</div>
-        <div class="val">Gemini · Llama 3.2 3B</div>
-      </div>
-      <div class="stat">
-        <div class="label">Speech</div>
-        <div class="val">Azure · Kokoro</div>
+        <div class="label">Tools</div>
+        <div class="val accent">~30 · LLM-routed</div>
       </div>
       <div class="stat">
         <div class="label">Builds</div>
@@ -139,138 +136,415 @@
       </div>
     </div>
 
-    <!-- WHAT IT DOES -->
+    <!-- HOW A TURN WORKS -->
     <section class="laith-section">
       <div class="head">
-        <h2 class="title">What it does</h2>
-        <span class="meta">[ 13 commands · 4 domains ]</span>
+        <h2 class="title">How a turn works</h2>
+        <span class="meta">[ WAKE → REASON → ACT → SPEAK ]</span>
       </div>
 
       <p class="blurb">
-        L.A.I.T.H.49 listens for the wake word, then routes whatever you say
-        through a command dispatcher. Recognized verbs control devices and apps
-        directly; anything else falls through to Gemini for a conversational
-        answer (with Google Search grounding for current events).
+        It sits there listening for the wake word on-device. Once it hears it,
+        your command and the last few turns go to the LLM along with every tool
+        as a function-calling schema. The model picks tools, chains them
+        together, or just answers. Then it talks, and you can talk over it.
       </p>
 
-      <div class="feature-group">
-        <h3>Voice &amp; AI <span class="count">[ 03 ]</span></h3>
-        <div class="features-grid">
-          <div class="feature">
-            <span class="icon"><i class="fa-solid fa-microphone"></i></span>
-            <div class="text">
-              <span class="cmd">"Hey 49"</span>
-              <span class="what">Custom on-device wake word</span>
-            </div>
+      <div class="flow">
+        <div class="step">
+          <div class="n">01</div>
+          <div class="body">
+            <span class="label">WAKE + GREET</span>
+            <span class="what">On-device Azure <code>KeywordRecognizer</code> matches <code>"Hey 49"</code>, then a time-of-day greeting.</span>
+            <span class="why">It's the one Azure piece the local build kept. It matches against <code>keyword.table</code> on disk, so nothing leaves the machine. You can talk over the greeting.</span>
           </div>
-          <div class="feature">
-            <span class="icon"><i class="fa-solid fa-brain"></i></span>
-            <div class="text">
-              <span class="cmd">anything else</span>
-              <span class="what">Falls through to Gemini for Q&amp;A</span>
-            </div>
+        </div>
+        <div class="step">
+          <div class="n">02</div>
+          <div class="body">
+            <span class="label">LISTEN</span>
+            <span class="what">Transcribe the command via STT.</span>
+            <span class="why">Cloud: Azure <code>SpeechRecognizer</code>. Local: NAudio captures 16&nbsp;kHz mono PCM with silence detection and POSTs the WAV to faster-whisper.</span>
           </div>
-          <div class="feature">
-            <span class="icon"><i class="fa-solid fa-comment-dots"></i></span>
-            <div class="text">
-              <span class="cmd">greetings + replies</span>
-              <span class="what">Time-of-day-aware, randomized greetings</span>
-            </div>
+        </div>
+        <div class="step">
+          <div class="n">03</div>
+          <div class="body">
+            <span class="label">ROUTE</span>
+            <span class="what">The utterance + recent turns go to the LLM with the full tool catalogue as schemas.</span>
+            <span class="why">It comes back with a batch of tool calls, a sequence it built out of primitives, or plain text. <code>web_search</code> is just another tool, so it only fires when the model decides it needs one.</span>
+          </div>
+        </div>
+        <div class="step">
+          <div class="n">04</div>
+          <div class="body">
+            <span class="label">DISPATCH</span>
+            <span class="what">Each tool is validated against its schema, then run in order.</span>
+            <span class="why">Compound requests show up as several calls at once. If one fails validation the rest still run. If the LLM times out or hands back junk, there's a keyword matcher behind it, and plain chat behind that.</span>
+          </div>
+        </div>
+        <div class="step">
+          <div class="n">05</div>
+          <div class="body">
+            <span class="label">SPEAK</span>
+            <span class="what">TTS + glass speech bubble run in parallel; say "Hey 49" to cut it off.</span>
+            <span class="why">A second wake-word listener runs the whole time it's talking. When that one fires, the synth stops mid-word and the bubble slides away.</span>
           </div>
         </div>
       </div>
+    </section>
+
+    <!-- WHAT IT CAN DO -->
+    <section class="laith-section">
+      <div class="head">
+        <h2 class="title">What it can do</h2>
+        <span class="meta">[ ~30 tools · 7 domains ]</span>
+      </div>
+
+      <p class="blurb">
+        Every capability gets registered once, with an LLM-facing schema and a
+        keyword predicate for the fallback path. Here's what's in there right
+        now.
+      </p>
 
       <div class="feature-group">
-        <h3>Smart Home <span class="count">[ 03 ]</span></h3>
+        <h3>Smart home &amp; hardware <span class="count">[ 03 ]</span></h3>
         <div class="features-grid">
           <div class="feature">
             <span class="icon"><i class="fa-solid fa-lightbulb"></i></span>
             <div class="text">
-              <span class="cmd">"turn on/off the LED / bedroom lights"</span>
-              <span class="what">Control lights over local network</span>
+              <span class="cmd">"turn on/off the lights"</span>
+              <span class="what">TP-Link Kasa plugs/switches over LAN</span>
             </div>
           </div>
           <div class="feature">
             <span class="icon"><i class="fa-solid fa-door-open"></i></span>
             <div class="text">
               <span class="cmd">"open/close the door"</span>
-              <span class="what">Arduino-driven door actuator</span>
+              <span class="what">Arduino-driven door actuator over IP</span>
             </div>
           </div>
           <div class="feature">
             <span class="icon"><i class="fa-solid fa-gamepad"></i></span>
             <div class="text">
               <span class="cmd">"turn on the PlayStation"</span>
-              <span class="what">PS5 power + game launching</span>
+              <span class="what">PS5 power-on + game launch via Remote Play</span>
             </div>
           </div>
         </div>
       </div>
 
       <div class="feature-group">
-        <h3>Information <span class="count">[ 04 ]</span></h3>
+        <h3>PC control <span class="count">[ 06 ]</span></h3>
         <div class="features-grid">
           <div class="feature">
-            <span class="icon"><i class="fa-solid fa-cloud-sun"></i></span>
+            <span class="icon"><i class="fa-solid fa-volume-high"></i></span>
             <div class="text">
-              <span class="cmd">"what's the weather?"</span>
-              <span class="what">Local weather via OpenWeatherMap</span>
+              <span class="cmd">"volume up / mute / set to 30"</span>
+              <span class="what">System volume up/down/mute/set</span>
             </div>
           </div>
           <div class="feature">
-            <span class="icon"><i class="fa-solid fa-clock"></i></span>
+            <span class="icon"><i class="fa-solid fa-headphones"></i></span>
             <div class="text">
-              <span class="cmd">"what time / day is it?"</span>
-              <span class="what">Local clock and date readout</span>
+              <span class="cmd">"switch to my headphones"</span>
+              <span class="what">Change the active audio output device</span>
             </div>
           </div>
           <div class="feature">
-            <span class="icon"><i class="fa-solid fa-mosque"></i></span>
+            <span class="icon"><i class="fa-solid fa-camera"></i></span>
             <div class="text">
-              <span class="cmd">"prayer times"</span>
-              <span class="what">Location-aware daily prayer times</span>
+              <span class="cmd">"take a screenshot"</span>
+              <span class="what">Capture and open a screenshot</span>
             </div>
           </div>
           <div class="feature">
-            <span class="icon"><i class="fa-solid fa-comment-sms"></i></span>
+            <span class="icon"><i class="fa-solid fa-skull-crossbones"></i></span>
             <div class="text">
-              <span class="cmd">"text [contact]"</span>
-              <span class="what">SMS lookup + send from contacts</span>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="feature-group">
-        <h3>Computer Control <span class="count">[ 04 ]</span></h3>
-        <div class="features-grid">
-          <div class="feature">
-            <span class="icon"><i class="fa-brands fa-google"></i></span>
-            <div class="text">
-              <span class="cmd">"search up / google [x]"</span>
-              <span class="what">Opens Google with the query</span>
+              <span class="cmd">"kill Chrome"</span>
+              <span class="what">Terminate a process by name</span>
             </div>
           </div>
           <div class="feature">
-            <span class="icon"><i class="fa-brands fa-youtube"></i></span>
+            <span class="icon"><i class="fa-solid fa-rocket"></i></span>
             <div class="text">
-              <span class="cmd">"youtube" → "open" or "search for"</span>
-              <span class="what">Multi-turn YouTube dispatch</span>
-            </div>
-          </div>
-          <div class="feature">
-            <span class="icon"><i class="fa-solid fa-code"></i></span>
-            <div class="text">
-              <span class="cmd">"open visual studio"</span>
-              <span class="what">Launches the IDE</span>
+              <span class="cmd">"open Spotify" / "open Visual Studio"</span>
+              <span class="what">Launch any app by name</span>
             </div>
           </div>
           <div class="feature">
             <span class="icon"><i class="fa-solid fa-power-off"></i></span>
             <div class="text">
               <span class="cmd">"shut down" / "restart"</span>
-              <span class="what">With voice confirmation step</span>
+              <span class="what">With a spoken confirmation step</span>
             </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="feature-group">
+        <h3>Media <span class="count">[ 02 ]</span></h3>
+        <div class="features-grid">
+          <div class="feature">
+            <span class="icon"><i class="fa-solid fa-play"></i></span>
+            <div class="text">
+              <span class="cmd">"play / pause / skip / previous"</span>
+              <span class="what">Controls whatever's playing via Windows SMTC</span>
+            </div>
+          </div>
+          <div class="feature">
+            <span class="icon"><i class="fa-solid fa-music"></i></span>
+            <div class="text">
+              <span class="cmd">"what song is this?"</span>
+              <span class="what">Reads live now-playing metadata from Windows</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="feature-group">
+        <h3>Timers, alarms &amp; reminders <span class="count">[ 03 ]</span></h3>
+        <div class="features-grid">
+          <div class="feature">
+            <span class="icon"><i class="fa-solid fa-hourglass-half"></i></span>
+            <div class="text">
+              <span class="cmd">"set a timer for 5 minutes"</span>
+              <span class="what">Natural-language timers + floating countdown widget</span>
+            </div>
+          </div>
+          <div class="feature">
+            <span class="icon"><i class="fa-solid fa-clock"></i></span>
+            <div class="text">
+              <span class="cmd">"wake me at 7 AM"</span>
+              <span class="what">Alarms with a spoken confirmation when they fire</span>
+            </div>
+          </div>
+          <div class="feature">
+            <span class="icon"><i class="fa-solid fa-bell"></i></span>
+            <div class="text">
+              <span class="cmd">"remind me to..."</span>
+              <span class="what">Reminders that speak up at the right time</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="feature-group">
+        <h3>Information <span class="count">[ 05 ]</span></h3>
+        <div class="features-grid">
+          <div class="feature">
+            <span class="icon"><i class="fa-solid fa-cloud-sun"></i></span>
+            <div class="text">
+              <span class="cmd">"what's the weather?"</span>
+              <span class="what">Current conditions + multi-day forecast</span>
+            </div>
+          </div>
+          <div class="feature">
+            <span class="icon"><i class="fa-solid fa-mosque"></i></span>
+            <div class="text">
+              <span class="cmd">"prayer times"</span>
+              <span class="what">Location-aware Islamic prayer times</span>
+            </div>
+          </div>
+          <div class="feature">
+            <span class="icon"><i class="fa-solid fa-calendar-day"></i></span>
+            <div class="text">
+              <span class="cmd">"what time / day is it?"</span>
+              <span class="what">Local clock and date readout</span>
+            </div>
+          </div>
+          <div class="feature">
+            <span class="icon"><i class="fa-solid fa-magnifying-glass"></i></span>
+            <div class="text">
+              <span class="cmd">web_search</span>
+              <span class="what">A tool the model calls only when it needs live info</span>
+            </div>
+          </div>
+          <div class="feature">
+            <span class="icon"><i class="fa-solid fa-brain"></i></span>
+            <div class="text">
+              <span class="cmd">anything else</span>
+              <span class="what">General knowledge Q&amp;A, with search to back it up</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="feature-group">
+        <h3>Communication &amp; general <span class="count">[ 05 ]</span></h3>
+        <div class="features-grid">
+          <div class="feature">
+            <span class="icon"><i class="fa-solid fa-comment-sms"></i></span>
+            <div class="text">
+              <span class="cmd">"text [contact]"</span>
+              <span class="what">SMS to known contacts via Phone Link</span>
+            </div>
+          </div>
+          <div class="feature">
+            <span class="icon"><i class="fa-brands fa-google"></i></span>
+            <div class="text">
+              <span class="cmd">"google [x]"</span>
+              <span class="what">Opens Google with the query</span>
+            </div>
+          </div>
+          <div class="feature">
+            <span class="icon"><i class="fa-brands fa-youtube"></i></span>
+            <div class="text">
+              <span class="cmd">"youtube [x]"</span>
+              <span class="what">Search-and-open on YouTube</span>
+            </div>
+          </div>
+          <div class="feature">
+            <span class="icon"><i class="fa-solid fa-id-card"></i></span>
+            <div class="text">
+              <span class="cmd">"who are you?"</span>
+              <span class="what">Self-introduction</span>
+            </div>
+          </div>
+          <div class="feature">
+            <span class="icon"><i class="fa-solid fa-ban"></i></span>
+            <div class="text">
+              <span class="cmd">"never mind"</span>
+              <span class="what">Cancel phrase + graceful exit</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="feature-group">
+        <h3>Composition primitives <span class="count">[ 02 ]</span></h3>
+        <div class="features-grid">
+          <div class="feature">
+            <span class="icon"><i class="fa-solid fa-stopwatch"></i></span>
+            <div class="text">
+              <span class="cmd">wait</span>
+              <span class="what">Pause N seconds. Only the LLM ever uses it</span>
+            </div>
+          </div>
+          <div class="feature">
+            <span class="icon"><i class="fa-solid fa-repeat"></i></span>
+            <div class="text">
+              <span class="cmd">repeat</span>
+              <span class="what">Loop a sequence of tool calls N times</span>
+            </div>
+          </div>
+        </div>
+        <p class="group-note">
+          These two are here so the model can build things I never wrote a tool
+          for. I never wrote a "flash the light" tool, but
+          <em>"flash my bedroom light 3 times"</em> still works out to
+          <code>repeat(3, [on, wait&nbsp;1s, off, wait&nbsp;1s])</code>. Neither
+          one goes into conversation memory. There's no point remembering that
+          it waited a second.
+        </p>
+      </div>
+    </section>
+
+    <!-- LLM-FIRST DISPATCH -->
+    <section class="laith-section">
+      <div class="head">
+        <h2 class="title">LLM-first dispatch</h2>
+        <span class="meta">[ ARCHITECTURE ]</span>
+      </div>
+
+      <p class="blurb">
+        This used to be a hardcoded <code>if / else if</code> chain, and adding
+        anything to it was miserable. Now one set of tool definitions feeds both
+        the AI router and the offline fallback, and the dispatcher doesn't care
+        whether it's talking to Gemini or a local OpenAI-compatible endpoint.
+      </p>
+
+      <div class="opts">
+        <article class="opt">
+          <div class="head-row"><span class="badge">registry</span></div>
+          <h4>One definition, two consumers</h4>
+          <p>Each capability is a single <code>VoiceCommand</code> object carrying an LLM-facing schema (name, description, typed params with enums) <em>and</em> a keyword predicate. The AI router reads the schema, the fallback matcher reads the predicate, and I only have to write the thing once.</p>
+        </article>
+
+        <article class="opt">
+          <div class="head-row"><span class="badge">multi-tool</span></div>
+          <h4>Several tools per utterance</h4>
+          <p>The model can return a batch of tool calls in one response. The dispatcher checks the args on each and runs them in order. A bad call gets dropped and the rest still go through.</p>
+        </article>
+
+        <article class="opt">
+          <div class="head-row"><span class="badge">planning</span></div>
+          <h4>Building what isn't there</h4>
+          <p>When no single tool fits, the router works out a sequence that does. <code>control_lights</code> + <code>wait</code> + <code>repeat</code> gets you a flashing light.</p>
+        </article>
+
+        <article class="opt">
+          <div class="head-row"><span class="badge">memory</span></div>
+          <h4>Rolling conversation window</h4>
+          <p>Recent turns get fed back so follow-ups like "turn it back off" resolve. Past tool calls are stored in each provider's <em>native</em> function-calling format. I found that one out the hard way: show a small model plain-text transcripts of its own tool calls and it starts writing very convincing fake ones as prose.</p>
+        </article>
+
+        <article class="opt">
+          <div class="head-row"><span class="badge">barge-in</span></div>
+          <h4>Interrupt mid-reply</h4>
+          <p>The whole point is never having to sit through an answer you didn't want. Say "Hey 49" over the top of a reply and it dies where it stands, then it's listening again.</p>
+        </article>
+      </div>
+
+      <!-- CODE -->
+      <div class="code-block">
+        <div class="topbar">
+          <span><i class="fa-regular fa-file-code"></i></span>
+          <span class="filename">IntentDispatcher.cs</span>
+          <span class="lang">C#</span>
+        </div>
+<pre><span class="com">// Ask the LLM what to do, with the whole tool catalogue + recent history.</span>
+<span class="kw">var</span> decision = <span class="kw">await</span> <span class="fn">detector</span>(userInput, registry.ToolDefinitions, history)
+               ?? LlmDecision.<span class="fn">Failure</span>();
+
+<span class="kw">if</span> (decision.Failed)                <span class="com">// timeout / malformed JSON</span>
+    <span class="kw">return await</span> <span class="fn">FallbackAsync</span>(userInput, lower, history);  <span class="com">// keyword matcher</span>
+
+<span class="kw">if</span> (decision.IsToolCall) {          <span class="com">// one or more tools, in order</span>
+    <span class="kw">foreach</span> (<span class="kw">var</span> call <span class="kw">in</span> decision.ToolCalls) {
+        <span class="kw">var</span> command = registry.<span class="fn">FindByName</span>(call.Name);
+        <span class="kw">if</span> (command == <span class="kw">null</span> || !<span class="fn">TryValidate</span>(command.Tool, call.Arguments, <span class="kw">out var</span> args))
+            <span class="kw">continue</span>;                   <span class="com">// bad call? drop it and keep going</span>
+        <span class="kw">await</span> command.<span class="fn">Handler</span>(context, args);
+    }
+    <span class="kw">return false</span>;
+}
+
+<span class="com">// Nothing to call, so just talk back. Still interruptible.</span>
+<span class="kw">return await</span> <span class="fn">ConversationalAsync</span>(userInput, history);</pre>
+      </div>
+    </section>
+
+    <!-- THE SPEECH BUBBLE -->
+    <section class="laith-section">
+      <div class="head">
+        <h2 class="title">The speech bubble</h2>
+        <span class="meta">[ PYTHON · PYGAME · VIA PYTHONNET ]</span>
+      </div>
+
+      <div class="bubble-layout">
+        <div class="bubble-copy">
+          <p class="blurb" style="margin-bottom: 1.5rem;">
+            A frameless translucent panel that slides up from the bottom of the
+            screen, shows what you said and what it's saying back, then slides
+            away when it's done. Written in Python with pygame and PIL, called
+            from C# over a live <code>pythonnet</code> bridge.
+          </p>
+          <ul class="detail-list">
+            <li>It's per-monitor <strong>DPI-aware</strong> and supersampled, so the rounded corners don't come out jagged.</li>
+            <li>Text draws in Segoe UI, but emoji runs get segmented out and rendered with Windows' <strong>color emoji font</strong> (<code>seguiemj.ttf</code>) through Pillow's <code>embedded_color</code>. They end up on the same line as everything else.</li>
+            <li>The voice and the bubble get <strong>different copies</strong> of the same reply. Emoji are stripped before the text reaches TTS, since there's nothing there to pronounce.</li>
+          </ul>
+        </div>
+
+        <div class="bubble-demo" aria-hidden="true">
+          <div class="glass-bubble">
+            <div class="bubble-you">You said <span>"set a timer for 5 minutes"</span></div>
+            <div class="bubble-49">Timer set for 5 minutes. ⏳ I'll let you know. ✅</div>
+          </div>
+          <div class="timer-widget">
+            <span class="tw-label">TIMER</span>
+            <span class="tw-count">04:59</span>
           </div>
         </div>
       </div>
@@ -284,115 +558,82 @@
       </div>
 
       <p class="blurb">
-        Same dispatcher, same integrations, two ways to handle speech and AI.
-        The <code>main</code> branch leans on Azure and Gemini for the best
-        voices and the smartest LLM. The <code>local</code> branch swaps them
-        for open-source equivalents that run on the same machine, so no
-        internet and no API keys.
+        The two branches share almost everything and swap out the AI backend.
+        <code>local-laith</code> exists so the whole thing runs on my machine:
+        no cloud, no per-query cost. The tradeoff is a weaker model doing the
+        reasoning. Everything sits behind a shared interface, which is the only
+        reason keeping the two branches in parity isn't a nightmare.
       </p>
 
-      <div class="opts">
-        <article class="opt">
-          <div class="head-row">
-            <span class="badge">main</span>
-          </div>
-          <h4>Cloud build</h4>
-          <p>Best quality. Needs internet + paid API keys.</p>
-          <ul class="build-list">
-            <li><strong>STT</strong>: Azure SpeechRecognizer</li>
-            <li><strong>TTS</strong>: Azure neural voices</li>
-            <li><strong>LLM</strong>: Gemini 2.5 Flash with <code>google_search</code> grounding</li>
-          </ul>
-        </article>
-
-        <article class="opt">
-          <div class="head-row">
-            <span class="badge">local</span>
-          </div>
-          <h4>Local build</h4>
-          <p>Runs offline. No API keys, no rate limits, no telemetry.</p>
-          <ul class="build-list">
-            <li><strong>STT</strong>: faster-whisper</li>
-            <li><strong>TTS</strong>: Kokoro</li>
-            <li><strong>LLM</strong>: LM Studio serving <code>llama-3.2-3b-instruct</code></li>
-            <li><strong>Search</strong>: searxng (replaces <code>google_search</code> grounding)</li>
-          </ul>
-        </article>
+      <div class="compare-table">
+        <div class="ct-row ct-head">
+          <div class="ct-cell ct-sub">Subsystem</div>
+          <div class="ct-cell"><span class="ct-badge">main</span> Cloud</div>
+          <div class="ct-cell"><span class="ct-badge alt">local-laith</span> Local</div>
+        </div>
+        <div class="ct-row">
+          <div class="ct-cell ct-sub">LLM</div>
+          <div class="ct-cell">Gemini 2.5 Flash + Google Search grounding</div>
+          <div class="ct-cell">LM Studio (local model) + SearxNG</div>
+        </div>
+        <div class="ct-row">
+          <div class="ct-cell ct-sub">Speech-to-text</div>
+          <div class="ct-cell">Azure Cognitive Speech</div>
+          <div class="ct-cell">faster-whisper (Whisper large-v3)</div>
+        </div>
+        <div class="ct-row">
+          <div class="ct-cell ct-sub">Text-to-speech</div>
+          <div class="ct-cell">Azure Neural TTS</div>
+          <div class="ct-cell">Kokoro-FastAPI</div>
+        </div>
+        <div class="ct-row">
+          <div class="ct-cell ct-sub">Wake word</div>
+          <div class="ct-cell">Azure <code>KeywordRecognizer</code></div>
+          <div class="ct-cell">same; the one Azure piece local keeps</div>
+        </div>
+        <div class="ct-row">
+          <div class="ct-cell ct-sub">Mic capture</div>
+          <div class="ct-cell">Azure SDK</div>
+          <div class="ct-cell">NAudio <code>WaveInEvent</code>, 16&nbsp;kHz mono PCM</div>
+        </div>
       </div>
+
+      <p class="group-note" style="margin-top: 1.25rem;">
+        Search is the one place they don't line up. Gemini already decides on
+        its own when to ground an answer in search, so only the local build has
+        to wire up SearxNG.
+      </p>
     </section>
 
-    <!-- ARCHITECTURE -->
+    <!-- EXPERIMENTAL: COMPUTER CONTROL -->
     <section class="laith-section">
       <div class="head">
-        <h2 class="title">Architecture</h2>
-        <span class="meta">[ REQUEST FLOW ]</span>
+        <h2 class="title">Computer control</h2>
+        <span class="meta">[ EXPERIMENTAL BRANCH ]</span>
       </div>
 
-      <p class="blurb">
-        A single C# event loop drives the whole thing. Speech in,
-        dispatch on intent, fall through to the LLM if nothing matches,
-        then speak the result back. Python services (bubble UI, SMS,
-        PS5 control) sit alongside via a live <code>pythonnet</code>
-        bridge, sharing the same process, just behind <code>Py.GIL()</code>.
+      <p class="blurb" style="margin-bottom: 1.25rem;">
+        On a separate branch it takes a screenshot, works out what's on screen
+        with a vision model, then clicks and types to drive the computer itself.
+        Handing an LLM my mouse needed guardrails, so there's a global
+        kill-switch hotkey, exclusion zones it isn't allowed to click in, a
+        spoken yes/no before every action, and an append-only log of what it did
+        with screenshot hashes attached.
       </p>
+    </section>
 
-      <div class="flow">
-        <div class="step">
-          <div class="n">01</div>
-          <div class="body">
-            <span class="label">WAKE</span>
-            <span class="what">Azure on-device <code>KeywordRecognizer</code> matches <code>"Hey 49"</code></span>
-            <span class="why">Reused across cycles so WASAPI doesn't re-init the mic every loop. The keyword catches first-try instead of after a retry.</span>
-          </div>
-        </div>
-        <div class="step">
-          <div class="n">02</div>
-          <div class="body">
-            <span class="label">GREET</span>
-            <span class="what">Time-of-day greeting, spoken through whichever TTS the build is wired to.</span>
-            <span class="why">Cloud: Azure neural voice (<code>en-US-AndrewMultilingualNeural</code>) with its TLS connection pre-opened at startup so the first phoneme isn't clipped. Local: Kokoro running on-device.</span>
-          </div>
-        </div>
-        <div class="step">
-          <div class="n">03</div>
-          <div class="body">
-            <span class="label">LISTEN</span>
-            <span class="what">Transcribe the command.</span>
-            <span class="why">Cloud: Azure <code>SpeechRecognizer.RecognizeOnceAsync()</code>, with an optional custom endpoint via <code>SPEECH_ENDPOINT_ID</code> and contact names pushed into the phrase list for accuracy. Local: faster-whisper running on-device.</span>
-          </div>
-        </div>
-        <div class="step">
-          <div class="n">04</div>
-          <div class="body">
-            <span class="label">DISPATCH</span>
-            <span class="what">Intent matched against a chain of <code>lower.Contains(...)</code> rules</span>
-            <span class="why">Lights, door, PS5, weather, prayer times, contacts, IDE, shutdown. Each handler is a separate service class.</span>
-          </div>
-        </div>
-        <div class="step">
-          <div class="n">05</div>
-          <div class="body">
-            <span class="label">FALLBACK</span>
-            <span class="what">No match → hand it to the LLM.</span>
-            <span class="why">Cloud: Gemini 2.5 Flash with <code>google_search</code> grounding so current-events questions still work. Local: LM Studio serving <code>llama-3.2-3b-instruct</code>, with searxng providing the search results. Same system prompt across both, enforcing a terse voice-friendly tone.</span>
-          </div>
-        </div>
-        <div class="step">
-          <div class="n">06</div>
-          <div class="body">
-            <span class="label">SPEAK</span>
-            <span class="what">TTS + pygame bubble run in parallel; can be interrupted</span>
-            <span class="why">A side-channel <code>ListenForInterruptionAsync()</code> runs alongside every <code>Say()</code>. Hearing "Hey 49" mid-response cancels the synthesizer, retracts the bubble, and skips the next greeting.</span>
-          </div>
-        </div>
+    <!-- STACK -->
+    <section class="laith-section">
+      <div class="head">
+        <h2 class="title">Stack</h2>
+        <span class="meta">[ WHAT IT'S BUILT ON ]</span>
       </div>
 
-      <h3 style="font-family: var(--font-mono); font-size: 0.85rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent); margin: 2.5rem 0 0;">// Stack</h3>
       <div class="stack-grid">
         <div class="item">
           <div class="role">Core</div>
           <div class="name">C# / .NET 4.8.1</div>
-          <div class="note">Event loop, service classes, command dispatch.</div>
+          <div class="note">Event loop, registry, dispatcher, and every command handler.</div>
         </div>
         <div class="item">
           <div class="role">Bridge</div>
@@ -400,149 +641,25 @@
           <div class="note">Hosts Python 3.12 in-process. C# calls Python via <code>Py.GIL()</code>; the runtime pre-releases the GIL with <code>BeginAllowThreads()</code>.</div>
         </div>
         <div class="item">
-          <div class="role">Speech</div>
-          <div class="name">Azure · faster-whisper · Kokoro</div>
-          <div class="note">Wake word is on-device Azure Custom Keyword in both builds. Cloud build uses Azure SpeechRecognizer + neural voices (SSML-capable). Local build swaps in faster-whisper for STT and Kokoro for TTS.</div>
+          <div class="role">Router</div>
+          <div class="name">Gemini · LM Studio</div>
+          <div class="note">Function-calling over the tool catalogue. Cloud: Gemini 2.5 Flash. Local: an OpenAI-compatible model served by LM Studio.</div>
         </div>
         <div class="item">
-          <div class="role">LLM</div>
-          <div class="name">Gemini · Llama 3.2 3B</div>
-          <div class="note">Cloud: Gemini 2.5 Flash with <code>google_search</code> grounding. Local: LM Studio hosting <code>llama-3.2-3b-instruct</code>, with searxng providing search results. Both capped near 200 output tokens to keep replies voice-friendly.</div>
+          <div class="role">Speech</div>
+          <div class="name">Azure · faster-whisper · Kokoro</div>
+          <div class="note">Wake word is on-device Azure in both builds. Cloud swaps in Azure STT + neural TTS; local uses faster-whisper + Kokoro-FastAPI.</div>
         </div>
         <div class="item">
           <div class="role">Overlay</div>
-          <div class="name">pygame</div>
-          <div class="note">Animated speech-bubble drawn on a borderless, click-through window. DPI-aware, fonts kept warm between calls.</div>
-        </div>
-        <div class="item">
-          <div class="role">SMS</div>
-          <div class="name">pyautogui + Phone Link</div>
-          <div class="note">No carrier API (too expensive). Drives Windows Phone Link UI via image-matching against reference assets.</div>
+          <div class="name">pygame + PIL · WinForms</div>
+          <div class="note">Glass speech bubble on a click-through, DPI-aware window with color emoji, plus hand-rolled always-on-top countdown widgets.</div>
         </div>
         <div class="item">
           <div class="role">Smart Home</div>
           <div class="name">TP-Link Kasa + Arduino</div>
-          <div class="note">Local-network plugs/switches for lights; Arduino over IP for the door actuator.</div>
+          <div class="note">Local-network plugs/switches for lights; Arduino over IP for the door. SMS drives Phone Link via image-matching.</div>
         </div>
-        <div class="item">
-          <div class="role">Location</div>
-          <div class="name">GeoCoordinateWatcher</div>
-          <div class="note">Windows location API. Single fix cached process-wide, shared by weather and prayer-time math.</div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ENGINEERING DETAILS / OPTIMIZATIONS -->
-    <section class="laith-section">
-      <div class="head">
-        <h2 class="title">Why it feels fast</h2>
-        <span class="meta">[ optimizations ]</span>
-      </div>
-
-      <p class="blurb">
-        Voice UX lives and dies on latency. A few small choices keep the
-        round-trip from wake word to first audio under the "is it broken?"
-        threshold.
-      </p>
-
-      <div class="opts">
-        <article class="opt">
-          <div class="head-row">
-            <span class="badge">REUSE</span>
-          </div>
-          <h4>Keyword recognizer lives across cycles</h4>
-          <p>Building a new <code>KeywordRecognizer</code> per cycle re-opens WASAPI audio capture that takes <strong>~9 seconds</strong> on some machines. Constructing it once and reusing it every loop iteration kills the dead air.</p>
-        </article>
-
-        <article class="opt">
-          <div class="head-row">
-            <span class="badge">PARALLEL</span>
-          </div>
-          <h4>Speech bubble + TTS run side-by-side</h4>
-          <p><code>Say()</code> fires TTS on the threadpool and immediately calls <code>SpeechBubble()</code>, which blocks until shared state flips. The synth's completion callback flips the state, retracting the bubble exactly when audio ends. Awaiting TTS first would leave the bubble stuck open.</p>
-        </article>
-
-        <article class="opt">
-          <div class="head-row">
-            <span class="badge">ISOLATE</span>
-          </div>
-          <h4>Two <code>SpeechConfig</code> instances, never shared</h4>
-          <p>The recognition config can target a custom Azure STT endpoint via <code>EndpointId</code>. The synth config <em>never</em> gets that property, applying it to the synthesizer causes silent TTS failures with no error.</p>
-        </article>
-
-        <article class="opt">
-          <div class="head-row">
-            <span class="badge">HOT</span>
-          </div>
-          <h4>Pygame display dies, fonts stay warm</h4>
-          <p>The bubble calls <code>pygame.display.quit()</code> after each speech, not <code>pygame.quit()</code>. Fonts stay loaded in module state, so the next bubble re-inits in milliseconds instead of seconds. Hiding the SDL window instead hangs <code>set_mode</code> for ~20s.</p>
-        </article>
-
-        <article class="opt">
-          <div class="head-row">
-            <span class="badge">DPI</span>
-          </div>
-          <h4>Process-wide DPI awareness, set first</h4>
-          <p><code>SetProcessDpiAwareness(2)</code> runs at the very top of <code>SpeechBubble.py</code>, <em>before</em> <code>import pygame</code>. If pyautogui later flips DPI mode mid-process, pygame's window shrinks to a quarter of its size</p>
-        </article>
-
-        <article class="opt">
-          <div class="head-row">
-            <span class="badge">SSML</span>
-          </div>
-          <h4>IPA phonemes for prayer names</h4>
-          <p>An English neural voice mangles "Fajr," "Maghrib," "Isha." Wrapping the names in SSML <code>&lt;phoneme&gt;</code> tags with IPA pronunciations makes the synthesizer say them correctly. (Cloud-only; the local Kokoro path uses a different pronunciation tweak.)</p>
-        </article>
-
-        <article class="opt">
-          <div class="head-row">
-            <span class="badge">SWAP</span>
-          </div>
-          <h4>STT, TTS, and LLM hide behind shared interfaces</h4>
-          <p>Each external service sits behind a small abstraction so the cloud and local builds share the same dispatcher and event loop. Swapping Azure for faster-whisper, or Gemini for an LM Studio model, is a constructor change. Nothing in <code>Program.cs</code> knows whether you're online.</p>
-        </article>
-      </div>
-    </section>
-
-    <!-- CODE EXCERPT -->
-    <section class="laith-section">
-      <div class="head">
-        <h2 class="title">Code, briefly</h2>
-        <span class="meta">[ Program.cs / main loop ]</span>
-      </div>
-
-      <p class="blurb">
-        The whole dispatch is a flat <code>if/else</code> chain. Boring on
-        purpose: fast to read, easy to add the next command without standing
-        up a router.
-      </p>
-
-      <div class="code-block">
-        <div class="topbar">
-          <span><i class="fa-regular fa-file-code"></i></span>
-          <span class="filename">Program.cs</span>
-          <span class="lang">C#</span>
-        </div>
-<pre><span class="kw">while</span> (<span class="kw">true</span>) {
-    <span class="kw">await</span> speechManager.<span class="fn">KeywordRecognizer</span>();          <span class="com">// wait for "Hey 49"</span>
-    <span class="kw">var</span> greeting = <span class="fn">PickGreeting</span>(DateTime.Now.Hour);
-    <span class="kw">await</span> speechManager.<span class="fn">Say</span>(<span class="str">"Hey 49"</span>, greeting);
-
-    <span class="kw">var</span> result = <span class="kw">await</span> speechRecognizer.<span class="fn">RecognizeOnceAsync</span>();
-    <span class="kw">string</span> lower = result.Text?.<span class="fn">ToLower</span>() ?? <span class="str">""</span>;
-
-    <span class="kw">if</span> (lower.<span class="fn">Contains</span>(<span class="str">"turn on"</span>) &amp;&amp; lower.<span class="fn">Contains</span>(<span class="str">"light"</span>))
-        <span class="kw">await</span> lightControl.<span class="fn">TurnOnLights</span>(...);
-    <span class="kw">else if</span> (lower.<span class="fn">Contains</span>(<span class="str">"door"</span>))
-        <span class="kw">await</span> arduino.<span class="fn">ArduinoCommunication</span>(<span class="str">"OPEN"</span>);
-    <span class="kw">else if</span> (lower.<span class="fn">Contains</span>(<span class="str">"weather"</span>))
-        <span class="kw">await</span> weather.<span class="fn">GetWeatherData</span>();
-    <span class="com">// ...11 more handlers...</span>
-    <span class="kw">else if</span> (result.Reason != ResultReason.NoMatch) {
-        <span class="kw">var</span> reply = <span class="kw">await</span> GeminiService.<span class="fn">GenerateGeminiResponse</span>(result.Text);
-        <span class="kw">await</span> speechManager.<span class="fn">Say</span>(result.Text, reply);
-    }
-}</pre>
       </div>
     </section>
 
@@ -561,22 +678,17 @@
         </div>
         <div class="row done">
           <div class="check"></div>
-          <div class="what">Gemini fallback with Google Search grounding</div>
+          <div class="what">LLM-first tool dispatch (function-calling over ~30 tools)</div>
           <div class="when">SHIPPED</div>
         </div>
         <div class="row done">
           <div class="check"></div>
-          <div class="what">Arduino-driven door + IP-based lights</div>
+          <div class="what">Multi-tool per utterance + tool composition / planning</div>
           <div class="when">SHIPPED</div>
         </div>
         <div class="row done">
           <div class="check"></div>
-          <div class="what">PS5 power-on + game launching</div>
-          <div class="when">SHIPPED</div>
-        </div>
-        <div class="row done">
-          <div class="check"></div>
-          <div class="what">Location-aware prayer times</div>
+          <div class="what">Multi-turn conversation memory (native function-calling format)</div>
           <div class="when">SHIPPED</div>
         </div>
         <div class="row done">
@@ -586,12 +698,17 @@
         </div>
         <div class="row done">
           <div class="check"></div>
-          <div class="what">Fully local branch (faster-whisper + Kokoro + LM Studio + searxng)</div>
+          <div class="what">Floating timer widgets + glass speech bubble with color emoji</div>
+          <div class="when">SHIPPED</div>
+        </div>
+        <div class="row done">
+          <div class="check"></div>
+          <div class="what">Fully local branch (faster-whisper + Kokoro + LM Studio + SearxNG)</div>
           <div class="when">SHIPPED</div>
         </div>
         <div class="row in-progress">
           <div class="check"></div>
-          <div class="what">Multi-turn context (keep a short dialogue history across cycles)</div>
+          <div class="what">Computer control with vision + safety stack (experimental branch)</div>
           <div class="when">IN PROGRESS</div>
         </div>
         <div class="row">
@@ -614,16 +731,15 @@
         <a href="https://github.com/nyongrand/pray-times" target="_blank" rel="noopener noreferrer">Nyong's pray-times</a>.
         Wake word in both builds via Microsoft Azure Custom Keyword.
         Cloud build: Azure Cognitive Services for STT and neural TTS,
-        Google Gemini for conversation. Local build:
+        Google Gemini for reasoning. Local build:
         <a href="https://github.com/SYSTRAN/faster-whisper" target="_blank" rel="noopener noreferrer">faster-whisper</a>
         for STT,
-        <a href="https://github.com/hexgrad/kokoro" target="_blank" rel="noopener noreferrer">Kokoro</a>
+        <a href="https://github.com/remsky/Kokoro-FastAPI" target="_blank" rel="noopener noreferrer">Kokoro-FastAPI</a>
         for TTS,
         <a href="https://lmstudio.ai/" target="_blank" rel="noopener noreferrer">LM Studio</a>
-        hosting
-        <a href="https://huggingface.co/meta-llama/Llama-3.2-3B-Instruct" target="_blank" rel="noopener noreferrer">llama-3.2-3b-instruct</a>,
-        and <a href="https://github.com/searxng/searxng" target="_blank" rel="noopener noreferrer">searxng</a>
-        for the search grounding.
+        for the local model, and
+        <a href="https://github.com/searxng/searxng" target="_blank" rel="noopener noreferrer">SearxNG</a>
+        for search grounding.
       </div>
     </section>
 
@@ -631,7 +747,7 @@
     <section class="laith-cta">
       <span class="kicker">// SEE THE SOURCE</span>
       <h2 class="hackedEffect">DIG IN</h2>
-      <p>Everything from the dispatcher to the Arduino serial commands is open. Star it, fork it, copy a service, whatever.</p>
+      <p>All of it's public, down to the Arduino serial commands. Fork it, copy a service out of it, whatever's useful.</p>
       <div class="links">
         <a href="https://github.com/layth49/Personal-Assistant" target="_blank" rel="noopener noreferrer" class="btn primary">
           <i class="fa-brands fa-github"></i> Open Repository <span class="arrow">→</span>
