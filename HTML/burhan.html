@@ -29,6 +29,7 @@
 
   <!-- Scripts -->
   <script defer src="../JS/hackedEffect.js"></script>
+  <script defer src="../JS/burhan.js"></script>
 </head>
 
 <body>
@@ -110,8 +111,7 @@
         </p>
 
         <div class="actions">
-          <a href="mailto:laythandamin@gmail.com?subject=Burhan%20TestFlight%20invite&amp;body=Hi%20Layth%20--%20I'd%20like%20a%20TestFlight%20invite%20for%20Burhan."
-            class="btn primary">Get a TestFlight invite <span class="arrow">→</span></a>
+          <a href="#invite" class="btn primary">Get a TestFlight invite <span class="arrow">→</span></a>
           <a href="#how" class="btn">See how it works</a>
         </div>
 
@@ -479,20 +479,61 @@
     </section>
 
     <!-- CTA -->
-    <section class="laith-cta bu-cta">
+    <section class="laith-cta bu-cta" id="invite">
       <span class="kicker">// فَتَبَيَّنُوا۟ — VERIFY</span>
       <h2 class="hackedEffect">TRY IT BEFORE ANYONE ELSE</h2>
       <p>
-        Burhan is in private TestFlight while the last pieces land. If you
-        want an invite, send me a message and I'll add you. If you're a
-        scholar who'd be willing to check the dataset by hand, I'd
-        especially like to hear from you.
+        Burhan is in private TestFlight while the last pieces land. Tell
+        me where to send the invite and I'll add you to the build. If
+        you're a scholar who'd be willing to check the dataset by hand,
+        say so below, I'd especially like to hear from you.
       </p>
-      <div class="links">
-        <a href="mailto:laythandamin@gmail.com?subject=Burhan%20TestFlight%20invite&amp;body=Hi%20Layth%20--%20I'd%20like%20a%20TestFlight%20invite%20for%20Burhan."
-          class="btn primary">Get a TestFlight invite <span class="arrow">→</span></a>
-        <a href="./projects.html" class="btn">← Other Projects</a>
-      </div>
+
+      <form class="bu-form" id="inviteForm" novalidate>
+        <div class="bu-field">
+          <label for="inv-email">Email <span class="req">required</span></label>
+          <input id="inv-email" name="email" type="email" required autocomplete="email" inputmode="email"
+            placeholder="you@example.com" />
+          <p class="bu-hint">This is the address Apple sends the TestFlight invite to.</p>
+        </div>
+
+        <div class="bu-field">
+          <label for="inv-name">Name <span class="opt">optional</span></label>
+          <input id="inv-name" name="name" type="text" autocomplete="name" placeholder="What should I call you?" />
+        </div>
+
+        <div class="bu-field">
+          <label for="inv-device">iPhone and iOS version <span class="opt">optional</span></label>
+          <input id="inv-device" name="device" type="text" placeholder="e.g. iPhone 13, iOS 18" />
+          <p class="bu-hint">Genuinely useful. I haven't measured speed and memory across many devices yet.</p>
+        </div>
+
+        <div class="bu-field bu-field-wide">
+          <label for="inv-note">Anything else <span class="opt">optional</span></label>
+          <textarea id="inv-note" name="note" rows="3" maxlength="500"
+            placeholder="How you'd use it, what you'd want checked, or that you're able to review the Arabic or the dataset."></textarea>
+        </div>
+
+        <!-- Honeypot: hidden from people, catches naive bots. Not a real field. -->
+        <div class="bu-hp" aria-hidden="true">
+          <label for="inv-website">Website</label>
+          <input id="inv-website" name="website" type="text" tabindex="-1" autocomplete="off" />
+        </div>
+
+        <p class="bu-form-privacy">
+          <i class="fa-solid fa-lock"></i>
+          <span>Your address goes to me and to Apple's TestFlight, and nowhere else. There's no mailing list to
+            join.</span>
+        </p>
+
+        <div class="bu-form-actions">
+          <button type="submit" class="btn primary">Send the request <span class="arrow">→</span></button>
+          <a href="./projects.html" class="btn">← Other Projects</a>
+        </div>
+
+        <p class="bu-form-status" role="status" aria-live="polite"></p>
+      </form>
+
       <p class="bu-cta-fine">Free, with no ads and no subscription. Your searches never leave your phone.</p>
     </section>
   </main>

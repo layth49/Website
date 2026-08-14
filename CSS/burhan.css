@@ -496,6 +496,196 @@
   color: var(--bu-green);
 }
 
+/* INVITE FORM ---------------------------------------------
+   Lives inside .laith-cta, which centres its children, so the
+   form re-establishes left alignment for anything readable. */
+.bu-form {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.1rem;
+  width: min(100%, 640px);
+  margin: 2.25rem auto 0;
+  text-align: left;
+}
+
+@media (min-width: 640px) {
+  .bu-form { grid-template-columns: 1fr 1fr; }
+  .bu-field-wide,
+  .bu-form-privacy,
+  .bu-form-actions,
+  .bu-form-status { grid-column: 1 / -1; }
+}
+
+.bu-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+  min-width: 0;
+}
+
+.bu-field label {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-muted);
+}
+
+.bu-field label .req,
+.bu-field label .opt {
+  font-size: 0.62rem;
+  letter-spacing: 0.1em;
+  padding: 0.15rem 0.4rem;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border);
+}
+
+.bu-field label .req {
+  color: var(--bu-green);
+  border-color: rgba(124, 196, 164, 0.3);
+  background: rgba(124, 196, 164, 0.1);
+}
+
+.bu-field label .opt { color: var(--ink-dim); }
+
+.bu-field input,
+.bu-field textarea {
+  width: 100%;
+  padding: 0.8rem 0.95rem;
+  font-family: var(--font-sans);
+  /* Must not drop below 16px: iOS Safari zooms the whole page in when
+     a smaller input takes focus, and this form is aimed at iPhones. */
+  font-size: 1rem;
+  line-height: 1.45;
+  color: var(--ink);
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-sm);
+  transition: border-color var(--t-fast) var(--ease),
+              box-shadow var(--t-fast) var(--ease);
+}
+
+.bu-field textarea { resize: vertical; }
+
+.bu-field input::placeholder,
+.bu-field textarea::placeholder { color: var(--ink-dim); }
+
+.bu-field input:focus,
+.bu-field textarea:focus {
+  outline: none;
+  border-color: var(--bu-green);
+  box-shadow: 0 0 0 3px rgba(124, 196, 164, 0.18);
+}
+
+/* Only flag a bad address once there is something to be wrong about */
+.bu-field input:not(:placeholder-shown):invalid { border-color: var(--bad); }
+
+.bu-hint {
+  font-family: var(--font-sans);
+  font-size: 0.78rem;
+  line-height: 1.45;
+  color: var(--ink-dim);
+  margin: 0;
+}
+
+/* Honeypot. Off-screen rather than display:none, since some bots skip
+   fields that are outright hidden. aria-hidden + tabindex=-1 keep it
+   away from screen readers and keyboard users. */
+.bu-hp {
+  position: absolute;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
+.bu-form-privacy {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.6rem;
+  margin: 0;
+  padding: 0.8rem 0.95rem;
+  font-family: var(--font-sans);
+  font-size: 0.82rem;
+  line-height: 1.5;
+  color: var(--ink-muted);
+  background: rgba(124, 196, 164, 0.06);
+  border: 1px dashed rgba(124, 196, 164, 0.28);
+  border-radius: var(--radius-sm);
+}
+
+.bu-form-privacy i { color: var(--bu-green); margin-top: 0.2rem; flex-shrink: 0; }
+
+.bu-form-actions {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  margin-top: 0.25rem;
+}
+
+.bu-form-actions .btn { font-family: var(--font-mono); }
+
+.bu-form-status {
+  margin: 0;
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  line-height: 1.5;
+  color: var(--ink-muted);
+}
+
+.bu-form-status:empty { display: none; }
+.bu-form-status.bad { color: var(--bad); }
+.bu-form-status.warn { color: var(--warn); }
+
+/* Post-submit handoff */
+.bu-form-done {
+  width: min(100%, 640px);
+  margin: 2.25rem auto 0;
+  padding: 1.6rem 1.5rem;
+  text-align: left;
+  background: var(--bg-elevated);
+  border: 1px solid rgba(124, 196, 164, 0.3);
+  border-radius: var(--radius-lg);
+}
+
+.bu-done-line {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin: 0 0 0.6rem;
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--ink);
+}
+
+.bu-done-line i { color: var(--bu-green); }
+
+.bu-done-sub {
+  margin: 0;
+  font-size: 0.9rem;
+  line-height: 1.6;
+  color: var(--ink-muted);
+}
+
+.bu-done-sub b { color: var(--ink); }
+
+.bu-done-body {
+  margin: 1.1rem 0;
+  padding: 0.95rem 1.1rem;
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  line-height: 1.6;
+  color: var(--ink-muted);
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
 .bu-cta-fine {
   margin-top: 1.5rem;
   font-family: var(--font-mono);
