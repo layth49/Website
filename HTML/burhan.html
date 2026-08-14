@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Burhan · Verifiable answers from the Qur'an</title>
+  <meta name="description"
+    content="Burhan is a free, fully offline app that answers questions about Islam with the verse itself, always cited and one tap from the original. No AI writes the answers, so it can't make up scripture. No ads, no subscription, and your searches never leave your phone." />
+
+  <link rel="icon" href="../assets/logo.ico" />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700;800&family=Geist:wght@400;500;600;700&family=Scheherazade+New:wght@400;700&family=Gentium+Book+Plus:ital,wght@0,400;0,700;1,400&display=swap"
+    rel="stylesheet" />
+
+  <!-- Icon font -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="../CSS/base.css" />
+  <link rel="stylesheet" href="../CSS/navBar.css" />
+  <link rel="stylesheet" href="../CSS/socials.css" />
+  <link rel="stylesheet" href="../CSS/laith.css" />
+  <link rel="stylesheet" href="../CSS/burhan.css" />
+
+  <!-- Scripts -->
+  <script defer src="../JS/hackedEffect.js"></script>
+</head>
+
+<body>
+  <!-- NAV -->
+  <nav class="navBar">
+    <div class="logo">
+      <a href="../index.html">
+        <img src="../assets/logo.png" alt="layth49" />
+      </a>
+    </div>
+
+    <div class="menuItems">
+      <div>
+        <a href="../index.html" class="hackedEffect">HOME</a>
+      </div>
+      <div class="active">
+        <a href="./projects.html" class="hackedEffect">PROJECTS</a>
+      </div>
+      <div>
+        <a href="./about.html" class="hackedEffect">ABOUT</a>
+      </div>
+    </div>
+
+    <div class="nav-end">
+      <span class="status-pill"><span class="dot"></span> AVAILABLE</span>
+    </div>
+  </nav>
+
+  <!-- FLOATING SOCIALS -->
+  <aside class="social-link">
+    <a href="https://github.com/layth49" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+      <i class="fa-brands fa-github"></i>
+    </a>
+    <a href="mailto:laythandamin@gmail.com" aria-label="Email">
+      <i class="fa-regular fa-envelope"></i>
+    </a>
+  </aside>
+
+  <main class="container">
+    <!-- HERO -->
+    <section class="laith-hero">
+      <div>
+        <div class="eyebrow">
+          <span class="line"></span>
+          <span>FREE · OFFLINE · NO ADS</span>
+        </div>
+
+        <span class="wakeword">
+          <span class="pulse"></span>
+          // private TestFlight, App Store to come
+        </span>
+
+        <div class="bu-titlerow">
+          <svg class="bu-logo" viewBox="0 0 1024 1024" role="img" aria-label="Burhan app icon">
+            <defs>
+              <linearGradient id="buDuskHero" x1="0" y1="0" x2="0.7" y2="1">
+                <stop offset="0" stop-color="#2B2A55" />
+                <stop offset="1" stop-color="#12283F" />
+              </linearGradient>
+            </defs>
+            <rect width="1024" height="1024" rx="225" fill="url(#buDuskHero)" />
+            <g transform="translate(-10,-82)" fill="none" stroke="#D4A93C" stroke-width="96" stroke-linecap="butt"
+              stroke-linejoin="miter">
+              <path d="M 788 484 L 788 556 C 788 600, 756 628, 708 628 L 336 628 C 288 628, 256 600, 256 556 L 256 360" />
+            </g>
+            <rect x="458" y="638" width="108" height="108" rx="20" fill="#D4A93C" />
+          </svg>
+          <h1 class="hackedEffect">BURHAN</h1>
+        </div>
+        <p class="tagline">Verifiable answers from the Qur'an and authenticated Sunni hadith.</p>
+        <p class="lede">
+          <strong>Ask a question about Islam and Burhan shows you the
+            verse itself, word for word, with its reference and a link to
+            the original.</strong> No AI writes the answers, so it can't
+          make up a verse the way a chatbot can. It runs on your phone
+          with no internet connection. And if it doesn't have a sound
+          source for what you asked, it tells you that instead of
+          guessing.
+        </p>
+
+        <div class="actions">
+          <a href="mailto:laythandamin@gmail.com?subject=Burhan%20TestFlight%20invite&amp;body=Hi%20Layth%20--%20I'd%20like%20a%20TestFlight%20invite%20for%20Burhan."
+            class="btn primary">Get a TestFlight invite <span class="arrow">→</span></a>
+          <a href="#how" class="btn">See how it works</a>
+        </div>
+
+        <p class="bu-availability">
+          <i class="fa-brands fa-apple"></i> On iPhone through TestFlight right now. The App Store version and Android
+          are still to come.
+        </p>
+      </div>
+
+      <div class="laith-hero-media bu-media">
+        <div class="bu-app">
+          <div class="bu-appbar">
+            <span class="bu-app-title">Burhan</span>
+            <span class="bu-appbar-icons" aria-hidden="true">
+              <i class="fa-solid fa-circle-info"></i>
+              <i class="fa-solid fa-gear"></i>
+            </span>
+          </div>
+          <div class="bu-wordmark" lang="ar" dir="rtl">بُرْهَان</div>
+          <p class="bu-tagline">Verifiable answers from the Qur'an and authenticated Sunni hadith.</p>
+
+          <div class="bu-search">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <span>should i share news i can't verify</span>
+          </div>
+
+          <div class="bu-scope">
+            <i class="fa-solid fa-circle-info"></i>
+            <span>Qur'an only — no hadith is bundled, so reports from the Sunnah cannot be checked here.</span>
+          </div>
+
+          <article class="bu-result">
+            <div class="bu-ref">Al-Hujurat 49:6</div>
+            <p class="bu-en">O believers, if an evildoer brings you any news, verify ˹it˺ so you do not harm people
+              unknowingly, becoming regretful for what you have done.</p>
+            <p class="bu-ayah" lang="ar" dir="rtl">يَٰٓأَيُّهَا ٱلَّذِينَ ءَامَنُوٓا۟ إِن جَآءَكُمْ فَاسِقٌۢ بِنَبَإٍ
+              فَتَبَيَّنُوٓا۟ أَن تُصِيبُوا۟ قَوْمًۢا بِجَهَٰلَةٍ فَتُصْبِحُوا۟ عَلَىٰ مَا فَعَلْتُمْ نَٰدِمِينَ</p>
+            <span class="bu-src"><i class="fa-solid fa-arrow-up-right-from-square"></i> View original source</span>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- STATS -->
+    <div class="laith-stats">
+      <div class="stat">
+        <div class="label">Price</div>
+        <div class="val ok">Free · forever</div>
+      </div>
+      <div class="stat">
+        <div class="label">Ads &amp; Tracking</div>
+        <div class="val ok">None</div>
+      </div>
+      <div class="stat">
+        <div class="label">Works Offline</div>
+        <div class="val ok">Always</div>
+      </div>
+      <div class="stat">
+        <div class="label">Qur'an Verses</div>
+        <div class="val">6,236 · all of them</div>
+      </div>
+      <div class="stat">
+        <div class="label">Words It Writes Itself</div>
+        <div class="val ok">Zero</div>
+      </div>
+    </div>
+
+    <!-- THE PROMISE -->
+    <section class="laith-section">
+      <div class="head">
+        <h2 class="title">Most "AI Islam" apps can make things up</h2>
+        <span class="meta">[ THIS ONE CAN'T ]</span>
+      </div>
+
+      <p class="blurb">
+        A chatbot writes its answers. That means it can produce a verse or
+        a hadith that never existed, in language that sounds completely
+        authoritative, and people then share it. Burhan doesn't write
+        anything at all. It finds the passage you asked about and puts the
+        stored text on screen with its reference attached. There is no
+        text-generating model inside the app that could go wrong.
+      </p>
+
+      <div class="features-grid">
+        <div class="feature">
+          <span class="icon"><i class="fa-solid fa-quote-left"></i></span>
+          <div class="text">
+            <span class="cmd">Word for word</span>
+            <span class="what">Every answer is the text exactly as it was given to the app. Nothing is paraphrased or
+              summarised.</span>
+          </div>
+        </div>
+        <div class="feature">
+          <span class="icon"><i class="fa-solid fa-link"></i></span>
+          <div class="text">
+            <span class="cmd">Always cited, always tappable</span>
+            <span class="what">Surah and verse on every answer, with a link to the original so you can check it
+              yourself.</span>
+          </div>
+        </div>
+        <div class="feature">
+          <span class="icon"><i class="fa-solid fa-circle-minus"></i></span>
+          <div class="text">
+            <span class="cmd">It says "I don't know"</span>
+            <span class="what">If it has no sound source for your question, it says so and shows you nothing.</span>
+          </div>
+        </div>
+        <div class="feature">
+          <span class="icon"><i class="fa-solid fa-plane-up"></i></span>
+          <div class="text">
+            <span class="cmd">Fully offline</span>
+            <span class="what">The whole Qur'an and the search itself are inside the app. It works in airplane mode and
+              with no signal.</span>
+          </div>
+        </div>
+        <div class="feature">
+          <span class="icon"><i class="fa-solid fa-user-shield"></i></span>
+          <div class="text">
+            <span class="cmd">Your searches stay on your phone</span>
+            <span class="what">There is no account and no server. Searching never touches the network, so what you ask
+              about your own religion stays yours.</span>
+          </div>
+        </div>
+        <div class="feature">
+          <span class="icon"><i class="fa-solid fa-heart"></i></span>
+          <div class="text">
+            <span class="cmd">Free, and staying free</span>
+            <span class="what">There is nothing to buy in it. No ads, no subscription, no locked surahs.</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- HOW IT WORKS -->
+    <section class="laith-section" id="how">
+      <div class="head">
+        <h2 class="title">How it works</h2>
+        <span class="meta">[ ASK · IT SEARCHES · YOU SEE THE SOURCE ]</span>
+      </div>
+
+      <p class="blurb">
+        You don't need the surah number or the right English term. Ask in
+        plain language, or in Arabic, and it finds the passage by meaning.
+      </p>
+
+      <div class="flow">
+        <div class="step">
+          <div class="n">01</div>
+          <div class="body">
+            <span class="label">ASK IN YOUR OWN WORDS</span>
+            <span class="what">"Is interest allowed?" · "what does the quran say about parents" · a verse typed out in
+              Arabic.</span>
+            <span class="why">It knows everyday religious vocabulary too, so asking about <em>zakat</em> finds the
+              verses even though the translation calls it <em>alms</em>.</span>
+          </div>
+        </div>
+        <div class="step">
+          <div class="n">02</div>
+          <div class="body">
+            <span class="label">YOUR PHONE DOES THE SEARCHING</span>
+            <span class="what">It compares your question against all 6,236 verses, in English and Arabic, right on the
+              device.</span>
+            <span class="why">No search request is sent anywhere. That is why it works offline, and why nobody
+              (including me) can see what you searched for.</span>
+          </div>
+        </div>
+        <div class="step">
+          <div class="n">03</div>
+          <div class="body">
+            <span class="label">YOU GET THE PASSAGE AND ITS SOURCE</span>
+            <span class="what">The translation, the Arabic, the surah and verse, and a link to the original.</span>
+            <span class="why">Or "I don't have a sound source for that", which counts as a real answer here.</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- HONEST REFUSAL -->
+    <section class="laith-section">
+      <div class="head">
+        <h2 class="title">It would rather say nothing</h2>
+        <span class="meta">[ WHAT IT DOES WHEN IT DOESN'T KNOW ]</span>
+      </div>
+
+      <div class="bu-split">
+        <div class="bu-split-copy">
+          <p>
+            An app about scripture that guesses is worse than no app at
+            all. So Burhan is built to refuse. If it isn't confident that
+            it has a real source for your question, it says so and shows
+            you nothing.
+          </p>
+          <p>
+            <strong>It also never pretends its scope is bigger than it
+              is.</strong> Every answer and every refusal carries the same
+            line about what it can and cannot check. You never have to
+            wonder whether silence means there was nothing to find, or
+            that the app wasn't looking there.
+          </p>
+        </div>
+
+        <div class="bu-app bu-app-standalone">
+          <div class="bu-appbar">
+            <span class="bu-app-title">Burhan</span>
+            <span class="bu-appbar-icons" aria-hidden="true">
+              <i class="fa-solid fa-circle-info"></i>
+              <i class="fa-solid fa-gear"></i>
+            </span>
+          </div>
+          <div class="bu-wordmark" lang="ar" dir="rtl">بُرْهَان</div>
+          <p class="bu-tagline">Verifiable answers from the Qur'an and authenticated Sunni hadith.</p>
+
+          <div class="bu-search">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <span>what did the prophet say about cats</span>
+          </div>
+
+          <div class="bu-empty">
+            <span class="bu-empty-icon" aria-hidden="true">
+              <i class="fa-solid fa-magnifying-glass"></i>
+              <i class="fa-solid fa-xmark"></i>
+            </span>
+            <p class="bu-empty-line">I don't have a sound source for that.</p>
+            <p class="bu-empty-scope">This app searches the Qur'an only — all 6,236 verses. No hadith collection is
+              bundled yet, so it cannot check anything reported from the Sunnah.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- WHAT'S INSIDE -->
+    <section class="laith-section">
+      <div class="head">
+        <h2 class="title">What's inside today</h2>
+        <span class="meta">[ NO SURPRISES ]</span>
+      </div>
+
+      <p class="blurb">
+        Being straight about scope is the whole point of the app, so it
+        would be strange to get vague about it here.
+      </p>
+
+      <div class="bu-scope-grid">
+        <div class="bu-scope-card in">
+          <div class="bu-scope-head"><i class="fa-solid fa-check"></i> In the app now</div>
+          <ul class="detail-list">
+            <li><strong>The complete Qur'an:</strong> all 114 surahs and all 6,236 verses.</li>
+            <li><strong>Uthmani Arabic</strong> from the Tanzil Project, stored exactly as published.</li>
+            <li><strong>The Clear Quran®</strong> by Dr. Mustafa Khattab, used with written permission, including all
+              1,335 footnotes.</li>
+            <li><strong>Search in English and Arabic</strong>, including verses typed out word for word.</li>
+            <li><strong>Everything offline</strong>, inside the app download. Nothing to stream or top up.</li>
+          </ul>
+        </div>
+        <div class="bu-scope-card soon">
+          <div class="bu-scope-head"><i class="fa-solid fa-hourglass-half"></i> Not yet</div>
+          <ul class="detail-list">
+            <li><strong>Hadith.</strong> The collections aren't bundled yet, and the app says so on every answer instead
+              of leaving you to assume.</li>
+            <li><strong>Grades and graders.</strong> When hadith does land, every one will carry its authenticity grade
+              and the name of the scholar who gave it.</li>
+            <li><strong>An Arabic interface.</strong> Drafted, but held back until a qualified Arabic speaker has
+              reviewed it properly.</li>
+            <li><strong>Android.</strong> It builds and runs, it just isn't published yet.</li>
+          </ul>
+        </div>
+      </div>
+
+      <p class="group-note">
+        The scope is Sunni, and the app says so. Burhan shows you sources.
+        It doesn't issue rulings or fatwas, and it takes no position
+        between schools of thought. For anything that needs a ruling, ask
+        a qualified scholar. This is a tool for finding what the text
+        actually says.
+      </p>
+    </section>
+
+    <!-- PRICE -->
+    <section class="laith-section">
+      <div class="head">
+        <h2 class="title">Free. Actually free.</h2>
+        <span class="meta">[ NOTHING TO BUY, EVER ]</span>
+      </div>
+
+      <div class="bu-price">
+        <div class="bu-price-num">$0<span>no ads · no subscription · no "pro" tier</span></div>
+        <div class="bu-price-copy">
+          There's no business model here to protect, which is what makes
+          the privacy promises easy to keep. With no server and no
+          accounts, there is nothing to collect even if someone wanted to.
+          The app costs nothing to run and it isn't trying to grow.
+          <strong>I built it because bad information about Islam travels
+            faster than anyone can check it.</strong> A lot of that
+          circulates among Muslims too. A tool that always shows its
+          source makes checking the easy option.
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="laith-section">
+      <div class="head">
+        <h2 class="title">Questions</h2>
+        <span class="meta">[ THE ONES I GET ASKED ]</span>
+      </div>
+
+      <div class="opts">
+        <article class="opt">
+          <h4>Can it invent a verse, like ChatGPT sometimes does?</h4>
+          <p>
+            No, and not because it was told not to. There is no
+            text-generating model inside the app. It can only find and
+            display text that is already stored on your phone, so there
+            is nothing in it capable of making something up.
+          </p>
+        </article>
+        <article class="opt">
+          <h4>Does it need internet?</h4>
+          <p>
+            Never. The whole Qur'an and the search itself ship inside the
+            app. The only time it touches the network is if you tap a
+            citation link to open the original source in your browser.
+          </p>
+        </article>
+        <article class="opt">
+          <h4>What do you do with my searches?</h4>
+          <p>
+            Nothing, because they never reach me. There's no account and
+            no server, and searching never touches the network. There is
+            one exception and it's entirely your choice: while the app is
+            in testing, a bad result has a "report this" button. Only if
+            you tap it does anything get sent, and what goes is your
+            search plus which verses came back, named by reference. No
+            Qur'an text, nothing that identifies you, and the app shows
+            you the whole thing before it sends it.
+          </p>
+        </article>
+        <article class="opt">
+          <h4>Which translation is it?</h4>
+          <p>
+            The Clear Quran® by Dr. Mustafa Khattab, bundled with written
+            permission from the publisher. The Arabic is the Uthmani text
+            from the Tanzil Project. Both are stored exactly as published
+            and never edited.
+          </p>
+        </article>
+        <article class="opt">
+          <h4>Why isn't hadith in there yet?</h4>
+          <p>
+            Doing it properly means every hadith carries a grade from a
+            named scholar, and the data needed for that hasn't been made
+            available to me yet. Shipping without it would mean showing
+            gradings that nobody actually gave, which is the problem this
+            app exists to avoid.
+          </p>
+        </article>
+        <article class="opt">
+          <h4>Will it give me a ruling?</h4>
+          <p>
+            No. It shows you what the sources say and where to find them.
+            It isn't a replacement for a scholar.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="laith-cta bu-cta">
+      <span class="kicker">// فَتَبَيَّنُوا۟ — VERIFY</span>
+      <h2 class="hackedEffect">TRY IT BEFORE ANYONE ELSE</h2>
+      <p>
+        Burhan is in private TestFlight while the last pieces land. If you
+        want an invite, send me a message and I'll add you. If you're a
+        scholar who'd be willing to check the dataset by hand, I'd
+        especially like to hear from you.
+      </p>
+      <div class="links">
+        <a href="mailto:laythandamin@gmail.com?subject=Burhan%20TestFlight%20invite&amp;body=Hi%20Layth%20--%20I'd%20like%20a%20TestFlight%20invite%20for%20Burhan."
+          class="btn primary">Get a TestFlight invite <span class="arrow">→</span></a>
+        <a href="./projects.html" class="btn">← Other Projects</a>
+      </div>
+      <p class="bu-cta-fine">Free, with no ads and no subscription. Your searches never leave your phone.</p>
+    </section>
+  </main>
+</body>
+
+</html>

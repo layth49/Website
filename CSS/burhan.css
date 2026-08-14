@@ -1,0 +1,477 @@
+/* ============================================================
+   Burhan landing page
+   Unlike the other project pages, this one is an ad for an app
+   rather than a write-up of how it was built -- so it wears the
+   app's own colours, not the site's red.
+
+   Layout primitives still come from laith.css (.laith-hero,
+   .laith-section, .features-grid, .flow, .opts, .laith-cta);
+   only the bits laith.css doesn't define live here.
+   ============================================================ */
+
+:root {
+  /* Burhan's actual in-app palette, sampled from the running app:
+     warm near-black field, warm off-white ink, sage citation. */
+  --bu-bg: #141410;
+  --bu-surface: #1e1e18;
+  --bu-field: #2b2b24;
+  --bu-ink: #eae7dd;
+  --bu-muted: #a9a59a;
+  --bu-green: #7cc4a4;
+  --bu-line: rgba(234, 231, 221, 0.12);
+}
+
+/* Re-theme the page body to the app's accent. Scoped to <main> so
+   the nav and floating socials keep the site's red and the page
+   still reads as part of layth49.com. */
+main.container {
+  --accent: #7cc4a4;
+  --accent-soft: rgba(124, 196, 164, 0.12);
+  --accent-glow: rgba(124, 196, 164, 0.3);
+  --border-accent: rgba(124, 196, 164, 0.4);
+}
+
+/* BUTTONS --------------------------------------------------
+   .btn lives in welcome.css / about.css, neither of which the
+   project pages load -- so define it here, matching those. */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 0.85rem 1.25rem;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border-strong);
+  background: var(--bg-elevated);
+  color: var(--ink);
+  cursor: pointer;
+  transition: transform var(--t-fast) var(--ease),
+              background var(--t-fast) var(--ease),
+              border-color var(--t-fast) var(--ease),
+              box-shadow var(--t-fast) var(--ease);
+}
+
+.btn:hover {
+  background: var(--bg-card-hover);
+  border-color: var(--ink-dim);
+  transform: translateY(-2px);
+}
+
+.btn.primary {
+  background: var(--bu-green);
+  color: #0f1a15;
+  border-color: var(--bu-green);
+  font-weight: 700;
+}
+
+.btn.primary:hover {
+  background: #93d4b6;
+  box-shadow: 0 0 24px var(--accent-glow);
+}
+
+.btn .arrow { transition: transform var(--t-fast) var(--ease); }
+.btn:hover .arrow { transform: translateX(3px); }
+
+/* App icon beside the hero title. laith.css gives .laith-hero h1 a
+   bottom margin; move it to the row so the icon stays centred on it. */
+.bu-titlerow {
+  display: flex;
+  align-items: center;
+  gap: 1.1rem;
+  margin-bottom: 1rem;
+}
+
+.bu-titlerow h1 {
+  margin-bottom: 0;
+}
+
+.bu-titlerow .bu-logo {
+  width: clamp(52px, 8vw, 76px);
+  height: clamp(52px, 8vw, 76px);
+  flex-shrink: 0;
+  border-radius: 18px;
+  box-shadow: 0 10px 28px -10px rgba(0, 0, 0, 0.8);
+}
+
+/* Availability line under the hero CTAs */
+.bu-availability {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  margin-top: 1.25rem;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.04em;
+  color: var(--ink-dim);
+}
+
+.bu-availability i { color: var(--ink-muted); }
+
+/* ============================================================
+   THE APP MOCK
+   A faithful reproduction of the real Burhan screen: warm field,
+   centred wordmark, search field, the always-on scope line, and
+   a result card with the citation in sage, English above Arabic.
+   ============================================================ */
+.bu-app {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.9rem;
+  padding: 1.75rem 1.35rem 2rem;
+  background: var(--bu-bg);
+  font-family: var(--font-sans);
+  text-align: center;
+}
+
+/* App bar: title centred, info + settings pinned right, as in the app */
+.bu-appbar {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  width: 100%;
+}
+
+.bu-app-title {
+  grid-column: 2;
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--bu-ink);
+  letter-spacing: 0.01em;
+}
+
+.bu-appbar-icons {
+  grid-column: 3;
+  justify-self: end;
+  display: inline-flex;
+  gap: 0.75rem;
+  font-size: 0.85rem;
+  color: var(--bu-muted);
+}
+
+.bu-wordmark {
+  font-family: "Scheherazade New", "Noto Naskh Arabic", serif;
+  font-size: 3rem;
+  /* Arabic diacritics stack above and below -- this needs real
+     leading or the marks clip against the line box. */
+  line-height: 2.15;
+  color: var(--bu-ink);
+  margin-top: 0.35rem;
+}
+
+.bu-app .bu-tagline {
+  font-size: 0.85rem;
+  line-height: 1.45;
+  color: var(--bu-ink);
+  max-width: 34ch;
+  margin: -0.35rem 0 0.35rem;
+}
+
+/* Search field */
+.bu-search {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  width: 100%;
+  padding: 0.8rem 1rem;
+  border-radius: 12px;
+  background: var(--bu-field);
+  color: var(--bu-ink);
+  font-size: 0.88rem;
+  line-height: 1.4;
+  text-align: left;
+}
+
+.bu-search i {
+  flex-shrink: 0;
+  font-size: 0.9rem;
+  color: var(--bu-ink);
+  opacity: 0.9;
+}
+
+/* The always-on scope disclosure, shown on every outcome */
+.bu-scope {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.6rem;
+  width: 100%;
+  padding: 0 0.25rem;
+  font-size: 0.78rem;
+  line-height: 1.45;
+  color: var(--bu-muted);
+  text-align: left;
+}
+
+.bu-scope i {
+  flex-shrink: 0;
+  margin-top: 0.15rem;
+  font-size: 0.85rem;
+}
+
+/* Result card */
+.bu-result {
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+  width: 100%;
+  padding: 1.15rem 1.2rem;
+  border-radius: 14px;
+  background: var(--bu-surface);
+  text-align: left;
+}
+
+.bu-ref {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--bu-green);
+  letter-spacing: 0.01em;
+}
+
+.bu-en {
+  font-family: "Gentium Book Plus", Georgia, serif;
+  font-size: 1rem;
+  line-height: 1.55;
+  color: var(--bu-ink);
+  margin: 0;
+}
+
+.bu-ayah {
+  font-family: "Scheherazade New", "Noto Naskh Arabic", serif;
+  font-size: 1.5rem;
+  line-height: 2.05;
+  color: var(--bu-ink);
+  text-align: right;
+  margin: 0;
+  padding-top: 0.95rem;
+  border-top: 1px solid var(--bu-line);
+}
+
+.bu-src {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  font-size: 0.82rem;
+  color: var(--bu-muted);
+}
+
+.bu-src i { font-size: 0.85rem; }
+
+/* Refusal state: not a card. A centred empty state, exactly as the
+   app renders it -- struck-through magnifier, the refusal line, then
+   the full scope note. */
+.bu-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.85rem;
+  width: 100%;
+  padding: 2.75rem 0.5rem 2.25rem;
+  text-align: center;
+}
+
+.bu-empty-icon {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  font-size: 1.3rem;
+  color: var(--bu-muted);
+}
+
+.bu-empty-icon .fa-xmark {
+  position: absolute;
+  top: 0.1rem;
+  left: -0.15rem;
+  font-size: 0.85rem;
+}
+
+.bu-empty-line {
+  font-size: 1.05rem;
+  font-weight: 600;
+  line-height: 1.4;
+  color: var(--bu-ink);
+  margin: 0;
+}
+
+.bu-empty-scope {
+  font-size: 0.82rem;
+  line-height: 1.55;
+  color: var(--bu-muted);
+  max-width: 44ch;
+  margin: 0;
+}
+
+/* HERO FRAME -----------------------------------------------
+   .laith-hero-media pins a 16/10 box for video; the app screen
+   should size to its own content instead. */
+.laith-hero-media.bu-media {
+  aspect-ratio: auto;
+  background: var(--bu-bg);
+  box-shadow:
+    0 20px 60px -20px rgba(124, 196, 164, 0.22),
+    0 0 0 1px var(--border) inset;
+}
+
+/* laith.css draws a red hairline across the top of the frame */
+.laith-hero-media.bu-media::before {
+  background: linear-gradient(90deg, transparent, var(--bu-green), transparent);
+}
+
+/* The mock used outside the hero frame needs its own border */
+.bu-app-standalone {
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+}
+
+/* SPLIT: copy beside a mock -------------------------------- */
+.bu-split {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+  align-items: center;
+}
+
+@media (min-width: 900px) {
+  .bu-split {
+    grid-template-columns: 1fr 0.9fr;
+    gap: 3rem;
+  }
+}
+
+.bu-split-copy {
+  display: flex;
+  flex-direction: column;
+  gap: 1.1rem;
+  font-family: var(--font-sans);
+  font-size: 0.98rem;
+  line-height: 1.65;
+  color: var(--ink-muted);
+}
+
+.bu-split-copy strong { color: var(--ink); font-weight: 600; }
+
+/* IN / NOT YET -------------------------------------------- */
+.bu-scope-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.85rem;
+}
+
+@media (min-width: 860px) {
+  .bu-scope-grid { grid-template-columns: 1fr 1fr; }
+}
+
+.bu-scope-card {
+  padding: 1.5rem 1.6rem;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+}
+
+.bu-scope-card.in { border-color: rgba(124, 196, 164, 0.28); }
+.bu-scope-card.soon { border-color: rgba(245, 158, 11, 0.22); }
+
+.bu-scope-head {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  margin-bottom: 1.25rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px dashed var(--border);
+}
+
+.bu-scope-card.in .bu-scope-head { color: var(--bu-green); }
+.bu-scope-card.soon .bu-scope-head { color: var(--warn); }
+
+.bu-scope-card.soon .detail-list li::before { color: var(--warn); }
+
+/* PRICE --------------------------------------------------- */
+.bu-price {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.75rem;
+  align-items: center;
+  padding: 2.25rem 1.9rem;
+  background: var(--bg-card);
+  border: 1px solid rgba(124, 196, 164, 0.25);
+  border-radius: var(--radius-lg);
+}
+
+@media (min-width: 760px) {
+  .bu-price { grid-template-columns: auto 1fr; gap: 3rem; }
+}
+
+.bu-price-num {
+  font-family: var(--font-display);
+  font-size: clamp(3.5rem, 2rem + 9vw, 6rem);
+  font-weight: 800;
+  line-height: 0.9;
+  letter-spacing: -0.04em;
+  color: var(--bu-green);
+  text-align: center;
+}
+
+.bu-price-num span {
+  display: block;
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--ink-dim);
+  margin-top: 1rem;
+  line-height: 1.6;
+}
+
+.bu-price-copy {
+  font-family: var(--font-sans);
+  font-size: 0.98rem;
+  line-height: 1.65;
+  color: var(--ink-muted);
+}
+
+.bu-price-copy strong { color: var(--ink); font-weight: 600; }
+
+/* FAQ: laith.css .opt, minus the badge row ---------------- */
+.opts .opt h4 { font-size: 1.02rem; line-height: 1.35; }
+
+/* CTA ------------------------------------------------------ */
+.laith-cta.bu-cta .kicker {
+  font-family: "Scheherazade New", var(--font-mono);
+  font-size: 1.1rem;
+  letter-spacing: 0.1em;
+  color: var(--bu-green);
+}
+
+.bu-cta-fine {
+  margin-top: 1.5rem;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink-dim);
+}
+
+/* STATS: laith.css defines .ok/.warn/.accent but not .bad */
+.laith-stats .stat .val.bad { color: var(--bad); }
+.laith-stats .stat .val.ok { color: var(--bu-green); }
+
+/* MOBILE ---------------------------------------------------- */
+@media (max-width: 768px) {
+  .bu-app { padding: 1.5rem 1rem 1.75rem; }
+  .bu-wordmark { font-size: 2.5rem; }
+  .bu-ayah { font-size: 1.3rem; line-height: 2; }
+  .bu-en { font-size: 0.95rem; }
+  .bu-result { padding: 1rem; }
+  .bu-price { padding: 1.75rem 1.25rem; }
+}
