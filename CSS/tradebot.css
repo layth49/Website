@@ -1,0 +1,255 @@
+/* ============================================================
+   Trade Bot deep-dive page
+   Structure comes from laith.css (shared deep-dive kit).
+   Only the bits laith.css doesn't already define live here.
+   ============================================================ */
+
+/* BUTTONS --------------------------------------------------
+   .btn lives in welcome.css / about.css, neither of which the
+   deep-dive pages load -- so define it here, matching those. */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 0.85rem 1.25rem;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border-strong);
+  background: var(--bg-elevated);
+  color: var(--ink);
+  cursor: pointer;
+  transition: transform var(--t-fast) var(--ease),
+              background var(--t-fast) var(--ease),
+              border-color var(--t-fast) var(--ease),
+              box-shadow var(--t-fast) var(--ease);
+}
+
+.btn:hover {
+  background: var(--bg-card-hover);
+  border-color: var(--ink-dim);
+  transform: translateY(-2px);
+}
+
+.btn.primary {
+  background: var(--accent);
+  color: white;
+  border-color: var(--accent);
+}
+
+.btn.primary:hover {
+  background: #ff4444;
+  box-shadow: 0 0 24px var(--accent-glow);
+}
+
+.btn .arrow { transition: transform var(--t-fast) var(--ease); }
+.btn:hover .arrow { transform: translateX(3px); }
+
+/* HERO TERMINAL --------------------------------------------
+   The analogue of laith's hero <video>: the backtest printing
+   its own report card. Sits inside .laith-hero-media, so it
+   inherits the frame, chrome dots and caption label. */
+.laith-hero-media.tb-media {
+  /* laith.css pins this to 16/10 for video; the terminal should
+     size to its content instead so nothing ever clips. */
+  aspect-ratio: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 2.75rem 1.5rem 2.75rem;
+  background:
+    radial-gradient(ellipse at 70% 0%, rgba(239, 68, 68, 0.09), transparent 60%),
+    linear-gradient(160deg, #0a0a0f 0%, #050506 100%);
+  box-shadow:
+    0 20px 60px -20px rgba(239, 68, 68, 0.25),
+    0 0 0 1px var(--border) inset;
+}
+
+.tb-term {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  line-height: 1.5;
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+}
+
+.tb-cmd {
+  color: var(--ink-dim);
+  margin-bottom: 0.35rem;
+  overflow-wrap: anywhere;
+}
+
+.tb-cmd::before {
+  content: "$ ";
+  color: var(--accent);
+  font-weight: 700;
+}
+
+.tb-line {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.6rem;
+  animation: tb-line-in 0.5s var(--ease) both;
+}
+
+.tb-line:nth-of-type(1) { animation-delay: 0.15s; }
+.tb-line:nth-of-type(2) { animation-delay: 0.35s; }
+.tb-line:nth-of-type(3) { animation-delay: 0.55s; }
+.tb-line:nth-of-type(4) { animation-delay: 0.75s; }
+
+@keyframes tb-line-in {
+  from { transform: translateY(6px); opacity: 0; }
+  to   { transform: translateY(0); opacity: 1; }
+}
+
+.tb-tag {
+  flex-shrink: 0;
+  width: 3.6rem;
+  text-align: center;
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  padding: 0.18rem 0;
+  border-radius: var(--radius-sm);
+  border: 1px solid;
+}
+
+.tb-line.pass .tb-tag {
+  color: var(--ok);
+  border-color: rgba(16, 185, 129, 0.35);
+  background: rgba(16, 185, 129, 0.1);
+}
+
+.tb-line.fail .tb-tag {
+  color: var(--bad);
+  border-color: rgba(239, 68, 68, 0.4);
+  background: rgba(239, 68, 68, 0.12);
+}
+
+.tb-line.warn .tb-tag {
+  color: var(--warn);
+  border-color: rgba(245, 158, 11, 0.35);
+  background: rgba(245, 158, 11, 0.1);
+}
+
+.tb-txt {
+  min-width: 0;
+  color: var(--ink);
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
+}
+
+/* Plain-English gloss under each machine-speak line */
+.tb-txt .tb-plain {
+  font-family: var(--font-sans);
+  font-size: 0.76rem;
+  line-height: 1.35;
+  color: var(--ink-dim);
+}
+
+.tb-line.fail .tb-txt { color: var(--bad); }
+
+.tb-verdict {
+  margin-top: 0.75rem;
+  padding-top: 0.75rem;
+  border-top: 1px dashed var(--border);
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink-dim);
+  animation: tb-line-in 0.5s var(--ease) 0.95s both;
+}
+
+.tb-verdict b {
+  color: var(--bad);
+  font-weight: 700;
+  letter-spacing: 0.14em;
+}
+
+/* STATS: a "bad" modifier to sit alongside laith's .ok/.warn/.accent */
+.laith-stats .stat .val.bad { color: var(--bad); }
+
+/* FOUR-COLUMN COMPARE TABLE --------------------------------
+   laith.css's .compare-table is hard-wired to 3 columns. */
+@media (min-width: 760px) {
+  .compare-table.tb-ct4 .ct-row {
+    grid-template-columns: 1.15fr 1fr 1fr 1fr;
+  }
+}
+
+/* Highlight the row that beat the bot */
+.compare-table .ct-row.tb-win .ct-cell {
+  background: rgba(16, 185, 129, 0.06);
+}
+
+.compare-table .ct-cell b { color: var(--ink); font-weight: 700; }
+.compare-table .ct-cell .tb-bad { color: var(--bad); font-weight: 700; }
+.compare-table .ct-cell .tb-ok { color: var(--ok); font-weight: 700; }
+
+/* ZERO BLOCK -----------------------------------------------
+   The closing "it never traded" number. */
+.tb-zero {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+  align-items: center;
+  padding: 2rem 1.75rem;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  margin-bottom: 1.5rem;
+}
+
+@media (min-width: 760px) {
+  .tb-zero { grid-template-columns: auto 1fr; gap: 2.5rem; }
+}
+
+.tb-zero .tb-big {
+  font-family: var(--font-display);
+  font-size: clamp(4rem, 2rem + 12vw, 8rem);
+  font-weight: 800;
+  line-height: 0.85;
+  color: var(--bad);
+  letter-spacing: -0.04em;
+  text-align: center;
+}
+
+.tb-zero .tb-big span {
+  display: block;
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--ink-dim);
+  margin-top: 0.75rem;
+  line-height: 1.4;
+}
+
+.tb-zero .tb-zero-copy {
+  font-family: var(--font-sans);
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: var(--ink-muted);
+}
+
+.tb-zero .tb-zero-copy strong { color: var(--ink); font-weight: 600; }
+
+.tb-zero .tb-zero-copy code {
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+  color: var(--accent);
+  background: transparent;
+}
+
+/* MOBILE ---------------------------------------------------- */
+@media (max-width: 768px) {
+  .laith-hero-media.tb-media { padding: 2.5rem 1.1rem 2rem; }
+  .tb-term { font-size: 0.72rem; }
+  .tb-tag { width: 3.2rem; }
+  .tb-zero { padding: 1.5rem 1.25rem; }
+}

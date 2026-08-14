@@ -12,7 +12,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link
-    href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700;800&family=Geist:wght@400;500;600;700&display=swap"
+    href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700;800&family=Geist:wght@400;500;600;700&family=Scheherazade+New:wght@400;700&display=swap"
     rel="stylesheet" />
 
   <!-- Icon font -->
@@ -70,10 +70,11 @@
     <section class="projects-hero">
       <div class="eyebrow">
         <span class="line"></span>
-        <span>INDEX / 17 projects</span>
+        <span>INDEX / 19 projects</span>
       </div>
       <h1 class="hackedEffect">Projects</h1>
-      <p>A running log of bots, automations, games, and pranks. Some are shipped, one is forever in progress, and some are failed experiments.</p>
+      <p>A running log of bots, automations, games, and pranks. Some are shipped, one is forever in progress, and some
+        are failed experiments.</p>
     </section>
 
     <!-- FILTER BAR -->
@@ -99,31 +100,118 @@
         </div>
         <h1 class="hackedEffect">L.Λ.I.T.H.49</h1>
         <p class="subtitle">Logical Assistant for Intelligent Task Handling</p>
-        <div class="card-media">
+        <div class="card-media no-media laith-bubble-preview">
           <span class="badge">FLAGSHIP · CLICK FOR DEEP-DIVE</span>
-          <video loop autoplay muted playsinline webkit-playsinline>
-            <source src="../assets/videos/bot.mp4" type="video/mp4" />
-          </video>
+          <div class="lb-glass-bubble">
+            <div class="lb-you">You said <span>"set a timer for 5 minutes"</span></div>
+            <div class="lb-49">Timer set for 5 minutes. ⏳ I'll let you know. ✅</div>
+          </div>
+          <div class="lb-timer-widget">
+            <span class="lb-tw-label">TIMER</span>
+            <span class="lb-tw-count">04:59</span>
+          </div>
         </div>
-        <p>My personal assistant, my biggest and favorite software project. Never really "done" because I'm always adding new features.</p>
+        <p>My personal assistant, my biggest and favorite software project. Never really "done" because I'm always
+          adding new features.</p>
         <div class="card-foot">
           <span>C# · GEMINI · AZURE</span>
           <span class="arrow">→</span>
         </div>
       </a>
 
-      
+      <!-- l.a.i.t.h Instagram Bot -->
+      <div class="card" data-status="ok">
+        <div class="card-head">
+          <span class="num">// 02</span>
+          <span class="status ok">Complete</span>
+        </div>
+        <h1 class="hackedEffect">l.a.i.t.h</h1>
+        <div class="card-media no-media igchat-preview">
+          <div class="ig-chat">
+            <div class="ig-msg in"><span class="ig-from">sara</span><span class="ig-tag">@laith</span> settle it, is
+              omar cooked or not</div>
+            <div class="ig-typing" style="animation-delay:.2s"><span></span><span></span><span></span></div>
+            <div class="ig-msg out" style="animation-delay:.5s"><span class="ig-from">laith</span>omar's been "cooking"
+              for 45 mins and it's still just water. i've seen enough</div>
+          </div>
+        </div>
+        <p>A locally-run AI "friend" that lives in a private Instagram group chat — detects <b>@mentions</b> and DMs in
+          real time, replies in-character through a local LLM, and reacts to friends' Notes.</p>
+        <div class="card-foot">
+          <span>NODE · PYTHON · SELENIUM · LLM</span>
+        </div>
+      </div>
+
+      <!-- Burhan: featured, spans 2, links to deep-dive -->
+      <a class="card featured burhan-card" data-status="warn" href="./burhan.html" style="text-decoration: none;">
+        <div class="card-head">
+          <span class="num">// 03</span>
+          <span class="status warn">In Progress</span>
+        </div>
+        <div class="bu-card-head">
+          <svg class="bu-logo" viewBox="0 0 1024 1024" role="img" aria-label="Burhan app icon">
+            <defs>
+              <linearGradient id="buDuskCard" x1="0" y1="0" x2="0.7" y2="1">
+                <stop offset="0" stop-color="#2B2A55" />
+                <stop offset="1" stop-color="#12283F" />
+              </linearGradient>
+            </defs>
+            <rect width="1024" height="1024" rx="225" fill="url(#buDuskCard)" />
+            <g transform="translate(-10,-82)" fill="none" stroke="#D4A93C" stroke-width="96" stroke-linecap="butt"
+              stroke-linejoin="miter">
+              <path d="M 788 484 L 788 556 C 788 600, 756 628, 708 628 L 336 628 C 288 628, 256 600, 256 556 L 256 360" />
+            </g>
+            <rect x="458" y="638" width="108" height="108" rx="20" fill="#D4A93C" />
+          </svg>
+          <h1 class="hackedEffect">Burhan</h1>
+        </div>
+        <p class="subtitle">بُرْهَان · "decisive proof" · an app that can't make up scripture</p>
+        <div class="card-media no-media burhan-preview">
+          <span class="badge">FREE · OFFLINE · SEE THE APP</span>
+          <div class="bu-card-app">
+            <div class="bu-card-title">Burhan</div>
+            <div class="bu-card-wordmark" lang="ar" dir="rtl">بُرْهَان</div>
+            <div class="bu-card-tagline">Verifiable answers from the Qur'an and authenticated Sunni hadith.</div>
+            <div class="bu-card-search">
+              <i class="fa-solid fa-magnifying-glass"></i>
+              <span>what does the quran say about acting on rumours</span>
+            </div>
+            <div class="bu-card-scope">
+              <i class="fa-solid fa-circle-info"></i>
+              <span>Qur'an only — no hadith is bundled, so reports from the Sunnah cannot be checked here.</span>
+            </div>
+            <div class="bu-card-result">
+              <div class="bu-card-ref">Al-Isra 17:36</div>
+              <div class="bu-card-en">Do not follow what you have no ˹sure˺ knowledge of. Indeed, all will be called to
+                account for ˹their˺ hearing, sight, and intellect.</div>
+              <div class="bu-card-ayah" lang="ar" dir="rtl">وَلَا تَقْفُ مَا لَيْسَ لَكَ بِهِۦ عِلْمٌ ۚ إِنَّ ٱلسَّمْعَ
+                وَٱلْبَصَرَ وَٱلْفُؤَادَ كُلُّ أُو۟لَٰٓئِكَ كَانَ عَنْهُ مَسْـُٔولًا</div>
+              <div class="bu-card-src"><i class="fa-solid fa-arrow-up-right-from-square"></i> View original source</div>
+            </div>
+          </div>
+        </div>
+        <p>A free, fully offline app that answers questions about Islam with the verse itself, word for word, with its
+          reference and a link to the original. <b>No AI writes the answers</b>, so it can't invent a verse the way a
+          chatbot can. All 6,236 verses ship inside the download. Hadith isn't bundled yet, and the app says so on every
+          answer.</p>
+        <div class="card-foot">
+          <span>FLUTTER · DART · ONNX · PYTHON · SQLITE</span>
+          <span class="arrow">→</span>
+        </div>
+      </a>
+
       <!-- Door Opener -->
       <div class="card" data-status="warn">
         <div class="card-head">
-          <span class="num">// 02</span>
+          <span class="num">// 04</span>
           <span class="status warn">In Progress</span>
         </div>
         <h1 class="hackedEffect">Mechanical Door Opener</h1>
         <div class="card-media">
           <img src="../assets/door.jpg" alt="door opener preview" />
         </div>
-        <p>My biggest (and first) hardware project yet. An Arduino-based device that uses a servo motor to open/close doors wirelessly. Can communicate with L.A.I.T.H.49 and Siri.</p>
+        <p>My biggest (and first) hardware project yet. An Arduino-based device that uses a servo motor to open/close
+          doors wirelessly. Can communicate with L.A.I.T.H.49 and Siri.</p>
         <div class="card-foot">
           <span>ARDUINO · ELECTRONICS</span>
         </div>
@@ -132,15 +220,20 @@
       <!-- Bozo's Adventure: featured, spans 2, links to deep-dive -->
       <a class="card featured" data-status="archived" href="./bozos.html" style="text-decoration: none;">
         <div class="card-head">
-          <span class="num">// 03</span>
+          <span class="num">// 05</span>
           <span class="status archived">Archived</span>
         </div>
         <h1 class="hackedEffect">Bozo's Adventure</h1>
         <p class="subtitle">A Unity platformer about teleporting bozos</p>
-        <div class="card-media no-media bozos-preview">
+        <div class="card-media">
           <span class="badge">GAME · ARCHIVED · CLICK FOR DEEP-DIVE</span>
+          <video loop autoplay muted playsinline webkit-playsinline>
+            <source src="../assets/bozos/CHARACTER-SWITCHER.mp4" type="video/mp4" />
+          </video>
         </div>
-        <p>Three playable characters with incompatible movement: <b>49</b> teleports to your cursor, <b>Slime</b> double-jumps. Swap with <code>E</code>. Shipped through v0.2, then lost steam mid-v0.3 and got shelved. Repo's still up.</p>
+        <p>Three playable characters with incompatible movement: <b>49</b> teleports to your cursor, <b>Slime</b>
+          double-jumps. Swap with <code>E</code>. Shipped through v0.2, then lost steam mid-v0.3 and got shelved. Repo's
+          still up.</p>
         <div class="card-foot">
           <span>UNITY · C#</span>
           <span class="arrow">→</span>
@@ -150,20 +243,56 @@
       <!-- RMP Scraper -->
       <div class="card" data-status="ok">
         <div class="card-head">
-          <span class="num">// 04</span>
+          <span class="num">// 06</span>
           <span class="status ok">Complete</span>
         </div>
         <h1 class="hackedEffect">RMP Scraper</h1>
-        <p>Pulls a UNO course schedule CSV and enriches it with Rate My Professor ratings. Fuzzy-matches professor names so "tba" and typos don't slip through.</p>
+        <p>Pulls a UNO course schedule CSV and enriches it with Rate My Professor ratings. Fuzzy-matches professor names
+          so "tba" and typos don't slip through.</p>
         <div class="card-foot">
           <span>PYTHON · SCRAPING</span>
         </div>
       </div>
 
+      <!-- Trade Bot: featured, spans 2, links to deep-dive -->
+      <a class="card featured" data-status="bad" href="./tradebot.html" style="text-decoration: none;">
+        <div class="card-head">
+          <span class="num">// 07</span>
+          <span class="status bad">Failed</span>
+        </div>
+        <h1 class="hackedEffect">Trade Bot</h1>
+        <p class="subtitle">A stock-trading robot, measured into retirement</p>
+        <div class="card-media no-media tradebot-preview">
+          <span class="badge">FAILED · CLICK FOR DEEP-DIVE</span>
+          <svg class="tb-chart" viewBox="0 0 320 200" preserveAspectRatio="none" aria-hidden="true">
+            <line class="tb-grid" x1="0" y1="55" x2="320" y2="55"></line>
+            <line class="tb-grid" x1="0" y1="105" x2="320" y2="105"></line>
+            <line class="tb-grid" x1="0" y1="155" x2="320" y2="155"></line>
+            <polyline class="tb-line spy" pathLength="100"
+              points="8,178 46,164 84,150 122,140 160,118 198,96 236,66 274,38 312,29"></polyline>
+            <polyline class="tb-line bot" pathLength="100"
+              points="8,178 46,171 84,162 122,157 160,151 198,129 236,93 274,59 312,51"></polyline>
+            <circle class="tb-dot spy" cx="312" cy="29" r="3.5"></circle>
+            <circle class="tb-dot bot" cx="312" cy="51" r="3.5"></circle>
+          </svg>
+          <div class="tb-chart-legend">
+            <span class="tb-lab spy"><i></i>SPY <b>+86.5%</b></span>
+            <span class="tb-lab bot"><i></i>Bot <b>+79.2%</b></span>
+          </div>
+        </div>
+        <p>A robot built to trade stocks automatically. It watched prices, news, company fundamentals, the economy, and
+          even Reddit, blended all of that into a single buy/sell decision, and wrapped the whole thing in safety
+          brakes.</p>
+        <div class="card-foot">
+          <span>PYTHON · ALPACA · FINBERT · LOCAL LLM · DOCKER</span>
+          <span class="arrow">→</span>
+        </div>
+      </a>
+
       <!-- Auto Search -->
       <div class="card" data-status="ok">
         <div class="card-head">
-          <span class="num">// 05</span>
+          <span class="num">// 08</span>
           <span class="status ok">Complete</span>
         </div>
         <h1 class="hackedEffect">Auto Search</h1>
@@ -181,7 +310,7 @@
       <!-- Audio Visualizer -->
       <div class="card" data-status="ok">
         <div class="card-head">
-          <span class="num">// 06</span>
+          <span class="num">// 09</span>
           <span class="status ok">Complete</span>
         </div>
         <h1 class="hackedEffect">Audio Visualizer</h1>
@@ -191,7 +320,9 @@
             <source src="../assets/videos/audio.mp4" type="video/mp4" />
           </video>
         </div>
-        <p>Floating click-through overlay that draws 70 FFT bars from your mic input in real time. 20Hz–24kHz range, 0.96 smoothing factor so it doesn't spaz out on transients. Was actually gonna be a feature in L.A.I.T.H.49. but it was scrapped.</p>
+        <p>Floating click-through overlay that draws 70 FFT bars from your mic input in real time. 20Hz–24kHz range,
+          0.96 smoothing factor so it doesn't spaz out on transients. Was actually gonna be a feature in L.A.I.T.H.49.
+          but it was scrapped.</p>
         <div class="card-foot">
           <span>PYTHON · PYGAME · FFT</span>
         </div>
@@ -200,7 +331,7 @@
       <!-- Aim Speed -->
       <div class="card" data-status="ok">
         <div class="card-head">
-          <span class="num">// 07</span>
+          <span class="num">// 10</span>
           <span class="status ok">Complete</span>
         </div>
         <h1 class="hackedEffect">Aim Speed</h1>
@@ -218,7 +349,7 @@
       <!-- Typing Speed -->
       <div class="card" data-status="ok">
         <div class="card-head">
-          <span class="num">// 08</span>
+          <span class="num">// 11</span>
           <span class="status ok">Complete</span>
         </div>
         <h1 class="hackedEffect">Typing Speed</h1>
@@ -236,7 +367,7 @@
       <!-- Reaction Speed -->
       <div class="card" data-status="ok">
         <div class="card-head">
-          <span class="num">// 09</span>
+          <span class="num">// 12</span>
           <span class="status ok">Complete</span>
         </div>
         <h1 class="hackedEffect">Reaction Speed</h1>
@@ -254,7 +385,7 @@
       <!-- Verbal Memory -->
       <div class="card" data-status="ok">
         <div class="card-head">
-          <span class="num">// 10</span>
+          <span class="num">// 13</span>
           <span class="status ok">Complete</span>
         </div>
         <h1 class="hackedEffect">Verbal Memory</h1>
@@ -263,7 +394,8 @@
             <source src="../assets/videos/verbal.mp4" type="video/mp4" />
           </video>
         </div>
-        <p>Builds a list of seen words and presses <b>SEEN</b> / <b>NEW</b> accordingly. Goes forever. (Footage is NOT sped up)</p>
+        <p>Builds a list of seen words and presses <b>SEEN</b> / <b>NEW</b> accordingly. Goes forever. (Footage is NOT
+          sped up)</p>
         <div class="card-foot">
           <span>PYTHON · OCR</span>
         </div>
@@ -272,7 +404,7 @@
       <!-- Number Memory -->
       <div class="card" data-status="ok">
         <div class="card-head">
-          <span class="num">// 11</span>
+          <span class="num">// 14</span>
           <span class="status ok">Complete</span>
         </div>
         <h1 class="hackedEffect">Number Memory</h1>
@@ -290,7 +422,7 @@
       <!-- Flappy Bird -->
       <div class="card" data-status="ok">
         <div class="card-head">
-          <span class="num">// 12</span>
+          <span class="num">// 15</span>
           <span class="status ok">Complete</span>
         </div>
         <h1 class="hackedEffect">Flappy Bird</h1>
@@ -308,7 +440,7 @@
       <!-- Pong -->
       <div class="card" data-status="ok">
         <div class="card-head">
-          <span class="num">// 13</span>
+          <span class="num">// 16</span>
           <span class="status ok">Complete</span>
         </div>
         <h1 class="hackedEffect">Pong</h1>
@@ -326,7 +458,7 @@
       <!-- AI Voice Dictator -->
       <div class="card" data-status="ok">
         <div class="card-head">
-          <span class="num">// 14</span>
+          <span class="num">// 17</span>
           <span class="status ok">Complete</span>
         </div>
         <h1 class="hackedEffect">AI Voice Dictator</h1>
@@ -339,7 +471,7 @@
       <!-- Nitro-Type Bot -->
       <div class="card" data-status="ok">
         <div class="card-head">
-          <span class="num">// 15</span>
+          <span class="num">// 18</span>
           <span class="status ok">Complete</span>
         </div>
         <h1 class="hackedEffect">Nitro-Type Bot</h1>
@@ -348,7 +480,8 @@
             <source src="../assets/videos/nitro.mp4" type="video/mp4" />
           </video>
         </div>
-        <p>OCRs the race prompt off the screen and types it back. Same idea as Typing Speed, built specifically for Nitro-Type's layout. (This gets you banned instantly btw lol)</p>
+        <p>OCRs the race prompt off the screen and types it back. Same idea as Typing Speed, built specifically for
+          Nitro-Type's layout. (This gets you banned instantly btw lol)</p>
         <div class="card-foot">
           <span>PYTHON · OCR</span>
         </div>
@@ -357,7 +490,7 @@
       <!-- BSOD Prank -->
       <div class="card" data-status="bad">
         <div class="card-head">
-          <span class="num">// 16</span>
+          <span class="num">// 19</span>
           <span class="status bad">Failed</span>
         </div>
         <h1 class="hackedEffect">BSOD Prank</h1>
@@ -369,19 +502,6 @@
         <p>Got close. But it's <b style="color: var(--bad);">obviously fake</b>.</p>
         <div class="card-foot">
           <span>PYTHON · WINDOWS</span>
-        </div>
-      </div>
-
-      <!-- RageBaiter -->
-      <div class="card" data-status="warn">
-        <div class="card-head">
-          <span class="num">// 17</span>
-          <span class="status warn">In Progress</span>
-        </div>
-        <h1 class="hackedEffect">RageBaiter</h1>
-        <p display="">AI bot that texts my friends stereotypical old-white-guy phrases: "<i>hey watch it pal!</i>", "<i>you're on thin ice, bucko!</i>". Generated on-demand via Gemini so it responds properly. Successor to the BSOD Prank.</p>
-        <div class="card-foot">
-          <span>PYTHON · GEMINI · PRANK</span>
         </div>
       </div>
 

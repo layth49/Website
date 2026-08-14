@@ -1,0 +1,691 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Trade Bot · layth49</title>
+  <meta name="description"
+    content="A multi-signal algorithmic trading bot: ~24,000 lines of code, five signal modules, a local LLM. It never traded a single real dollar, and every measurement it ran on itself came back the same way -- no edge. This is the autopsy." />
+
+  <link rel="icon" href="../assets/logo.ico" />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700;800&family=Geist:wght@400;500;600;700&display=swap"
+    rel="stylesheet" />
+
+  <!-- Icon font -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="../CSS/base.css" />
+  <link rel="stylesheet" href="../CSS/navBar.css" />
+  <link rel="stylesheet" href="../CSS/socials.css" />
+  <link rel="stylesheet" href="../CSS/laith.css" />
+  <link rel="stylesheet" href="../CSS/tradebot.css" />
+
+  <!-- Scripts -->
+  <script defer src="../JS/hackedEffect.js"></script>
+</head>
+
+<body>
+  <!-- NAV -->
+  <nav class="navBar">
+    <div class="logo">
+      <a href="../index.html">
+        <img src="../assets/logo.png" alt="layth49" />
+      </a>
+    </div>
+
+    <div class="menuItems">
+      <div>
+        <a href="../index.html" class="hackedEffect">HOME</a>
+      </div>
+      <div class="active">
+        <a href="./projects.html" class="hackedEffect">PROJECTS</a>
+      </div>
+      <div>
+        <a href="./about.html" class="hackedEffect">ABOUT</a>
+      </div>
+    </div>
+
+    <div class="nav-end">
+      <span class="status-pill"><span class="dot"></span> AVAILABLE</span>
+    </div>
+  </nav>
+
+  <!-- FLOATING SOCIALS -->
+  <aside class="social-link">
+    <a href="https://github.com/layth49" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+      <i class="fa-brands fa-github"></i>
+    </a>
+    <a href="mailto:laythandamin@gmail.com" aria-label="Email">
+      <i class="fa-regular fa-envelope"></i>
+    </a>
+  </aside>
+
+  <main class="container">
+    <!-- HERO -->
+    <section class="laith-hero">
+      <div>
+        <div class="eyebrow">
+          <span class="line"></span>
+          <span>PROJECT FILE / 18 · FAILED</span>
+        </div>
+
+        <span class="wakeword">
+          <span class="pulse"></span>
+          // mode: paper only, never live
+        </span>
+
+        <h1 class="hackedEffect">TRADE BOT</h1>
+        <p class="tagline">~24,000 lines. Five signals. No edge.</p>
+        <p class="lede">
+          <strong>A robot built to trade stocks automatically, and to prove
+            first whether it actually had an edge before risking real
+            money.</strong> It watched prices, news, company fundamentals,
+          the economy, and even Reddit, blended all of that into a single
+          buy/sell decision, and wrapped the whole thing in safety brakes.
+          Then it spent weeks pointing that machinery at itself. Every
+          measurement came back the same way: no edge. It never placed a
+          single real trade.
+        </p>
+
+        <div class="actions">
+          <a href="#findings" class="btn primary">Read the autopsy <span class="arrow">→</span></a>
+          <a href="./projects.html" class="btn">← All Projects</a>
+        </div>
+      </div>
+
+      <div class="laith-hero-media tb-media">
+        <div class="window-chrome">
+          <span></span><span></span><span></span>
+        </div>
+        <div class="tb-term">
+          <div class="tb-cmd">python -m bot.backtest --report</div>
+
+          <div class="tb-line pass">
+            <span class="tb-tag">PASS</span>
+            <span class="tb-txt">
+              OOS Sharpe 1.16 vs required 1.00
+              <span class="tb-plain">Its risk-adjusted returns cleared the bar it set for itself.</span>
+            </span>
+          </div>
+
+          <div class="tb-line fail">
+            <span class="tb-tag">FAIL</span>
+            <span class="tb-txt">
+              OOS net return +79.2% vs SPY buy-and-hold +86.5%
+              <span class="tb-plain">But it made less money than just buying an index fund and doing nothing.</span>
+            </span>
+          </div>
+
+          <div class="tb-line pass">
+            <span class="tb-tag">PASS</span>
+            <span class="tb-txt">
+              4.0σ above random portfolios, past the 3σ bar
+              <span class="tb-plain">Statistically, this wasn't luck. Something in there was real.</span>
+            </span>
+          </div>
+
+          <div class="tb-line warn">
+            <span class="tb-tag">WARN</span>
+            <span class="tb-txt">
+              OVERFIT WARNING: mean IS Sharpe 1.19 collapses to 0.54 OOS
+              <span class="tb-plain">And the system flagged, in its own report, that it looked much better on the data
+                it trained on than on fresh data.</span>
+            </span>
+          </div>
+
+          <div class="tb-verdict">// the bot's own report card, printing its own <b>FAIL</b></div>
+        </div>
+        <span class="label">REPORT CARD · 2026-07-03</span>
+      </div>
+    </section>
+
+    <!-- STATS -->
+    <div class="laith-stats">
+      <div class="stat">
+        <div class="label">Status</div>
+        <div class="val bad">Failed</div>
+      </div>
+      <div class="stat">
+        <div class="label">Backtest Return</div>
+        <div class="val">+79.2%</div>
+      </div>
+      <div class="stat">
+        <div class="label">vs. Just Buying SPY</div>
+        <div class="val bad">+86.5%</div>
+      </div>
+      <div class="stat">
+        <div class="label">Code Written</div>
+        <div class="val">~24,000 lines</div>
+      </div>
+      <div class="stat">
+        <div class="label">Real Money Traded</div>
+        <div class="val bad">$0 · 0 trades</div>
+      </div>
+    </div>
+
+    <!-- THE RULE IT SET FOR ITSELF -->
+    <section class="laith-section">
+      <div class="head">
+        <h2 class="title">The rule it had to follow</h2>
+        <span class="meta">[ NO PROOF, NO TRADE ]</span>
+      </div>
+
+      <p class="blurb">
+        Before any code was written, the goal was written down in plain
+        language, and it wasn't "make money." It was: <strong>prove there's
+          a real advantage first, and if you can't prove it, don't trade.</strong>
+        That single rule is why this project ends the way it does. The bot
+        worked fine, technically. It just failed the test it was built to
+        run on itself.
+      </p>
+
+      <div class="code-block">
+        <div class="topbar">
+          <span><i class="fa-regular fa-file-code"></i></span>
+          <span class="filename">config.yaml</span>
+          <span class="lang">YAML</span>
+        </div>
+        <pre><span class="com"># the actual goal, word for word, before a line of code existed</span>
+capital_usd: <span class="num">10000</span>
+min_sharpe: <span class="num">1.0</span>
+max_drawdown: <span class="num">0.15</span>
+success_criteria: <span class="str">"Beat SPY buy-and-hold, out-of-sample, net of fees,
+                   over &gt;= 60 trading days, Sharpe &gt;= min_sharpe"</span>
+universe: [<span class="str">"AAPL"</span>,<span class="str">"MSFT"</span>,<span class="str">"NVDA"</span>,<span class="str">"GOOGL"</span>,<span class="str">"AMZN"</span>,<span class="str">"META"</span>,<span class="str">"TSLA"</span>,<span class="str">"SPY"</span>]
+mode: <span class="str">"paper"</span>   <span class="com"># NEVER default to live</span></pre>
+      </div>
+
+      <p class="group-note" style="margin-top: 1.5rem;">
+        In plain English: it had to beat a lazy "just buy an S&amp;P 500
+        index fund and hold it" strategy, on money it had never seen before,
+        after paying realistic trading fees, or it wasn't allowed to touch
+        real money at all. The build brief itself even warned against the
+        exact trap the project fell into: <em>"A sophisticated pipeline
+          wrapped around a signal with no real edge is still a coin flip with
+          extra steps."</em>
+      </p>
+    </section>
+
+    <!-- HOW A DECISION HAPPENED -->
+    <section class="laith-section">
+      <div class="head">
+        <h2 class="title">How it decided what to do</h2>
+        <span class="meta">[ LOOK → SCORE → BLEND → DECIDE → SAFETY-CHECK ]</span>
+      </div>
+
+      <p class="blurb">
+        Every trading day, for 8 big-name stocks, the bot ran the same
+        five-step pipeline. None of this is theoretical. All of it ran
+        against real market history.
+      </p>
+
+      <div class="flow">
+        <div class="step">
+          <div class="n">01</div>
+          <div class="body">
+            <span class="label">LOOK AROUND</span>
+            <span class="what">Pull five years of prices, news articles, company financials, economic data, and Reddit
+              chatter.</span>
+            <span class="why">Five separate data sources, cross-checked against each other so a bad feed can't quietly
+              poison a decision.</span>
+          </div>
+        </div>
+        <div class="step">
+          <div class="n">02</div>
+          <div class="body">
+            <span class="label">GET FIVE OPINIONS</span>
+            <span class="what">Five independent "signals" each rate a stock from sell to buy: chart patterns, news
+              sentiment (read by an AI model), company fundamentals, the overall economy, and Reddit hype.</span>
+            <span class="why">Each one also reports how confident it is. The Reddit-hype signal, for example, is built
+              to shut up entirely rather than guess when its AI filter is down.</span>
+          </div>
+        </div>
+        <div class="step">
+          <div class="n">03</div>
+          <div class="body">
+            <span class="label">BLEND THE OPINIONS</span>
+            <span class="what">The five opinions are combined into one number, weighted by how much each one is
+              trusted.</span>
+            <span class="why">More trusted signals get more say. As you'll see below, that trust was badly
+              misplaced.</span>
+          </div>
+        </div>
+        <div class="step">
+          <div class="n">04</div>
+          <div class="body">
+            <span class="label">DECIDE</span>
+            <span class="what">Only acts when the expected payoff clearly clears its own uncertainty. Otherwise it does
+              nothing.</span>
+            <span class="why">"Not sure" always resolves to "don't trade." This is the rule from the config file,
+              enforced in code.</span>
+          </div>
+        </div>
+        <div class="step">
+          <div class="n">05</div>
+          <div class="body">
+            <span class="label">SAFETY-CHECK</span>
+            <span class="what">A last set of hard rules can still veto the trade: is an earnings report about to drop,
+              is there enough trading volume, do the fees eat the expected profit, has it lost too much today?</span>
+            <span class="why">These limits can't be talked around by anything upstream, including the bot's own
+              self-improvement code (more on that below).</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROVING THE BRAKES -->
+    <section class="laith-section">
+      <div class="head">
+        <h2 class="title">The brakes actually worked</h2>
+        <span class="meta">[ 3,473 : 359 : 635 ]</span>
+      </div>
+
+      <p class="blurb">
+        Before ever letting it run, a three-year dry run tested whether the
+        "don't trade unless you're sure" rule actually held up in practice.
+        It did. The bot said "no" far more than it said "yes."
+      </p>
+
+      <div class="features-grid">
+        <div class="feature">
+          <span class="icon"><i class="fa-solid fa-hand"></i></span>
+          <div class="text">
+            <span class="cmd">3,473 times</span>
+            <span class="what">It wasn't confident enough, so it did nothing</span>
+          </div>
+        </div>
+        <div class="feature">
+          <span class="icon"><i class="fa-solid fa-shield-halved"></i></span>
+          <div class="text">
+            <span class="cmd">359 times</span>
+            <span class="what">It wanted to trade, but a safety rule vetoed it</span>
+          </div>
+        </div>
+        <div class="feature">
+          <span class="icon"><i class="fa-solid fa-arrow-right-arrow-left"></i></span>
+          <div class="text">
+            <span class="cmd">635 times</span>
+            <span class="what">It actually traded (all on paper, with pretend money)</span>
+          </div>
+        </div>
+        <div class="feature">
+          <span class="icon"><i class="fa-solid fa-lock"></i></span>
+          <div class="text">
+            <span class="cmd">Risk limits can't be overridden</span>
+            <span class="what">Not even by the bot's own weekly self-improvement routine. It's structurally incapable
+              of loosening its own safety rules</span>
+          </div>
+        </div>
+        <div class="feature">
+          <span class="icon"><i class="fa-solid fa-rotate"></i></span>
+          <div class="text">
+            <span class="cmd">Restart-safe</span>
+            <span class="what">If the program crashed and restarted mid-trade, it was built to never accidentally place
+              the same order twice, verified live on the paper account</span>
+          </div>
+        </div>
+        <div class="feature">
+          <span class="icon"><i class="fa-solid fa-user-shield"></i></span>
+          <div class="text">
+            <span class="cmd">Refused a forged result</span>
+            <span class="what">Its self-improvement code was tested with a fake, tampered "this works" result and it
+              correctly rejected it</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- THE AUTOPSY -->
+    <section class="laith-section" id="findings">
+      <div class="head">
+        <h2 class="title">The autopsy</h2>
+        <span class="meta">[ FOUR QUESTIONS, FOUR "NO"S ]</span>
+      </div>
+
+      <p class="blurb">
+        Here's the important part. Once the machinery was built, it was
+        pointed at itself to answer one question: <strong>does any of this
+          actually predict anything?</strong> Four separate investigations,
+        each one measured, not guessed at. Every one came back the same way.
+      </p>
+
+      <div class="opts">
+        <article class="opt">
+          <div class="head-row"><span class="badge">the main opinion</span></div>
+          <h4>The signal in charge of 60% of every decision was just guessing</h4>
+          <p>
+            The chart-pattern signal (the one given the most say in every
+            same-day decision) was checked against what stocks actually did
+            next. It called the right direction about as often as a coin
+            flip, and for next-day moves it was <em>wrong more often than
+              right</em> on 6 of the 8 stocks. It had been given the most
+            trust specifically because it was "the only one we'd ever
+            checked," which turned out to be exactly backwards.
+          </p>
+        </article>
+
+        <article class="opt">
+          <div class="head-row"><span class="badge">the news reader</span></div>
+          <h4>Reading the news didn't help either</h4>
+          <p>
+            30% of every decision leaned on an AI reading news headlines
+            about the stock. Once it was actually possible to test this
+            properly against history, the news signal also showed no real
+            ability to predict direction. If anything, it leaned
+            slightly the <em>wrong</em> way. Combined with the finding
+            above, roughly <strong>90% of the daily decision was resting on
+              two signals that carried no real information.</strong>
+          </p>
+        </article>
+
+        <article class="opt">
+          <div class="head-row"><span class="badge">the one hopeful lead</span></div>
+          <h4>The one promising sign turned out to be two lucky quarters</h4>
+          <p>
+            One hint looked real: how <em>strongly</em> the bot felt (not
+            which direction) seemed to predict good trades. Tested properly
+            across three years split into 15 three-month chunks, it worked
+            in only 8 of 15, a coin flip, and the entire apparent effect
+            came from just <strong>two unusually good quarters.</strong> Told
+            explicitly to "report honestly if it dies, don't soften that,"
+            the investigation did exactly that.
+          </p>
+        </article>
+
+        <article class="opt">
+          <div class="head-row"><span class="badge">the final check</span></div>
+          <h4>What looked like skill was actually just riding the market up</h4>
+          <p>
+            Last theory: maybe the bot was quietly riding a well-known
+            market trend, buying stocks that are already going up. That
+            isn't skill. It's something anyone can buy cheaply through an
+            index fund. Checked directly: that trend was worth about +9.6%
+            a year during the test window, and the bot's trades captured a
+            grand total of <strong>+0.09% of it.</strong> It wasn't even
+            good at accidentally free-riding a trend.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <!-- CONCENTRATION -->
+    <section class="laith-section">
+      <div class="head">
+        <h2 class="title">Three good months wearing a trench coat</h2>
+        <span class="meta">[ WHERE THE "PROFIT" ACTUALLY CAME FROM ]</span>
+      </div>
+
+      <p class="blurb">
+        The backtest covered three years, split into 15 three-month
+        stretches. Take away the best few, and the story falls apart.
+      </p>
+
+      <div class="compare-table">
+        <div class="ct-row ct-head">
+          <div class="ct-cell ct-sub">What you remove</div>
+          <div class="ct-cell">Yearly return left over</div>
+        </div>
+        <div class="ct-row">
+          <div class="ct-cell ct-sub">Nothing (the full 15 stretches)</div>
+          <div class="ct-cell">+7.87%/yr <span style="color: var(--ink-dim);">(not statistically solid even here)</span>
+          </div>
+        </div>
+        <div class="ct-row">
+          <div class="ct-cell ct-sub">Remove the single best stretch</div>
+          <div class="ct-cell">+4.21%/yr</div>
+        </div>
+        <div class="ct-row">
+          <div class="ct-cell ct-sub">Remove the best two</div>
+          <div class="ct-cell">+0.79%/yr</div>
+        </div>
+        <div class="ct-row">
+          <div class="ct-cell ct-sub">Remove the best three</div>
+          <div class="ct-cell"><span class="tb-bad">−4.13%/yr</span></div>
+        </div>
+      </div>
+
+      <p class="group-note" style="margin-top: 1.25rem;">
+        Put another way: <strong>three good quarters made up 76% of the
+          entire three-year "win."</strong> The other twelve quarters (three
+        full years of trading) added up to essentially nothing (+1.9%
+        combined). A strategy that only works because of a few lucky months
+        isn't a strategy you can trust going forward.
+      </p>
+    </section>
+
+    <!-- YOU COULD HAVE JUST BOUGHT MTUM -->
+    <section class="laith-section">
+      <div class="head">
+        <h2 class="title">You could have just bought an ETF</h2>
+        <span class="meta">[ THE BAR, CLEARED BY A ONE-LINE ORDER ]</span>
+      </div>
+
+      <p class="blurb">
+        Remember the rule: beat a lazy buy-and-hold strategy, or don't
+        trade. Here's how the bot actually stacked up against two of the
+        simplest things a person could have done instead: buy the S&amp;P
+        500, or buy a momentum ETF (a fund that automatically buys
+        whatever stocks are already trending up).
+      </p>
+
+      <div class="compare-table tb-ct4">
+        <div class="ct-row ct-head">
+          <div class="ct-cell ct-sub">Approach</div>
+          <div class="ct-cell">Return</div>
+          <div class="ct-cell">Risk-adjusted score</div>
+          <div class="ct-cell">Cleared the bar?</div>
+        </div>
+        <div class="ct-row">
+          <div class="ct-cell ct-sub">Trade Bot <span class="ct-badge">2 wks · 24k lines</span></div>
+          <div class="ct-cell">+79.2%</div>
+          <div class="ct-cell">1.16</div>
+          <div class="ct-cell"><span class="tb-bad">FAIL</span></div>
+        </div>
+        <div class="ct-row tb-win">
+          <div class="ct-cell ct-sub">MTUM <span class="ct-badge alt">one buy order</span></div>
+          <div class="ct-cell"><b>+102.7%</b></div>
+          <div class="ct-cell">1.08</div>
+          <div class="ct-cell"><span class="tb-ok">PASS</span></div>
+        </div>
+        <div class="ct-row">
+          <div class="ct-cell ct-sub">SPY <span class="ct-badge alt">one buy order</span></div>
+          <div class="ct-cell">+86.5%</div>
+          <div class="ct-cell">1.09</div>
+          <div class="ct-cell">—</div>
+        </div>
+      </div>
+
+      <p class="group-note" style="margin-top: 1.25rem;">
+        A single buy order for a momentum ETF (no code, no AI, no weeks of
+        engineering) cleared the exact bar the bot was built to clear, and
+        made more money doing it. To be fair to the bot: its risk-adjusted
+        score really was a little better than MTUM's, and that part isn't
+        a trick of the math. It genuinely took on less risk for the return
+        it got. It just made 23 fewer points of profit
+        doing it, against a rule that was written in terms of profit.
+      </p>
+    </section>
+
+    <!-- NEAR-MISSES -->
+    <section class="laith-section">
+      <div class="head">
+        <h2 class="title">Near-misses worth remembering</h2>
+        <span class="meta">[ CAUGHT BEFORE THEY SHIPPED ]</span>
+      </div>
+
+      <p class="blurb">
+        Not everything here is bad news about trading. A lot of it is just
+        good, careful engineering. These are specific bugs that were caught
+        before they could quietly wreck a result.
+      </p>
+
+      <div class="features-grid">
+        <div class="feature">
+          <span class="icon"><i class="fa-solid fa-triangle-exclamation"></i></span>
+          <div class="text">
+            <span class="cmd">The almost-fake discovery</span>
+            <span class="what">A measuring mistake made a crypto signal look like a strong, real prediction. Fixing the
+              mistake made the "discovery" disappear. Caught before anyone got excited about it.</span>
+          </div>
+        </div>
+        <div class="feature">
+          <span class="icon"><i class="fa-solid fa-water"></i></span>
+          <div class="text">
+            <span class="cmd">The rule that would've blocked everything</span>
+            <span class="what">A "don't trade if there's too little volume" safety rule, applied with the wrong numbers,
+              would have blocked trading Bitcoin and Ethereum entirely, the two most heavily traded cryptocurrencies
+              that exist.</span>
+          </div>
+        </div>
+        <div class="feature">
+          <span class="icon"><i class="fa-solid fa-bolt"></i></span>
+          <div class="text">
+            <span class="cmd">The "crisis" alarm that never stopped ringing</span>
+            <span class="what">A setting that correctly flags "this is a crazy, dangerous trading day" for stocks fired
+              on 0% of days for the S&amp;P 500, but on 70% of days for Ethereum, since crypto is naturally more
+              volatile. Had to be recalibrated per asset.</span>
+          </div>
+        </div>
+        <div class="feature">
+          <span class="icon"><i class="fa-solid fa-calculator"></i></span>
+          <div class="text">
+            <span class="cmd">A math bug worth $1.7 quadrillion a day</span>
+            <span class="what">A unit mismatch in how crypto trading volume was calculated would have quietly reported
+              Bitcoin trading $1.7 quadrillion a day. Caught before it could poison a backtest.</span>
+          </div>
+        </div>
+        <div class="feature">
+          <span class="icon"><i class="fa-solid fa-sack-dollar"></i></span>
+          <div class="text">
+            <span class="cmd">The trading fee that was set to zero</span>
+            <span class="what">Stock trades are commission-free, so that assumption got copy-pasted into the crypto code,
+              where trading actually costs real fees. Left unfixed, it would have made crypto trading look
+              artificially profitable.</span>
+          </div>
+        </div>
+        <div class="feature">
+          <span class="icon"><i class="fa-solid fa-ruler"></i></span>
+          <div class="text">
+            <span class="cmd">Confidence that was fake-narrow</span>
+            <span class="what">The bot's "how sure am I" measurement for crypto came out far too confident, nearly 5
+              times tighter than it should have been, simply because it was tracking fewer things. Left deliberately
+              un-patched rather than quietly fudged with a guessed number.</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- STACK -->
+    <section class="laith-section">
+      <div class="head">
+        <h2 class="title">What it's built on</h2>
+        <span class="meta">[ FOR THE CURIOUS ]</span>
+      </div>
+
+      <p class="blurb">
+        Everything here is real, working software: a broker connection for
+        pretend ("paper") trading, five separate data feeds, an AI model
+        for reading news, a local AI chatbot for filtering out Reddit
+        noise, and a dashboard to watch it all happen. Worth noting: the
+        core statistics engine, the part that measures whether any of this
+        actually works, was written from scratch instead of pulled from an
+        existing library, so nothing about how the numbers were calculated
+        could be hidden or assumed.
+      </p>
+
+      <div class="stack-grid">
+        <div class="item">
+          <div class="role">Broker</div>
+          <div class="name">Alpaca (paper trading)</div>
+          <div class="note">Pretend-money trading only, locked in code so it's never live by default.</div>
+        </div>
+        <div class="item">
+          <div class="role">Data</div>
+          <div class="name">Prices · News · Financials · Economy · Reddit</div>
+          <div class="note">Five independent sources, cross-checked against each other for accuracy.</div>
+        </div>
+        <div class="item">
+          <div class="role">AI</div>
+          <div class="name">FinBERT + a local LLM</div>
+          <div class="note">One AI model rates news sentiment, another (run entirely on Layth's own PC) filters Reddit
+            hype.</div>
+        </div>
+        <div class="item">
+          <div class="role">Testing</div>
+          <div class="name">Hand-built statistics engine</div>
+          <div class="note">No off-the-shelf stats library. The testing math was written and checked by hand, so nothing
+            was a black box.</div>
+        </div>
+        <div class="item">
+          <div class="role">Alerts</div>
+          <div class="name">Telegram + a web dashboard</div>
+          <div class="note">A live status page and phone notifications, built to degrade gracefully instead of crashing.
+          </div>
+        </div>
+        <div class="item">
+          <div class="role">Deploy</div>
+          <div class="name">Docker, running 24/7</div>
+          <div class="note">Packaged to run continuously and restart itself automatically if it crashed.</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- WHAT IT NEVER DID -->
+    <section class="laith-section">
+      <div class="head">
+        <h2 class="title">What it never did</h2>
+        <span class="meta">[ THE NUMBER THAT ENDS THE STORY ]</span>
+      </div>
+
+      <div class="tb-zero">
+        <div class="tb-big">0<span>real trades<br>ever placed</span></div>
+        <div class="tb-zero-copy">
+          Every result on this page (the +79.2%, the report card, the
+          near-misses, all of it) comes from testing against historical
+          data or "paper" (pretend-money) trading. The live trading system
+          was fully built and even proven safe to restart mid-trade without
+          duplicating an order. It was simply <strong>never turned on with
+            real money</strong>, because it never earned the right to be.
+          Every single event ever logged by this bot is the bot measuring
+          itself. Not one of them is an actual trade.
+        </div>
+      </div>
+
+      <p class="group-note">
+        In fairness, this page shouldn't overclaim the failure either: two
+        of the five signals (company fundamentals and Reddit sentiment)
+        were never properly tested at all, so they're unproven, not
+        disproven. And the one genuinely strong, statistically significant
+        result, that the backtest beat random chance by a wide margin, is
+        still unexplained. The leading theory is residual noise, not a
+        proven fact.
+      </p>
+    </section>
+
+    <!-- CTA -->
+    <section class="laith-cta">
+      <span class="kicker">// INFRASTRUCTURE IS NOT ALPHA</span>
+      <h2 class="hackedEffect">A ONE-LINE BUY ORDER BEAT IT</h2>
+      <p>
+        The build's own instructions warned about this exact trap before a
+        single line of code was written: a fancy pipeline wrapped around a
+        signal with no real edge is still just a coin flip, with extra
+        steps. ~24,000 lines later, that's exactly what got proven, on
+        purpose.
+      </p>
+      <div class="links">
+        <a href="./projects.html" class="btn">← Other Projects</a>
+        <a href="#findings" class="btn primary">Back to the autopsy <span class="arrow">→</span></a>
+      </div>
+    </section>
+  </main>
+</body>
+
+</html>
