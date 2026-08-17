@@ -19,6 +19,14 @@ document.addEventListener("DOMContentLoaded", () => {
   const sweep = () => vids.forEach((v) => (inView(v) ? start(v) : v.pause()));
   sweep();
 
+  // The autoplay attribute can fire after that sweep, and the observer won't
+  // re-check a video whose visibility never changed. Catch it here instead.
+  vids.forEach((v) =>
+    v.addEventListener("play", () => {
+      if (!inView(v)) v.pause();
+    })
+  );
+
   if ("IntersectionObserver" in window) {
     const io = new IntersectionObserver(
       (entries) => {
