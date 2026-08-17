@@ -106,10 +106,36 @@
         <div class="window-chrome">
           <span></span><span></span><span></span>
         </div>
-        <span class="label">LIVE · /bot.mp4</span>
-        <video loop autoplay muted playsinline webkit-playsinline poster="../assets/logo.png">
-          <source src="../assets/videos/bot.mp4" type="video/mp4" />
-        </video>
+        <div class="hero-demo" aria-hidden="true">
+          <div class="hd-glow"></div>
+
+          <div class="hd-status">
+            <span class="hd-dot"></span>
+            <span class="hd-state s1">listening</span>
+            <span class="hd-state s2">heard you</span>
+            <span class="hd-state s3">routing</span>
+            <span class="hd-state s4">speaking</span>
+          </div>
+
+          <div class="hd-stage">
+            <div class="hd-bubbles">
+              <div class="hd-bubble b1">
+                <div class="hd-you">You said <span class="hd-type">"set a timer for 5 minutes"</span></div>
+                <div class="hd-49">Timer set for 5 minutes. ⏳ I'll let you know. ✅</div>
+              </div>
+
+              <div class="hd-bubble b2">
+                <div class="hd-you">You said <span class="hd-type">"turn on the lights"</span></div>
+                <div class="hd-49">Lights on. 💡</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="hd-timer">
+            <span class="hd-t-label">TIMER</span>
+            <span class="hd-t-count">04:<span class="hd-reel"><i>59</i><i>58</i><i>57</i><i>56</i><i>55</i><i>54</i></span></span>
+          </div>
+        </div>
       </div>
     </section>
 
