@@ -5,7 +5,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>L.A.I.T.H.49 · layth49</title>
-  <meta name="description" content="L.A.I.T.H.49 (Logical Assistant for Intelligent Task Handling). My voice assistant for Windows. Say &quot;Hey 49&quot; and an LLM decides which of its ~30 tools to run, or just answers you. Glass speech bubble, floating timer widgets, and you can cut it off mid-sentence. Two builds: cloud on Azure + Gemini, or fully offline on faster-whisper, Kokoro, LM Studio and SearxNG." />
+  <meta name="description" content="L.A.I.T.H.49 (Logical Assistant for Intelligent Task Handling). My voice assistant for Windows. Say &quot;Hey 49&quot; and hold a real-time voice conversation while an LLM decides which of its 38 tools to run. Standing rules it keeps on its own, work that survives a reboot, and — armed by voice — call screening that answers the phone and takes a message. Two builds: cloud on the Gemini Live API, or fully offline on faster-whisper, Kokoro, LM Studio and SearxNG." />
 
   <link rel="icon" href="../assets/logo.ico" />
 
@@ -83,12 +83,13 @@
         <p class="tagline">Logical Assistant for Intelligent Task Handling</p>
         <p class="lede">
           <strong>My voice assistant for Windows.</strong> Say
-          <em>"Hey&nbsp;49"</em>, ask for something, and an LLM decides whether
-          to fire one of its <strong>~30 tools</strong> or just answer you.
-          A glass speech bubble shows the conversation, timers get their own
-          floating countdown, and you can cut it off mid-sentence by saying the
-          wake word again. Same C# core, two builds: cloud on Azure + Gemini,
-          or fully local on faster-whisper, Kokoro, LM Studio and SearxNG.
+          <em>"Hey&nbsp;49"</em> and you're in a real conversation — it hears you
+          and answers in the same breath, deciding as it goes whether to fire one
+          of its <strong>38 tools</strong> or just talk back. It keeps standing
+          rules while I'm away, picks up whatever was pending after a reboot,
+          and, when I arm it, screens my phone calls. Same C# core, two builds:
+          cloud on the Gemini Live API, or fully local on faster-whisper, Kokoro,
+          LM Studio and SearxNG.
         </p>
 
         <div class="actions">
@@ -128,7 +129,7 @@
       </div>
       <div class="stat">
         <div class="label">Tools</div>
-        <div class="val accent">~30 · LLM-routed</div>
+        <div class="val accent">38 · LLM-routed</div>
       </div>
       <div class="stat">
         <div class="label">Builds</div>
@@ -140,14 +141,15 @@
     <section class="laith-section">
       <div class="head">
         <h2 class="title">How a turn works</h2>
-        <span class="meta">[ WAKE → REASON → ACT → SPEAK ]</span>
+        <span class="meta">[ WAKE → CONVERSE → ACT → SPEAK ]</span>
       </div>
 
       <p class="blurb">
         It sits there listening for the wake word on-device. Once it hears it,
-        your command and the last few turns go to the LLM along with every tool
-        as a function-calling schema. The model picks tools, chains them
-        together, or just answers. Then it talks, and you can talk over it.
+        the mic opens a live session and audio goes both ways for as long as
+        you're talking — there's no press-to-talk and no waiting for a turn to
+        end. Every tool goes up as a function-calling schema, so mid-sentence it
+        can pick tools, chain them together, or just answer you.
       </p>
 
       <div class="flow">
@@ -162,17 +164,17 @@
         <div class="step">
           <div class="n">02</div>
           <div class="body">
-            <span class="label">LISTEN</span>
-            <span class="what">Transcribe the command via STT.</span>
-            <span class="why">Cloud: Azure <code>SpeechRecognizer</code>. Local: NAudio captures 16&nbsp;kHz mono PCM with silence detection and POSTs the WAV to faster-whisper.</span>
+            <span class="label">OPEN THE SESSION</span>
+            <span class="what">Cloud: a WebSocket to the Gemini Live API, 16&nbsp;kHz mono PCM streaming up as you speak. Local: NAudio captures with silence detection and POSTs the WAV to faster-whisper, a turn at a time.</span>
+            <span class="why">The cloud build is genuinely speech-to-speech — no transcript in the middle. If the socket faults or the key's bad, it drops back to the old turn-based Azure path for one conversation and says so out loud, then retries Live on the next wake word.</span>
           </div>
         </div>
         <div class="step">
           <div class="n">03</div>
           <div class="body">
             <span class="label">ROUTE</span>
-            <span class="what">The utterance + recent turns go to the LLM with the full tool catalogue as schemas.</span>
-            <span class="why">It comes back with a batch of tool calls, a sequence it built out of primitives, or plain text. <code>web_search</code> is just another tool, so it only fires when the model decides it needs one.</span>
+            <span class="what">The whole tool catalogue goes up as schemas, alongside recent turns.</span>
+            <span class="why">What comes back is a batch of tool calls, a sequence it built out of primitives, or just an answer. Search is grounded in-session on the cloud build; on the local one it's another tool, so it only fires when the model decides it needs one.</span>
           </div>
         </div>
         <div class="step">
@@ -187,8 +189,8 @@
           <div class="n">05</div>
           <div class="body">
             <span class="label">SPEAK</span>
-            <span class="what">TTS + glass speech bubble run in parallel; say "Hey 49" to cut it off.</span>
-            <span class="why">A second wake-word listener runs the whole time it's talking. When that one fires, the synth stops mid-word and the bubble slides away.</span>
+            <span class="what">The reply plays as it arrives — the model's own voice on cloud, Kokoro on local — with the glass bubble alongside it. Say "Hey 49" to cut it off.</span>
+            <span class="why">A second wake-word listener runs the whole time it's talking. When that one fires, playback stops mid-word and the bubble slides away.</span>
           </div>
         </div>
       </div>
@@ -198,7 +200,7 @@
     <section class="laith-section">
       <div class="head">
         <h2 class="title">What it can do</h2>
-        <span class="meta">[ ~30 tools · 7 domains ]</span>
+        <span class="meta">[ 38 tools · 9 domains ]</span>
       </div>
 
       <p class="blurb">
@@ -412,6 +414,86 @@
       </div>
 
       <div class="feature-group">
+        <h3>Standing rules &amp; suggestions <span class="count">[ 05 ]</span></h3>
+        <div class="features-grid">
+          <div class="feature">
+            <span class="icon"><i class="fa-solid fa-bolt"></i></span>
+            <div class="text">
+              <span class="cmd">"tell me when my download finishes"</span>
+              <span class="what">A rule it keeps and acts on by itself</span>
+            </div>
+          </div>
+          <div class="feature">
+            <span class="icon"><i class="fa-solid fa-calendar-check"></i></span>
+            <div class="text">
+              <span class="cmd">"every weekday at 8, turn on the light"</span>
+              <span class="what">Same thing, recurring</span>
+            </div>
+          </div>
+          <div class="feature">
+            <span class="icon"><i class="fa-solid fa-list-check"></i></span>
+            <div class="text">
+              <span class="cmd">"what rules do I have?"</span>
+              <span class="what">Read them back, cancel any of them</span>
+            </div>
+          </div>
+          <div class="feature">
+            <span class="icon"><i class="fa-solid fa-comment-dots"></i></span>
+            <div class="text">
+              <span class="cmd">"stop suggesting things"</span>
+              <span class="what">It offers things unprompted; this turns that down</span>
+            </div>
+          </div>
+        </div>
+        <p class="group-note">
+          The rest of this layer isn't tools at all. It announces each prayer
+          before it arrives, calculated locally. It won't speak to an empty desk,
+          in the middle of the night, or over a conversation you're already
+          having. And nothing pending is lost to a reboot — a plain timer pauses
+          and comes back with the time that was left, an alarm keeps its moment,
+          and anything that came due while it was off arrives as one sentence
+          when you're actually back at the desk.
+        </p>
+      </div>
+
+      <div class="feature-group">
+        <h3>Call screening <span class="count">[ 03 ]</span></h3>
+        <div class="features-grid">
+          <div class="feature">
+            <span class="icon"><i class="fa-solid fa-phone-volume"></i></span>
+            <div class="text">
+              <span class="cmd">"screen my calls"</span>
+              <span class="what">Arms it for a while. The arm expires on its own</span>
+            </div>
+          </div>
+          <div class="feature">
+            <span class="icon"><i class="fa-solid fa-phone-slash"></i></span>
+            <div class="text">
+              <span class="cmd">"hang up"</span>
+              <span class="what">Ends whatever call is live</span>
+            </div>
+          </div>
+          <div class="feature">
+            <span class="icon"><i class="fa-solid fa-clipboard-list"></i></span>
+            <div class="text">
+              <span class="cmd">"who called?"</span>
+              <span class="what">Reads back who rang and what they wanted</span>
+            </div>
+          </div>
+        </div>
+        <p class="group-note">
+          While it's armed, an incoming call gets answered through Phone Link: it
+          greets whoever's calling, has a conversation, writes down a message and
+          hangs up. <strong>It never picks up unless I've armed it</strong>, and
+          the arm times out — that's deliberate, not an oversight. The person on
+          the phone is a stranger, so the call gets its own tiny set of four
+          tools and none of the other 38: a caller who asks it to send a text or
+          turn on the lights gets nothing. It answers in the assistant's own
+          voice, and says it's an assistant.
+        </p>
+      </div>
+
+      <div class="feature-group">
         <h3>Composition primitives <span class="count">[ 02 ]</span></h3>
         <div class="features-grid">
           <div class="feature">
@@ -572,19 +654,29 @@
           <div class="ct-cell"><span class="ct-badge alt">local-laith</span> Local</div>
         </div>
         <div class="ct-row">
+          <div class="ct-cell ct-sub">Conversation</div>
+          <div class="ct-cell">Gemini Live API, real speech-to-speech over a hand-rolled WebSocket</div>
+          <div class="ct-cell">Speech-to-speech <em>simulated</em> — a real one won't fit in 6&nbsp;GB with tools attached</div>
+        </div>
+        <div class="ct-row">
           <div class="ct-cell ct-sub">LLM</div>
-          <div class="ct-cell">Gemini 2.5 Flash + Google Search grounding</div>
+          <div class="ct-cell">Gemini native-audio model + in-session Google Search grounding</div>
           <div class="ct-cell">LM Studio (local model) + SearxNG</div>
         </div>
         <div class="ct-row">
           <div class="ct-cell ct-sub">Speech-to-text</div>
-          <div class="ct-cell">Azure Cognitive Speech</div>
+          <div class="ct-cell">None on the main path — the model hears the audio</div>
           <div class="ct-cell">faster-whisper (Whisper large-v3)</div>
         </div>
         <div class="ct-row">
           <div class="ct-cell ct-sub">Text-to-speech</div>
-          <div class="ct-cell">Azure Neural TTS</div>
+          <div class="ct-cell">None on the main path — the model speaks</div>
           <div class="ct-cell">Kokoro-FastAPI</div>
+        </div>
+        <div class="ct-row">
+          <div class="ct-cell ct-sub">Fallback</div>
+          <div class="ct-cell">The old turn-based path: Azure STT + Azure Neural TTS</div>
+          <div class="ct-cell">n/a</div>
         </div>
         <div class="ct-row">
           <div class="ct-cell ct-sub">Wake word</div>
@@ -593,15 +685,17 @@
         </div>
         <div class="ct-row">
           <div class="ct-cell ct-sub">Mic capture</div>
-          <div class="ct-cell">Azure SDK</div>
+          <div class="ct-cell">NAudio, 16&nbsp;kHz mono PCM straight to the socket</div>
           <div class="ct-cell">NAudio <code>WaveInEvent</code>, 16&nbsp;kHz mono PCM</div>
         </div>
       </div>
 
       <p class="group-note" style="margin-top: 1.25rem;">
-        Search is the one place they don't line up. Gemini already decides on
-        its own when to ground an answer in search, so only the local build has
-        to wire up SearxNG.
+        Azure used to be the whole cloud speech stack. It's now a safety net:
+        if the Live socket faults, one conversation runs the old turn-based way
+        and the next wake word tries Live again. Search is the other place the
+        builds don't line up — the cloud model grounds answers itself, so only
+        the local build has to wire up SearxNG.
       </p>
     </section>
 
@@ -642,13 +736,13 @@
         </div>
         <div class="item">
           <div class="role">Router</div>
-          <div class="name">Gemini · LM Studio</div>
-          <div class="note">Function-calling over the tool catalogue. Cloud: Gemini 2.5 Flash. Local: an OpenAI-compatible model served by LM Studio.</div>
+          <div class="name">Gemini Live · LM Studio</div>
+          <div class="note">Function-calling over the tool catalogue. Cloud: a Gemini native-audio model over a hand-rolled <code>ClientWebSocket</code>. Local: an OpenAI-compatible model served by LM Studio.</div>
         </div>
         <div class="item">
           <div class="role">Speech</div>
           <div class="name">Azure · faster-whisper · Kokoro</div>
-          <div class="note">Wake word is on-device Azure in both builds. Cloud swaps in Azure STT + neural TTS; local uses faster-whisper + Kokoro-FastAPI.</div>
+          <div class="note">Wake word is on-device Azure in both builds. Cloud needs no STT or TTS at all — the model does both — and keeps Azure as the fallback path; local uses faster-whisper + Kokoro-FastAPI.</div>
         </div>
         <div class="item">
           <div class="role">Overlay</div>
@@ -658,7 +752,12 @@
         <div class="item">
           <div class="role">Smart Home</div>
           <div class="name">TP-Link Kasa + Arduino</div>
-          <div class="note">Local-network plugs/switches for lights; Arduino over IP for the door. SMS drives Phone Link via image-matching.</div>
+          <div class="note">Local-network plugs/switches for lights; Arduino over IP for the door.</div>
+        </div>
+        <div class="item">
+          <div class="role">Phone</div>
+          <div class="name">Phone Link + FlaUI</div>
+          <div class="note">There's no API for any of this, so it drives Phone Link's own window through UI Automation — that's how texts get sent and how a screened call gets answered and hung up.</div>
         </div>
       </div>
     </section>
@@ -678,7 +777,7 @@
         </div>
         <div class="row done">
           <div class="check"></div>
-          <div class="what">LLM-first tool dispatch (function-calling over ~30 tools)</div>
+          <div class="what">LLM-first tool dispatch (function-calling over 38 tools)</div>
           <div class="when">SHIPPED</div>
         </div>
         <div class="row done">
@@ -706,6 +805,26 @@
           <div class="what">Fully local branch (faster-whisper + Kokoro + LM Studio + SearxNG)</div>
           <div class="when">SHIPPED</div>
         </div>
+        <div class="row done">
+          <div class="check"></div>
+          <div class="what">Real speech-to-speech on the cloud build (Gemini Live), with the old turn-based path kept as a fallback</div>
+          <div class="when">SHIPPED</div>
+        </div>
+        <div class="row done">
+          <div class="check"></div>
+          <div class="what">Standing rules, unprompted suggestions and prayer announcements — with a gate so it won't talk to an empty room</div>
+          <div class="when">SHIPPED</div>
+        </div>
+        <div class="row done">
+          <div class="check"></div>
+          <div class="what">Nothing pending lost to a reboot, including timers waiting on a real-world event</div>
+          <div class="when">SHIPPED</div>
+        </div>
+        <div class="row done">
+          <div class="check"></div>
+          <div class="what">Call screening — armed by voice, answers the phone, takes a message</div>
+          <div class="when">SHIPPED</div>
+        </div>
         <div class="row in-progress">
           <div class="check"></div>
           <div class="what">Computer control with vision + safety stack (experimental branch)</div>
@@ -730,8 +849,9 @@
         Prayer times calculation adapted from
         <a href="https://github.com/nyongrand/pray-times" target="_blank" rel="noopener noreferrer">Nyong's pray-times</a>.
         Wake word in both builds via Microsoft Azure Custom Keyword.
-        Cloud build: Azure Cognitive Services for STT and neural TTS,
-        Google Gemini for reasoning. Local build:
+        Cloud build: the Google Gemini Live API for the conversation itself,
+        with Azure Cognitive Services behind it as the fallback speech stack.
+        Local build:
         <a href="https://github.com/SYSTRAN/faster-whisper" target="_blank" rel="noopener noreferrer">faster-whisper</a>
         for STT,
         <a href="https://github.com/remsky/Kokoro-FastAPI" target="_blank" rel="noopener noreferrer">Kokoro-FastAPI</a>
