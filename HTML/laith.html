@@ -5,7 +5,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>L.A.I.T.H.49 · layth49</title>
-  <meta name="description" content="L.A.I.T.H.49 (Logical Assistant for Intelligent Task Handling). My voice assistant for Windows. Say &quot;Hey 49&quot; and hold a real-time voice conversation while an LLM decides which of its 38 tools to run. Standing rules it keeps on its own, work that survives a reboot, and — armed by voice — call screening that answers the phone and takes a message. Two builds: cloud on the Gemini Live API, or fully offline on faster-whisper, Kokoro, LM Studio and SearxNG." />
+  <meta name="description" content="L.A.I.T.H.49 (Logical Assistant for Intelligent Task Handling). My voice assistant for Windows. Say &quot;Hey 49&quot; and it answers while you're still talking, and it works out which of its 38 tools to run. It keeps standing rules on its own, survives a reboot without losing anything, and screens my phone calls when I arm it. Two builds: cloud on the Gemini Live API, or fully offline on faster-whisper, Kokoro, LM Studio and SearxNG." />
 
   <link rel="icon" href="../assets/logo.ico" />
 
@@ -83,13 +83,13 @@
         <p class="tagline">Logical Assistant for Intelligent Task Handling</p>
         <p class="lede">
           <strong>My voice assistant for Windows.</strong> Say
-          <em>"Hey&nbsp;49"</em> and you're in a real conversation — it hears you
-          and answers in the same breath, deciding as it goes whether to fire one
-          of its <strong>38 tools</strong> or just talk back. It keeps standing
-          rules while I'm away, picks up whatever was pending after a reboot,
-          and, when I arm it, screens my phone calls. Same C# core, two builds:
-          cloud on the Gemini Live API, or fully local on faster-whisper, Kokoro,
-          LM Studio and SearxNG.
+          <em>"Hey&nbsp;49"</em> and it's a real conversation: it hears you and
+          answers in the same breath, and somewhere in there it works out
+          whether to fire one of its <strong>38 tools</strong> or just talk back.
+          It keeps standing rules while I'm away, picks up whatever was pending
+          after a reboot, and screens my phone calls when I arm it. Same C# core,
+          two builds: cloud on the Gemini Live API, or fully local on
+          faster-whisper, Kokoro, LM Studio and SearxNG.
         </p>
 
         <div class="actions">
@@ -147,9 +147,9 @@
       <p class="blurb">
         It sits there listening for the wake word on-device. Once it hears it,
         the mic opens a live session and audio goes both ways for as long as
-        you're talking — there's no press-to-talk and no waiting for a turn to
-        end. Every tool goes up as a function-calling schema, so mid-sentence it
-        can pick tools, chain them together, or just answer you.
+        you're talking. You don't press anything and you don't wait for a turn to
+        finish. Every tool goes up as a function-calling schema, so mid-sentence
+        it can pick tools, chain them together, or just answer you.
       </p>
 
       <div class="flow">
@@ -165,8 +165,8 @@
           <div class="n">02</div>
           <div class="body">
             <span class="label">OPEN THE SESSION</span>
-            <span class="what">Cloud: a WebSocket to the Gemini Live API, 16&nbsp;kHz mono PCM streaming up as you speak. Local: NAudio captures with silence detection and POSTs the WAV to faster-whisper, a turn at a time.</span>
-            <span class="why">The cloud build is genuinely speech-to-speech — no transcript in the middle. If the socket faults or the key's bad, it drops back to the old turn-based Azure path for one conversation and says so out loud, then retries Live on the next wake word.</span>
+            <span class="what">Cloud: a WebSocket to the Gemini Live API. 16&nbsp;kHz mono PCM goes up while you're still talking. Local: NAudio captures with silence detection and POSTs the WAV to faster-whisper, a turn at a time.</span>
+            <span class="why">The cloud build is genuinely speech-to-speech: there's no transcript in the middle. If the socket faults or the key's bad, it drops back to the old turn-based Azure path for one conversation and says so out loud, then retries Live on the next wake word.</span>
           </div>
         </div>
         <div class="step">
@@ -189,7 +189,7 @@
           <div class="n">05</div>
           <div class="body">
             <span class="label">SPEAK</span>
-            <span class="what">The reply plays as it arrives — the model's own voice on cloud, Kokoro on local — with the glass bubble alongside it. Say "Hey 49" to cut it off.</span>
+            <span class="what">The reply plays as it arrives (the model's own voice on cloud, Kokoro on local) with the glass bubble alongside it. Say "Hey 49" to cut it off.</span>
             <span class="why">A second wake-word listener runs the whole time it's talking. When that one fires, playback stops mid-word and the bubble slides away.</span>
           </div>
         </div>
@@ -446,13 +446,13 @@
           </div>
         </div>
         <p class="group-note">
-          The rest of this layer isn't tools at all. It announces each prayer
-          before it arrives, calculated locally. It won't speak to an empty desk,
-          in the middle of the night, or over a conversation you're already
-          having. And nothing pending is lost to a reboot — a plain timer pauses
-          and comes back with the time that was left, an alarm keeps its moment,
-          and anything that came due while it was off arrives as one sentence
-          when you're actually back at the desk.
+          The rest of this layer has no tools behind it. It announces each prayer
+          before it arrives, calculated locally, and it won't speak to an empty
+          desk, in the middle of the night, or over a conversation you're already
+          having. A reboot doesn't lose anything either. A plain timer pauses and
+          comes back with the time that was left, an alarm keeps its moment, and
+          whatever came due while it was off gets said in one sentence once I'm
+          actually at the desk.
         </p>
       </div>
 
@@ -482,14 +482,14 @@
           </div>
         </div>
         <p class="group-note">
-          While it's armed, an incoming call gets answered through Phone Link: it
+          While it's armed, an incoming call gets answered through Phone Link. It
           greets whoever's calling, has a conversation, writes down a message and
-          hangs up. <strong>It never picks up unless I've armed it</strong>, and
-          the arm times out — that's deliberate, not an oversight. The person on
-          the phone is a stranger, so the call gets its own tiny set of four
-          tools and none of the other 38: a caller who asks it to send a text or
-          turn on the lights gets nothing. It answers in the assistant's own
-          voice, and says it's an assistant.
+          hangs up. <strong>It never picks up unless I've armed it first</strong>,
+          and the arm times out on its own. I built it that way on purpose. The
+          person on the other end is a stranger, so a call gets its own set of
+          four tools and none of the other 38: a caller who asks it to send a
+          text or turn on the lights gets nothing at all. It answers in the
+          assistant's own voice and says so.
         </p>
       </div>
 
@@ -656,7 +656,7 @@
         <div class="ct-row">
           <div class="ct-cell ct-sub">Conversation</div>
           <div class="ct-cell">Gemini Live API, real speech-to-speech over a hand-rolled WebSocket</div>
-          <div class="ct-cell">Speech-to-speech <em>simulated</em> — a real one won't fit in 6&nbsp;GB with tools attached</div>
+          <div class="ct-cell">Speech-to-speech, but <em>faked</em>: a real one won't fit in 6&nbsp;GB with tools attached</div>
         </div>
         <div class="ct-row">
           <div class="ct-cell ct-sub">LLM</div>
@@ -665,12 +665,12 @@
         </div>
         <div class="ct-row">
           <div class="ct-cell ct-sub">Speech-to-text</div>
-          <div class="ct-cell">None on the main path — the model hears the audio</div>
+          <div class="ct-cell">None on the main path; the model hears the audio</div>
           <div class="ct-cell">faster-whisper (Whisper large-v3)</div>
         </div>
         <div class="ct-row">
           <div class="ct-cell ct-sub">Text-to-speech</div>
-          <div class="ct-cell">None on the main path — the model speaks</div>
+          <div class="ct-cell">None on the main path; the model speaks</div>
           <div class="ct-cell">Kokoro-FastAPI</div>
         </div>
         <div class="ct-row">
@@ -691,10 +691,10 @@
       </div>
 
       <p class="group-note" style="margin-top: 1.25rem;">
-        Azure used to be the whole cloud speech stack. It's now a safety net:
-        if the Live socket faults, one conversation runs the old turn-based way
+        Azure used to be the whole cloud speech stack. Now it's a safety net:
+        if the Live socket faults, one conversation runs the old turn-based way,
         and the next wake word tries Live again. Search is the other place the
-        builds don't line up — the cloud model grounds answers itself, so only
+        builds don't line up. The cloud model grounds answers itself, so only
         the local build has to wire up SearxNG.
       </p>
     </section>
@@ -742,7 +742,7 @@
         <div class="item">
           <div class="role">Speech</div>
           <div class="name">Azure · faster-whisper · Kokoro</div>
-          <div class="note">Wake word is on-device Azure in both builds. Cloud needs no STT or TTS at all — the model does both — and keeps Azure as the fallback path; local uses faster-whisper + Kokoro-FastAPI.</div>
+          <div class="note">Wake word is on-device Azure in both builds. The cloud build needs no STT or TTS at all, since the model does both, and keeps Azure as its fallback. Local uses faster-whisper + Kokoro-FastAPI.</div>
         </div>
         <div class="item">
           <div class="role">Overlay</div>
@@ -757,7 +757,7 @@
         <div class="item">
           <div class="role">Phone</div>
           <div class="name">Phone Link + FlaUI</div>
-          <div class="note">There's no API for any of this, so it drives Phone Link's own window through UI Automation — that's how texts get sent and how a screened call gets answered and hung up.</div>
+          <div class="note">There's no API for any of this, so it drives Phone Link's own window through UI Automation. That's how texts get sent, and how a screened call gets answered and hung up.</div>
         </div>
       </div>
     </section>
@@ -812,17 +812,17 @@
         </div>
         <div class="row done">
           <div class="check"></div>
-          <div class="what">Standing rules, unprompted suggestions and prayer announcements — with a gate so it won't talk to an empty room</div>
+          <div class="what">Standing rules, unprompted suggestions and prayer announcements, gated so it won't talk to an empty room</div>
           <div class="when">SHIPPED</div>
         </div>
         <div class="row done">
           <div class="check"></div>
-          <div class="what">Nothing pending lost to a reboot, including timers waiting on a real-world event</div>
+          <div class="what">Nothing pending lost to a reboot, even timers that wait on a real-world event</div>
           <div class="when">SHIPPED</div>
         </div>
         <div class="row done">
           <div class="check"></div>
-          <div class="what">Call screening — armed by voice, answers the phone, takes a message</div>
+          <div class="what">Call screening: armed by voice, answers the phone, takes a message</div>
           <div class="when">SHIPPED</div>
         </div>
         <div class="row in-progress">
