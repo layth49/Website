@@ -1,4 +1,37 @@
 document.addEventListener("DOMContentLoaded", () => {
+  // Only play what's actually on screen. Phones cap how many videos can decode
+  // at once, and loading all of them up front costs a lot of data for nothing.
+  const vids = document.querySelectorAll("video");
+  const MARGIN = 200;
+
+  const start = (v) => {
+    const p = v.play();
+    if (p) p.catch(() => {});
+  };
+
+  const inView = (v) => {
+    const r = v.getBoundingClientRect();
+    return r.bottom > -MARGIN && r.top < window.innerHeight + MARGIN;
+  };
+
+  // Sweep synchronously so whatever is already on screen starts without waiting
+  // on the observer, which doesn't fire while the tab isn't being painted.
+  const sweep = () => vids.forEach((v) => (inView(v) ? start(v) : v.pause()));
+  sweep();
+
+  if ("IntersectionObserver" in window) {
+    const io = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((e) => (e.isIntersecting ? start(e.target) : e.target.pause()));
+      },
+      { rootMargin: MARGIN + "px 0px" }
+    );
+    vids.forEach((v) => io.observe(v));
+  } else {
+    window.addEventListener("scroll", sweep, { passive: true });
+    window.addEventListener("resize", sweep, { passive: true });
+  }
+
   document.querySelectorAll(".ost-player").forEach((player) => {
     const audio = player.querySelector("audio");
     const playBtn = player.querySelector(".play-btn");

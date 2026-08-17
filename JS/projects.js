@@ -19,6 +19,39 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
+  // Only play what's actually on screen. Phones cap how many videos can decode
+  // at once, and loading all of them up front is ~49MB before anything moves.
+  const vids = document.querySelectorAll(".cards .card video");
+  const MARGIN = 200;
+
+  const start = (v) => {
+    const p = v.play();
+    if (p) p.catch(() => {});
+  };
+
+  const inView = (v) => {
+    const r = v.getBoundingClientRect();
+    return r.bottom > -MARGIN && r.top < window.innerHeight + MARGIN;
+  };
+
+  // Sweep synchronously so whatever is already on screen starts without waiting
+  // on the observer, which doesn't fire while the tab isn't being painted.
+  const sweep = () => vids.forEach((v) => (inView(v) ? start(v) : v.pause()));
+  sweep();
+
+  if ("IntersectionObserver" in window) {
+    const io = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((e) => (e.isIntersecting ? start(e.target) : e.target.pause()));
+      },
+      { rootMargin: MARGIN + "px 0px" }
+    );
+    vids.forEach((v) => io.observe(v));
+  } else {
+    window.addEventListener("scroll", sweep, { passive: true });
+    window.addEventListener("resize", sweep, { passive: true });
+  }
+
   const chips = document.querySelectorAll(".chip[data-filter]");
   const cards = document.querySelectorAll(".cards .card[data-status]");
 
