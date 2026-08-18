@@ -676,7 +676,7 @@
   gap: 0.5rem;
 }
 
-.cards .card h1 {
+.cards .card h2 {
   font-family: var(--font-display);
   font-size: 1.35rem;
   font-weight: 700;

@@ -4,8 +4,24 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>L.A.I.T.H.49 · layth49</title>
+  <title>L.A.I.T.H.49 · Layth's voice assistant · layth49</title>
   <meta name="description" content="L.A.I.T.H.49 (Logical Assistant for Intelligent Task Handling). My voice assistant for Windows. Say &quot;Hey 49&quot; and it answers while you're still talking, and it works out which of its 38 tools to run. It keeps standing rules on its own, survives a reboot without losing anything, and screens my phone calls when I arm it. Two builds: cloud on the Gemini Live API, or fully offline on faster-whisper, Kokoro, LM Studio and SearxNG." />
+  <link rel="canonical" href="https://layth49.com/HTML/laith.html" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="layth49" />
+  <meta property="og:title" content="L.A.I.T.H.49 · Layth's voice assistant" />
+  <meta property="og:description" content="A voice assistant for Windows by Layth (layth49). Say &quot;Hey 49&quot; and it works out which of its 38 tools to run while you're still talking." />
+  <meta property="og:url" content="https://layth49.com/HTML/laith.html" />
+  <meta property="og:image" content="https://layth49.com/assets/logo.png" />
+  <meta property="og:image:alt" content="layth49 logo" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="L.A.I.T.H.49 · Layth's voice assistant" />
+  <meta name="twitter:description" content="A voice assistant for Windows by Layth (layth49): 38 LLM-routed tools, standing rules, and call screening." />
+  <meta name="twitter:image" content="https://layth49.com/assets/logo.png" />
 
   <link rel="icon" href="../assets/logo.ico" />
 
@@ -27,6 +43,40 @@
 
   <!-- Scripts -->
   <script defer src="../JS/hackedEffect.js"></script>
+
+  <!-- Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Person",
+        "@id": "https://layth49.com/#person",
+        "name": "Layth Hammad",
+        "alternateName": ["49", "layth49"],
+        "url": "https://layth49.com/",
+        "image": "https://layth49.com/assets/logo.png",
+        "sameAs": ["https://github.com/layth49"]
+      },
+      {
+        "@type": "SoftwareApplication",
+        "@id": "https://layth49.com/HTML/laith.html#software",
+        "name": "L.A.I.T.H.49",
+        "alternateName": "Logical Assistant for Intelligent Task Handling",
+        "url": "https://layth49.com/HTML/laith.html",
+        "description": "L.A.I.T.H.49 is a personal voice assistant for Windows built by Layth (layth49). It uses LLM-driven function calling across 38 tools, keeps standing rules and reminders, survives a reboot, and can screen phone calls. Two builds: cloud (Gemini Live API) or fully local (faster-whisper, Kokoro, LM Studio, SearxNG).",
+        "applicationCategory": "UtilitiesApplication",
+        "operatingSystem": "Windows",
+        "author": { "@id": "https://layth49.com/#person" },
+        "creator": { "@id": "https://layth49.com/#person" },
+        "codeRepository": "https://github.com/layth49/Personal-Assistant",
+        "isAccessibleForFree": true,
+        "programmingLanguage": ["C#", "Python"],
+        "dateModified": "2026-08-17"
+      }
+    ]
+  }
+  </script>
 </head>
 
 <body>
