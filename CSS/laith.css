@@ -176,8 +176,7 @@
   text-transform: uppercase;
   color: var(--ink-muted);
   padding: 0.3rem 0.7rem;
-  background: rgba(0, 0, 0, 0.55);
-  backdrop-filter: blur(8px);
+  background: var(--bg-elevated);
   border: 1px solid var(--border);
   border-radius: var(--radius-sm);
   z-index: 2;
