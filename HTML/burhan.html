@@ -4,9 +4,25 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Burhan · Verifiable answers from the Qur'an</title>
+  <title>Burhan · Verifiable Qur'an answers app by Layth (layth49)</title>
   <meta name="description"
-    content="Burhan is a free, fully offline app that answers questions about Islam with the verse itself, always cited and one tap from the original. No AI writes the answers, so it can't make up scripture. No ads, no subscription, and your searches never leave your phone." />
+    content="Burhan is a free, fully offline app by Layth (layth49) that answers questions about Islam with the verse itself, always cited and one tap from the original. No AI writes the answers, so it can't make up scripture. No ads, no subscription, and your searches never leave your phone." />
+  <link rel="canonical" href="https://layth49.com/HTML/burhan.html" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="layth49" />
+  <meta property="og:title" content="Burhan · Verifiable answers from the Qur'an" />
+  <meta property="og:description" content="A free, fully offline app by Layth (layth49) that answers questions about Islam with the Qur'an verse itself, always cited. No AI writes the answers." />
+  <meta property="og:url" content="https://layth49.com/HTML/burhan.html" />
+  <meta property="og:image" content="https://layth49.com/assets/logo.png" />
+  <meta property="og:image:alt" content="Burhan app icon" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Burhan · Verifiable answers from the Qur'an" />
+  <meta name="twitter:description" content="Free, fully offline, no ads. Burhan shows the Qur'an verse itself, always cited, by Layth (layth49). On TestFlight now." />
+  <meta name="twitter:image" content="https://layth49.com/assets/logo.png" />
 
   <link rel="icon" href="../assets/logo.ico" />
 
@@ -30,6 +46,95 @@
   <!-- Scripts -->
   <script defer src="../JS/hackedEffect.js"></script>
   <script defer src="../JS/burhan.js"></script>
+
+  <!-- Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Person",
+        "@id": "https://layth49.com/#person",
+        "name": "Layth Hammad",
+        "alternateName": ["49", "layth49"],
+        "url": "https://layth49.com/",
+        "image": "https://layth49.com/assets/logo.png",
+        "sameAs": ["https://github.com/layth49"]
+      },
+      {
+        "@type": "SoftwareApplication",
+        "@id": "https://layth49.com/HTML/burhan.html#software",
+        "name": "Burhan",
+        "alternateName": "بُرْهَان",
+        "url": "https://layth49.com/HTML/burhan.html",
+        "description": "Burhan is a free, fully offline iOS app by Layth (layth49) that answers questions about Islam with the Qur'an verse itself, word for word, always cited and one tap from the original. There is no text-generating AI in the app, so it cannot invent scripture. All 6,236 verses ship inside the download; hadith is not bundled yet.",
+        "applicationCategory": "ReferenceApplication",
+        "operatingSystem": "iOS",
+        "author": { "@id": "https://layth49.com/#person" },
+        "creator": { "@id": "https://layth49.com/#person" },
+        "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+        "isAccessibleForFree": true,
+        "inLanguage": ["en", "ar"],
+        "releaseNotes": "Currently available via private TestFlight; App Store release and Android to come.",
+        "dateModified": "2026-08-14"
+      },
+      {
+        "@type": "FAQPage",
+        "@id": "https://layth49.com/HTML/burhan.html#faq",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Can Burhan invent a verse, like ChatGPT sometimes does?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "No. There is no text-generating model inside the app. It can only find and display text that is already stored on your phone, so there is nothing in it capable of making something up."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Does Burhan need internet?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Never. The whole Qur'an and the search itself ship inside the app. The only time it touches the network is if you tap a citation link to open the original source in your browser."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "What does Burhan do with my searches?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Nothing, because they never reach the developer. There's no account and no server, and searching never touches the network."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Which Qur'an translation does Burhan use?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "The Clear Quran by Dr. Mustafa Khattab, bundled with written permission from the publisher. The Arabic is the Uthmani text from the Tanzil Project."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Why isn't hadith in Burhan yet?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Doing it properly means every hadith carries a grade from a named scholar, and the data needed for that hasn't been made available yet. The app says so on every answer instead of leaving users to assume."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Will Burhan give me a religious ruling?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "No. It shows you what the sources say and where to find them. It isn't a replacement for a scholar."
+            }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
 </head>
 
 <body>

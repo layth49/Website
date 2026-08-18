@@ -4,7 +4,24 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Projects · layth49</title>
+  <title>Projects · Layth (layth49)</title>
+  <meta name="description" content="19 projects by Layth (layth49): L.A.I.T.H.49 voice assistant, the Burhan Qur'an app, Bozo's Adventure, a trading bot, and a running log of bots, automations, and games." />
+  <link rel="canonical" href="https://layth49.com/HTML/projects.html" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="layth49" />
+  <meta property="og:title" content="Projects · Layth (layth49)" />
+  <meta property="og:description" content="19 projects by Layth (layth49): L.A.I.T.H.49 voice assistant, the Burhan Qur'an app, Bozo's Adventure, a trading bot, and a running log of bots, automations, and games." />
+  <meta property="og:url" content="https://layth49.com/HTML/projects.html" />
+  <meta property="og:image" content="https://layth49.com/assets/logo.png" />
+  <meta property="og:image:alt" content="layth49 logo" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Projects · Layth (layth49)" />
+  <meta name="twitter:description" content="L.A.I.T.H.49, Burhan, Bozo's Adventure, a trading bot, and more — a running log of bots, automations, and games by Layth." />
+  <meta name="twitter:image" content="https://layth49.com/assets/logo.png" />
 
   <link rel="icon" href="../assets/logo.ico" />
 
@@ -27,6 +44,43 @@
   <!-- Scripts -->
   <script defer src="../JS/hackedEffect.js"></script>
   <script defer src="../JS/projects.js"></script>
+
+  <!-- Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Person",
+        "@id": "https://layth49.com/#person",
+        "name": "Layth Hammad",
+        "alternateName": ["49", "layth49"],
+        "url": "https://layth49.com/",
+        "image": "https://layth49.com/assets/logo.png",
+        "sameAs": ["https://github.com/layth49"]
+      },
+      {
+        "@type": "CollectionPage",
+        "@id": "https://layth49.com/HTML/projects.html#webpage",
+        "url": "https://layth49.com/HTML/projects.html",
+        "name": "Projects · Layth (layth49)",
+        "description": "19 projects by Layth (layth49): bots, automations, games, and pranks.",
+        "isPartOf": { "@id": "https://layth49.com/#website" },
+        "about": { "@id": "https://layth49.com/#person" },
+        "dateModified": "2026-08-17",
+        "mainEntity": {
+          "@type": "ItemList",
+          "itemListElement": [
+            { "@type": "ListItem", "position": 1, "name": "L.A.I.T.H.49", "url": "https://layth49.com/HTML/laith.html" },
+            { "@type": "ListItem", "position": 2, "name": "Burhan", "url": "https://layth49.com/HTML/burhan.html" },
+            { "@type": "ListItem", "position": 3, "name": "Bozo's Adventure", "url": "https://layth49.com/HTML/bozos.html" },
+            { "@type": "ListItem", "position": 4, "name": "Trade Bot", "url": "https://layth49.com/HTML/tradebot.html" }
+          ]
+        }
+      }
+    ]
+  }
+  </script>
 </head>
 
 <body>
@@ -98,7 +152,7 @@
           <span class="num">// 01</span>
           <span class="status warn">In Progress</span>
         </div>
-        <h1 class="hackedEffect">L.Λ.I.T.H.49</h1>
+        <h2 class="hackedEffect">L.Λ.I.T.H.49</h2>
         <p class="subtitle">Logical Assistant for Intelligent Task Handling</p>
         <div class="card-media no-media laith-bubble-preview">
           <span class="badge">FLAGSHIP · CLICK FOR DEEP-DIVE</span>
@@ -126,7 +180,7 @@
           <span class="num">// 02</span>
           <span class="status ok">Complete</span>
         </div>
-        <h1 class="hackedEffect">l.a.i.t.h</h1>
+        <h2 class="hackedEffect">l.a.i.t.h</h2>
         <div class="card-media no-media igchat-preview">
           <div class="ig-chat">
             <div class="ig-msg in"><span class="ig-from">sara</span><span class="ig-tag">@laith</span> settle it, is
@@ -165,7 +219,7 @@
             </g>
             <rect x="458" y="638" width="108" height="108" rx="20" fill="#D4A93C" />
           </svg>
-          <h1 class="hackedEffect">Burhan</h1>
+          <h2 class="hackedEffect">Burhan</h2>
         </div>
         <p class="subtitle">بُرْهَان · "decisive proof" · an app that can't make up scripture</p>
         <div class="card-media no-media burhan-preview">
@@ -208,7 +262,7 @@
           <span class="num">// 04</span>
           <span class="status warn">In Progress</span>
         </div>
-        <h1 class="hackedEffect">Mechanical Door Opener</h1>
+        <h2 class="hackedEffect">Mechanical Door Opener</h2>
         <div class="card-media">
           <img src="../assets/door.jpg" alt="door opener preview" />
         </div>
@@ -225,7 +279,7 @@
           <span class="num">// 05</span>
           <span class="status archived">Archived</span>
         </div>
-        <h1 class="hackedEffect">Bozo's Adventure</h1>
+        <h2 class="hackedEffect">Bozo's Adventure</h2>
         <p class="subtitle">A Unity platformer about teleporting bozos</p>
         <div class="card-media">
           <span class="badge">GAME · ARCHIVED · CLICK FOR DEEP-DIVE</span>
@@ -248,7 +302,7 @@
           <span class="num">// 06</span>
           <span class="status ok">Complete</span>
         </div>
-        <h1 class="hackedEffect">RMP Scraper</h1>
+        <h2 class="hackedEffect">RMP Scraper</h2>
         <p>Pulls a UNO course schedule CSV and enriches it with Rate My Professor ratings. Fuzzy-matches professor names
           so "tba" and typos don't slip through.</p>
         <div class="card-foot">
@@ -262,7 +316,7 @@
           <span class="num">// 07</span>
           <span class="status bad">Failed</span>
         </div>
-        <h1 class="hackedEffect">Trade Bot</h1>
+        <h2 class="hackedEffect">Trade Bot</h2>
         <p class="subtitle">A stock-trading robot, measured into retirement</p>
         <div class="card-media no-media tradebot-preview">
           <span class="badge">FAILED · CLICK FOR DEEP-DIVE</span>
@@ -297,7 +351,7 @@
           <span class="num">// 08</span>
           <span class="status ok">Complete</span>
         </div>
-        <h1 class="hackedEffect">Auto Search</h1>
+        <h2 class="hackedEffect">Auto Search</h2>
         <div class="card-media">
           <video loop muted playsinline webkit-playsinline autoplay preload="metadata" poster="../assets/posters/auto.jpg">
             <source src="../assets/videos/auto.mp4" type="video/mp4" />
@@ -315,7 +369,7 @@
           <span class="num">// 09</span>
           <span class="status ok">Complete</span>
         </div>
-        <h1 class="hackedEffect">Audio Visualizer</h1>
+        <h2 class="hackedEffect">Audio Visualizer</h2>
         <div class="card-media">
           <video loop autoplay muted playsinline webkit-playsinline preload="metadata"
             poster="../assets/posters/audio.jpg">
@@ -336,7 +390,7 @@
           <span class="num">// 10</span>
           <span class="status ok">Complete</span>
         </div>
-        <h1 class="hackedEffect">Aim Speed</h1>
+        <h2 class="hackedEffect">Aim Speed</h2>
         <div class="card-media">
           <video loop muted playsinline webkit-playsinline autoplay preload="metadata" poster="../assets/posters/aim.jpg">
             <source src="../assets/videos/aim.mp4" type="video/mp4" />
@@ -354,7 +408,7 @@
           <span class="num">// 11</span>
           <span class="status ok">Complete</span>
         </div>
-        <h1 class="hackedEffect">Typing Speed</h1>
+        <h2 class="hackedEffect">Typing Speed</h2>
         <div class="card-media">
           <video loop muted playsinline webkit-playsinline autoplay preload="metadata" poster="../assets/posters/type.jpg">
             <source src="../assets/videos/type.mp4" type="video/mp4" />
@@ -372,7 +426,7 @@
           <span class="num">// 12</span>
           <span class="status ok">Complete</span>
         </div>
-        <h1 class="hackedEffect">Reaction Speed</h1>
+        <h2 class="hackedEffect">Reaction Speed</h2>
         <div class="card-media">
           <video loop muted playsinline webkit-playsinline autoplay preload="metadata" poster="../assets/posters/react.jpg">
             <source src="../assets/videos/react.mp4" type="video/mp4" />
@@ -390,7 +444,7 @@
           <span class="num">// 13</span>
           <span class="status ok">Complete</span>
         </div>
-        <h1 class="hackedEffect">Verbal Memory</h1>
+        <h2 class="hackedEffect">Verbal Memory</h2>
         <div class="card-media">
           <video loop muted playsinline webkit-playsinline autoplay preload="metadata" poster="../assets/posters/verbal.jpg">
             <source src="../assets/videos/verbal.mp4" type="video/mp4" />
@@ -409,7 +463,7 @@
           <span class="num">// 14</span>
           <span class="status ok">Complete</span>
         </div>
-        <h1 class="hackedEffect">Number Memory</h1>
+        <h2 class="hackedEffect">Number Memory</h2>
         <div class="card-media">
           <video loop muted playsinline webkit-playsinline autoplay preload="metadata" poster="../assets/posters/num.jpg">
             <source src="../assets/videos/num.mp4" type="video/mp4" />
@@ -427,7 +481,7 @@
           <span class="num">// 15</span>
           <span class="status ok">Complete</span>
         </div>
-        <h1 class="hackedEffect">Flappy Bird</h1>
+        <h2 class="hackedEffect">Flappy Bird</h2>
         <div class="card-media">
           <video loop muted playsinline webkit-playsinline autoplay preload="metadata" poster="../assets/posters/flappybirb.jpg">
             <source src="../assets/videos/flappybirb.mp4" type="video/mp4" />
@@ -445,7 +499,7 @@
           <span class="num">// 16</span>
           <span class="status ok">Complete</span>
         </div>
-        <h1 class="hackedEffect">Pong</h1>
+        <h2 class="hackedEffect">Pong</h2>
         <div class="card-media">
           <video loop muted playsinline webkit-playsinline autoplay preload="metadata" poster="../assets/posters/pong.jpg">
             <source src="../assets/videos/pong.mp4" type="video/mp4" />
@@ -463,7 +517,7 @@
           <span class="num">// 17</span>
           <span class="status ok">Complete</span>
         </div>
-        <h1 class="hackedEffect">AI Voice Dictator</h1>
+        <h2 class="hackedEffect">AI Voice Dictator</h2>
         <p>Real-time voice → formatted text. AI transcription with a clean output pipeline.</p>
         <div class="card-foot">
           <span>PYTHON · WHISPER</span>
@@ -476,7 +530,7 @@
           <span class="num">// 18</span>
           <span class="status ok">Complete</span>
         </div>
-        <h1 class="hackedEffect">Nitro-Type Bot</h1>
+        <h2 class="hackedEffect">Nitro-Type Bot</h2>
         <div class="card-media">
           <video loop muted playsinline webkit-playsinline autoplay preload="metadata" poster="../assets/posters/nitro.jpg">
             <source src="../assets/videos/nitro.mp4" type="video/mp4" />
@@ -495,7 +549,7 @@
           <span class="num">// 19</span>
           <span class="status bad">Failed</span>
         </div>
-        <h1 class="hackedEffect">BSOD Prank</h1>
+        <h2 class="hackedEffect">BSOD Prank</h2>
         <div class="card-media">
           <video loop muted playsinline webkit-playsinline autoplay preload="metadata" poster="../assets/posters/prank.jpg">
             <source src="../assets/videos/prank.mp4" type="video/mp4" />
