@@ -151,45 +151,28 @@
         <div class="window-chrome">
           <span></span><span></span><span></span>
         </div>
-        <div class="tb-term">
-          <div class="tb-cmd">python -m bot.backtest --report</div>
-
-          <div class="tb-line pass">
-            <span class="tb-tag">PASS</span>
-            <span class="tb-txt">
-              OOS Sharpe 1.16 vs required 1.00
-              <span class="tb-plain">Its risk-adjusted returns cleared the bar it set for itself.</span>
-            </span>
+        <div class="tb-hero-chart">
+          <svg class="tb-chart" viewBox="0 0 320 200" preserveAspectRatio="none" aria-hidden="true">
+            <line class="tb-grid" x1="0" y1="55" x2="320" y2="55"></line>
+            <line class="tb-grid" x1="0" y1="105" x2="320" y2="105"></line>
+            <line class="tb-grid" x1="0" y1="155" x2="320" y2="155"></line>
+            <polyline class="tb-line mtum" pathLength="100"
+              points="8,178 46,161 84,144 122,130 160,102 198,74 236,42 274,18 312,10"></polyline>
+            <polyline class="tb-line spy" pathLength="100"
+              points="8,178 46,164 84,150 122,140 160,118 198,96 236,66 274,38 312,29"></polyline>
+            <polyline class="tb-line bot" pathLength="100"
+              points="8,178 46,171 84,162 122,157 160,151 198,129 236,93 274,59 312,51"></polyline>
+            <circle class="tb-dot mtum" cx="312" cy="10" r="3.5"></circle>
+            <circle class="tb-dot spy" cx="312" cy="29" r="3.5"></circle>
+            <circle class="tb-dot bot" cx="312" cy="51" r="3.5"></circle>
+          </svg>
+          <div class="tb-chart-legend">
+            <span class="tb-lab mtum"><i></i>MTUM<span class="tb-lab-detail"> (one buy order)</span> <b>+102.7%</b></span>
+            <span class="tb-lab spy"><i></i>SPY<span class="tb-lab-detail"> (one buy order)</span> <b>+86.5%</b></span>
+            <span class="tb-lab bot"><i></i>Trade Bot<span class="tb-lab-detail"> (2 wks · 24k lines)</span> <b>+79.2%</b></span>
           </div>
-
-          <div class="tb-line fail">
-            <span class="tb-tag">FAIL</span>
-            <span class="tb-txt">
-              OOS net return +79.2% vs SPY buy-and-hold +86.5%
-              <span class="tb-plain">But it made less money than just buying an index fund and doing nothing.</span>
-            </span>
-          </div>
-
-          <div class="tb-line pass">
-            <span class="tb-tag">PASS</span>
-            <span class="tb-txt">
-              4.0σ above random portfolios, past the 3σ bar
-              <span class="tb-plain">Statistically, this wasn't luck. Something in there was real.</span>
-            </span>
-          </div>
-
-          <div class="tb-line warn">
-            <span class="tb-tag">WARN</span>
-            <span class="tb-txt">
-              OVERFIT WARNING: mean IS Sharpe 1.19 collapses to 0.54 OOS
-              <span class="tb-plain">And the system flagged, in its own report, that it looked much better on the data
-                it trained on than on fresh data.</span>
-            </span>
-          </div>
-
-          <div class="tb-verdict">// the bot's own report card, printing its own <b>FAIL</b></div>
         </div>
-        <span class="label">REPORT CARD · 2026-07-03</span>
+        <span class="label">BACKTEST RETURN VS. DOING NOTHING</span>
       </div>
     </section>
 
