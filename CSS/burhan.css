@@ -154,6 +154,15 @@
 
 .bu-availability i { color: var(--ink-muted); }
 
+/* The wake-word badge's dot is styled as a "live" pulse everywhere else
+   on the site, but nothing here is live -- it's a static availability
+   note. A breathing animation next to it reads as a claim the app is
+   doing something it isn't, so hold it still on this page specifically. */
+.laith-hero .wakeword .pulse {
+  animation: none;
+  box-shadow: none;
+}
+
 /* ============================================================
    THE APP MOCK
    A faithful reproduction of the real Burhan screen: warm field,
@@ -485,8 +494,73 @@
 
 .bu-price-copy strong { color: var(--ink); font-weight: 600; }
 
-/* FAQ: laith.css .opt, minus the badge row ---------------- */
-.opts .opt h4 { font-size: 1.02rem; line-height: 1.35; }
+/* FAQ: a real accordion, not six boxes in a grid. Nothing here is
+   independently actionable in the "opt"/"stack-grid" sense, and there
+   are enough of them that a card grid turns into a wall -- a list you
+   can actually scan (and that collapses until you want an answer) is
+   both more honest about what a FAQ is and more useful. */
+.bu-faq {
+  display: flex;
+  flex-direction: column;
+  border-top: 1px solid var(--border);
+}
+
+.bu-faq-item {
+  border-bottom: 1px solid var(--border);
+}
+
+.bu-faq-item summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1.15rem 0.25rem;
+  font-family: var(--font-sans);
+  font-size: 1rem;
+  font-weight: 600;
+  line-height: 1.4;
+  color: var(--ink);
+  cursor: pointer;
+  list-style: none;
+  transition: color var(--t-fast) var(--ease);
+}
+
+.bu-faq-item summary::-webkit-details-marker { display: none; }
+
+.bu-faq-item summary:hover { color: var(--bu-green); }
+
+.bu-faq-icon {
+  position: relative;
+  flex-shrink: 0;
+  width: 18px;
+  height: 18px;
+}
+
+.bu-faq-icon::before,
+.bu-faq-icon::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  background: var(--ink-dim);
+  transform: translate(-50%, -50%);
+  transition: transform var(--t-fast) var(--ease);
+}
+
+.bu-faq-icon::before { width: 12px; height: 2px; }
+.bu-faq-icon::after { width: 2px; height: 12px; }
+
+.bu-faq-item[open] .bu-faq-icon::after { transform: translate(-50%, -50%) rotate(90deg); opacity: 0; }
+.bu-faq-item[open] summary { color: var(--bu-green); }
+
+.bu-faq-item p {
+  margin: 0;
+  padding: 0 1.6rem 1.25rem 0.25rem;
+  font-family: var(--font-sans);
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: var(--ink-muted);
+}
 
 /* CTA ------------------------------------------------------ */
 .laith-cta.bu-cta .kicker {
