@@ -5,19 +5,14 @@
 /* HERO ------------------------------------------------------- */
 .hero {
   position: relative;
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 2.5rem;
+  max-width: 46rem;
   padding: 6rem 0 4rem;
   z-index: 2;
 }
 
 @media (min-width: 960px) {
   .hero {
-    grid-template-columns: 1.4fr 1fr;
-    align-items: end;
-    padding: 9rem 0 6rem;
-    gap: 4rem;
+    padding: 7rem 0 3rem;
   }
 }
 
@@ -162,71 +157,6 @@
 
 .btn:hover .arrow {
   transform: translateX(3px);
-}
-
-/* Hero status panel, right side */
-.hero-status {
-  display: flex;
-  flex-direction: column;
-  gap: 0.75rem;
-  padding: 1.5rem;
-  background: var(--bg-card);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  font-family: var(--font-mono);
-  font-size: 0.82rem;
-  position: relative;
-  overflow: hidden;
-}
-
-.hero-status::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 2px;
-  background: linear-gradient(90deg,
-    transparent 0%,
-    var(--accent) 50%,
-    transparent 100%);
-  opacity: 0.5;
-}
-
-.hero-status .row {
-  display: flex;
-  justify-content: space-between;
-  gap: 1rem;
-  color: var(--ink-muted);
-}
-
-.hero-status .row .label {
-  color: var(--ink-dim);
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  font-size: 0.7rem;
-}
-
-.hero-status .row .val {
-  color: var(--ink);
-  text-align: right;
-}
-
-.hero-status .row .val.ok {
-  color: var(--ok);
-}
-
-.hero-status .row .val.accent {
-  color: var(--accent);
-}
-
-.hero-status .ascii {
-  font-size: 0.65rem;
-  line-height: 1;
-  color: var(--accent);
-  white-space: pre;
-  opacity: 0.7;
-  margin: 0.5rem 0;
 }
 
 /* SECTION wrapper ------------------------------------------- */
@@ -496,7 +426,6 @@
 @media (max-width: 768px) {
   .hero { padding-top: 4rem; }
   .hacked h1 { font-size: clamp(3rem, 12vw, 5rem); }
-  .hero-status { font-size: 0.75rem; padding: 1.25rem; }
   .section { padding: 3rem 0; }
   .featured-item { padding: 1.5rem; }
   .cta { margin: 2rem 0 4rem; padding: 2.5rem 1.25rem; }

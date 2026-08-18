@@ -135,8 +135,10 @@
   width: 6px;
   height: 6px;
   margin: 0;
+  border-radius: 50%;
   background: var(--ok);
-  --accent-glow: rgba(16, 185, 129, 0.4);
+  animation: none;
+  box-shadow: none;
 }
 
 @media (min-width: 768px) {
