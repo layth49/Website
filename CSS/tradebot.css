@@ -74,10 +74,28 @@
   display: block;
 }
 
+.tb-hero-chart .tb-plot-bg {
+  fill: var(--bg-elevated);
+  stroke: var(--border-strong);
+  stroke-width: 1;
+}
+
 .tb-hero-chart .tb-grid {
   stroke: var(--border);
   stroke-width: 1;
   stroke-dasharray: 3 4;
+}
+
+.tb-hero-chart .tb-axis-x,
+.tb-hero-chart .tb-axis-y {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  letter-spacing: 0.06em;
+  fill: var(--ink-dim);
+}
+
+.tb-hero-chart .tb-axis-y {
+  text-anchor: end;
 }
 
 .tb-hero-chart .tb-line {
