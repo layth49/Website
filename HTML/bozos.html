@@ -4,8 +4,24 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Bozo's Adventure · layth49</title>
-  <meta name="description" content="Bozo's Adventure: a Unity 2D platformer with two playable characters (49, Slime) and a teleport-vs-double-jump twist. Shipped through v0.2 before getting shelved mid-v0.3." />
+  <title>Bozo's Adventure · Unity platformer by Layth (layth49)</title>
+  <meta name="description" content="Bozo's Adventure: a Unity 2D platformer by Layth (layth49) with two playable characters (49, Slime) and a teleport-vs-double-jump twist. Shipped through v0.2 before getting shelved mid-v0.3." />
+  <link rel="canonical" href="https://layth49.com/HTML/bozos.html" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="layth49" />
+  <meta property="og:title" content="Bozo's Adventure · Unity platformer by Layth (layth49)" />
+  <meta property="og:description" content="A Unity 2D platformer with two playable characters (49, Slime) and a teleport-vs-double-jump twist. Shipped through v0.2, archived mid-v0.3." />
+  <meta property="og:url" content="https://layth49.com/HTML/bozos.html" />
+  <meta property="og:image" content="https://layth49.com/assets/logo.png" />
+  <meta property="og:image:alt" content="layth49 logo" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Bozo's Adventure · Unity platformer by Layth (layth49)" />
+  <meta name="twitter:description" content="A 2D platformer about three bozos. Shipped through v0.2, then shelved mid-v0.3." />
+  <meta name="twitter:image" content="https://layth49.com/assets/logo.png" />
 
   <link rel="icon" href="../assets/logo.ico" />
 
@@ -29,6 +45,40 @@
   <!-- Scripts -->
   <script defer src="../JS/hackedEffect.js"></script>
   <script defer src="../JS/bozos.js"></script>
+
+  <!-- Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Person",
+        "@id": "https://layth49.com/#person",
+        "name": "Layth Hammad",
+        "alternateName": ["49", "layth49"],
+        "url": "https://layth49.com/",
+        "image": "https://layth49.com/assets/logo.png",
+        "sameAs": ["https://github.com/layth49"]
+      },
+      {
+        "@type": "VideoGame",
+        "@id": "https://layth49.com/HTML/bozos.html#game",
+        "name": "Bozo's Adventure",
+        "url": "https://layth49.com/HTML/bozos.html",
+        "description": "Bozo's Adventure is a Unity 2D platformer by Layth (layth49) with two playable characters (49, Slime) and a teleport-vs-double-jump twist. Shipped through v0.2, then shelved mid-v0.3.",
+        "author": { "@id": "https://layth49.com/#person" },
+        "creator": { "@id": "https://layth49.com/#person" },
+        "applicationCategory": "Game",
+        "gamePlatform": "PC",
+        "operatingSystem": "Windows",
+        "genre": "Platformer",
+        "codeRepository": "https://github.com/layth49/Bozos-Adventure",
+        "isAccessibleForFree": true,
+        "dateModified": "2026-08-17"
+      }
+    ]
+  }
+  </script>
 </head>
 
 <body>
