@@ -420,15 +420,33 @@
   display: block;
 }
 
+.tradebot-preview .tb-plot-bg {
+  fill: var(--bg-elevated);
+  stroke: var(--border-strong);
+  stroke-width: 1;
+}
+
 .tradebot-preview .tb-grid {
   stroke: var(--border);
   stroke-width: 1;
   stroke-dasharray: 3 4;
 }
 
+.tradebot-preview .tb-axis-x,
+.tradebot-preview .tb-axis-y {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  letter-spacing: 0.06em;
+  fill: var(--ink-dim);
+}
+
+.tradebot-preview .tb-axis-y {
+  text-anchor: end;
+}
+
 .tradebot-preview .tb-line {
   fill: none;
-  stroke-width: 3;
+  stroke-width: 2.5;
   stroke-linecap: round;
   stroke-linejoin: round;
   stroke-dasharray: 100;
@@ -436,6 +454,7 @@
   animation: tb-draw 1.6s var(--ease) 0.1s forwards;
 }
 
+.tradebot-preview .tb-line.mtum { stroke: var(--ok); }
 .tradebot-preview .tb-line.spy { stroke: var(--ink-muted); }
 .tradebot-preview .tb-line.bot { stroke: var(--bad); }
 
@@ -447,6 +466,7 @@
   opacity: 0;
   animation: tb-dot-in 0.4s var(--ease) 1.5s forwards;
 }
+.tradebot-preview .tb-dot.mtum { fill: var(--ok); }
 .tradebot-preview .tb-dot.spy { fill: var(--ink-muted); }
 .tradebot-preview .tb-dot.bot { fill: var(--bad); }
 
@@ -486,6 +506,7 @@
   border-radius: 50%;
   display: inline-block;
 }
+.tradebot-preview .tb-lab.mtum i { background: var(--ok); }
 .tradebot-preview .tb-lab.spy i { background: var(--ink-muted); }
 .tradebot-preview .tb-lab.bot i { background: var(--bad); }
 
@@ -494,6 +515,7 @@
   font-weight: 700;
   margin-left: 0.1rem;
 }
+.tradebot-preview .tb-lab.mtum b { color: var(--ok); }
 .tradebot-preview .tb-lab.bot b { color: var(--bad); }
 
 /* Burhan card wears the app's own accent instead of the site red.
@@ -803,4 +825,25 @@
 @media (max-width: 768px) {
   .projects-hero { padding: 3rem 0 1.5rem; }
   .cards { gap: 1rem; margin-bottom: 4rem; }
+
+  /* The featured trade-bot card goes full-width above 720px but the
+     grid cell itself still shrinks a lot on phones -- bump the SVG
+     axis text so it doesn't shrink into illegibility with it. */
+  .tradebot-preview .tb-axis-x,
+  .tradebot-preview .tb-axis-y {
+    font-size: 13px;
+  }
+
+  .tradebot-preview .tb-chart-legend {
+    /* the FAILED badge (top-left) runs long enough on narrow cards to
+       reach the legend -- stack the legend below it instead of beside it */
+    top: 2.75rem;
+    right: 0.5rem;
+    gap: 0.25rem;
+  }
+
+  .tradebot-preview .tb-lab {
+    font-size: 0.58rem;
+    padding: 0.22rem 0.42rem;
+  }
 }
