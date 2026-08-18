@@ -47,18 +47,14 @@
 .btn .arrow { transition: transform var(--t-fast) var(--ease); }
 .btn:hover .arrow { transform: translateX(3px); }
 
-/* HERO TERMINAL --------------------------------------------
-   The analogue of laith's hero <video>: the backtest printing
-   its own report card. Sits inside .laith-hero-media, so it
-   inherits the frame, chrome dots and caption label. */
+/* HERO CHART -------------------------------------------------
+   Same equity-curve chart as the projects-page card (real
+   endpoints: bot +79.2%, SPY +86.5%, MTUM +102.7%, all stated
+   elsewhere on this page), just bigger and with the third line
+   the card doesn't have room for. Sits inside .laith-hero-media,
+   so it inherits the frame, chrome dots and caption label. */
 .laith-hero-media.tb-media {
-  /* laith.css pins this to 16/10 for video; the terminal should
-     size to its content instead so nothing ever clips. */
-  aspect-ratio: auto;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  padding: 2.75rem 1.5rem 2.75rem;
+  padding: 0;
   background:
     radial-gradient(ellipse at 70% 0%, rgba(239, 68, 68, 0.09), transparent 60%),
     linear-gradient(160deg, #0a0a0f 0%, #050506 100%);
@@ -67,108 +63,114 @@
     0 0 0 1px var(--border) inset;
 }
 
-.tb-term {
-  font-family: var(--font-mono);
-  font-size: 0.78rem;
-  line-height: 1.5;
+.tb-hero-chart {
+  position: absolute;
+  inset: 0;
+}
+
+.tb-hero-chart .tb-chart {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.tb-hero-chart .tb-grid {
+  stroke: var(--border);
+  stroke-width: 1;
+  stroke-dasharray: 3 4;
+}
+
+.tb-hero-chart .tb-line {
+  fill: none;
+  stroke-width: 2.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-dasharray: 100;
+  stroke-dashoffset: 100;
+  animation: tb-draw 1.8s var(--ease) 0.1s forwards;
+}
+
+.tb-hero-chart .tb-line.mtum { stroke: var(--ok); }
+.tb-hero-chart .tb-line.spy { stroke: var(--ink-muted); }
+.tb-hero-chart .tb-line.bot { stroke: var(--bad); }
+
+@keyframes tb-draw {
+  to { stroke-dashoffset: 0; }
+}
+
+.tb-hero-chart .tb-dot {
+  opacity: 0;
+  animation: tb-dot-in 0.4s var(--ease) 1.7s forwards;
+}
+.tb-hero-chart .tb-dot.mtum { fill: var(--ok); }
+.tb-hero-chart .tb-dot.spy { fill: var(--ink-muted); }
+.tb-hero-chart .tb-dot.bot { fill: var(--bad); }
+
+@keyframes tb-dot-in {
+  to { opacity: 1; }
+}
+
+.tb-hero-chart .tb-chart-legend {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
   display: flex;
   flex-direction: column;
-  gap: 0.55rem;
+  align-items: flex-end;
+  gap: 0.4rem;
+  z-index: 2;
 }
 
-.tb-cmd {
+.tb-hero-chart .tb-lab {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.02em;
   color: var(--ink-dim);
-  margin-bottom: 0.35rem;
-  overflow-wrap: anywhere;
-}
-
-.tb-cmd::before {
-  content: "$ ";
-  color: var(--accent);
-  font-weight: 700;
-}
-
-.tb-line {
-  display: flex;
-  align-items: flex-start;
-  gap: 0.6rem;
-  animation: tb-line-in 0.5s var(--ease) both;
-}
-
-.tb-line:nth-of-type(1) { animation-delay: 0.15s; }
-.tb-line:nth-of-type(2) { animation-delay: 0.35s; }
-.tb-line:nth-of-type(3) { animation-delay: 0.55s; }
-.tb-line:nth-of-type(4) { animation-delay: 0.75s; }
-
-@keyframes tb-line-in {
-  from { transform: translateY(6px); opacity: 0; }
-  to   { transform: translateY(0); opacity: 1; }
-}
-
-.tb-tag {
-  flex-shrink: 0;
-  width: 3.6rem;
-  text-align: center;
-  font-size: 0.62rem;
-  font-weight: 700;
-  letter-spacing: 0.12em;
-  padding: 0.18rem 0;
+  padding: 0.32rem 0.6rem;
+  background: rgba(0, 0, 0, 0.55);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  border: 1px solid var(--border-strong);
   border-radius: var(--radius-sm);
-  border: 1px solid;
 }
 
-.tb-line.pass .tb-tag {
-  color: var(--ok);
-  border-color: rgba(16, 185, 129, 0.35);
-  background: rgba(16, 185, 129, 0.1);
+.tb-hero-chart .tb-lab i {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  display: inline-block;
 }
+.tb-hero-chart .tb-lab.mtum i { background: var(--ok); }
+.tb-hero-chart .tb-lab.spy i { background: var(--ink-muted); }
+.tb-hero-chart .tb-lab.bot i { background: var(--bad); }
 
-.tb-line.fail .tb-tag {
-  color: var(--bad);
-  border-color: rgba(239, 68, 68, 0.4);
-  background: rgba(239, 68, 68, 0.12);
-}
-
-.tb-line.warn .tb-tag {
-  color: var(--warn);
-  border-color: rgba(245, 158, 11, 0.35);
-  background: rgba(245, 158, 11, 0.1);
-}
-
-.tb-txt {
-  min-width: 0;
+.tb-hero-chart .tb-lab b {
   color: var(--ink);
-  display: flex;
-  flex-direction: column;
-  gap: 0.1rem;
-}
-
-/* Plain-English gloss under each machine-speak line */
-.tb-txt .tb-plain {
-  font-family: var(--font-sans);
-  font-size: 0.76rem;
-  line-height: 1.35;
-  color: var(--ink-dim);
-}
-
-.tb-line.fail .tb-txt { color: var(--bad); }
-
-.tb-verdict {
-  margin-top: 0.75rem;
-  padding-top: 0.75rem;
-  border-top: 1px dashed var(--border);
-  font-family: var(--font-mono);
-  font-size: 0.8rem;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--ink-dim);
-  animation: tb-line-in 0.5s var(--ease) 0.95s both;
-}
-
-.tb-verdict b {
-  color: var(--bad);
   font-weight: 700;
-  letter-spacing: 0.14em;
+  margin-left: 0.1rem;
+}
+.tb-hero-chart .tb-lab.mtum b { color: var(--ok); }
+.tb-hero-chart .tb-lab.bot b { color: var(--bad); }
+
+@media (max-width: 640px) {
+  .tb-hero-chart .tb-chart-legend {
+    top: 0.5rem;
+    right: 0.5rem;
+    gap: 0.25rem;
+  }
+
+  .tb-hero-chart .tb-lab {
+    font-size: 0.6rem;
+    padding: 0.22rem 0.4rem;
+  }
+
+  .tb-hero-chart .tb-lab-detail {
+    display: none;
+  }
 }
 
 /* STATS: a "bad" modifier to sit alongside laith's .ok/.warn/.accent */
@@ -248,8 +250,5 @@
 
 /* MOBILE ---------------------------------------------------- */
 @media (max-width: 768px) {
-  .laith-hero-media.tb-media { padding: 2.5rem 1.1rem 2rem; }
-  .tb-term { font-size: 0.72rem; }
-  .tb-tag { width: 3.2rem; }
   .tb-zero { padding: 1.5rem 1.25rem; }
 }
