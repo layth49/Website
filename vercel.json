@@ -1,0 +1,22 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "trailingSlash": false,
+  "cleanUrls": false,
+  "redirects": [
+    { "source": "/HTML/about.html", "destination": "/about", "permanent": true },
+    { "source": "/HTML/projects.html", "destination": "/projects", "permanent": true },
+    { "source": "/HTML/laith.html", "destination": "/laith", "permanent": true },
+    { "source": "/HTML/burhan.html", "destination": "/burhan", "permanent": true },
+    { "source": "/HTML/tradebot.html", "destination": "/tradebot", "permanent": true },
+    { "source": "/HTML/bozos.html", "destination": "/bozos", "permanent": true },
+
+    { "source": "/HTML/about", "destination": "/about", "permanent": true },
+    { "source": "/HTML/projects", "destination": "/projects", "permanent": true },
+    { "source": "/HTML/laith", "destination": "/laith", "permanent": true },
+    { "source": "/HTML/burhan", "destination": "/burhan", "permanent": true },
+    { "source": "/HTML/tradebot", "destination": "/tradebot", "permanent": true },
+    { "source": "/HTML/bozos", "destination": "/bozos", "permanent": true },
+
+    { "source": "/HTML/:path*", "destination": "/", "permanent": true }
+  ]
+}

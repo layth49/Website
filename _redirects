@@ -1,9 +1,0 @@
-# Old /HTML/*.html paths -> clean directory URLs.
-# Read by Cloudflare Pages and Netlify; ignored by GitHub Pages.
-/HTML/about.html      /about/      301
-/HTML/projects.html   /projects/   301
-/HTML/laith.html      /laith/      301
-/HTML/burhan.html     /burhan/     301
-/HTML/tradebot.html   /tradebot/   301
-/HTML/bozos.html      /bozos/      301
-/HTML/*               /            301

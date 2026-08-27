@@ -13,21 +13,21 @@ https://github.com/layth49.
 
 - [Home](https://layth49.com/): Introduction to Layth (layth49), software developer and
   automation engineer.
-- [About](https://layth49.com/about/): Bio, focus areas, and project timeline.
-- [Projects](https://layth49.com/projects/): Full index of 19 projects -- bots,
+- [About](https://layth49.com/about): Bio, focus areas, and project timeline.
+- [Projects](https://layth49.com/projects): Full index of 19 projects -- bots,
   automations, games, and experiments.
-- [L.A.I.T.H.49](https://layth49.com/laith/): Layth's flagship project, a voice
+- [L.A.I.T.H.49](https://layth49.com/laith): Layth's flagship project, a voice
   assistant for Windows. Say "Hey 49" and it routes what you say to one of 38 LLM-driven
   tools, keeps standing rules, and can screen phone calls. Two builds: cloud (Gemini Live
   API) and fully local (faster-whisper, Kokoro, LM Studio, SearxNG). Source:
   https://github.com/layth49/Personal-Assistant.
-- [Burhan](https://layth49.com/burhan/): A free, fully offline iOS app that answers
+- [Burhan](https://layth49.com/burhan): A free, fully offline iOS app that answers
   questions about Islam with the Qur'an verse itself, word for word, always cited. No AI
   writes the answers, so it cannot invent scripture. Currently on private TestFlight; App
   Store release and Android version to come.
-- [Trade Bot](https://layth49.com/tradebot/): A failed algorithmic trading bot
+- [Trade Bot](https://layth49.com/tradebot): A failed algorithmic trading bot
   post-mortem -- ~24,000 lines of code, five signal modules, zero real trades ever placed.
-- [Bozo's Adventure](https://layth49.com/bozos/): A Unity 2D platformer with two
+- [Bozo's Adventure](https://layth49.com/bozos): A Unity 2D platformer with two
   playable characters and a teleport-vs-double-jump twist. Source:
   https://github.com/layth49/Bozos-Adventure.
 
