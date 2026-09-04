@@ -1,0 +1,292 @@
+/* ============================================================
+   Minecraft AI deep-dive page
+   Structure comes from laith.css (shared deep-dive kit).
+   Only the bits laith.css doesn't already define live here.
+   ============================================================ */
+
+
+/* SECTION DEK ----------------------------------------------
+   Same one-sentence line under a section title that tradebot.css
+   defines; duplicated here so this page doesn't pull in a whole
+   stylesheet for one rule. */
+.laith-section .head .dek {
+  font-family: var(--font-sans);
+  font-size: 1rem;
+  line-height: 1.5;
+  color: var(--ink-muted);
+  max-width: var(--measure);
+  margin: 0.6rem 0 0;
+}
+
+/* HARDWARE NOTE ---------------------------------------------
+   Load-bearing state, the way tradebot's "paper only" note is:
+   every model decision on this project falls out of the card. */
+.laith-hero .mc-rig {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  padding: 0.4rem 0.7rem;
+  margin-bottom: 1.25rem;
+  background: rgba(16, 185, 129, 0.1);
+  border: 1px solid rgba(16, 185, 129, 0.3);
+  border-radius: var(--radius-sm);
+  color: var(--ink);
+}
+
+/* HERO FIGURE: THE LADDER ------------------------------------
+   Same staircase as the projects-page card, bigger, and with the
+   budget and result per rung that the card has no room for. Step
+   height is the depth of the crafting chain; the pips are that
+   rung's three trials, filled for a pass. */
+.mc-figure {
+  margin: 0;
+}
+
+.mc-media {
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: 16 / 11;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  background:
+    radial-gradient(ellipse at 75% 0%, rgba(16, 185, 129, 0.1), transparent 62%),
+    linear-gradient(160deg, #0a0f0c 0%, #050506 100%);
+}
+
+/* The figure's caption, also its plain-language alternative. */
+.mc-figure .label {
+  display: block;
+  margin-top: 0.85rem;
+  font-family: var(--font-sans);
+  font-size: 0.85rem;
+  line-height: 1.5;
+  color: var(--ink-muted);
+}
+
+.mc-hero-ladder {
+  position: absolute;
+  inset: 0;
+  padding: 1.25rem;
+}
+
+.mc-hero-ladder .mc-ladder {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.mc-hero-ladder .mc-base {
+  stroke: var(--border-strong);
+  stroke-width: 1;
+}
+
+.mc-hero-ladder .mc-step rect {
+  fill: rgba(255, 255, 255, 0.045);
+  stroke: var(--border-strong);
+  stroke-width: 1;
+  /* The bars are horizontal, so they draw out from their left edge.
+     transform-box keeps the origin on the rect's own box rather than
+     on the whole SVG viewport. */
+  transform-box: fill-box;
+  transform-origin: left center;
+  animation: mc-draw 0.7s var(--ease) both;
+}
+
+.mc-hero-ladder .mc-step.top rect {
+  fill: rgba(16, 185, 129, 0.14);
+  stroke: var(--ok);
+}
+
+/* nth-of-type, not nth-child: the <g> steps are preceded by the header
+   text and rule, so counting all children would offset every delay. */
+.mc-hero-ladder g.mc-step:nth-of-type(2) rect { animation-delay: 0.08s; }
+.mc-hero-ladder g.mc-step:nth-of-type(3) rect { animation-delay: 0.16s; }
+.mc-hero-ladder g.mc-step:nth-of-type(4) rect { animation-delay: 0.24s; }
+.mc-hero-ladder g.mc-step:nth-of-type(5) rect { animation-delay: 0.32s; }
+.mc-hero-ladder g.mc-step:nth-of-type(6) rect { animation-delay: 0.40s; }
+
+@keyframes mc-draw {
+  from { transform: scaleX(0); opacity: 0; }
+  to   { transform: scaleX(1); opacity: 1; }
+}
+
+/* Motion here is decoration on top of a static chart; the chart reads
+   the same without it. */
+@media (prefers-reduced-motion: reduce) {
+  .mc-hero-ladder .mc-step rect {
+    animation: none;
+    transform: none;
+    opacity: 1;
+  }
+}
+
+.mc-hero-ladder .mc-pip {
+  fill: none;
+  stroke: var(--ink-dim);
+  stroke-width: 1.25;
+}
+
+.mc-hero-ladder .mc-pip.hit {
+  fill: var(--ok);
+  stroke: var(--ok);
+}
+
+.mc-hero-ladder .mc-name {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  letter-spacing: 0.04em;
+  fill: var(--ink-muted);
+}
+
+.mc-hero-ladder .mc-budget {
+  font-family: var(--font-mono);
+  font-size: 8px;
+  letter-spacing: 0.04em;
+  fill: var(--ink-dim);
+}
+
+.mc-hero-ladder .mc-score {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  fill: var(--ink-muted);
+}
+
+.mc-hero-ladder .mc-score.pass { fill: var(--ok); }
+
+.mc-hero-ladder .mc-callout {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  fill: var(--ok);
+}
+
+
+/* COMPARE TABLE WIDTHS ---------------------------------------
+   laith.css ships .compare-table at three columns; the model table
+   needs four. Same trick tradebot.css uses with .tb-ct4. */
+@media (min-width: 760px) {
+  .compare-table.mc-ct4 .ct-row {
+    grid-template-columns: 1.3fr 0.7fr 0.9fr 1fr;
+  }
+}
+
+.compare-table .ct-cell b { color: var(--ink); font-weight: 700; }
+.compare-table .ct-cell .mc-pass { color: var(--ok); font-weight: 700; }
+.compare-table .ct-cell .mc-part { color: var(--warn); font-weight: 700; }
+
+
+/* THE FLAT LINE ----------------------------------------------
+   Two numbers that moved enormously beside one that did not. The
+   whole point is the contrast, so they share a row. */
+.mc-flat {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.85rem;
+  margin-top: 2rem;
+}
+
+@media (min-width: 720px) {
+  .mc-flat {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.mc-flat .mc-metric {
+  padding: 1.35rem;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+}
+
+/* The one that didn't move is the finding, so it gets the emphasis
+   the two "wins" don't. */
+.mc-flat .mc-metric.flat {
+  border-color: var(--border-accent);
+  background: var(--accent-soft);
+}
+
+.mc-flat .mc-metric .mc-metric-label {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink-dim);
+  margin-bottom: 0.7rem;
+}
+
+.mc-flat .mc-metric .mc-metric-val {
+  display: block;
+  font-family: var(--font-display);
+  font-size: var(--step-3);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--ok);
+  line-height: 1.1;
+}
+
+.mc-flat .mc-metric.flat .mc-metric-val {
+  color: var(--accent);
+}
+
+.mc-flat .mc-metric .mc-metric-val .mc-from {
+  color: var(--ink-dim);
+  font-weight: 400;
+}
+
+.mc-flat .mc-metric p {
+  margin: 0.7rem 0 0;
+  font-family: var(--font-sans);
+  font-size: 0.85rem;
+  line-height: 1.5;
+  color: var(--ink-muted);
+}
+
+
+/* LIMITS LIST ------------------------------------------------
+   What is genuinely unmeasured, stated as scope rather than as a
+   roadmap -- none of it is promised. */
+.mc-limits {
+  list-style: none;
+  padding: 0;
+  margin: 1.5rem 0 0;
+  display: grid;
+  gap: 0.6rem;
+}
+
+.mc-limits li {
+  display: grid;
+  grid-template-columns: 1.6rem 1fr;
+  gap: 0.5rem;
+  align-items: start;
+  font-family: var(--font-sans);
+  font-size: 0.92rem;
+  line-height: 1.55;
+  color: var(--ink-muted);
+}
+
+.mc-limits li::before {
+  content: "\2014";
+  color: var(--ink-dim);
+  font-family: var(--font-mono);
+}
+
+.mc-limits li strong {
+  color: var(--ink);
+  font-weight: 600;
+}
+
+
+/* MOBILE ------------------------------------------------------ */
+@media (max-width: 768px) {
+  .mc-media {
+    aspect-ratio: 4 / 5;
+  }
+
+  .mc-hero-ladder {
+    padding: 0.75rem;
+  }
+}
