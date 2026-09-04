@@ -62,8 +62,14 @@ document.addEventListener("DOMContentLoaded", () => {
       playBtn.dataset.state = state;
       playBtn.setAttribute(
         "aria-label",
-        state === "playing" ? "Pause" : "Play"
+        state === "playing" ? "Pause Title Screen" : "Play Title Screen"
       );
+    };
+
+    const setProgress = (pct, time) => {
+      bar.style.width = `${pct}%`;
+      progress.setAttribute("aria-valuenow", String(Math.round(pct)));
+      progress.setAttribute("aria-valuetext", time);
     };
 
     audio.addEventListener("loadedmetadata", () => {
@@ -79,7 +85,7 @@ document.addEventListener("DOMContentLoaded", () => {
     audio.addEventListener("pause", () => setState("paused"));
     audio.addEventListener("ended", () => {
       setState("paused");
-      bar.style.width = "0%";
+      setProgress(0, "0:00");
       cur.textContent = "0:00";
     });
 
@@ -87,8 +93,9 @@ document.addEventListener("DOMContentLoaded", () => {
       const pct = audio.duration
         ? (audio.currentTime / audio.duration) * 100
         : 0;
-      bar.style.width = `${pct}%`;
-      cur.textContent = fmt(audio.currentTime);
+      const time = fmt(audio.currentTime);
+      setProgress(pct, time);
+      cur.textContent = time;
     });
 
     const seekFromEvent = (e) => {

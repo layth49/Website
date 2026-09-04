@@ -13,17 +13,19 @@
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="layth49" />
   <meta property="og:title" content="Burhan · Verifiable answers from the Qur'an" />
-  <meta property="og:description" content="A free, fully offline app by Layth (layth49) that answers questions about Islam with the Qur'an verse itself, always cited. No AI writes the answers." />
+  <meta property="og:description"
+    content="A free, fully offline app by Layth (layth49) that answers questions about Islam with the Qur'an verse itself, always cited. No AI writes the answers." />
   <meta property="og:url" content="https://layth49.com/burhan" />
   <meta property="og:image" content="https://layth49.com/assets/og-image.png" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
-  <meta property="og:image:alt" content="layth49 — software &amp; automation" />
+  <meta property="og:image:alt" content="layth49, software &amp; automation" />
 
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Burhan · Verifiable answers from the Qur'an" />
-  <meta name="twitter:description" content="Free, fully offline, no ads. Burhan shows the Qur'an verse itself, always cited, by Layth (layth49). On TestFlight now." />
+  <meta name="twitter:description"
+    content="Free, fully offline, no ads. Burhan shows the Qur'an verse itself, always cited, by Layth (layth49). On TestFlight now." />
   <meta name="twitter:image" content="https://layth49.com/assets/og-image.png" />
 
   <link rel="icon" href="/assets/logo.ico" />
@@ -32,7 +34,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link
-    href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700;800&family=Geist:wght@400;500;600;700&family=Scheherazade+New:wght@400;700&family=Gentium+Book+Plus:ital,wght@0,400;0,700;1,400&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@75..125,400..800&family=Geist:wght@400;500;600&family=JetBrains+Mono:wght@400;700&family=Scheherazade+New:wght@400;700&family=Gentium+Book+Plus:ital,wght@0,400;0,700;1,400&display=swap"
     rel="stylesheet" />
 
   <!-- Icon font -->
@@ -47,7 +49,6 @@
 
   <!-- Scripts -->
   <script defer src="/JS/hackedEffect.js"></script>
-  <script defer src="/JS/burhan.js"></script>
 
   <!-- Structured Data -->
   <script type="application/ld+json">
@@ -77,7 +78,8 @@
         "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
         "isAccessibleForFree": true,
         "inLanguage": ["en", "ar"],
-        "releaseNotes": "Currently available via private TestFlight; App Store release and Android to come.",
+        "releaseNotes": "Currently available as an open TestFlight beta; App Store release and Android to come.",
+        "installUrl": "https://testflight.apple.com/join/SSe4ZzZH",
         "dateModified": "2026-08-14"
       },
       {
@@ -140,6 +142,8 @@
 </head>
 
 <body>
+  <a href="#main" class="skip-link">Skip to content</a>
+
   <!-- NAV -->
   <nav class="navBar">
     <div class="logo">
@@ -161,7 +165,6 @@
     </div>
 
     <div class="nav-end">
-      <span class="status-pill"><span class="dot"></span> AVAILABLE</span>
     </div>
   </nav>
 
@@ -170,24 +173,16 @@
     <a href="https://github.com/layth49" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
       <i class="fa-brands fa-github"></i>
     </a>
-    <a href="mailto:laythandamin@gmail.com" aria-label="Email">
+    <a href="mailto:layth.hammad49@gmail.com" aria-label="Email">
       <i class="fa-regular fa-envelope"></i>
     </a>
   </aside>
 
-  <main class="container">
+  <main id="main" class="container">
     <!-- HERO -->
     <section class="laith-hero">
       <div>
-        <div class="eyebrow">
-          <span class="line"></span>
-          <span>FREE · OFFLINE · NO ADS</span>
-        </div>
-
-        <span class="wakeword">
-          <span class="pulse"></span>
-          // private TestFlight, App Store to come
-        </span>
+        <p class="kicker">Free, offline, no ads</p>
 
         <div class="bu-titlerow">
           <svg class="bu-logo" viewBox="0 0 1024 1024" role="img" aria-label="Burhan app icon">
@@ -200,11 +195,12 @@
             <rect width="1024" height="1024" rx="225" fill="url(#buDuskHero)" />
             <g transform="translate(-10,-82)" fill="none" stroke="#D4A93C" stroke-width="96" stroke-linecap="butt"
               stroke-linejoin="miter">
-              <path d="M 788 484 L 788 556 C 788 600, 756 628, 708 628 L 336 628 C 288 628, 256 600, 256 556 L 256 360" />
+              <path
+                d="M 788 484 L 788 556 C 788 600, 756 628, 708 628 L 336 628 C 288 628, 256 600, 256 556 L 256 360" />
             </g>
             <rect x="458" y="638" width="108" height="108" rx="20" fill="#D4A93C" />
           </svg>
-          <h1 class="hackedEffect">BURHAN</h1>
+          <h1>Burhan</h1>
         </div>
         <p class="tagline">Verifiable answers from the Qur'an and authenticated Sunni hadith.</p>
         <p class="lede">
@@ -218,7 +214,8 @@
         </p>
 
         <div class="actions">
-          <a href="#invite" class="btn primary">Get a TestFlight invite <span class="arrow">→</span></a>
+          <a href="https://testflight.apple.com/join/SSe4ZzZH" target="_blank" rel="noopener noreferrer"
+            class="btn primary">Join the TestFlight beta <span class="arrow">&rarr;</span></a>
           <a href="#how" class="btn">See how it works</a>
         </div>
 
@@ -228,69 +225,51 @@
         </p>
       </div>
 
-      <div class="laith-hero-media bu-media">
-        <div class="bu-app">
-          <div class="bu-appbar">
-            <span class="bu-app-title">Burhan</span>
-            <span class="bu-appbar-icons" aria-hidden="true">
-              <i class="fa-solid fa-circle-info"></i>
-              <i class="fa-solid fa-gear"></i>
-            </span>
-          </div>
-          <div class="bu-wordmark" lang="ar" dir="rtl">بُرْهَان</div>
-          <p class="bu-tagline">Verifiable answers from the Qur'an and authenticated Sunni hadith.</p>
-
-          <div class="bu-search">
-            <i class="fa-solid fa-magnifying-glass"></i>
-            <span>should i share news i can't verify</span>
-          </div>
-
-          <div class="bu-scope">
+      <div class="bu-app">
+        <div class="bu-appbar">
+          <span class="bu-app-title">Burhan</span>
+          <span class="bu-appbar-icons" aria-hidden="true">
             <i class="fa-solid fa-circle-info"></i>
-            <span>Qur'an only — no hadith is bundled, so reports from the Sunnah cannot be checked here.</span>
-          </div>
-
-          <article class="bu-result">
-            <div class="bu-ref">Al-Hujurat 49:6</div>
-            <p class="bu-en">O believers, if an evildoer brings you any news, verify ˹it˺ so you do not harm people
-              unknowingly, becoming regretful for what you have done.</p>
-            <p class="bu-ayah" lang="ar" dir="rtl">يَٰٓأَيُّهَا ٱلَّذِينَ ءَامَنُوٓا۟ إِن جَآءَكُمْ فَاسِقٌۢ بِنَبَإٍ
-              فَتَبَيَّنُوٓا۟ أَن تُصِيبُوا۟ قَوْمًۢا بِجَهَٰلَةٍ فَتُصْبِحُوا۟ عَلَىٰ مَا فَعَلْتُمْ نَٰدِمِينَ</p>
-            <span class="bu-src"><i class="fa-solid fa-arrow-up-right-from-square"></i> View original source</span>
-          </article>
+            <i class="fa-solid fa-gear"></i>
+          </span>
         </div>
+        <div class="bu-wordmark" lang="ar" dir="rtl">بُرْهَان</div>
+        <p class="bu-tagline">Verifiable answers from the Qur'an and authenticated Sunni hadith.</p>
+
+        <div class="bu-search">
+          <i class="fa-solid fa-magnifying-glass"></i>
+          <span>should i share news i can't verify</span>
+        </div>
+
+        <div class="bu-scope">
+          <i class="fa-solid fa-circle-info"></i>
+          <span>Qur'an only. No hadith is bundled, so reports from the Sunnah cannot be checked here.</span>
+        </div>
+
+        <article class="bu-result">
+          <div class="bu-ref">Al-Hujurat 49:6</div>
+          <p class="bu-en">O believers, if an evildoer brings you any news, verify ˹it˺ so you do not harm people
+            unknowingly, becoming regretful for what you have done.</p>
+          <p class="bu-ayah" lang="ar" dir="rtl">يَٰٓأَيُّهَا ٱلَّذِينَ ءَامَنُوٓا۟ إِن جَآءَكُمْ فَاسِقٌۢ بِنَبَإٍ
+            فَتَبَيَّنُوٓا۟ أَن تُصِيبُوا۟ قَوْمًۢا بِجَهَٰلَةٍ فَتُصْبِحُوا۟ عَلَىٰ مَا فَعَلْتُمْ نَٰدِمِينَ</p>
+          <span class="bu-src"><i class="fa-solid fa-arrow-up-right-from-square"></i> View original source</span>
+        </article>
       </div>
     </section>
 
     <!-- STATS -->
-    <div class="laith-stats">
-      <div class="stat">
-        <div class="label">Price</div>
-        <div class="val ok">Free · forever</div>
-      </div>
-      <div class="stat">
-        <div class="label">Ads &amp; Tracking</div>
-        <div class="val ok">None</div>
-      </div>
-      <div class="stat">
-        <div class="label">Works Offline</div>
-        <div class="val ok">Always</div>
-      </div>
-      <div class="stat">
-        <div class="label">Qur'an Verses</div>
-        <div class="val">6,236 · all of them</div>
-      </div>
-      <div class="stat">
-        <div class="label">Words It Writes Itself</div>
-        <div class="val ok">Zero</div>
-      </div>
-    </div>
+    <dl class="laith-specs">
+      <div><dt>Price</dt><dd class="ok">Free, forever</dd></div>
+      <div><dt>Ads &amp; tracking</dt><dd class="ok">None</dd></div>
+      <div><dt>Works offline</dt><dd class="ok">Always</dd></div>
+      <div><dt>Qur&rsquo;an verses</dt><dd>6,236 (all of them)</dd></div>
+      <div><dt>Words it writes itself</dt><dd class="ok">Zero</dd></div>
+    </dl>
 
     <!-- THE PROMISE -->
     <section class="laith-section">
-      <div class="head">
-        <h2 class="title">Most "AI Islam" apps can make things up</h2>
-        <span class="meta">[ THIS ONE CAN'T ]</span>
+      <div class="section-head">
+        <h2 class="section-title">Most "AI Islam" apps can make things up. This one can't.</h2>
       </div>
 
       <p class="blurb">
@@ -354,9 +333,8 @@
 
     <!-- HOW IT WORKS -->
     <section class="laith-section" id="how">
-      <div class="head">
-        <h2 class="title">How it works</h2>
-        <span class="meta">[ ASK · IT SEARCHES · YOU SEE THE SOURCE ]</span>
+      <div class="section-head">
+        <h2 class="section-title">How it works</h2>
       </div>
 
       <p class="blurb">
@@ -368,7 +346,7 @@
         <div class="step">
           <div class="n">01</div>
           <div class="body">
-            <span class="label">ASK IN YOUR OWN WORDS</span>
+            <span class="label">Ask in your own words</span>
             <span class="what">"Is interest allowed?" · "what does the quran say about parents" · a verse typed out in
               Arabic.</span>
             <span class="why">It knows everyday religious vocabulary too, so asking about <em>zakat</em> finds the
@@ -378,7 +356,7 @@
         <div class="step">
           <div class="n">02</div>
           <div class="body">
-            <span class="label">YOUR PHONE DOES THE SEARCHING</span>
+            <span class="label">Your phone does the searching</span>
             <span class="what">It compares your question against all 6,236 verses, in English and Arabic, right on the
               device.</span>
             <span class="why">No search request is sent anywhere. That is why it works offline, and why nobody
@@ -388,7 +366,7 @@
         <div class="step">
           <div class="n">03</div>
           <div class="body">
-            <span class="label">YOU GET THE PASSAGE AND ITS SOURCE</span>
+            <span class="label">You get the passage and its source</span>
             <span class="what">The translation, the Arabic, the surah and verse, and a link to the original.</span>
             <span class="why">Or "I don't have a sound source for that", which counts as a real answer here.</span>
           </div>
@@ -398,10 +376,11 @@
 
     <!-- HONEST REFUSAL -->
     <section class="laith-section">
-      <div class="head">
-        <h2 class="title">It would rather say nothing</h2>
-        <span class="meta">[ WHAT IT DOES WHEN IT DOESN'T KNOW ]</span>
+      <div class="section-head">
+        <h2 class="section-title">It would rather say nothing</h2>
       </div>
+
+      <p class="blurb">What it does when it doesn't know.</p>
 
       <div class="bu-split">
         <div class="bu-split-copy">
@@ -442,7 +421,7 @@
               <i class="fa-solid fa-xmark"></i>
             </span>
             <p class="bu-empty-line">I don't have a sound source for that.</p>
-            <p class="bu-empty-scope">This app searches the Qur'an only — all 6,236 verses. No hadith collection is
+            <p class="bu-empty-scope">This app searches the Qur'an only: all 6,236 verses. No hadith collection is
               bundled yet, so it cannot check anything reported from the Sunnah.</p>
           </div>
         </div>
@@ -451,9 +430,8 @@
 
     <!-- WHAT'S INSIDE -->
     <section class="laith-section">
-      <div class="head">
-        <h2 class="title">What's inside today</h2>
-        <span class="meta">[ NO SURPRISES ]</span>
+      <div class="section-head">
+        <h2 class="section-title">What's inside today</h2>
       </div>
 
       <p class="blurb">
@@ -498,13 +476,12 @@
 
     <!-- PRICE -->
     <section class="laith-section">
-      <div class="head">
-        <h2 class="title">Free. Actually free.</h2>
-        <span class="meta">[ NOTHING TO BUY, EVER ]</span>
+      <div class="section-head">
+        <h2 class="section-title">Free. Actually free.</h2>
       </div>
 
       <div class="bu-price">
-        <div class="bu-price-num">$0<span>no ads · no subscription · no "pro" tier</span></div>
+        <div class="bu-price-num">$0<span>No ads, no subscription, no "pro" tier.</span></div>
         <div class="bu-price-copy">
           There's no business model here to protect, which is what makes
           the privacy promises easy to keep. With no server and no
@@ -520,14 +497,14 @@
 
     <!-- FAQ -->
     <section class="laith-section">
-      <div class="head">
-        <h2 class="title">Questions</h2>
-        <span class="meta">[ THE ONES I GET ASKED ]</span>
+      <div class="section-head">
+        <h2 class="section-title">Questions</h2>
       </div>
 
       <div class="bu-faq">
         <details class="bu-faq-item">
-          <summary>Can it invent a verse, like ChatGPT sometimes does?<span class="bu-faq-icon" aria-hidden="true"></span></summary>
+          <summary>Can it invent a verse, like ChatGPT sometimes does?<span class="bu-faq-icon"
+              aria-hidden="true"></span></summary>
           <p>
             No, and not because it was told not to. There is no
             text-generating model inside the app. It can only find and
@@ -587,60 +564,25 @@
 
     <!-- CTA -->
     <section class="laith-cta bu-cta" id="invite">
-      <span class="kicker">// فَتَبَيَّنُوا۟ — VERIFY</span>
-      <h2 class="hackedEffect">TRY IT BEFORE ANYONE ELSE</h2>
+      <p class="kicker bu-kicker"><span lang="ar" dir="rtl">فَتَبَيَّنُوا۟</span>: verify</p>
+      <h2>Try it before anyone else</h2>
       <p>
-        Burhan is in private TestFlight while the last pieces land. Tell
-        me where to send the invite and I'll add you to the build. If
-        you're a scholar who'd be willing to check the dataset by hand,
-        say so below, I'd especially like to hear from you.
+        Burhan is on TestFlight while the last pieces land, and the beta
+        is open, so you can install it straight from Apple. If you're a
+        scholar who'd be willing to check the dataset by hand,
+        <a href="mailto:layth.hammad49@gmail.com?subject=Burhan%20dataset%20review">get in
+          touch</a>. I'd especially like to hear from you.
       </p>
 
-      <form class="bu-form" id="inviteForm" novalidate>
-        <div class="bu-field">
-          <label for="inv-email">Email <span class="req">required</span></label>
-          <input id="inv-email" name="email" type="email" required autocomplete="email" inputmode="email"
-            placeholder="you@example.com" />
-          <p class="bu-hint">This is the address Apple sends the TestFlight invite to.</p>
-        </div>
+      <div class="bu-cta-actions">
+        <a class="btn primary" href="https://testflight.apple.com/join/SSe4ZzZH" target="_blank"
+          rel="noopener noreferrer">
+          Join the TestFlight beta <span class="arrow">&rarr;</span>
+        </a>
+        <a class="btn" href="/projects">Other projects</a>
+      </div>
 
-        <div class="bu-field">
-          <label for="inv-name">Name <span class="opt">optional</span></label>
-          <input id="inv-name" name="name" type="text" autocomplete="name" placeholder="What should I call you?" />
-        </div>
-
-        <div class="bu-field">
-          <label for="inv-device">iPhone and iOS version <span class="opt">optional</span></label>
-          <input id="inv-device" name="device" type="text" placeholder="e.g. iPhone 13, iOS 18" />
-          <p class="bu-hint">Genuinely useful. I haven't measured speed and memory across many devices yet.</p>
-        </div>
-
-        <div class="bu-field bu-field-wide">
-          <label for="inv-note">Anything else <span class="opt">optional</span></label>
-          <textarea id="inv-note" name="note" rows="3" maxlength="500"
-            placeholder="How you'd use it, what you'd want checked, or that you're able to review the Arabic or the dataset."></textarea>
-        </div>
-
-        <!-- Honeypot: hidden from people, catches naive bots. Not a real field. -->
-        <div class="bu-hp" aria-hidden="true">
-          <label for="inv-website">Website</label>
-          <input id="inv-website" name="website" type="text" tabindex="-1" autocomplete="off" />
-        </div>
-
-        <p class="bu-form-privacy">
-          <i class="fa-solid fa-lock"></i>
-          <span>Your address goes to me and to Apple's TestFlight, and nowhere else. There's no mailing list to
-            join.</span>
-        </p>
-
-        <div class="bu-form-actions">
-          <button type="submit" class="btn primary">Send the request <span class="arrow">→</span></button>
-          <a href="/projects" class="btn">← Other Projects</a>
-        </div>
-
-        <p class="bu-form-status" role="status" aria-live="polite"></p>
-      </form>
-
+      <br />
       <p class="bu-cta-fine">Free, with no ads and no subscription. Your searches never leave your phone.</p>
     </section>
   </main>

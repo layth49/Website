@@ -50,14 +50,19 @@
   transform: translateX(-2px);
 }
 
-.social-link .fa {
-  font-size: 1.25rem;
-  color: inherit;
-  transition: inherit;
+/* Inline SVG icons. Sized here so the rail no longer needs an icon font.
+   The .fa rules stayed for the pages still on Font Awesome. */
+.social-link a svg {
+  width: 19px;
+  height: 19px;
+  display: block;
 }
 
-.social-link .fa:hover {
-  color: var(--accent);
+.social-link .fa-brands,
+.social-link .fa-regular,
+.social-link .fa-solid {
+  font-size: 1.25rem;
+  color: inherit;
 }
 
 /* On mobile, dock to bottom and go horizontal */

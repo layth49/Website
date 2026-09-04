@@ -17,7 +17,7 @@
   <meta property="og:image" content="https://layth49.com/assets/og-image.png" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
-  <meta property="og:image:alt" content="layth49 — software &amp; automation" />
+  <meta property="og:image:alt" content="layth49, software &amp; automation" />
 
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image" />
@@ -31,7 +31,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link
-    href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700;800&family=Geist:wght@400;500;600;700&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@75..125,400..800&family=Geist:wght@400;500;600&family=JetBrains+Mono:wght@400;700&display=swap"
     rel="stylesheet" />
 
   <!-- Icon font -->
@@ -82,6 +82,8 @@
 </head>
 
 <body>
+  <a href="#main" class="skip-link">Skip to content</a>
+
   <!-- NAV -->
   <nav class="navBar">
     <div class="logo">
@@ -103,7 +105,6 @@
     </div>
 
     <div class="nav-end">
-      <span class="status-pill"><span class="dot"></span> AVAILABLE</span>
     </div>
   </nav>
 
@@ -112,26 +113,18 @@
     <a href="https://github.com/layth49/Personal-Assistant" target="_blank" rel="noopener noreferrer" aria-label="L.A.I.T.H.49 on GitHub">
       <i class="fa-brands fa-github"></i>
     </a>
-    <a href="mailto:laythandamin@gmail.com" aria-label="Email">
+    <a href="mailto:layth.hammad49@gmail.com" aria-label="Email">
       <i class="fa-regular fa-envelope"></i>
     </a>
   </aside>
 
-  <main class="container">
+  <main id="main" class="container">
     <!-- HERO -->
     <section class="laith-hero no-media">
       <div>
-        <div class="eyebrow">
-          <span class="line"></span>
-          <span>PROJECT FILE / 01 · FLAGSHIP</span>
-        </div>
+        <p class="kicker">Say "Hey 49"</p>
 
-        <span class="wakeword">
-          <span class="pulse"></span>
-          // say "Hey 49"
-        </span>
-
-        <h1 class="hackedEffect">L.Λ.I.T.H.49</h1>
+        <h1>L.Λ.I.T.H.49</h1>
         <p class="tagline">Logical Assistant for Intelligent Task Handling</p>
         <p class="lede">
           <strong>My voice assistant for Windows.</strong> Say
@@ -149,41 +142,25 @@
             <i class="fa-brands fa-github"></i> View on GitHub <span class="arrow">→</span>
           </a>
           <a href="/projects" class="btn">
-            ← All Projects
+            All projects
           </a>
         </div>
       </div>
     </section>
 
-    <!-- STATS -->
-    <div class="laith-stats">
-      <div class="stat">
-        <div class="label">Status</div>
-        <div class="val warn">In Progress</div>
-      </div>
-      <div class="stat">
-        <div class="label">Wake Word</div>
-        <div class="val accent">"Hey 49"</div>
-      </div>
-      <div class="stat">
-        <div class="label">Runtime</div>
-        <div class="val">.NET 4.8.1 + Py 3.12</div>
-      </div>
-      <div class="stat">
-        <div class="label">Tools</div>
-        <div class="val accent">38 · LLM-routed</div>
-      </div>
-      <div class="stat">
-        <div class="label">Builds</div>
-        <div class="val accent">Cloud + Local</div>
-      </div>
-    </div>
+    <!-- SPECS -->
+    <dl class="laith-specs">
+      <div><dt>Status</dt><dd><span class="tag warn">In Progress</span></dd></div>
+      <div><dt>Wake word</dt><dd><code>"Hey 49"</code></dd></div>
+      <div><dt>Runtime</dt><dd><code>.NET 4.8.1</code> + <code>Python 3.12</code></dd></div>
+      <div><dt>Tools</dt><dd><code>38</code>, LLM-routed</dd></div>
+      <div><dt>Builds</dt><dd>Cloud and local</dd></div>
+    </dl>
 
     <!-- HOW A TURN WORKS -->
     <section class="laith-section">
       <div class="head">
         <h2 class="title">How a turn works</h2>
-        <span class="meta">[ WAKE → CONVERSE → ACT → SPEAK ]</span>
       </div>
 
       <p class="blurb">
@@ -198,7 +175,7 @@
         <div class="step">
           <div class="n">01</div>
           <div class="body">
-            <span class="label">WAKE + GREET</span>
+            <span class="label">Wake and greet</span>
             <span class="what">On-device Azure <code>KeywordRecognizer</code> matches <code>"Hey 49"</code>, then a time-of-day greeting.</span>
             <span class="why">It's the one Azure piece the local build kept. It matches against <code>keyword.table</code> on disk, so nothing leaves the machine. You can talk over the greeting.</span>
           </div>
@@ -206,7 +183,7 @@
         <div class="step">
           <div class="n">02</div>
           <div class="body">
-            <span class="label">OPEN THE SESSION</span>
+            <span class="label">Open the session</span>
             <span class="what">Cloud: a WebSocket to the Gemini Live API. 16&nbsp;kHz mono PCM goes up while you're still talking. Local: NAudio captures with silence detection and POSTs the WAV to faster-whisper, a turn at a time.</span>
             <span class="why">The cloud build is genuinely speech-to-speech: there's no transcript in the middle. If the socket faults or the key's bad, it drops back to the old turn-based Azure path for one conversation and says so out loud, then retries Live on the next wake word.</span>
           </div>
@@ -214,7 +191,7 @@
         <div class="step">
           <div class="n">03</div>
           <div class="body">
-            <span class="label">ROUTE</span>
+            <span class="label">Route</span>
             <span class="what">The whole tool catalogue goes up as schemas, alongside recent turns.</span>
             <span class="why">What comes back is a batch of tool calls, a sequence it built out of primitives, or just an answer. Search is grounded in-session on the cloud build; on the local one it's another tool, so it only fires when the model decides it needs one.</span>
           </div>
@@ -222,7 +199,7 @@
         <div class="step">
           <div class="n">04</div>
           <div class="body">
-            <span class="label">DISPATCH</span>
+            <span class="label">Dispatch</span>
             <span class="what">Each tool is validated against its schema, then run in order.</span>
             <span class="why">Compound requests show up as several calls at once. If one fails validation the rest still run. If the LLM times out or hands back junk, there's a keyword matcher behind it, and plain chat behind that.</span>
           </div>
@@ -230,7 +207,7 @@
         <div class="step">
           <div class="n">05</div>
           <div class="body">
-            <span class="label">SPEAK</span>
+            <span class="label">Speak</span>
             <span class="what">The reply plays as it arrives (the model's own voice on cloud, Kokoro on local) with the glass bubble alongside it. Say "Hey 49" to cut it off.</span>
             <span class="why">A second wake-word listener runs the whole time it's talking. When that one fires, playback stops mid-word and the bubble slides away.</span>
           </div>
@@ -242,7 +219,6 @@
     <section class="laith-section">
       <div class="head">
         <h2 class="title">What it can do</h2>
-        <span class="meta">[ 38 tools · 9 domains ]</span>
       </div>
 
       <p class="blurb">
@@ -252,7 +228,7 @@
       </p>
 
       <div class="feature-group">
-        <h3>Smart home &amp; hardware <span class="count">[ 03 ]</span></h3>
+        <h3>Smart home &amp; hardware (3)</h3>
         <div class="features-grid">
           <div class="feature">
             <span class="icon"><i class="fa-solid fa-lightbulb"></i></span>
@@ -279,7 +255,7 @@
       </div>
 
       <div class="feature-group">
-        <h3>PC control <span class="count">[ 06 ]</span></h3>
+        <h3>PC control (6)</h3>
         <div class="features-grid">
           <div class="feature">
             <span class="icon"><i class="fa-solid fa-volume-high"></i></span>
@@ -327,7 +303,7 @@
       </div>
 
       <div class="feature-group">
-        <h3>Media <span class="count">[ 02 ]</span></h3>
+        <h3>Media (2)</h3>
         <div class="features-grid">
           <div class="feature">
             <span class="icon"><i class="fa-solid fa-play"></i></span>
@@ -347,7 +323,7 @@
       </div>
 
       <div class="feature-group">
-        <h3>Timers, alarms &amp; reminders <span class="count">[ 03 ]</span></h3>
+        <h3>Timers, alarms &amp; reminders (3)</h3>
         <div class="features-grid">
           <div class="feature">
             <span class="icon"><i class="fa-solid fa-hourglass-half"></i></span>
@@ -374,7 +350,7 @@
       </div>
 
       <div class="feature-group">
-        <h3>Information <span class="count">[ 05 ]</span></h3>
+        <h3>Information (5)</h3>
         <div class="features-grid">
           <div class="feature">
             <span class="icon"><i class="fa-solid fa-cloud-sun"></i></span>
@@ -415,7 +391,7 @@
       </div>
 
       <div class="feature-group">
-        <h3>Communication &amp; general <span class="count">[ 05 ]</span></h3>
+        <h3>Communication &amp; general (5)</h3>
         <div class="features-grid">
           <div class="feature">
             <span class="icon"><i class="fa-solid fa-comment-sms"></i></span>
@@ -456,7 +432,7 @@
       </div>
 
       <div class="feature-group">
-        <h3>Standing rules &amp; suggestions <span class="count">[ 05 ]</span></h3>
+        <h3>Standing rules &amp; suggestions (4)</h3>
         <div class="features-grid">
           <div class="feature">
             <span class="icon"><i class="fa-solid fa-bolt"></i></span>
@@ -499,7 +475,7 @@
       </div>
 
       <div class="feature-group">
-        <h3>Call screening <span class="count">[ 03 ]</span></h3>
+        <h3>Call screening (3)</h3>
         <div class="features-grid">
           <div class="feature">
             <span class="icon"><i class="fa-solid fa-phone-volume"></i></span>
@@ -536,7 +512,7 @@
       </div>
 
       <div class="feature-group">
-        <h3>Composition primitives <span class="count">[ 02 ]</span></h3>
+        <h3>Composition primitives (2)</h3>
         <div class="features-grid">
           <div class="feature">
             <span class="icon"><i class="fa-solid fa-stopwatch"></i></span>
@@ -568,7 +544,6 @@
     <section class="laith-section">
       <div class="head">
         <h2 class="title">LLM-first dispatch</h2>
-        <span class="meta">[ ARCHITECTURE ]</span>
       </div>
 
       <p class="blurb">
@@ -643,7 +618,6 @@
     <section class="laith-section">
       <div class="head">
         <h2 class="title">The speech bubble</h2>
-        <span class="meta">[ PYTHON · PYGAME · VIA PYTHONNET ]</span>
       </div>
 
       <div class="bubble-layout">
@@ -678,7 +652,6 @@
     <section class="laith-section">
       <div class="head">
         <h2 class="title">Two builds</h2>
-        <span class="meta">[ CLOUD + LOCAL ]</span>
       </div>
 
       <p class="blurb">
@@ -745,7 +718,6 @@
     <section class="laith-section">
       <div class="head">
         <h2 class="title">Computer control</h2>
-        <span class="meta">[ EXPERIMENTAL BRANCH ]</span>
       </div>
 
       <p class="blurb" style="margin-bottom: 1.25rem;">
@@ -762,7 +734,6 @@
     <section class="laith-section">
       <div class="head">
         <h2 class="title">Stack</h2>
-        <span class="meta">[ WHAT IT'S BUILT ON ]</span>
       </div>
 
       <div class="stack-grid">
@@ -808,7 +779,6 @@
     <section class="laith-section">
       <div class="head">
         <h2 class="title">Roadmap</h2>
-        <span class="meta">[ EVER-GROWING ]</span>
       </div>
 
       <div class="roadmap">
@@ -884,7 +854,6 @@
     <section class="laith-section">
       <div class="head">
         <h2 class="title">Acknowledgements</h2>
-        <span class="meta">[ CREDITS ]</span>
       </div>
 
       <div class="credits">
@@ -907,15 +876,14 @@
 
     <!-- CTA -->
     <section class="laith-cta">
-      <span class="kicker">// SEE THE SOURCE</span>
-      <h2 class="hackedEffect">DIG IN</h2>
+      <h2>Dig in</h2>
       <p>All of it's public, down to the Arduino serial commands. Fork it, copy a service out of it, whatever's useful.</p>
       <div class="links">
         <a href="https://github.com/layth49/Personal-Assistant" target="_blank" rel="noopener noreferrer" class="btn primary">
-          <i class="fa-brands fa-github"></i> Open Repository <span class="arrow">→</span>
+          <i class="fa-brands fa-github"></i> Open repository <span class="arrow">→</span>
         </a>
         <a href="/projects" class="btn">
-          ← Other Projects
+          Other projects
         </a>
       </div>
     </section>

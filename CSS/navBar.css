@@ -51,15 +51,6 @@
   color: var(--ink);
 }
 
-.navBar .logo::before {
-  content: ">";
-  font-family: var(--font-mono);
-  font-size: 0.95rem;
-  font-weight: 600;
-  color: var(--accent);
-  order: -1;
-}
-
 /* logo wraps the img + we use ::before/::after on parent */
 .navBar .logo { padding: 0; }
 .navBar .logo a img { display: block; }
@@ -99,14 +90,6 @@
   color: var(--ink);
   background: var(--accent-soft);
   border-color: var(--border-accent);
-}
-
-.menuItems > div.active a::before {
-  content: "● ";
-  color: var(--accent);
-  font-size: 0.7em;
-  margin-right: 0.2em;
-  vertical-align: middle;
 }
 
 /* Right-side area for socials / actions */

@@ -2,60 +2,28 @@
    About page
    ============================================================ */
 
+/* ---- Hero ---------------------------------------------------- */
 .about-hero {
-  padding: 6rem 0 3rem;
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 2rem;
+  padding: 6rem 0 4rem;
 }
 
 @media (min-width: 900px) {
-  .about-hero {
-    grid-template-columns: 1.4fr 1fr;
-    gap: 4rem;
-    padding: 8rem 0 4rem;
-    align-items: end;
-  }
-}
-
-.about-hero .eyebrow {
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-  font-family: var(--font-mono);
-  font-size: 0.78rem;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  color: var(--ink-dim);
-  margin-bottom: 1rem;
-}
-
-.about-hero .eyebrow .line {
-  width: 32px;
-  height: 1px;
-  background: var(--accent);
+  .about-hero { padding: 8rem 0 5rem; }
 }
 
 .about-hero h1 {
   font-family: var(--font-display);
   font-size: var(--step-5);
   letter-spacing: -0.03em;
-  text-transform: uppercase;
-  margin-bottom: 1.25rem;
-}
-
-.about-hero h1::before {
-  content: "// ";
-  color: var(--accent);
-  font-weight: 400;
+  margin-bottom: 1.5rem;
 }
 
 .about-hero .lede {
-  font-family: var(--font-mono);
+  font-family: var(--font-sans);
   font-size: var(--step-2);
+  line-height: 1.5;
   color: var(--ink-muted);
-  max-width: 36ch;
-  line-height: 1.4;
+  max-width: 46ch;
 }
 
 .about-hero .lede strong {
@@ -63,102 +31,65 @@
   font-weight: 600;
 }
 
-/* Side card (id card style) */
-.id-card {
-  background: var(--bg-card);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-lg);
-  padding: 1.5rem;
-  font-family: var(--font-mono);
-  font-size: 0.85rem;
-  position: relative;
-  overflow: hidden;
-}
-
-.id-card::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 2px;
-  background: linear-gradient(90deg, transparent, var(--accent), transparent);
-  opacity: 0.5;
-}
-
-.id-card .row {
-  display: grid;
-  grid-template-columns: 7rem 1fr;
-  gap: 0.75rem;
-  padding: 0.55rem 0;
-  border-bottom: 1px dashed var(--border);
-}
-
-.id-card .row:last-child { border-bottom: none; }
-
-.id-card .row .k {
+.hero-meta {
+  margin-top: 1.9rem;
+  font-size: var(--step-0);
   color: var(--ink-dim);
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  font-size: 0.7rem;
+  max-width: 62ch;
 }
 
-.id-card .row .v {
-  color: var(--ink);
-  word-break: break-word;
+.hero-contact {
+  margin-top: 0.4rem;
+  font-size: var(--step-0);
 }
 
-.id-card .row .v.accent { color: var(--accent); }
-.id-card .row .v.ok { color: var(--ok); }
+.hero-contact a {
+  color: var(--ink-muted);
+  border-bottom: 1px solid var(--border-strong);
+  padding-bottom: 2px;
+  transition: color var(--t-fast) var(--ease),
+              border-color var(--t-fast) var(--ease);
+}
 
-/* Sections */
+.hero-contact a:hover {
+  color: var(--accent);
+  border-color: var(--border-accent);
+}
+
+/* ---- Sections ------------------------------------------------ */
 .about-section {
-  padding: 4rem 0;
-  border-top: 1px solid var(--border);
+  padding: 0 0 4.5rem;
 }
 
-.about-section .section-head {
+.section-head {
   display: flex;
   align-items: baseline;
   justify-content: space-between;
   gap: 1rem;
-  margin-bottom: 2.5rem;
   flex-wrap: wrap;
+  margin-bottom: 2.25rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--border);
 }
 
-.about-section .section-title {
+.section-title {
   font-family: var(--font-display);
   font-size: var(--step-3);
+  font-weight: 700;
   letter-spacing: -0.02em;
-  text-transform: uppercase;
 }
 
-.about-section .section-title::before {
-  content: "// ";
-  color: var(--accent);
-  font-weight: 400;
-}
-
-.about-section .section-meta {
-  font-family: var(--font-mono);
-  font-size: 0.78rem;
-  color: var(--ink-dim);
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-}
-
-/* Bio prose */
+/* ---- Bio prose ----------------------------------------------- */
 .bio {
   display: grid;
-  grid-template-columns: 1fr;
   gap: 1.25rem;
-  max-width: 65ch;
+  max-width: var(--measure);
 }
 
 .bio p {
   font-size: var(--step-1);
+  line-height: 1.75;
   color: var(--ink-muted);
-  line-height: 1.7;
 }
 
 .bio p strong {
@@ -166,239 +97,115 @@
   font-weight: 600;
 }
 
-/* Disciplines grid */
+/* ---- Disciplines: two columns of prose, no boxes ------------- */
 .disciplines {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 1.25rem;
+  grid-template-columns: 1fr;
+  column-gap: 4rem;
+  row-gap: 2.5rem;
+}
+
+@media (min-width: 760px) {
+  .disciplines { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
 
 .discipline {
-  padding: 1.5rem;
-  background: var(--bg-card);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  transition: transform var(--t-base) var(--ease),
-              border-color var(--t-base) var(--ease),
-              background var(--t-base) var(--ease);
-}
-
-.discipline:hover {
-  transform: translateY(-4px);
-  border-color: var(--border-accent);
-  background: var(--bg-card-hover);
-}
-
-.discipline .num {
-  font-family: var(--font-mono);
-  font-size: 0.72rem;
-  color: var(--accent);
-  letter-spacing: 0.15em;
+  border-top: 1px solid var(--border);
+  padding-top: 1.15rem;
 }
 
 .discipline h3 {
   font-family: var(--font-display);
-  font-size: 1.25rem;
-  margin: 0.5rem 0 0.75rem;
+  font-size: 1.35rem;
   letter-spacing: -0.01em;
+  margin-bottom: 0.6rem;
 }
 
 .discipline p {
+  font-size: 0.98rem;
+  line-height: 1.65;
   color: var(--ink-muted);
-  font-size: 0.92rem;
-  line-height: 1.55;
+  max-width: 44ch;
 }
 
-/* Timeline */
+/* ---- Timeline: a hanging-label chronology -------------------- */
 .timeline {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-  position: relative;
-}
-
-.timeline::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 12px;
-  width: 1px;
-  background: linear-gradient(to bottom,
-    var(--accent) 0%,
-    var(--border) 30%,
-    var(--border) 100%);
+  list-style: none;
+  margin: 0;
+  padding: 0;
 }
 
 .timeline .entry {
+  max-width: none;
   display: grid;
-  grid-template-columns: 32px 1fr;
-  gap: 1.25rem;
-  align-items: start;
-  position: relative;
+  grid-template-columns: 1fr;
+  gap: 0.45rem;
+  padding: 1.4rem 0;
+  border-top: 1px solid var(--border);
 }
 
-.timeline .entry .dot-wrap {
-  position: relative;
-  z-index: 1;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 24px;
-  height: 24px;
-  border-radius: 50%;
-  background: var(--bg);
-  border: 1px solid var(--border-accent);
+.timeline .entry:first-child {
+  border-top: none;
+  padding-top: 0;
 }
 
-.timeline .entry .dot-wrap::before {
-  content: "";
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background: var(--accent);
+@media (min-width: 760px) {
+  .timeline .entry {
+    grid-template-columns: 15rem minmax(0, 1fr);
+    gap: 2.5rem;
+    align-items: baseline;
+  }
 }
 
-.timeline .entry .body {
-  padding: 0.85rem 1.25rem 1rem;
-  background: var(--bg-card);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  transition: border-color var(--t-base) var(--ease),
-              transform var(--t-base) var(--ease);
-}
-
-.timeline .entry:hover .body {
-  border-color: var(--border-accent);
-  transform: translateX(4px);
-}
-
-.timeline .entry .when {
-  font-family: var(--font-mono);
-  font-size: 0.72rem;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--ink-dim);
-}
-
-.timeline .entry .title {
+.timeline .title {
   font-family: var(--font-display);
-  font-size: 1.1rem;
+  font-size: 1.15rem;
   font-weight: 700;
-  margin: 0.25rem 0 0.5rem;
+  letter-spacing: -0.01em;
   color: var(--ink);
 }
 
-.timeline .entry p {
+.timeline p {
+  font-size: 0.98rem;
+  line-height: 1.65;
   color: var(--ink-muted);
-  font-size: 0.92rem;
-  line-height: 1.5;
 }
 
-/* Stack stripe: homage to the construction stripes from the old page */
-.stack-stripe {
-  height: 6px;
-  background: repeating-linear-gradient(45deg,
-    var(--accent) 0,
-    var(--accent) 14px,
-    var(--bg) 14px,
-    var(--bg) 28px);
-  margin: 4rem 0;
-  border-radius: 3px;
-  opacity: 0.7;
-}
-
-/* Contact CTA */
+/* ---- Closing contact block ----------------------------------- */
 .about-cta {
-  margin: 3rem 0 6rem;
-  padding: 4rem 2rem;
-  border: 1px solid var(--border);
-  border-radius: var(--radius-lg);
-  background:
-    linear-gradient(135deg, var(--bg-card) 0%, var(--bg-elevated) 100%);
-  text-align: center;
-  position: relative;
-  overflow: hidden;
-}
-
-.about-cta::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(circle at 20% 80%, var(--accent-soft) 0%, transparent 50%);
-  pointer-events: none;
-}
-
-.about-cta > * { position: relative; z-index: 1; }
-
-.about-cta .kicker {
-  display: block;
-  margin-bottom: 0.5rem;
+  border-top: 1px solid var(--border);
+  padding: 3rem 0 5rem;
 }
 
 .about-cta h2 {
   font-family: var(--font-display);
   font-size: var(--step-4);
-  margin-bottom: 1rem;
-  text-transform: uppercase;
+  letter-spacing: -0.02em;
+  margin-bottom: 0.9rem;
 }
 
 .about-cta p {
   color: var(--ink-muted);
-  margin: 0 auto 2rem;
-  max-width: 50ch;
+  margin-bottom: 2rem;
+  max-width: 58ch;
 }
 
 .about-cta .links {
   display: flex;
   gap: 0.75rem;
-  justify-content: center;
   flex-wrap: wrap;
 }
 
-.btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  font-family: var(--font-mono);
-  font-size: 0.85rem;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  padding: 0.85rem 1.25rem;
-  border-radius: var(--radius-sm);
-  border: 1px solid var(--border-strong);
-  background: var(--bg-elevated);
-  color: var(--ink);
-  cursor: pointer;
-  transition: transform var(--t-fast) var(--ease),
-              background var(--t-fast) var(--ease),
-              border-color var(--t-fast) var(--ease),
-              box-shadow var(--t-fast) var(--ease);
-}
 
-.btn:hover {
-  background: var(--bg-card-hover);
-  border-color: var(--ink-dim);
-  transform: translateY(-2px);
+/* Inline SVGs have no intrinsic size the way an icon-font glyph does. */
+.icon {
+  width: 1.05em;
+  height: 1.05em;
+  flex-shrink: 0;
 }
-
-.btn.primary {
-  background: var(--accent);
-  color: white;
-  border-color: var(--accent);
-}
-
-.btn.primary:hover {
-  background: #ff4444;
-  box-shadow: 0 0 24px var(--accent-glow);
-}
-
-.btn .arrow { transition: transform var(--t-fast) var(--ease); }
-.btn:hover .arrow { transform: translateX(3px); }
 
 @media (max-width: 768px) {
-  .about-hero { padding: 4rem 0 2rem; }
-  .about-section { padding: 3rem 0; }
-  .about-cta { padding: 2.5rem 1.25rem; margin-bottom: 4rem; }
-  .id-card .row { grid-template-columns: 5.5rem 1fr; }
+  .about-hero { padding: 4rem 0 2.5rem; }
+  .about-section { padding-bottom: 3.25rem; }
+  .about-cta { padding: 2.5rem 0 4rem; }
 }

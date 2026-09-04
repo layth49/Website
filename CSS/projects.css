@@ -6,43 +6,38 @@
   padding: 5rem 0 3rem;
 }
 
-.projects-hero .eyebrow {
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
+/* The one kicker this page gets. It carries a real count, nothing else. */
+.projects-hero .kicker {
   font-family: var(--font-mono);
   font-size: 0.78rem;
-  letter-spacing: 0.2em;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
   color: var(--ink-dim);
-  margin-bottom: 1rem;
-}
-
-.projects-hero .eyebrow .line {
-  width: 32px;
-  height: 1px;
-  background: var(--accent);
+  margin: 0 0 0.85rem;
 }
 
 .projects-hero h1 {
   font-family: var(--font-display);
   font-size: var(--step-5);
+  font-weight: 700;
   letter-spacing: -0.03em;
-  text-transform: uppercase;
-  margin-bottom: 1rem;
+  line-height: 1.02;
+  margin: 0 0 1.1rem;
 }
 
-.projects-hero h1::before {
-  content: "// ";
-  color: var(--accent);
-  font-weight: 400;
-}
-
-.projects-hero p {
-  font-family: var(--font-mono);
+.projects-hero .lede {
+  font-family: var(--font-sans);
   font-size: var(--step-1);
   color: var(--ink-muted);
-  max-width: 60ch;
+  max-width: var(--measure);
+  margin: 0;
+}
+
+/* Inline SVGs have no intrinsic size the way an icon-font glyph does. */
+.icon {
+  width: 1em;
+  height: 1em;
+  flex-shrink: 0;
 }
 
 /* Filter bar */
@@ -99,20 +94,28 @@
   border-color: var(--border-accent);
 }
 
-.chip.active::before {
-  content: "● ";
-  color: var(--accent);
-  font-size: 0.7em;
-  margin-right: 0.2em;
-}
-
-/* Grid */
+/* Grid.
+   Three tracks, and cells at three different widths so nineteen entries
+   don't read as nineteen identical boxes:
+     .flagship  -- L.A.I.T.H.49, a full row laid out side-on
+     .featured  -- the three other write-ups, two tracks wide
+     everything else -- one track
+   DOM order pairs each two-wide card with a one-wide neighbour, so no
+   row is left with a hole in it. */
 .cards {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(min(100%, 320px), 1fr));
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 1.5rem;
   margin: 0 0 6rem;
+  /* Each card is as tall as its own content. Without this, grid stretches
+     every card in a row to match the tallest one, so a three-line text card
+     sitting beside a card with a screenshot inherits its height and fills
+     the difference with dead space. */
+  align-items: start;
 }
+
+.cards .card.featured { grid-column: span 2; }
+.cards .card.flagship { grid-column: 1 / -1; }
 
 .cards .card {
   display: flex;
@@ -125,10 +128,8 @@
   color: var(--ink);
   position: relative;
   overflow: hidden;
-  transition: transform var(--t-base) var(--ease),
-              border-color var(--t-base) var(--ease),
-              background var(--t-base) var(--ease),
-              box-shadow var(--t-base) var(--ease);
+  transition: border-color var(--t-base) var(--ease),
+              background var(--t-base) var(--ease);
   margin: 0;
   width: auto;
   height: auto;
@@ -136,41 +137,12 @@
   box-shadow: none;
 }
 
-.cards .card::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 1px;
-  background: linear-gradient(90deg, transparent, var(--accent), transparent);
-  opacity: 0;
-  transition: opacity var(--t-base) var(--ease);
-  z-index: 2;
-}
-
-/* All cards: red border + accent top-line on hover */
-.cards .card:hover {
+/* Only the four cards that actually go somewhere get a hover affordance --
+   the other fifteen are plain divs and shouldn't pretend to be clickable. */
+.cards a.card:hover,
+.cards a.card:focus-visible {
   border-color: var(--border-accent);
   background: var(--bg-card-hover);
-}
-
-.cards .card:hover::before {
-  opacity: 1;
-}
-
-/* Featured cards (LAITH + Bozos, the ones with their own page):
-   also lift up and cast a red shadow */
-.cards .card.featured:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 24px 48px -24px rgba(255, 48, 48, 0.18);
-}
-
-/* Dimming: only when a featured card is hovered, dim every other card.
-   Hovering a non-featured card leaves the rest alone. */
-.cards:has(> .card.featured:hover) > .card:not(:hover) {
-  opacity: 0.6;
-  filter: saturate(0.5);
 }
 
 .cards .card .card-media {
@@ -180,6 +152,13 @@
   background: var(--bg);
   aspect-ratio: 16 / 10;
   border: 1px solid var(--border);
+}
+
+.cards .card .card-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
 }
 
 .cards .card video,
@@ -193,8 +172,8 @@
   transition: transform var(--t-slow) var(--ease);
 }
 
-.cards .card:hover .card-media video {
-  transform: scale(1.04);
+.cards a.card:hover .card-media video {
+  transform: scale(1.03);
 }
 
 .cards .card .card-media.no-media {
@@ -213,7 +192,7 @@
 }
 
 .cards .card .card-media.no-media::after {
-  content: "// no preview";
+  content: "No preview";
   font-family: var(--font-mono);
   font-size: 0.78rem;
   letter-spacing: 0.12em;
@@ -240,7 +219,7 @@
   padding: 1.5rem 1.1rem 1.1rem;
   background:
     linear-gradient(180deg, rgba(0, 0, 0, 0.05) 0%, rgba(0, 0, 0, 0.4) 100%),
-    url("../assets/laith-wallpaper.png") center / cover no-repeat;
+    url("../assets/laith-wallpaper.jpg") center / cover no-repeat;
 }
 .cards .card .card-media.laith-bubble-preview::after { display: none; }
 
@@ -526,11 +505,6 @@
   --border-accent: rgba(124, 196, 164, 0.45);
 }
 
-/* .featured:hover hard-codes a red glow, so it needs its own value */
-.cards .card.featured.burhan-card:hover {
-  box-shadow: 0 24px 48px -24px rgba(124, 196, 164, 0.22);
-}
-
 /* App icon beside the card title */
 .bu-card-head {
   display: flex;
@@ -604,7 +578,7 @@
   text-align: left;
 }
 
-.burhan-preview .bu-card-search i { flex-shrink: 0; font-size: 0.78rem; opacity: 0.9; }
+.burhan-preview .bu-card-search .icon { width: 0.95em; height: 0.95em; opacity: 0.9; }
 
 .burhan-preview .bu-card-scope {
   display: flex;
@@ -618,7 +592,7 @@
   text-align: left;
 }
 
-.burhan-preview .bu-card-scope i { flex-shrink: 0; margin-top: 0.1rem; font-size: 0.72rem; }
+.burhan-preview .bu-card-scope .icon { width: 0.95em; height: 0.95em; margin-top: 0.15em; }
 
 .burhan-preview .bu-card-result {
   display: flex;
@@ -660,6 +634,8 @@
   color: #a9a59a;
 }
 
+.burhan-preview .bu-card-src .icon { width: 0.9em; height: 0.9em; }
+
 /* Below 720px the featured card drops to a single column, so the
    16:10 media box is ~1/3 the height. A verse is a fixed amount of
    text and the fix is not to crop scripture -- let this one card
@@ -680,8 +656,7 @@
   left: 0.75rem;
   font-family: var(--font-mono);
   font-size: 0.65rem;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
+  letter-spacing: 0.06em;
   padding: 0.3rem 0.55rem;
   background: rgba(0, 0, 0, 0.7);
   backdrop-filter: blur(8px);
@@ -694,7 +669,6 @@
 .cards .card .card-head {
   display: flex;
   align-items: baseline;
-  justify-content: space-between;
   gap: 0.5rem;
 }
 
@@ -770,32 +744,49 @@
   margin: 0;
 }
 
-/* Text-only cards (no .card-media): let the body text fill the
-   vertical space so there's no awkward gap above the foot when
-   the card is stretched to match a media-card neighbor. */
-.cards .card:not(:has(.card-media)) > p {
-  flex: 1 0 auto;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
-
 .cards .card .subtitle {
-  font-family: var(--font-mono);
-  font-size: 0.72rem;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
+  font-family: var(--font-sans);
+  font-size: 0.95rem;
   color: var(--ink-dim);
   margin-top: -0.5rem;
 }
 
-.cards .card.featured {
-  grid-column: span 2;
-}
+/* ------------------------------------------------------------------
+   Flagship: L.A.I.T.H.49 takes the whole row and runs side-on, so it
+   reads as the headline project instead of one of nineteen equal boxes.
+   Below 860px there isn't width for two text columns, so it falls back
+   to the ordinary stacked card.
+   ------------------------------------------------------------------ */
+@media (min-width: 861px) {
+  .cards .card.flagship {
+    display: grid;
+    grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+    grid-template-rows: auto auto auto 1fr auto;
+    column-gap: 2.5rem;
+    row-gap: 0.9rem;
+    padding: 1.75rem;
+  }
 
-@media (max-width: 720px) {
-  .cards .card.featured {
-    grid-column: span 1;
+  .cards .card.flagship > .card-head { grid-column: 1; grid-row: 1; }
+  .cards .card.flagship > h2 { grid-column: 1; grid-row: 2; }
+  .cards .card.flagship > .subtitle { grid-column: 1; grid-row: 3; }
+  .cards .card.flagship > p:not(.subtitle) { grid-column: 1; grid-row: 4; align-self: start; }
+  .cards .card.flagship > .card-foot { grid-column: 1; grid-row: 5; }
+
+  .cards .card.flagship > h2 {
+    font-size: clamp(1.75rem, 1.3rem + 1.4vw, 2.6rem);
+    line-height: 1.05;
+  }
+
+  .cards .card.flagship > p:not(.subtitle) {
+    font-size: 1rem;
+  }
+
+  .cards .card.flagship > .card-media {
+    grid-column: 2;
+    grid-row: 1 / -1;
+    aspect-ratio: auto;
+    min-height: 300px;
   }
 }
 
@@ -806,7 +797,7 @@
   align-items: center;
   gap: 1rem;
   padding-top: 1rem;
-  border-top: 1px dashed var(--border);
+  border-top: 1px solid var(--border);
   font-family: var(--font-mono);
   font-size: 0.75rem;
   color: var(--ink-dim);
@@ -817,27 +808,46 @@
               color var(--t-fast) var(--ease);
 }
 
-.cards .card:hover .card-foot .arrow {
+.cards a.card:hover .card-foot .arrow,
+.cards a.card:focus-visible .card-foot .arrow {
   color: var(--accent);
   transform: translateX(4px);
+}
+
+/* Two tracks. Featured cards drop to one track each so the pairing
+   still fills every row. */
+@media (max-width: 1024px) {
+  .cards { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .cards .card.featured { grid-column: span 1; }
+}
+
+/* One track. */
+@media (max-width: 720px) {
+  .cards { grid-template-columns: minmax(0, 1fr); }
+  .cards .card.featured,
+  .cards .card.flagship { grid-column: span 1; }
+
+  /* On a phone the bubble is taller than a 16:10 box, so it grows up
+     into the badge. Let the box size to its contents instead, and keep
+     the badge's corner clear. */
+  .cards .card .card-media.laith-bubble-preview {
+    aspect-ratio: auto;
+    padding-top: 3.2rem;
+  }
 }
 
 @media (max-width: 768px) {
   .projects-hero { padding: 3rem 0 1.5rem; }
   .cards { gap: 1rem; margin-bottom: 4rem; }
 
-  /* The featured trade-bot card goes full-width above 720px but the
-     grid cell itself still shrinks a lot on phones -- bump the SVG
-     axis text so it doesn't shrink into illegibility with it. */
+  /* The grid cell shrinks a lot on phones -- bump the SVG axis text so
+     it doesn't shrink into illegibility with it. */
   .tradebot-preview .tb-axis-x,
   .tradebot-preview .tb-axis-y {
     font-size: 13px;
   }
 
   .tradebot-preview .tb-chart-legend {
-    /* the FAILED badge (top-left) runs long enough on narrow cards to
-       reach the legend -- stack the legend below it instead of beside it */
-    top: 2.75rem;
     right: 0.5rem;
     gap: 0.25rem;
   }

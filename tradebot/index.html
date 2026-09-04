@@ -19,7 +19,7 @@
   <meta property="og:image" content="https://layth49.com/assets/og-image.png" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
-  <meta property="og:image:alt" content="layth49 — software &amp; automation" />
+  <meta property="og:image:alt" content="layth49, software &amp; automation" />
 
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image" />
@@ -34,7 +34,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link
-    href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700;800&family=Geist:wght@400;500;600;700&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@75..125,400..800&family=Geist:wght@400;500;600&family=JetBrains+Mono:wght@400;700&display=swap"
     rel="stylesheet" />
 
   <!-- Icon font -->
@@ -81,6 +81,8 @@
 </head>
 
 <body>
+  <a href="#main" class="skip-link">Skip to content</a>
+
   <!-- NAV -->
   <nav class="navBar">
     <div class="logo">
@@ -102,7 +104,6 @@
     </div>
 
     <div class="nav-end">
-      <span class="status-pill"><span class="dot"></span> AVAILABLE</span>
     </div>
   </nav>
 
@@ -111,26 +112,20 @@
     <a href="https://github.com/layth49" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
       <i class="fa-brands fa-github"></i>
     </a>
-    <a href="mailto:laythandamin@gmail.com" aria-label="Email">
+    <a href="mailto:layth.hammad49@gmail.com" aria-label="Email">
       <i class="fa-regular fa-envelope"></i>
     </a>
   </aside>
 
-  <main class="container">
+  <main class="container" id="main">
     <!-- HERO -->
     <section class="laith-hero">
       <div>
-        <div class="eyebrow">
-          <span class="line"></span>
-          <span>PROJECT FILE / 18 · FAILED</span>
-        </div>
+        <p class="kicker">Project file &middot; failed</p>
 
-        <span class="wakeword">
-          <span class="pulse"></span>
-          // mode: paper only, never live
-        </span>
+        <p class="tb-mode">mode: paper only, never live</p>
 
-        <h1 class="hackedEffect">TRADE BOT</h1>
+        <h1>Trade Bot</h1>
         <p class="tagline">~24,000 lines. Five signals. No edge.</p>
         <p class="lede">
           <strong>A robot built to trade stocks automatically, and to prove
@@ -145,16 +140,19 @@
 
         <div class="actions">
           <a href="#findings" class="btn primary">Read the autopsy <span class="arrow">→</span></a>
-          <a href="/projects" class="btn">← All Projects</a>
+          <a href="/projects" class="btn">All projects</a>
         </div>
       </div>
 
-      <div class="laith-hero-media tb-media">
-        <div class="window-chrome">
-          <span></span><span></span><span></span>
-        </div>
+      <figure class="tb-figure">
+        <div class="tb-media">
         <div class="tb-hero-chart">
-          <svg class="tb-chart" viewBox="0 0 400 250" preserveAspectRatio="none" aria-hidden="true">
+          <svg class="tb-chart" viewBox="0 0 400 250" preserveAspectRatio="xMidYMid meet" role="img"
+            aria-labelledby="tb-chart-title tb-chart-desc">
+            <title id="tb-chart-title">Backtest return over three years: Trade Bot vs. doing nothing</title>
+            <desc id="tb-chart-desc">Three rising lines over a three-year backtest window. MTUM, a momentum ETF bought
+              once, ends highest at +102.7%. SPY, bought once, ends at +86.5%. The Trade Bot ends lowest at +79.2%,
+              so both do-nothing options beat it.</desc>
             <!-- plot panel: a solid card, not lines floating on the ambient background -->
             <rect class="tb-plot-bg" x="40" y="20" width="340" height="160"></rect>
 
@@ -199,39 +197,25 @@
             <span class="tb-lab bot"><i></i>Trade Bot <b>+79.2%</b></span>
           </div>
         </div>
-        <span class="label">BACKTEST RETURN VS. DOING NOTHING</span>
-      </div>
+        </div>
+        <figcaption class="label">Backtest return over three years: both do-nothing options beat the bot.</figcaption>
+      </figure>
     </section>
 
-    <!-- STATS -->
-    <div class="laith-stats">
-      <div class="stat">
-        <div class="label">Status</div>
-        <div class="val bad">Failed</div>
-      </div>
-      <div class="stat">
-        <div class="label">Backtest Return</div>
-        <div class="val">+79.2%</div>
-      </div>
-      <div class="stat">
-        <div class="label">vs. Just Buying SPY</div>
-        <div class="val bad">+86.5%</div>
-      </div>
-      <div class="stat">
-        <div class="label">Code Written</div>
-        <div class="val">~24,000 lines</div>
-      </div>
-      <div class="stat">
-        <div class="label">Real Money Traded</div>
-        <div class="val bad">$0 · 0 trades</div>
-      </div>
-    </div>
+    <!-- SPECS -->
+    <dl class="laith-specs">
+      <div><dt>Status</dt><dd><span class="tag bad">Failed</span></dd></div>
+      <div><dt>Backtest return</dt><dd><code>+79.2%</code></dd></div>
+      <div><dt>vs. just buying SPY</dt><dd><code class="tb-bad">+86.5%</code></dd></div>
+      <div><dt>Code written</dt><dd><code>~24,000</code> lines</dd></div>
+      <div><dt>Real money traded</dt><dd><code class="tb-bad">$0</code>, 0 trades</dd></div>
+    </dl>
 
     <!-- THE RULE IT SET FOR ITSELF -->
     <section class="laith-section">
       <div class="head">
         <h2 class="title">The rule it had to follow</h2>
-        <span class="meta">[ NO PROOF, NO TRADE ]</span>
+        <p class="dek">No proof, no trade.</p>
       </div>
 
       <p class="blurb">
@@ -274,7 +258,7 @@ mode: <span class="str">"paper"</span>   <span class="com"># NEVER default to li
     <section class="laith-section">
       <div class="head">
         <h2 class="title">How it decided what to do</h2>
-        <span class="meta">[ LOOK → SCORE → BLEND → DECIDE → SAFETY-CHECK ]</span>
+        <p class="dek">Look &rarr; score &rarr; blend &rarr; decide &rarr; safety-check.</p>
       </div>
 
       <p class="blurb">
@@ -287,7 +271,7 @@ mode: <span class="str">"paper"</span>   <span class="com"># NEVER default to li
         <div class="step">
           <div class="n">01</div>
           <div class="body">
-            <span class="label">LOOK AROUND</span>
+            <span class="label">Look around</span>
             <span class="what">Pull five years of prices, news articles, company financials, economic data, and Reddit
               chatter.</span>
             <span class="why">Five separate data sources, cross-checked against each other so a bad feed can't quietly
@@ -297,7 +281,7 @@ mode: <span class="str">"paper"</span>   <span class="com"># NEVER default to li
         <div class="step">
           <div class="n">02</div>
           <div class="body">
-            <span class="label">GET FIVE OPINIONS</span>
+            <span class="label">Get five opinions</span>
             <span class="what">Five independent "signals" each rate a stock from sell to buy: chart patterns, news
               sentiment (read by an AI model), company fundamentals, the overall economy, and Reddit hype.</span>
             <span class="why">Each one also reports how confident it is. The Reddit-hype signal, for example, is built
@@ -307,7 +291,7 @@ mode: <span class="str">"paper"</span>   <span class="com"># NEVER default to li
         <div class="step">
           <div class="n">03</div>
           <div class="body">
-            <span class="label">BLEND THE OPINIONS</span>
+            <span class="label">Blend the opinions</span>
             <span class="what">The five opinions are combined into one number, weighted by how much each one is
               trusted.</span>
             <span class="why">More trusted signals get more say. As you'll see below, that trust was badly
@@ -317,7 +301,7 @@ mode: <span class="str">"paper"</span>   <span class="com"># NEVER default to li
         <div class="step">
           <div class="n">04</div>
           <div class="body">
-            <span class="label">DECIDE</span>
+            <span class="label">Decide</span>
             <span class="what">Only acts when the expected payoff clearly clears its own uncertainty. Otherwise it does
               nothing.</span>
             <span class="why">"Not sure" always resolves to "don't trade." This is the rule from the config file,
@@ -327,7 +311,7 @@ mode: <span class="str">"paper"</span>   <span class="com"># NEVER default to li
         <div class="step">
           <div class="n">05</div>
           <div class="body">
-            <span class="label">SAFETY-CHECK</span>
+            <span class="label">Safety-check</span>
             <span class="what">A last set of hard rules can still veto the trade: is an earnings report about to drop,
               is there enough trading volume, do the fees eat the expected profit, has it lost too much today?</span>
             <span class="why">These limits can't be talked around by anything upstream, including the bot's own
@@ -341,7 +325,7 @@ mode: <span class="str">"paper"</span>   <span class="com"># NEVER default to li
     <section class="laith-section">
       <div class="head">
         <h2 class="title">The brakes actually worked</h2>
-        <span class="meta">[ 3,473 : 359 : 635 ]</span>
+        <p class="dek">Across the three-year dry run: 3,473 stand-downs, 359 safety vetoes, 635 paper trades.</p>
       </div>
 
       <p class="blurb">
@@ -403,7 +387,7 @@ mode: <span class="str">"paper"</span>   <span class="com"># NEVER default to li
     <section class="laith-section" id="findings">
       <div class="head">
         <h2 class="title">The autopsy</h2>
-        <span class="meta">[ FOUR QUESTIONS, FOUR "NO"S ]</span>
+        <p class="dek">Four questions, four &ldquo;no&rdquo;s.</p>
       </div>
 
       <p class="blurb">
@@ -476,7 +460,7 @@ mode: <span class="str">"paper"</span>   <span class="com"># NEVER default to li
     <section class="laith-section">
       <div class="head">
         <h2 class="title">Three good months wearing a trench coat</h2>
-        <span class="meta">[ WHERE THE "PROFIT" ACTUALLY CAME FROM ]</span>
+        <p class="dek">Where the &ldquo;profit&rdquo; actually came from.</p>
       </div>
 
       <p class="blurb">
@@ -521,7 +505,7 @@ mode: <span class="str">"paper"</span>   <span class="com"># NEVER default to li
     <section class="laith-section">
       <div class="head">
         <h2 class="title">You could have just bought an ETF</h2>
-        <span class="meta">[ THE BAR, CLEARED BY A ONE-LINE ORDER ]</span>
+        <p class="dek">The bar, cleared by a one-line order.</p>
       </div>
 
       <p class="blurb">
@@ -555,7 +539,7 @@ mode: <span class="str">"paper"</span>   <span class="com"># NEVER default to li
           <div class="ct-cell ct-sub">SPY <span class="ct-badge alt">one buy order</span></div>
           <div class="ct-cell">+86.5%</div>
           <div class="ct-cell">1.09</div>
-          <div class="ct-cell">—</div>
+          <div class="ct-cell">n/a</div>
         </div>
       </div>
 
@@ -574,7 +558,7 @@ mode: <span class="str">"paper"</span>   <span class="com"># NEVER default to li
     <section class="laith-section">
       <div class="head">
         <h2 class="title">Near-misses worth remembering</h2>
-        <span class="meta">[ CAUGHT BEFORE THEY SHIPPED ]</span>
+        <p class="dek">Caught before they shipped.</p>
       </div>
 
       <p class="blurb">
@@ -644,7 +628,6 @@ mode: <span class="str">"paper"</span>   <span class="com"># NEVER default to li
     <section class="laith-section">
       <div class="head">
         <h2 class="title">What it's built on</h2>
-        <span class="meta">[ FOR THE CURIOUS ]</span>
       </div>
 
       <p class="blurb">
@@ -699,11 +682,10 @@ mode: <span class="str">"paper"</span>   <span class="com"># NEVER default to li
     <section class="laith-section">
       <div class="head">
         <h2 class="title">What it never did</h2>
-        <span class="meta">[ THE NUMBER THAT ENDS THE STORY ]</span>
       </div>
 
       <div class="tb-zero">
-        <div class="tb-big">0<span>real trades<br>ever placed</span></div>
+        <div class="tb-big">0<span>real trades ever placed</span></div>
         <div class="tb-zero-copy">
           Every result on this page (the +79.2%, the report card, the
           near-misses, all of it) comes from testing against historical
@@ -729,8 +711,8 @@ mode: <span class="str">"paper"</span>   <span class="com"># NEVER default to li
 
     <!-- CTA -->
     <section class="laith-cta">
-      <span class="kicker">// INFRASTRUCTURE IS NOT ALPHA</span>
-      <h2 class="hackedEffect">A ONE-LINE BUY ORDER BEAT IT</h2>
+      <span class="kicker">Infrastructure is not alpha</span>
+      <h2>A one-line buy order beat it</h2>
       <p>
         The build's own instructions warned about this exact trap before a
         single line of code was written: a fancy pipeline wrapped around a
@@ -739,7 +721,7 @@ mode: <span class="str">"paper"</span>   <span class="com"># NEVER default to li
         purpose.
       </p>
       <div class="links">
-        <a href="/projects" class="btn">← Other Projects</a>
+        <a href="/projects" class="btn">Other projects</a>
         <a href="#findings" class="btn primary">Back to the autopsy <span class="arrow">→</span></a>
       </div>
     </section>

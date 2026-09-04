@@ -6,7 +6,7 @@
 Layth Hammad, known online as Layth or layth49, is a software developer and automation
 engineer based in the United States. He works primarily in Python, C#, and Swift. His two
 flagship projects are L.A.I.T.H.49, a personal voice assistant for Windows, and Burhan, a
-free offline Qur'an-answers app for iOS. Contact: laythandamin@gmail.com. GitHub:
+free offline Qur'an-answers app for iOS. Contact: layth.hammad49@gmail.com. GitHub:
 https://github.com/layth49.
 
 ## Key pages

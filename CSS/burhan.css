@@ -74,49 +74,22 @@
   }
 }
 
-/* BUTTONS --------------------------------------------------
-   .btn lives in welcome.css / about.css, neither of which the
-   project pages load -- so define it here, matching those. */
-.btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  font-family: var(--font-mono);
-  font-size: 0.85rem;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  padding: 0.85rem 1.25rem;
-  border-radius: var(--radius-sm);
-  border: 1px solid var(--border-strong);
-  background: var(--bg-elevated);
-  color: var(--ink);
-  cursor: pointer;
-  transition: transform var(--t-fast) var(--ease),
-              background var(--t-fast) var(--ease),
-              border-color var(--t-fast) var(--ease),
-              box-shadow var(--t-fast) var(--ease);
-}
 
-.btn:hover {
-  background: var(--bg-card-hover);
-  border-color: var(--ink-dim);
-  transform: translateY(-2px);
-}
-
+/* The filled button wears Burhan's sage rather than the site red. Its
+   ink is a deep green-black, not white: white on sage is only 2.1:1,
+   while #0f1a15 on #7cc4a4 is about 12:1. */
 .btn.primary {
   background: var(--bu-green);
   color: #0f1a15;
   border-color: var(--bu-green);
-  font-weight: 700;
+  font-weight: 600;
 }
 
 .btn.primary:hover {
   background: #93d4b6;
-  box-shadow: 0 0 24px var(--accent-glow);
+  border-color: #93d4b6;
 }
 
-.btn .arrow { transition: transform var(--t-fast) var(--ease); }
-.btn:hover .arrow { transform: translateX(3px); }
 
 /* App icon beside the hero title. laith.css gives .laith-hero h1 a
    bottom margin; move it to the row so the icon stays centred on it. */
@@ -146,21 +119,62 @@
   gap: 0.5rem;
   flex-wrap: wrap;
   margin-top: 1.25rem;
-  font-family: var(--font-mono);
-  font-size: 0.75rem;
-  letter-spacing: 0.04em;
-  color: var(--ink-dim);
+  font-family: var(--font-sans);
+  font-size: 0.85rem;
+  line-height: 1.5;
+  color: var(--ink-muted);
 }
 
-.bu-availability i { color: var(--ink-muted); }
+.bu-availability i {
+  color: var(--ink-muted);
+}
 
-/* The wake-word badge's dot is styled as a "live" pulse everywhere else
-   on the site, but nothing here is live -- it's a static availability
-   note. A breathing animation next to it reads as a claim the app is
-   doing something it isn't, so hold it still on this page specifically. */
-.laith-hero .wakeword .pulse {
-  animation: none;
-  box-shadow: none;
+/* SHARED PRIMITIVES, RE-STATED ------------------------------
+   This page borrows its layout primitives from laith.css but not the
+   terminal costume: headings are sentence case in the display face,
+   prose is sans, and mono is kept for data. */
+.section-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-bottom: 2.25rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.section-title {
+  font-family: var(--font-display);
+  font-size: var(--step-3);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.laith-hero .tagline {
+  font-family: var(--font-sans);
+  letter-spacing: 0;
+}
+
+.laith-cta h2 {
+  text-transform: none;
+  letter-spacing: -0.02em;
+}
+
+.laith-specs dt,
+.flow .step .body .label {
+  text-transform: none;
+  letter-spacing: 0.01em;
+}
+
+.flow .step .body .label {
+  font-family: var(--font-sans);
+  font-weight: 600;
+}
+
+.feature .text .cmd {
+  font-family: var(--font-sans);
+  letter-spacing: 0;
 }
 
 /* ============================================================
@@ -178,6 +192,8 @@
   background: var(--bu-bg);
   font-family: var(--font-sans);
   text-align: center;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg)
 }
 
 /* App bar: title centred, info + settings pinned right, as in the app */
@@ -310,7 +326,9 @@
   color: var(--bu-muted);
 }
 
-.bu-src i { font-size: 0.85rem; }
+.bu-src i {
+  font-size: 0.85rem;
+}
 
 /* Refusal state: not a card. A centred empty state, exactly as the
    app renders it -- struck-through magnifier, the refusal line, then
@@ -407,7 +425,10 @@
   color: var(--ink-muted);
 }
 
-.bu-split-copy strong { color: var(--ink); font-weight: 600; }
+.bu-split-copy strong {
+  color: var(--ink);
+  font-weight: 600;
+}
 
 /* IN / NOT YET -------------------------------------------- */
 .bu-scope-grid {
@@ -417,36 +438,49 @@
 }
 
 @media (min-width: 860px) {
-  .bu-scope-grid { grid-template-columns: 1fr 1fr; }
+  .bu-scope-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 2.5rem;
+  }
 }
 
+/* Neither of these is clickable, so they are two groupings rather than
+   two cards. A hairline down the leading edge carries the split. */
 .bu-scope-card {
-  padding: 1.5rem 1.6rem;
-  background: var(--bg-card);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-lg);
+  padding: 0.25rem 0 0.25rem 1.35rem;
+  border-left: 2px solid var(--border);
 }
 
-.bu-scope-card.in { border-color: rgba(124, 196, 164, 0.28); }
-.bu-scope-card.soon { border-color: rgba(245, 158, 11, 0.22); }
+.bu-scope-card.in {
+  border-left-color: rgba(124, 196, 164, 0.45);
+}
+
+.bu-scope-card.soon {
+  border-left-color: rgba(245, 158, 11, 0.4);
+}
 
 .bu-scope-head {
   display: flex;
   align-items: center;
   gap: 0.6rem;
-  font-family: var(--font-mono);
-  font-size: 0.8rem;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  margin-bottom: 1.25rem;
-  padding-bottom: 0.75rem;
-  border-bottom: 1px dashed var(--border);
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  margin-bottom: 1rem;
 }
 
-.bu-scope-card.in .bu-scope-head { color: var(--bu-green); }
-.bu-scope-card.soon .bu-scope-head { color: var(--warn); }
+.bu-scope-card.in .bu-scope-head {
+  color: var(--bu-green);
+}
 
-.bu-scope-card.soon .detail-list li::before { color: var(--warn); }
+.bu-scope-card.soon .bu-scope-head {
+  color: var(--warn);
+}
+
+.bu-scope-card.soon .detail-list li::before {
+  color: var(--warn);
+}
 
 /* PRICE --------------------------------------------------- */
 .bu-price {
@@ -454,14 +488,15 @@
   grid-template-columns: 1fr;
   gap: 1.75rem;
   align-items: center;
-  padding: 2.25rem 1.9rem;
-  background: var(--bg-card);
-  border: 1px solid rgba(124, 196, 164, 0.25);
-  border-radius: var(--radius-lg);
+  padding: 2rem 0 0;
+  border-top: 1px solid var(--border);
 }
 
 @media (min-width: 760px) {
-  .bu-price { grid-template-columns: auto 1fr; gap: 3rem; }
+  .bu-price {
+    grid-template-columns: auto 1fr;
+    gap: 3rem;
+  }
 }
 
 .bu-price-num {
@@ -476,11 +511,11 @@
 
 .bu-price-num span {
   display: block;
-  font-size: 0.7rem;
-  font-weight: 500;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  color: var(--ink-dim);
+  font-family: var(--font-sans);
+  font-size: 0.9rem;
+  font-weight: 400;
+  letter-spacing: 0;
+  color: var(--ink-muted);
   margin-top: 1rem;
   line-height: 1.6;
 }
@@ -492,7 +527,10 @@
   color: var(--ink-muted);
 }
 
-.bu-price-copy strong { color: var(--ink); font-weight: 600; }
+.bu-price-copy strong {
+  color: var(--ink);
+  font-weight: 600;
+}
 
 /* FAQ: a real accordion, not six boxes in a grid. Nothing here is
    independently actionable in the "opt"/"stack-grid" sense, and there
@@ -525,9 +563,13 @@
   transition: color var(--t-fast) var(--ease);
 }
 
-.bu-faq-item summary::-webkit-details-marker { display: none; }
+.bu-faq-item summary::-webkit-details-marker {
+  display: none;
+}
 
-.bu-faq-item summary:hover { color: var(--bu-green); }
+.bu-faq-item summary:hover {
+  color: var(--bu-green);
+}
 
 .bu-faq-icon {
   position: relative;
@@ -547,11 +589,24 @@
   transition: transform var(--t-fast) var(--ease);
 }
 
-.bu-faq-icon::before { width: 12px; height: 2px; }
-.bu-faq-icon::after { width: 2px; height: 12px; }
+.bu-faq-icon::before {
+  width: 12px;
+  height: 2px;
+}
 
-.bu-faq-item[open] .bu-faq-icon::after { transform: translate(-50%, -50%) rotate(90deg); opacity: 0; }
-.bu-faq-item[open] summary { color: var(--bu-green); }
+.bu-faq-icon::after {
+  width: 2px;
+  height: 12px;
+}
+
+.bu-faq-item[open] .bu-faq-icon::after {
+  transform: translate(-50%, -50%) rotate(90deg);
+  opacity: 0;
+}
+
+.bu-faq-item[open] summary {
+  color: var(--bu-green);
+}
 
 .bu-faq-item p {
   margin: 0;
@@ -563,222 +618,70 @@
 }
 
 /* CTA ------------------------------------------------------ */
+/* The Arabic here is the imperative from 49:6 that the app is named
+   for, so it keeps the scripture face and is never transformed. */
 .laith-cta.bu-cta .kicker {
-  font-family: "Scheherazade New", var(--font-mono);
-  font-size: 1.1rem;
-  letter-spacing: 0.1em;
+  font-family: var(--font-sans);
+  font-size: 0.95rem;
+  letter-spacing: 0;
+  text-transform: none;
   color: var(--bu-green);
+  margin-bottom: 0.75rem;
 }
 
-/* INVITE FORM ---------------------------------------------
-   Lives inside .laith-cta, which centres its children, so the
-   form re-establishes left alignment for anything readable. */
-.bu-form {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 1.1rem;
-  width: min(100%, 640px);
-  margin: 2.25rem auto 0;
-  text-align: left;
+.laith-cta.bu-cta .kicker [lang="ar"] {
+  font-family: "Scheherazade New", "Noto Naskh Arabic", serif;
+  font-size: 1.35rem;
+  line-height: 1.9;
 }
 
-@media (min-width: 640px) {
-  .bu-form { grid-template-columns: 1fr 1fr; }
-  .bu-field-wide,
-  .bu-form-privacy,
-  .bu-form-actions,
-  .bu-form-status { grid-column: 1 / -1; }
-}
-
-.bu-field {
+/* CTA ACTIONS ---------------------------------------------
+   .laith-cta centres its children, so the button row just needs
+   to centre and wrap. */
+.bu-cta-actions {
   display: flex;
-  flex-direction: column;
-  gap: 0.45rem;
-  min-width: 0;
-}
-
-.bu-field label {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  font-family: var(--font-mono);
-  font-size: 0.72rem;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--ink-muted);
-}
-
-.bu-field label .req,
-.bu-field label .opt {
-  font-size: 0.62rem;
-  letter-spacing: 0.1em;
-  padding: 0.15rem 0.4rem;
-  border-radius: var(--radius-sm);
-  border: 1px solid var(--border);
-}
-
-.bu-field label .req {
-  color: var(--bu-green);
-  border-color: rgba(124, 196, 164, 0.3);
-  background: rgba(124, 196, 164, 0.1);
-}
-
-.bu-field label .opt { color: var(--ink-dim); }
-
-.bu-field input,
-.bu-field textarea {
-  width: 100%;
-  padding: 0.8rem 0.95rem;
-  font-family: var(--font-sans);
-  /* Must not drop below 16px: iOS Safari zooms the whole page in when
-     a smaller input takes focus, and this form is aimed at iPhones. */
-  font-size: 1rem;
-  line-height: 1.45;
-  color: var(--ink);
-  background: var(--bg-elevated);
-  border: 1px solid var(--border-strong);
-  border-radius: var(--radius-sm);
-  transition: border-color var(--t-fast) var(--ease),
-              box-shadow var(--t-fast) var(--ease);
-}
-
-.bu-field textarea { resize: vertical; }
-
-.bu-field input::placeholder,
-.bu-field textarea::placeholder { color: var(--ink-dim); }
-
-.bu-field input:focus,
-.bu-field textarea:focus {
-  outline: none;
-  border-color: var(--bu-green);
-  box-shadow: 0 0 0 3px rgba(124, 196, 164, 0.18);
-}
-
-/* Only flag a bad address once there is something to be wrong about */
-.bu-field input:not(:placeholder-shown):invalid { border-color: var(--bad); }
-
-.bu-hint {
-  font-family: var(--font-sans);
-  font-size: 0.78rem;
-  line-height: 1.45;
-  color: var(--ink-dim);
-  margin: 0;
-}
-
-/* Honeypot. Off-screen rather than display:none, since some bots skip
-   fields that are outright hidden. aria-hidden + tabindex=-1 keep it
-   away from screen readers and keyboard users. */
-.bu-hp {
-  position: absolute;
-  left: -9999px;
-  width: 1px;
-  height: 1px;
-  overflow: hidden;
-}
-
-.bu-form-privacy {
-  display: flex;
-  align-items: flex-start;
-  gap: 0.6rem;
-  margin: 0;
-  padding: 0.8rem 0.95rem;
-  font-family: var(--font-sans);
-  font-size: 0.82rem;
-  line-height: 1.5;
-  color: var(--ink-muted);
-  background: rgba(124, 196, 164, 0.06);
-  border: 1px dashed rgba(124, 196, 164, 0.28);
-  border-radius: var(--radius-sm);
-}
-
-.bu-form-privacy i { color: var(--bu-green); margin-top: 0.2rem; flex-shrink: 0; }
-
-.bu-form-actions {
-  display: flex;
-  gap: 0.75rem;
   flex-wrap: wrap;
-  margin-top: 0.25rem;
-}
-
-.bu-form-actions .btn { font-family: var(--font-mono); }
-
-.bu-form-status {
-  margin: 0;
-  font-family: var(--font-mono);
-  font-size: 0.78rem;
-  line-height: 1.5;
-  color: var(--ink-muted);
-}
-
-.bu-form-status:empty { display: none; }
-.bu-form-status.bad { color: var(--bad); }
-.bu-form-status.warn { color: var(--warn); }
-
-/* Post-submit handoff */
-.bu-form-done {
-  width: min(100%, 640px);
-  margin: 2.25rem auto 0;
-  padding: 1.6rem 1.5rem;
-  text-align: left;
-  background: var(--bg-elevated);
-  border: 1px solid rgba(124, 196, 164, 0.3);
-  border-radius: var(--radius-lg);
-}
-
-.bu-done-line {
-  display: flex;
-  align-items: center;
-  gap: 0.6rem;
-  margin: 0 0 0.6rem;
-  font-size: 1.05rem;
-  font-weight: 600;
-  color: var(--ink);
-}
-
-.bu-done-line i { color: var(--bu-green); }
-
-.bu-done-sub {
-  margin: 0;
-  font-size: 0.9rem;
-  line-height: 1.6;
-  color: var(--ink-muted);
-}
-
-.bu-done-sub b { color: var(--ink); }
-
-.bu-done-body {
-  margin: 1.1rem 0;
-  padding: 0.95rem 1.1rem;
-  font-family: var(--font-mono);
-  font-size: 0.8rem;
-  line-height: 1.6;
-  color: var(--ink-muted);
-  background: var(--bg-card);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-sm);
-  white-space: pre-wrap;
-  overflow-wrap: anywhere;
+  justify-content: center;
+  gap: 0.75rem;
+  margin-top: 2.25rem;
 }
 
 .bu-cta-fine {
   margin-top: 1.5rem;
-  font-family: var(--font-mono);
-  font-size: 0.72rem;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--ink-dim);
+  font-family: var(--font-sans);
+  font-size: 0.88rem;
+  color: var(--ink-muted);
 }
 
-/* STATS: laith.css defines .ok/.warn/.accent but not .bad */
-.laith-stats .stat .val.bad { color: var(--bad); }
-.laith-stats .stat .val.ok { color: var(--bu-green); }
+/* The affirmative answers carry Burhan's sage, not the site red. */
+.laith-specs dd.ok {
+  color: var(--bu-green);
+}
 
 /* MOBILE ---------------------------------------------------- */
 @media (max-width: 768px) {
-  .bu-app { padding: 1.5rem 1rem 1.75rem; }
-  .bu-wordmark { font-size: 2.5rem; }
-  .bu-ayah { font-size: 1.3rem; line-height: 2; }
-  .bu-en { font-size: 0.95rem; }
-  .bu-result { padding: 1rem; }
-  .bu-price { padding: 1.75rem 1.25rem; }
+  .bu-app {
+    padding: 1.5rem 1rem 1.75rem;
+  }
+
+  .bu-wordmark {
+    font-size: 2.5rem;
+  }
+
+  .bu-ayah {
+    font-size: 1.3rem;
+    line-height: 2;
+  }
+
+  .bu-en {
+    font-size: 0.95rem;
+  }
+
+  .bu-result {
+    padding: 1rem;
+  }
+
+  .bu-price {
+    padding: 1.75rem 0 0;
+  }
 }

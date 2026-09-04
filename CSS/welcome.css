@@ -2,104 +2,87 @@
    Home page
    ============================================================ */
 
-/* HERO ------------------------------------------------------- */
+/* HERO -------------------------------------------------------
+   Type-led and asymmetric: the name takes the left column at
+   poster scale, the subtitle sits in the right column on the
+   name's baseline. No width cap, so the fold is actually used. */
 .hero {
-  position: relative;
-  max-width: 46rem;
-  padding: 6rem 0 4rem;
-  z-index: 2;
+  padding: 5rem 0 4rem;
 }
 
-@media (min-width: 960px) {
+.hero-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.75rem;
+}
+
+@media (min-width: 900px) {
   .hero {
-    padding: 7rem 0 3rem;
+    padding: 6rem 0 4.5rem;
+  }
+  .hero-grid {
+    grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
+    gap: 2rem 3.5rem;
+    align-items: end;
   }
 }
 
-.hero-eyebrow {
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-  font-family: var(--font-mono);
-  font-size: 0.78rem;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  color: var(--ink-dim);
-  margin-bottom: 1.5rem;
-}
-
-.hero-eyebrow .line {
-  display: inline-block;
-  width: 32px;
-  height: 1px;
-  background: var(--accent);
-}
-
-.hacked {
-  margin: 0 0 1.25rem;
-  overflow: hidden;
-}
-
-.hacked h1 {
-  font-family: var(--font-display);
-  font-size: var(--step-6);
-  font-weight: 800;
-  line-height: 0.95;
-  letter-spacing: -0.04em;
-  color: var(--ink);
+.hero-name {
   margin: 0;
-  text-transform: uppercase;
 }
 
-.hacked .static-text {
+.hero-name .static-text {
   display: block;
-  color: var(--ink-muted);
+  font-family: var(--font-sans);
+  font-size: clamp(1.1rem, 0.9rem + 0.7vw, 1.45rem);
   font-weight: 500;
-  font-size: 0.42em;
-  letter-spacing: 0.04em;
-  margin-bottom: 0.4em;
+  line-height: 1.2;
+  letter-spacing: 0;
+  color: var(--ink-muted);
+  margin-bottom: 0.5rem;
 }
 
-.hacked .static-text::before {
-  content: "// ";
-  color: var(--accent);
-}
-
-.hacked .animate-text {
+/* Archivo is variable on the width axis, so the name can be set wide
+   without a condensed-then-stretched look. */
+.hero-name .animate-text {
   display: inline-block;
+  font-family: var(--font-display);
+  font-size: clamp(3.5rem, 10.5vw, 8.75rem);
+  font-weight: 800;
+  font-stretch: 115%;
+  line-height: 0.86;
+  letter-spacing: -0.035em;
+  text-transform: uppercase;
   color: var(--accent);
-  background: linear-gradient(180deg, var(--accent) 0%, #c01010 100%);
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
   position: relative;
   cursor: default;
 }
 
-.hacked .animate-text::after {
+.hero-name .animate-text::after {
   content: "";
   position: absolute;
   left: 0;
-  bottom: -0.1em;
+  bottom: -0.06em;
   width: 100%;
-  height: 4px;
+  height: 5px;
   background: var(--accent);
   transform: scaleX(0);
   transform-origin: left;
   transition: transform var(--t-slow) var(--ease);
 }
 
-.hacked:hover .animate-text::after {
+.hero-name:hover .animate-text::after {
   transform: scaleX(1);
 }
 
 .hero-subtitle {
-  font-family: var(--font-mono);
+  font-family: var(--font-sans);
   font-size: var(--step-1);
+  line-height: 1.6;
+  letter-spacing: 0;
   color: var(--ink-muted);
-  letter-spacing: 0.04em;
-  max-width: 32ch;
-  margin-bottom: 2rem;
+  max-width: 38ch;
+  padding-bottom: 0.75rem;
 }
 
 .hero-subtitle strong {
@@ -111,165 +94,74 @@
   display: flex;
   flex-wrap: wrap;
   gap: 0.75rem;
+  margin-top: 2.75rem;
 }
 
-.btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  font-family: var(--font-mono);
-  font-size: 0.85rem;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  padding: 0.85rem 1.25rem;
-  border-radius: var(--radius-sm);
-  border: 1px solid var(--border-strong);
-  background: var(--bg-elevated);
-  color: var(--ink);
-  cursor: pointer;
-  transition: transform var(--t-fast) var(--ease),
-              background var(--t-fast) var(--ease),
-              border-color var(--t-fast) var(--ease),
-              box-shadow var(--t-fast) var(--ease);
+@media (min-width: 900px) {
+  .hero-actions {
+    grid-column: 1 / -1;
+    margin-top: 3rem;
+  }
 }
 
-.btn:hover {
-  background: var(--bg-card-hover);
-  border-color: var(--ink-dim);
-  transform: translateY(-2px);
-}
 
-.btn.primary {
-  background: var(--accent);
-  color: white;
-  border-color: var(--accent);
-  box-shadow: 0 0 0 0 var(--accent-glow);
-}
-
-.btn.primary:hover {
-  background: #ff4444;
-  box-shadow: 0 0 24px var(--accent-glow);
-}
-
-.btn .arrow {
-  transition: transform var(--t-fast) var(--ease);
-}
-
-.btn:hover .arrow {
-  transform: translateX(3px);
-}
-
-/* SECTION wrapper ------------------------------------------- */
+/* SECTION ---------------------------------------------------- */
 .section {
-  padding: 5rem 0;
+  padding: 4rem 0 1rem;
 }
 
+/* A single hairline does the work the "// TITLE  [ META ]" pattern used to. */
 .section-head {
   display: flex;
   align-items: baseline;
   justify-content: space-between;
   gap: 1rem;
-  margin-bottom: 2.5rem;
   flex-wrap: wrap;
+  margin-bottom: 2.25rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--border);
 }
 
 .section-title {
   font-family: var(--font-display);
   font-size: var(--step-3);
+  font-weight: 700;
   letter-spacing: -0.02em;
-  text-transform: uppercase;
 }
 
-.section-title::before {
-  content: "// ";
-  color: var(--accent);
-  font-weight: 400;
-}
-
-.section-meta {
-  font-family: var(--font-mono);
-  font-size: 0.78rem;
-  color: var(--ink-dim);
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-}
-
-/* SKILLS ---------------------------------------------------- */
-.skills-section {
-  border-top: 1px solid var(--border);
-  border-bottom: 1px solid var(--border);
-  padding: 3rem 0;
-  background:
-    radial-gradient(ellipse at 50% 50%,
-      rgba(255, 48, 48, 0.04) 0%,
-      transparent 70%);
-}
-
-.skills-container {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
-  gap: 1rem;
-  max-width: 1000px;
-  margin: 0 auto;
-}
-
-.skill-item {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 0.65rem;
-  padding: 1.25rem 0.5rem;
-  background: var(--bg-card);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  transition: transform var(--t-base) var(--ease),
-              border-color var(--t-base) var(--ease),
-              background var(--t-base) var(--ease);
-}
-
-.skill-item:hover {
-  transform: translateY(-4px);
-  border-color: var(--border-accent);
-  background: var(--bg-card-hover);
-}
-
-.skill-item img {
-  height: 40px;
-  width: auto;
-  filter: grayscale(0.4);
-  opacity: 0.85;
-  transition: filter var(--t-base) var(--ease),
-              opacity var(--t-base) var(--ease);
-}
-
-.skill-item:hover img {
-  filter: grayscale(0);
-  opacity: 1;
-}
-
-.skill-tooltip {
-  font-family: var(--font-mono);
-  font-size: 0.75rem;
-  letter-spacing: 0.04em;
+.section-link {
+  font-family: var(--font-sans);
+  font-size: 0.9rem;
   color: var(--ink-muted);
-  text-transform: uppercase;
+  transition: color var(--t-fast) var(--ease);
 }
 
-.skill-item:hover .skill-tooltip {
-  color: var(--ink);
+.section-link:hover {
+  color: var(--accent);
 }
 
-/* FEATURED PROJECTS ---------------------------------------- */
+.section-link .arrow {
+  display: inline-block;
+  transition: transform var(--t-fast) var(--ease);
+}
+
+.section-link:hover .arrow {
+  transform: translateX(3px);
+}
+
+/* FEATURED ---------------------------------------------------
+   Deliberately uneven: the flagship gets the wide cell and the
+   only image, so the two entries don't read as interchangeable. */
 .featured {
   display: grid;
   grid-template-columns: 1fr;
   gap: 1.25rem;
 }
 
-@media (min-width: 720px) {
+@media (min-width: 880px) {
   .featured {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: 1.5fr 1fr;
+    align-items: start;
   }
 }
 
@@ -277,53 +169,25 @@
   display: flex;
   flex-direction: column;
   gap: 1rem;
-  padding: 2rem;
+  padding: 1.75rem;
   background: var(--bg-card);
   border: 1px solid var(--border);
   border-radius: var(--radius-lg);
   position: relative;
   overflow: hidden;
-  transition: transform var(--t-base) var(--ease),
-              border-color var(--t-base) var(--ease),
+  transition: border-color var(--t-base) var(--ease),
               background var(--t-base) var(--ease);
 }
 
-.featured-item::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 1px;
-  background: linear-gradient(90deg, transparent, var(--accent), transparent);
-  opacity: 0;
-  transition: opacity var(--t-base) var(--ease);
-}
-
 .featured-item:hover {
-  transform: translateY(-4px);
   border-color: var(--border-accent);
   background: var(--bg-card-hover);
 }
 
-.featured-item:hover::before {
-  opacity: 1;
-}
-
-.featured-item .meta {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  font-family: var(--font-mono);
-  font-size: 0.72rem;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-  color: var(--ink-dim);
-}
-
 .featured-item h3 {
   font-family: var(--font-display);
-  font-size: clamp(1.5rem, 1rem + 2vw, 2.2rem);
+  font-size: clamp(1.5rem, 1rem + 1.6vw, 2.1rem);
+  font-weight: 700;
   letter-spacing: -0.02em;
   color: var(--ink);
   margin: 0;
@@ -331,7 +195,9 @@
 
 .featured-item p {
   color: var(--ink-muted);
-  font-size: var(--step-1);
+  font-size: var(--step-0);
+  line-height: 1.6;
+  max-width: none;
 }
 
 .featured-item .footer {
@@ -341,7 +207,6 @@
   justify-content: space-between;
   gap: 1rem;
   padding-top: 1.25rem;
-  border-top: 1px dashed var(--border);
 }
 
 .featured-item .footer .arrow {
@@ -363,8 +228,8 @@
 }
 
 /* Burhan wears the app's own accent instead of the site red.
-   :hover and ::before both read these two vars, so rebinding them
-   here re-tints the border, the top hairline and the arrow. */
+   :hover reads this var, so rebinding it here re-tints the border
+   and the arrow. */
 .featured-item.burhan-featured {
   --accent: #7cc4a4;
   --border-accent: rgba(124, 196, 164, 0.45);
@@ -378,55 +243,37 @@
 }
 
 .featured-item .fi-title .bu-logo {
-  width: 44px;
-  height: 44px;
+  width: 40px;
+  height: 40px;
   flex-shrink: 0;
-  border-radius: 10px;
-  box-shadow: 0 6px 16px -6px rgba(0, 0, 0, 0.7);
+  border-radius: 9px;
 }
 
-/* CTA ------------------------------------------------------- */
+/* CLOSING ----------------------------------------------------
+   No card, no gradient. A rule and some air. */
 .cta {
-  margin: 4rem 0 6rem;
-  padding: 4rem 2rem;
-  border: 1px solid var(--border);
-  border-radius: var(--radius-lg);
-  background:
-    linear-gradient(135deg, var(--bg-card) 0%, var(--bg-elevated) 100%),
-    radial-gradient(circle at 80% 20%, var(--accent-soft) 0%, transparent 50%);
-  text-align: center;
-  position: relative;
-  overflow: hidden;
+  margin: 5rem 0 7rem;
+  padding-top: 3rem;
+  border-top: 1px solid var(--border);
 }
-
-.cta::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(circle at 80% 20%, var(--accent-soft) 0%, transparent 50%);
-  pointer-events: none;
-}
-
-.cta > * { position: relative; z-index: 1; }
 
 .cta h2 {
   font-family: var(--font-display);
   font-size: var(--step-4);
-  margin-bottom: 1rem;
-  text-transform: uppercase;
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  margin-bottom: 0.85rem;
 }
 
 .cta p {
   color: var(--ink-muted);
-  margin: 0 auto 2rem;
-  max-width: 50ch;
+  margin-bottom: 2rem;
 }
 
 /* MOBILE ---------------------------------------------------- */
 @media (max-width: 768px) {
-  .hero { padding-top: 4rem; }
-  .hacked h1 { font-size: clamp(3rem, 12vw, 5rem); }
-  .section { padding: 3rem 0; }
-  .featured-item { padding: 1.5rem; }
-  .cta { margin: 2rem 0 4rem; padding: 2.5rem 1.25rem; }
+  .hero { padding: 3rem 0 2.5rem; }
+  .section { padding: 3rem 0 1rem; }
+  .featured-item { padding: 1.35rem; }
+  .cta { margin: 3rem 0 5rem; padding-top: 2.5rem; }
 }
