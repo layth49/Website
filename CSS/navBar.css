@@ -30,6 +30,7 @@
 }
 
 .navBar .logo img {
+  display: block;
   width: 38px;
   height: 38px;
   object-fit: contain;
@@ -50,10 +51,6 @@
   letter-spacing: 0.04em;
   color: var(--ink);
 }
-
-/* logo wraps the img + we use ::before/::after on parent */
-.navBar .logo { padding: 0; }
-.navBar .logo a img { display: block; }
 
 .menuItems {
   display: flex;
