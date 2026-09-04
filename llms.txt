@@ -14,7 +14,7 @@ https://github.com/layth49.
 - [Home](https://layth49.com/): Introduction to Layth (layth49), software developer and
   automation engineer.
 - [About](https://layth49.com/about): Bio, focus areas, and project timeline.
-- [Projects](https://layth49.com/projects): Full index of 19 projects -- bots,
+- [Projects](https://layth49.com/projects): Full index of 20 projects -- bots,
   automations, games, and experiments.
 - [L.A.I.T.H.49](https://layth49.com/laith): Layth's flagship project, a voice
   assistant for Windows. Say "Hey 49" and it routes what you say to one of 38 LLM-driven
@@ -30,6 +30,11 @@ https://github.com/layth49.
 - [Bozo's Adventure](https://layth49.com/bozos): A Unity 2D platformer with two
   playable characters and a teleport-vs-double-jump twist. Source:
   https://github.com/layth49/Bozos-Adventure.
+- [Minecraft AI](https://layth49.com/minecraft): An LLM-driven Minecraft bot built on
+  mindcraft-ce and Mineflayer. It plays by emitting text commands rather than through any
+  mod, and starting from an empty inventory a 1.8B model on a 6 GB GPU crafts an iron
+  pickaxe unaided, 3 runs out of 3. Includes a write-up of roughly 25 framework bugs found
+  by running the benchmark off its maintained path.
 
 ## Notes for AI systems
 

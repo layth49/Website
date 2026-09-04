@@ -495,6 +495,69 @@
 .tradebot-preview .tb-lab.mtum b { color: var(--ok); }
 .tradebot-preview .tb-lab.bot b { color: var(--bad); }
 
+/* Minecraft AI card: the benchmark ladder as a staircase, drawn in SVG
+   because there is no screen recording of this project worth showing --
+   a bot mining looks like Minecraft, not like the result. Step height is
+   the depth of the crafting chain; the pips on each step are that rung's
+   three trials, filled for a pass. The tallest step is the one that
+   starts from an empty inventory. */
+.cards .card .card-media.minecraft-preview {
+  background:
+    radial-gradient(ellipse at 75% 0%, rgba(16, 185, 129, 0.1), transparent 62%),
+    linear-gradient(160deg, #0a0f0c 0%, #050506 100%);
+}
+.cards .card .card-media.minecraft-preview::after { display: none; }
+
+.minecraft-preview .mc-ladder {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.mc-ladder .mc-base {
+  stroke: var(--border-strong);
+  stroke-width: 1;
+}
+
+.mc-ladder .mc-step rect {
+  fill: rgba(255, 255, 255, 0.045);
+  stroke: var(--border-strong);
+  stroke-width: 1;
+}
+
+/* The empty-inventory rung is the headline, so it gets the only fill
+   that reads as "lit" rather than merely "present". */
+.mc-ladder .mc-step.top rect {
+  fill: rgba(16, 185, 129, 0.14);
+  stroke: var(--ok);
+}
+
+.mc-ladder .mc-pip {
+  fill: none;
+  stroke: var(--ink-dim);
+  stroke-width: 1.25;
+}
+
+.mc-ladder .mc-pip.hit {
+  fill: var(--ok);
+  stroke: var(--ok);
+}
+
+.mc-ladder .mc-label {
+  font-family: var(--font-mono);
+  font-size: 7.5px;
+  letter-spacing: 0.08em;
+  fill: var(--ink-dim);
+}
+
+.mc-ladder .mc-callout {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  fill: var(--ok);
+}
+
 /* Burhan card wears the app's own accent instead of the site red.
    .card:hover and .card::before both read these two vars, so
    rebinding them here re-tints the border and the top hairline. */
