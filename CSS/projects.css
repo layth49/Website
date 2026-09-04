@@ -94,28 +94,26 @@
   border-color: var(--border-accent);
 }
 
-/* Grid.
-   Three tracks, and cells at three different widths so nineteen entries
-   don't read as nineteen identical boxes:
-     .flagship  -- L.A.I.T.H.49, a full row laid out side-on
-     .featured  -- the three other write-ups, two tracks wide
-     everything else -- one track
-   DOM order pairs each two-wide card with a one-wide neighbour, so no
-   row is left with a hole in it. */
+/* Masonry, via multi-column.
+   These nineteen entries vary hugely in height: a three-line text card
+   next to one carrying a screenshot, a video and six paragraphs. A grid
+   can't cope with that. Stretching cells to the tallest in the row put
+   dead space inside the short ones; letting them keep their own height
+   put it underneath them instead, up to 493px in one row.
+   Columns pack by height, so neither happens. The trade is reading
+   order: entries run down a column before moving across, which is what
+   masonry does. The flagship escapes the flow with column-span. */
 .cards {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 1.5rem;
+  column-count: 3;
+  column-gap: 1.5rem;
   margin: 0 0 6rem;
-  /* Each card is as tall as its own content. Without this, grid stretches
-     every card in a row to match the tallest one, so a three-line text card
-     sitting beside a card with a screenshot inherits its height and fills
-     the difference with dead space. */
-  align-items: start;
 }
 
-.cards .card.featured { grid-column: span 2; }
-.cards .card.flagship { grid-column: 1 / -1; }
+/* L.A.I.T.H.49 spans the full width above the packed columns, so it
+   still reads as the headline project rather than one of nineteen. */
+.cards .card.flagship {
+  column-span: all;
+}
 
 .cards .card {
   display: flex;
@@ -130,7 +128,10 @@
   overflow: hidden;
   transition: border-color var(--t-base) var(--ease),
               background var(--t-base) var(--ease);
-  margin: 0;
+  /* A card splitting across a column boundary would be unreadable. */
+  break-inside: avoid;
+  -webkit-column-break-inside: avoid;
+  margin: 0 0 1.5rem;
   width: auto;
   height: auto;
   text-align: left;
@@ -814,18 +815,13 @@
   transform: translateX(4px);
 }
 
-/* Two tracks. Featured cards drop to one track each so the pairing
-   still fills every row. */
 @media (max-width: 1024px) {
-  .cards { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  .cards .card.featured { grid-column: span 1; }
+  .cards { column-count: 2; }
 }
 
 /* One track. */
 @media (max-width: 720px) {
-  .cards { grid-template-columns: minmax(0, 1fr); }
-  .cards .card.featured,
-  .cards .card.flagship { grid-column: span 1; }
+  .cards { column-count: 1; }
 
   /* On a phone the bubble is taller than a 16:10 box, so it grows up
      into the badge. Let the box size to its contents instead, and keep
