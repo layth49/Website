@@ -1,14 +1,21 @@
 /* ============================================================
    Minecraft AI deep-dive page
-   Structure comes from laith.css (shared deep-dive kit).
-   Only the bits laith.css doesn't already define live here.
+   Structure comes from laith.css (shared deep-dive kit): laith-hero,
+   laith-specs, laith-section, flow, stack-grid, detail-list,
+   code-block, compare-table, laith-cta. Only what that kit does not
+   already define lives here.
+
+   The page is about measurement, so its one signature device is a
+   readout: mono numerals, tabular figures, hairlines instead of
+   boxes. Everything else stays quiet.
    ============================================================ */
 
 
 /* SECTION DEK ----------------------------------------------
-   Same one-sentence line under a section title that tradebot.css
-   defines; duplicated here so this page doesn't pull in a whole
-   stylesheet for one rule. */
+   The standfirst under a section title. Same rule tradebot.css
+   defines; repeated here so this page doesn't pull a whole
+   stylesheet in for one declaration. Used on three sections, not
+   on all of them. */
 .laith-section .head .dek {
   font-family: var(--font-sans);
   font-size: 1rem;
@@ -16,6 +23,13 @@
   color: var(--ink-muted);
   max-width: var(--measure);
   margin: 0.6rem 0 0;
+}
+
+/* Long technical headings break badly at some widths. */
+.laith-section .title,
+.laith-hero h1,
+.laith-cta h2 {
+  text-wrap: balance;
 }
 
 /* HARDWARE NOTE ---------------------------------------------
@@ -33,11 +47,12 @@
   color: var(--ink);
 }
 
+
 /* HERO FIGURE: THE LADDER ------------------------------------
-   Same staircase as the projects-page card, bigger, and with the
-   budget and result per rung that the card has no room for. Step
-   height is the depth of the crafting chain; the pips are that
-   rung's three trials, filled for a pass. */
+   The benchmark, drawn from its own results. Bar length is how many
+   crafting steps deep the task is; the pips are that rung's three
+   trials, filled for a pass. Same figure as the projects-page card,
+   with the budgets and scores the card has no room for. */
 .mc-figure {
   margin: 0;
 }
@@ -97,8 +112,9 @@
   stroke: var(--ok);
 }
 
-/* nth-of-type, not nth-child: the <g> steps are preceded by the header
-   text and rule, so counting all children would offset every delay. */
+/* nth-of-type, not nth-child: the <g> steps are preceded by the
+   header text and rule, so counting all children would offset every
+   delay by five. */
 .mc-hero-ladder g.mc-step:nth-of-type(2) rect { animation-delay: 0.08s; }
 .mc-hero-ladder g.mc-step:nth-of-type(3) rect { animation-delay: 0.16s; }
 .mc-hero-ladder g.mc-step:nth-of-type(4) rect { animation-delay: 0.24s; }
@@ -110,8 +126,7 @@
   to   { transform: scaleX(1); opacity: 1; }
 }
 
-/* Motion here is decoration on top of a static chart; the chart reads
-   the same without it. */
+/* The bars carry the data; the draw-on only sequences it. */
 @media (prefers-reduced-motion: reduce) {
   .mc-hero-ladder .mc-step rect {
     animation: none;
@@ -150,6 +165,7 @@
   font-size: 10px;
   font-weight: 700;
   letter-spacing: 0.04em;
+  font-variant-numeric: tabular-nums;
   fill: var(--ink-muted);
 }
 
@@ -157,20 +173,24 @@
 
 .mc-hero-ladder .mc-callout {
   font-family: var(--font-mono);
-  font-size: 10px;
-  font-weight: 700;
-  letter-spacing: 0.05em;
+  font-size: 9.5px;
+  letter-spacing: 0.04em;
   fill: var(--ok);
 }
 
 
-/* COMPARE TABLE WIDTHS ---------------------------------------
+/* COMPARE TABLE ----------------------------------------------
    laith.css ships .compare-table at three columns; the model table
-   needs four. Same trick tradebot.css uses with .tb-ct4. */
+   needs four. Same approach tradebot.css uses with .tb-ct4. */
 @media (min-width: 760px) {
   .compare-table.mc-ct4 .ct-row {
     grid-template-columns: 1.3fr 0.7fr 0.9fr 1fr;
   }
+}
+
+/* Trial counts sit in a column, so they line up on the digit. */
+.compare-table.mc-ct4 .ct-cell {
+  font-variant-numeric: tabular-nums;
 }
 
 .compare-table .ct-cell b { color: var(--ink); font-weight: 700; }
@@ -178,104 +198,290 @@
 .compare-table .ct-cell .mc-part { color: var(--warn); font-weight: 700; }
 
 
-/* THE FLAT LINE ----------------------------------------------
-   Two numbers that moved enormously beside one that did not. The
-   whole point is the contrast, so they share a row. */
-.mc-flat {
+/* FINDING -----------------------------------------------------
+   One boxed result per section, at most. Used where a number needs
+   to be read before the paragraph explaining it. */
+.mc-finding {
   display: grid;
   grid-template-columns: 1fr;
-  gap: 0.85rem;
+  gap: 1.25rem;
   margin-top: 2rem;
-}
-
-@media (min-width: 720px) {
-  .mc-flat {
-    grid-template-columns: repeat(3, 1fr);
-  }
-}
-
-.mc-flat .mc-metric {
-  padding: 1.35rem;
+  padding: 1.6rem;
   background: var(--bg-card);
   border: 1px solid var(--border);
+  border-left: 2px solid var(--ok);
   border-radius: var(--radius);
 }
 
-/* The one that didn't move is the finding, so it gets the emphasis
-   the two "wins" don't. */
-.mc-flat .mc-metric.flat {
-  border-color: var(--border-accent);
-  background: var(--accent-soft);
+@media (min-width: 760px) {
+  .mc-finding {
+    grid-template-columns: minmax(0, 15rem) 1fr;
+    gap: 2.25rem;
+    align-items: start;
+  }
 }
 
-.mc-flat .mc-metric .mc-metric-label {
+.mc-finding .mc-finding-figure {
+  font-family: var(--font-display);
+  font-size: var(--step-3);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  font-variant-numeric: tabular-nums;
+  color: var(--ok);
+  line-height: 1.15;
+}
+
+.mc-finding .mc-finding-figure .mc-was {
+  color: var(--ink-dim);
+  font-weight: 400;
+}
+
+.mc-finding .mc-finding-note {
+  margin: 0.5rem 0 0;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.06em;
+  color: var(--ink-dim);
+}
+
+.mc-finding p {
+  margin: 0;
+  font-family: var(--font-sans);
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: var(--ink-muted);
+}
+
+.mc-finding p + p {
+  margin-top: 0.9rem;
+}
+
+.mc-finding strong { color: var(--ink); font-weight: 600; }
+
+.mc-finding code {
+  font-family: var(--font-mono);
+  font-size: 0.85em;
+  color: var(--accent);
+  background: transparent;
+}
+
+
+/* SPLIT -------------------------------------------------------
+   Two panels for the one section that is genuinely about two
+   measurements disagreeing. Divided by a rule, not boxed, so the
+   disagreement reads as one object. */
+.mc-split {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0;
+  margin-top: 2rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+  background: var(--bg-card);
+}
+
+@media (min-width: 760px) {
+  .mc-split {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.mc-split .mc-side {
+  padding: 1.6rem;
+  border-top: 1px solid var(--border);
+}
+
+.mc-split .mc-side:first-child {
+  border-top: none;
+}
+
+@media (min-width: 760px) {
+  .mc-split .mc-side {
+    border-top: none;
+    border-left: 1px solid var(--border);
+  }
+
+  .mc-split .mc-side:first-child {
+    border-left: none;
+  }
+}
+
+.mc-split .mc-side-label {
   display: block;
   font-family: var(--font-mono);
   font-size: 0.72rem;
   letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--ink-dim);
-  margin-bottom: 0.7rem;
+  margin-bottom: 0.9rem;
 }
 
-.mc-flat .mc-metric .mc-metric-val {
+.mc-split .mc-side-verdict {
   display: block;
   font-family: var(--font-display);
-  font-size: var(--step-3);
+  font-size: var(--step-2);
   font-weight: 700;
   letter-spacing: -0.02em;
-  color: var(--ok);
-  line-height: 1.1;
+  color: var(--ink);
+  margin-bottom: 0.75rem;
 }
 
-.mc-flat .mc-metric.flat .mc-metric-val {
-  color: var(--accent);
-}
+.mc-split .mc-side.wins .mc-side-verdict { color: var(--ok); }
 
-.mc-flat .mc-metric .mc-metric-val .mc-from {
-  color: var(--ink-dim);
-  font-weight: 400;
-}
-
-.mc-flat .mc-metric p {
-  margin: 0.7rem 0 0;
+.mc-split .mc-side p {
+  margin: 0;
   font-family: var(--font-sans);
-  font-size: 0.85rem;
-  line-height: 1.5;
+  font-size: 0.9rem;
+  line-height: 1.6;
   color: var(--ink-muted);
 }
 
-
-/* LIMITS LIST ------------------------------------------------
-   What is genuinely unmeasured, stated as scope rather than as a
-   roadmap -- none of it is promised. */
-.mc-limits {
-  list-style: none;
-  padding: 0;
-  margin: 1.5rem 0 0;
-  display: grid;
-  gap: 0.6rem;
+.mc-split .mc-side p code {
+  font-family: var(--font-mono);
+  font-size: 0.85em;
+  color: var(--accent);
+  background: transparent;
 }
 
-.mc-limits li {
+.mc-split .mc-side .mc-side-stat {
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+  font-variant-numeric: tabular-nums;
+  color: var(--ink-muted);
+  margin-top: 0.9rem;
+}
+
+
+/* EVIDENCE ----------------------------------------------------
+   The page's signature. Three counts that all say the same thing,
+   set as a readout: big mono figures on hairlines, no card boxes.
+   Used once. */
+.mc-evidence {
   display: grid;
-  grid-template-columns: 1.6rem 1fr;
-  gap: 0.5rem;
-  align-items: start;
+  grid-template-columns: 1fr;
+  margin-top: 2rem;
+  border-top: 1px solid var(--border);
+}
+
+@media (min-width: 760px) {
+  .mc-evidence {
+    grid-template-columns: repeat(3, 1fr);
+    border-top: none;
+  }
+}
+
+.mc-evidence .mc-count {
+  padding: 1.6rem 0;
+  border-bottom: 1px solid var(--border);
+}
+
+@media (min-width: 760px) {
+  .mc-evidence .mc-count {
+    padding: 0 2rem;
+    border-bottom: none;
+    border-left: 1px solid var(--border);
+  }
+
+  .mc-evidence .mc-count:first-child {
+    padding-left: 0;
+    border-left: none;
+  }
+}
+
+.mc-evidence .mc-count-n {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: clamp(2.75rem, 2rem + 3vw, 4.25rem);
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: -0.03em;
+  font-variant-numeric: tabular-nums;
+  color: var(--ink);
+}
+
+.mc-evidence .mc-count-what {
+  display: block;
+  margin-top: 0.85rem;
+  font-family: var(--font-display);
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+}
+
+.mc-evidence .mc-count-note {
+  margin: 0.45rem 0 0;
   font-family: var(--font-sans);
-  font-size: 0.92rem;
+  font-size: 0.88rem;
   line-height: 1.55;
   color: var(--ink-muted);
 }
 
-.mc-limits li::before {
-  content: "\2014";
-  color: var(--ink-dim);
+.mc-evidence .mc-count-note code {
   font-family: var(--font-mono);
+  font-size: 0.85em;
+  color: var(--accent);
+  background: transparent;
 }
 
-.mc-limits li strong {
+
+/* DELTA -------------------------------------------------------
+   What moved and what did not, as a readout rather than three
+   cards. The unchanged row is the finding, so it is the only one
+   that carries the accent. */
+.mc-delta {
+  margin-top: 2rem;
+  border-top: 1px solid var(--border);
+}
+
+.mc-delta .mc-row {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.35rem 1.5rem;
+  padding: 1.15rem 0;
+  border-bottom: 1px solid var(--border);
+  align-items: baseline;
+}
+
+@media (min-width: 760px) {
+  .mc-delta .mc-row {
+    grid-template-columns: minmax(0, 16rem) minmax(0, 11rem) 1fr;
+  }
+}
+
+.mc-delta .mc-what {
+  font-family: var(--font-sans);
+  font-size: 0.95rem;
   color: var(--ink);
+}
+
+.mc-delta .mc-move {
+  font-family: var(--font-mono);
+  font-size: 1rem;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.01em;
+  color: var(--ok);
+}
+
+.mc-delta .mc-move .mc-was {
+  color: var(--ink-dim);
+  font-weight: 400;
+}
+
+.mc-delta .mc-why {
+  font-family: var(--font-sans);
+  font-size: 0.88rem;
+  line-height: 1.55;
+  color: var(--ink-muted);
+}
+
+.mc-delta .mc-row.held .mc-move {
+  color: var(--accent);
+}
+
+.mc-delta .mc-row.held .mc-what {
   font-weight: 600;
 }
 
@@ -283,10 +489,18 @@
 /* MOBILE ------------------------------------------------------ */
 @media (max-width: 768px) {
   .mc-media {
-    aspect-ratio: 4 / 5;
+    aspect-ratio: 3 / 4;
   }
 
   .mc-hero-ladder {
     padding: 0.75rem;
+  }
+
+  .mc-finding {
+    padding: 1.25rem;
+  }
+
+  .mc-split .mc-side {
+    padding: 1.25rem;
   }
 }

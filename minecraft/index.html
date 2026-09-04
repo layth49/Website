@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Minecraft AI · an LLM that plays Minecraft, by Layth (layth49)</title>
   <meta name="description"
-    content="An LLM-driven Minecraft bot by Layth (layth49), built on mindcraft-ce and Mineflayer. It plays by writing text commands to itself -- nothing is modded in. From an empty inventory, a 1.8B model on a 6 GB GPU crafts an iron pickaxe unaided, three runs out of three." />
+    content="An LLM-driven Minecraft bot by Layth (layth49), built on mindcraft-ce and Mineflayer. It plays by writing text commands to itself, with nothing modded into the game. From an empty inventory, a 1.8B model on a 6 GB GPU crafts an iron pickaxe unaided, three runs out of three." />
   <link rel="canonical" href="https://layth49.com/minecraft" />
 
   <!-- Open Graph -->
@@ -28,6 +28,7 @@
     content="An LLM that plays Minecraft by writing commands to itself. 1.8B model, 6 GB card, empty inventory to iron pickaxe, 3/3." />
   <meta name="twitter:image" content="https://layth49.com/assets/og-image.png" />
 
+  <meta name="theme-color" content="#050505" />
   <link rel="icon" href="/assets/logo.ico" />
 
   <!-- Fonts -->
@@ -120,20 +121,16 @@
       <div>
         <p class="kicker">Project file &middot; complete</p>
 
-        <p class="mc-rig">rig: one RTX 4050, 6 GB VRAM</p>
+        <p class="mc-rig">rig: one RTX 4050, 6&nbsp;GB VRAM</p>
 
         <h1>Minecraft AI</h1>
-        <p class="tagline">An iron pickaxe, from nothing, on 6 GB of VRAM.</p>
+        <p class="tagline">An iron pickaxe, from nothing, on 6&nbsp;GB of VRAM.</p>
         <p class="lede">
           <strong>A language model that plays Minecraft by writing commands
-            to itself.</strong> Nothing is modded into the game &mdash; the bot
-          is an outside client reading the same network packets your own
-          game reads, and every move it makes starts as a line of text the
-          model chose to type. Drop it into an empty world with an empty
-          inventory and a fifteen-minute clock, and a 1.8-billion-parameter
-          model running on a laptop GPU gathers wood, builds tools, mines
-          ore, builds and fuels a furnace, and walks away holding an iron
-          pickaxe. Three runs out of three.
+            to itself.</strong> Give it an empty inventory and fifteen
+          minutes, and a 1.8-billion-parameter model running on a laptop GPU
+          gathers wood, mines ore, builds and fuels a furnace, and walks away
+          holding an iron pickaxe.
         </p>
 
         <div class="actions">
@@ -149,14 +146,13 @@
               aria-labelledby="mc-ladder-title mc-ladder-desc">
               <title id="mc-ladder-title">The benchmark ladder: six crafting tasks and how often the bot solved
                 them</title>
-              <desc id="mc-ladder-desc">Six benchmark rungs, easiest first, with the local 1.8B model on current
+              <desc id="mc-ladder-desc">Six benchmark rungs, easiest first, run with the local 1.8B model on current
                 code. crafting_log, 180 second budget: 3 of 3. crafting_stick, 180 seconds: 3 of 3.
                 crafting_wooden_pickaxe, 180 seconds: 3 of 3. crafting_stone_pickaxe, 360 seconds: 2 of 3.
                 crafting_iron_pickaxe, 900 seconds: 2 of 3. iron_from_nothing, which starts with a completely
                 empty inventory, 900 seconds: 3 of 3. Bar length shows how many crafting steps deep each task
                 is.</desc>
 
-              <!-- column headings -->
               <text class="mc-budget" x="0" y="16">RUNG / BUDGET</text>
               <text class="mc-budget" x="160" y="16">DEPTH OF CHAIN</text>
               <text class="mc-budget" x="440" y="16">TRIALS</text>
@@ -215,7 +211,7 @@
 
               <g class="mc-step top">
                 <text class="mc-name" x="0" y="327">iron_from_nothing</text>
-                <text class="mc-budget" x="0" y="339">900 s &middot; empty inventory</text>
+                <text class="mc-budget" x="0" y="339">900 s, empty inventory</text>
                 <rect x="160" y="317" width="260" height="26" rx="3"></rect>
                 <circle class="mc-pip hit" cx="440" cy="330" r="5"></circle>
                 <circle class="mc-pip hit" cx="456" cy="330" r="5"></circle>
@@ -223,7 +219,7 @@
                 <text class="mc-score pass" x="560" y="334" text-anchor="end">3/3</text>
               </g>
 
-              <text class="mc-callout" x="160" y="372">&uarr; the hardest rung, and the one that starts you with
+              <text class="mc-callout" x="160" y="372">the hardest rung, and the one that starts you with
                 nothing</text>
             </svg>
           </div>
@@ -238,72 +234,52 @@
       <div><dt>Status</dt><dd><span class="tag ok">Complete</span></dd></div>
       <div><dt>Hardest rung</dt><dd><code>3/3</code></dd></div>
       <div><dt>Local model</dt><dd><code>1.8B</code></dd></div>
-      <div><dt>VRAM</dt><dd><code>6 GB</code></dd></div>
+      <div><dt>VRAM</dt><dd><code>6&nbsp;GB</code></dd></div>
       <div><dt>Framework bugs fixed</dt><dd><code>~25</code></dd></div>
     </dl>
 
-    <!-- WHAT IT DOES -->
+    <!-- HOW IT WORKS -->
     <section class="laith-section">
       <div class="head">
         <h2 class="title">What it actually does</h2>
         <p class="dek">The model never touches the game. It writes text, and something else does the touching.</p>
       </div>
 
-      <p class="blurb">
-        The bot is called <code>LAITH49</code>. It runs on
-        <a href="https://github.com/mindcraft-ce/mindcraft-ce" target="_blank" rel="noopener noreferrer">mindcraft-ce</a>
-        against a Minecraft Java 1.21.6 server, and the whole mechanism is
-        worth being precise about, because it isn't what people usually
-        picture when they hear "AI plays Minecraft."
-      </p>
-
-      <div class="opts">
-        <article class="opt">
-          <div class="head-row"><span class="badge">step one</span></div>
-          <h4>The model types a command</h4>
-          <p>
-            Given what it can see, the model writes an ordinary line of text
-            into its own output: <code>!collectBlocks("oak_log", 4)</code>.
-            That's the entire action space. No pixels, no keyboard, no
-            controller &mdash; the model's only motor skill is choosing which
-            string to emit next.
-          </p>
-        </article>
-
-        <article class="opt">
-          <div class="head-row"><span class="badge">step two</span></div>
-          <h4>The framework parses it and moves the body</h4>
-          <p>
-            mindcraft-ce reads that string, matches it to a skill, and drives
-            <a href="https://github.com/PrismarineJS/mineflayer" target="_blank"
-              rel="noopener noreferrer">Mineflayer</a>, a protocol-level
-            Minecraft client. Pathfinding, digging and inventory handling all
-            happen down here, not in the model.
-          </p>
-        </article>
-
-        <article class="opt">
-          <div class="head-row"><span class="badge">step three</span></div>
-          <h4>Nothing is modded into the game</h4>
-          <p>
-            The bot is an external client reconstructing the world from
-            network packets &mdash; the same packets your game client
-            receives when you play. The server has no idea it isn't a person.
-            That's also why it can join a normal survival world with friends
-            in it.
-          </p>
-        </article>
-
-        <article class="opt">
-          <div class="head-row"><span class="badge">the constraint</span></div>
-          <h4>Six gigabytes of VRAM</h4>
-          <p>
-            One RTX 4050. Every local-model decision on this project falls
-            out of that number: the daily driver is a <b>1.8B</b> fine-tune
-            because that is what fits alongside a running game server. When
-            you read "a small model did this," the smallness is the point.
-          </p>
-        </article>
+      <div class="flow">
+        <div class="step">
+          <div class="n">01</div>
+          <div class="body">
+            <span class="label">The model types a command</span>
+            <span class="what">Given what it can see, it writes an ordinary line of text into its own output:
+              <code>!collectBlocks("oak_log", 4)</code>.</span>
+            <span class="why">That is the entire action space. No pixels, no keyboard, no controller. The model's
+              only motor skill is choosing which string to emit next, which is why a benchmark here measures
+              planning rather than reflexes.</span>
+          </div>
+        </div>
+        <div class="step">
+          <div class="n">02</div>
+          <div class="body">
+            <span class="label">The framework parses it and moves the body</span>
+            <span class="what"><a href="https://github.com/mindcraft-ce/mindcraft-ce" target="_blank"
+                rel="noopener noreferrer">mindcraft-ce</a> matches the string to a skill and drives
+              <a href="https://github.com/PrismarineJS/mineflayer" target="_blank"
+                rel="noopener noreferrer">Mineflayer</a>, a protocol-level client.</span>
+            <span class="why">Pathfinding, digging and inventory handling all happen down here. Most of this
+              project's bugs lived in this layer too, not in the model.</span>
+          </div>
+        </div>
+        <div class="step">
+          <div class="n">03</div>
+          <div class="body">
+            <span class="label">Nothing is modded into the game</span>
+            <span class="what">The bot reconstructs the world from network packets, the same ones your own game
+              client receives.</span>
+            <span class="why">The server cannot tell it apart from a person, so it joins an ordinary survival world
+              with friends already in it. It runs on a Fabric 1.21.6 server behind a playit.gg tunnel, with a
+              custom skin and optional local text-to-speech.</span>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -311,42 +287,47 @@
     <section class="laith-section" id="ladder">
       <div class="head">
         <h2 class="title">The ladder</h2>
-        <p class="dek">Six crafting tasks, each one a longer chain than the last.</p>
       </div>
 
       <p class="blurb">
-        Scoring an agent like this is the hard part, so the benchmark is a
-        ladder: six tasks of increasing depth, three trials each, on a fixed
-        clock. The top rung, <code>iron_from_nothing</code>, is the one that
-        matters &mdash; empty inventory, 900 seconds, and the bot has to run
-        the entire chain unaided: gather wood, craft a bench and wooden
-        tools, mine stone, find iron, gather cobblestone, build a furnace,
-        pick a fuel, smelt, craft. <strong>It solved that three times out of
-          three</strong>, in 115, 125 and 123 commands. It had been 0/2 for
-        every model on every earlier benchmark here.
+        Six crafting tasks, each a longer chain than the last, three trials
+        each on a fixed clock. The top rung is the one that matters.
+        <code>iron_from_nothing</code>
+        starts with an empty inventory and 900 seconds, and the bot has to run
+        the whole chain unaided: gather wood, craft a bench and wooden tools,
+        mine stone, find iron, gather cobblestone, build a furnace, pick a
+        fuel, smelt, craft. <strong>It solved that three times out of
+          three</strong>, in 115, 125 and 123 commands. That rung had been 0/2
+        for every model on every earlier benchmark here. The two hardest rungs
+        together now sit at 5/6.
       </p>
 
       <p class="blurb">
-        The two hardest rungs together sit at <b>5/6</b> on current code. The
-        interesting failure on this ladder, though, wasn't a model failure at
+        The most interesting failure on this ladder was not a model failure at
         all.
       </p>
 
-      <div class="opts">
-        <article class="opt">
-          <div class="head-row"><span class="badge">the rung that wasn't failing</span></div>
-          <h4><code>crafting_stone_pickaxe</code> went 0/3 to 2/3 with no change but the clock</h4>
+      <div class="mc-finding">
+        <div>
+          <div class="mc-finding-figure"><span class="mc-was">0/3 &rarr;</span> 2/3</div>
+          <p class="mc-finding-note">CRAFTING_STONE_PICKAXE</p>
+        </div>
+        <div>
           <p>
-            It had been given the same 180 seconds as the wooden pickaxe,
-            despite having to finish the entire wooden-pickaxe chain
-            <em>and then</em> mine stone and craft again. The wooden rung's
-            own three successes used 71&ndash;96% of that budget, so there was
-            no headroom left for a second stage. Raised to 360 s, it passed
-            twice &mdash; and the solve times settle it: <b>169.9 s and
-              181.8 s</b>, both landing right at the old cap. The rung was
-            never failing. It was being cut off.
+            Nothing changed but the clock. The rung had been given the same
+            180 seconds as the wooden pickaxe, despite having to finish the
+            entire wooden-pickaxe chain <strong>and then</strong> mine stone
+            and craft again.
           </p>
-        </article>
+          <p>
+            The solve times settle it. Once the budget went to 360 seconds,
+            the two passes finished at <strong>169.9&nbsp;s and
+              181.9&nbsp;s</strong>, both landing right at the old cap. The
+            wooden rung's own passes had already been using 71 to 96&nbsp;% of
+            their budget, so there was never headroom for a second stage. The
+            rung was not failing. It was being cut off.
+          </p>
+        </div>
       </div>
     </section>
 
@@ -354,15 +335,13 @@
     <section class="laith-section">
       <div class="head">
         <h2 class="title">Which model drives it</h2>
-        <p class="dek">Slower per decision, and finished sooner.</p>
       </div>
 
       <p class="blurb">
         Same framework, same fixes, same rung
-        (<code>crafting_iron_pickaxe</code>) &mdash; only the model swapped.
-        The local 1.8B model is competitive on whether it eventually gets
-        there. It is not competitive on how long it takes to decide what to
-        do.
+        (<code>crafting_iron_pickaxe</code>), only the model swapped. The
+        local 1.8B model is competitive on whether it eventually gets there.
+        It is not competitive on how long it takes to decide what to do.
       </p>
 
       <div class="compare-table mc-ct4">
@@ -393,25 +372,24 @@
         <div class="ct-row">
           <div class="ct-cell ct-sub">gemini-3.1-flash-lite</div>
           <div class="ct-cell"><span class="mc-part">2/3</span></div>
-          <div class="ct-cell">26&ndash;33</div>
+          <div class="ct-cell">26 to 33</div>
           <div class="ct-cell">cloud</div>
         </div>
         <div class="ct-row">
           <div class="ct-cell ct-sub">Andy-4 micro <span class="ct-badge alt">1.8B</span></div>
           <div class="ct-cell"><b>8/9</b></div>
-          <div class="ct-cell">25&ndash;132</div>
+          <div class="ct-cell">25 to 132</div>
           <div class="ct-cell">local, offline</div>
         </div>
       </div>
 
-      <p class="blurb" style="margin-top: 2rem;">
-        The cloud models take about <b>9 seconds</b> per decision against the
-        local model's <b>3</b>, and still finish sooner, because they need
-        two to five times fewer commands to get there. Latency isn't what
-        decides this task &mdash; planning is. The default profile points at
-        gemma-4-31b now; the local profile is kept, because it is the one
-        that works with no network, and it is the one that cleared
-        <code>iron_from_nothing</code>.
+      <p class="blurb">
+        The cloud models take about 9 seconds per decision against the local
+        model's 3, and still finish sooner, because they need two to five
+        times fewer commands to get there. Latency is not what decides this
+        task. Planning is. The default profile points at gemma-4-31b now, and
+        the local profile stays, because it is the one that works with no
+        network and the one that cleared <code>iron_from_nothing</code>.
       </p>
     </section>
 
@@ -419,78 +397,72 @@
     <section class="laith-section">
       <div class="head">
         <h2 class="title">Static benchmarks lie</h2>
-        <p class="dek">The model that wins on paper comes second in the world.</p>
+        <p class="dek">There are two ways to score a model here, and they disagree about which one is best.</p>
+      </div>
+
+      <div class="mc-split">
+        <div class="mc-side wins">
+          <span class="mc-side-label">Scored on paper</span>
+          <span class="mc-side-verdict">First place</span>
+          <p>
+            Feed the model fixed situations and grade the command it writes.
+            The local 1.8B model wins outright, and it is not close.
+          </p>
+          <p class="mc-side-stat">83&nbsp;% intent &middot; 97&nbsp;% parseable &middot; 0&nbsp;% hallucinated &middot;
+            155&nbsp;ms</p>
+        </div>
+        <div class="mc-side">
+          <span class="mc-side-label">Scored in the world</span>
+          <span class="mc-side-verdict">Second place</span>
+          <p>
+            Put the same model on the ladder and see whether it actually comes
+            back holding the pickaxe. It gets beaten.
+          </p>
+          <p class="mc-side-stat">the ladder, three trials a rung</p>
+        </div>
       </div>
 
       <p class="blurb">
-        There are two ways to score a model here. Feed it fixed situations
-        and grade the command it writes &mdash; the local 1.8B model
-        <b>wins</b> that, at <b>83% intent, 97% parseable, 0% hallucinated
-          commands, 155 ms</b>. Or put it on the ladder and see whether it
-        actually gets the item &mdash; where it comes <b>second</b>. Static
-        measures whether a model emits a well-formed command. The ladder
-        measures whether it can get the pickaxe. Those turn out to be
+        Static measures whether a model emits a well-formed command. The
+        ladder measures whether it can get the item. Those turn out to be
         different skills, and only one of them is the product.
       </p>
 
-      <div class="opts">
-        <article class="opt">
-          <div class="head-row"><span class="badge">the router</span></div>
-          <h4>Combining the two models scored worse than either one alone</h4>
-          <p>
-            The plan was to send fresh player messages to one model and
-            mid-task continuations to the other, combining their measured
-            strengths. On the static tier it looked excellent. In-game it
-            scored <b>2/10</b> &mdash; it lost a rung both models pass
-            individually, and failed by looping
-            <code>!searchForBlock</code> eleven times where either model
-            solo finishes in six commands.
-          </p>
-        </article>
-
-        <article class="opt">
-          <div class="head-row"><span class="badge">why</span></div>
-          <h4>Swapping models mid-task destroys plan continuity</h4>
-          <p>
-            Each model inherits a history the other one wrote, and re-decides
-            instead of continuing. The static tier structurally could not see
-            this: each of its cases is <em>one</em> handoff into a
-            pre-written history, while a real task is roughly <em>twenty</em>
-            handoffs, each depending on a plan the model formed itself.
-          </p>
-        </article>
-
-        <article class="opt">
-          <div class="head-row"><span class="badge">and fixing it didn't help</span></div>
-          <h4>A stickier version fixed both defects and got worse</h4>
-          <p>
-            Hallucinated commands fell from 60% to 29%. Task success dropped
-            to <b>1/10</b>. The premise was wrong rather than the heuristic:
-            once routing is sticky enough to preserve a plan, a task run is
-            essentially all one model anyway, with every switch a fresh
-            chance to break something. The file is kept, annotated with both
-            results, and marked do-not-use.
-          </p>
-        </article>
-      </div>
+      <p class="blurb">
+        The sharpest evidence is the router. The plan was to send fresh player
+        messages to one model and mid-task continuations to the other,
+        combining their measured strengths. On the static tier it looked
+        excellent. In-game it scored <strong>2/10, worse than either model
+          alone</strong>, losing a rung both models pass individually and
+        failing by looping <code>!searchForBlock</code> eleven times where
+        either one solo finishes in six commands. Swapping models mid-task
+        destroys plan continuity: each inherits a history the other wrote and
+        re-decides instead of continuing. The static tier structurally could
+        not see this, because each of its cases is one handoff into a
+        pre-written history, while a real task is roughly twenty handoffs,
+        each depending on a plan the model formed itself. A stickier second
+        version fixed both diagnosed defects, cut hallucinated commands from
+        60&nbsp;% to 29&nbsp;%, and scored <strong>1/10</strong>. The premise
+        was wrong rather than the heuristic. That file is kept, annotated with
+        both results, and marked do-not-use.
+      </p>
     </section>
 
     <!-- THE BUGS -->
     <section class="laith-section">
       <div class="head">
         <h2 class="title">The bugs underneath</h2>
-        <p class="dek">Roughly 25 of them, and the worst ones never printed an error.</p>
+        <p class="dek">Roughly 25 of them, and the worst never printed an error.</p>
       </div>
 
       <p class="blurb">
-        All of these came out of running <strong>off the maintained
-          path</strong> &mdash; a bot without operator permissions, a spruce
-        taiga instead of an oak forest, models under a billion parameters,
-        many runs back to back. None of them are architectural flaws. They
-        are unmaintained-surface bugs: code that works on the path the
-        maintainers exercise and degrades quietly off it. And the severe
-        class isn't small errors. It's <strong>silent failures that log
-          success.</strong>
+        These came out of running off the maintained path: a bot without
+        operator permissions, a spruce taiga instead of an oak forest, models
+        under a billion parameters, many runs back to back. None are
+        architectural flaws. They are unmaintained-surface bugs, code that
+        works on the path the maintainers exercise and degrades quietly off
+        it. The severe class is not small errors. It is
+        <strong>silent failures that log success.</strong>
       </p>
 
       <div class="code-block">
@@ -502,219 +474,176 @@
 <span class="type">console</span>.<span class="fn">log</span>(<span class="str">`Cleared ${this.name}'s inventory.`</span>);   <span class="com">// prints either way</span></pre>
       </div>
 
-      <div class="opts" style="margin-top: 2rem;">
-        <article class="opt">
-          <div class="head-row"><span class="badge">a benchmark that scored a model that never moved</span></div>
-          <h4>A clean 10/10 results table that was entirely fiction</h4>
-          <p>
-            Clearing the inventory between trials needs operator permission,
-            which a correctly-configured bot doesn't have &mdash; and the code
-            logged success whether or not the command worked. So the world
-            kept the bot's inventory between runs, and the validator saw the
-            target item already sitting there at spawn and reported
-            <em>task successful</em> before the model had acted. A 0.87B model
-            "cleared" an iron pickaxe instantly. Nothing crashed. The only
-            tell was the <b>command count</b>: real runs issue commands after
-            the opening goal, and these issued exactly one.
-          </p>
-        </article>
+      <p class="blurb">
+        Clearing the inventory between trials needs operator permission, which
+        a correctly configured bot does not have, and the code logged success
+        whether or not the command worked. So the world kept the bot's
+        inventory between runs, and the validator saw the target item already
+        sitting there at spawn and reported the task solved before the model
+        had acted. A 0.87B model &ldquo;cleared&rdquo; an iron pickaxe
+        instantly. Nothing crashed. It produced a clean 10/10 results table
+        that was entirely fiction, and the only tell was the command count:
+        real runs issue commands after the opening goal, and these issued
+        exactly one.
+      </p>
 
-        <article class="opt">
-          <div class="head-row"><span class="badge">phantom collection</span></div>
-          <h4><code>collectBlock</code> counted digs, not items</h4>
-          <p>
-            The counter incremented when the <em>dig</em> succeeded, not when
-            the item reached the inventory. So the bot would log "Collected 1
-            oak_log", and the very next command &mdash; nothing in between
-            &mdash; would fail with <em>you do not have the resources</em>.
-            Measured: of 41 collection events followed by an inventory dump,
-            <b>29 (71%)</b> show the item absent. It now reports the actual
-            inventory delta.
-          </p>
-        </article>
-
-        <article class="opt">
-          <div class="head-row"><span class="badge">written, working, unreachable</span></div>
-          <h4>Wood-variant handling nothing could call</h4>
-          <p>
-            The logic for handling every wood type existed and was correct.
-            It was used from exactly one module &mdash; a subsystem the agent
-            path never calls. The capability was built, shipped and stranded.
-            That's a different failure mode from nobody having thought of it.
-          </p>
-        </article>
-
-        <article class="opt">
-          <div class="head-row"><span class="badge">a hardcoded preference</span></div>
-          <h4>Told to find oak, in a forest with no oak</h4>
-          <p>
-            Recipe candidates were sorted to prefer <code>oak_planks</code>.
-            In a spruce taiga the bot holds spruce, but the chosen recipe
-            &mdash; and the error message built from it &mdash; names oak. So
-            the bot gets told it needs a wood the biome does not have, and
-            goes hunting for it. Recipe ranking is inventory-aware now, and
-            wood ingredients are named generically.
-          </p>
-        </article>
-
-        <article class="opt">
-          <div class="head-row"><span class="badge">on the rung nothing had cleared</span></div>
-          <h4>Deepslate iron was never searched for</h4>
-          <p>
-            The ore-variant expansion added <code>iron_ore</code> for "iron",
-            then appended the deepslate prefix only to names already ending
-            in "ore" &mdash; so the deepslate variant was never added. Below
-            y=0, where deepslate is most of the stone, the iron rung was
-            searching for ore that doesn't spawn there.
-          </p>
-        </article>
-
-        <article class="opt">
-          <div class="head-row"><span class="badge">two rules for one parameter</span></div>
-          <h4>Sibling commands that contradicted each other</h4>
-          <p>
-            <code>!searchForBlock</code> accepts a search range down to 10 and
-            quietly clamps anything under 32 upward.
-            <code>!searchForEntity</code> declares a minimum of 32 and
-            hard-rejects the same value. Same parameter, same concept,
-            opposite behaviour &mdash; six rejections in a single scenario. A
-            model cannot learn one rule from two contradictory ones.
-          </p>
-        </article>
-      </div>
+      <ul class="detail-list">
+        <li><strong>Collection counted digs, not items.</strong> The counter incremented when the dig succeeded,
+          not when the item reached the inventory, so the bot would log a collected log and then fail the very
+          next craft for want of it. Of 41 collection events followed by an inventory dump, 29 (71&nbsp;%) show
+          the item absent.</li>
+        <li><strong>Wood-variant handling existed and was unreachable.</strong> The logic for every wood type was
+          written and correct, and was called from exactly one module that the agent path never touches. Built,
+          shipped, stranded. That is a different failure mode from nobody having thought of it.</li>
+        <li><strong>A hardcoded oak preference.</strong> Recipe candidates were sorted to prefer
+          <code>oak_planks</code>, so in a spruce taiga the bot got told it needed a wood the biome does not
+          have, and went hunting for it.</li>
+        <li><strong>Deepslate iron was never searched for.</strong> The variant expansion appended the deepslate
+          prefix only to names already ending in &ldquo;ore&rdquo;, so below y=0, where deepslate is most of the
+          stone, the iron rung was looking for ore that does not spawn there. On the rung nothing had ever
+          cleared.</li>
+        <li><strong>Two sibling commands contradicted each other.</strong> One accepts a search range down to 10
+          and quietly clamps it up to 32; its sibling declares a minimum of 32 and hard-rejects the same value.
+          Six rejections in one scenario. A model cannot learn one rule from two contradictory ones.</li>
+      </ul>
     </section>
 
-    <!-- YOU CANNOT TELL IT ANYTHING -->
+    <!-- CANNOT BE TOLD -->
     <section class="laith-section">
       <div class="head">
         <h2 class="title">You cannot tell it anything</h2>
-        <p class="dek">Three confirmations in one night, and the fix was to stop asking.</p>
       </div>
 
       <p class="blurb">
-        The most useful thing this project taught me is not about Minecraft.
-        A small fine-tuned model does not reliably act on instructions that
-        arrive in its result text &mdash; not warnings, not corrections, not
-        even a plan it wrote itself. Three independent confirmations landed
-        in a single overnight run.
+        The most useful thing this project taught me is not about Minecraft. A
+        small fine-tuned model does not reliably act on instructions that
+        arrive in its result text. Not warnings, not corrections, not even a
+        plan it wrote itself. Three independent confirmations landed in a
+        single overnight run.
       </p>
 
-      <div class="opts">
-        <article class="opt">
-          <div class="head-row"><span class="badge">224 times</span></div>
-          <h4>It ignored every blocked-command warning</h4>
-          <p>
-            A blocked command kept being emitted. 224 consecutive
-            <em>blocked</em> messages changed nothing about what it did next.
-          </p>
-        </article>
-
-        <article class="opt">
-          <div class="head-row"><span class="badge">292 times</span></div>
-          <h4>It kept calling a command that no longer existed</h4>
-          <p>
-            One trial made <b>296 model calls and executed 6 commands</b>: it
-            emitted the same non-existent command <b>292 times</b>, one that
-            had been removed from its documentation entirely. The model is
-            fine-tuned on this framework, so it emits what it
-            <em>remembers</em>, not what it's shown. Removing a command from
-            the docs doesn't remove it from the model &mdash; it just makes
-            the failure silent.
-          </p>
-        </article>
-
-        <article class="opt">
-          <div class="head-row"><span class="badge">its own plan</span></div>
-          <h4>It finished one smelt away from success, holding the instructions</h4>
-          <p>
-            Seven raw iron, a furnace, a wooden pickaxe and four sticks in
-            hand; it needed three ingots. Its own planning tool had already
-            printed <em>"SMELTING REQUIRED &mdash; these cannot be crafted,
-              they must be smelted in a furnace."</em> It called the smelt
-            command once in the entire trial.
-          </p>
-        </article>
+      <div class="mc-evidence">
+        <div class="mc-count">
+          <span class="mc-count-n">224</span>
+          <span class="mc-count-what">ignored warnings</span>
+          <p class="mc-count-note">A blocked command kept being emitted. 224 consecutive refusals changed nothing
+            about what it did next.</p>
+        </div>
+        <div class="mc-count">
+          <span class="mc-count-n">292</span>
+          <span class="mc-count-what">identical hallucinations</span>
+          <p class="mc-count-note">One trial made 296 model calls and executed 6 commands, emitting the same
+            deleted command 292 times. It is fine-tuned on this framework, so it emits what it remembers, not
+            what it is shown.</p>
+        </div>
+        <div class="mc-count">
+          <span class="mc-count-n">1</span>
+          <span class="mc-count-what">smelt, when it needed three</span>
+          <p class="mc-count-note">A trial finished one smelt from success holding 7 raw iron and a furnace, with
+            <code>SMELTING REQUIRED</code> printed verbatim in its own plan.</p>
+        </div>
       </div>
 
-      <p class="blurb" style="margin-top: 2rem;">
+      <p class="blurb">
         <strong>Better wording is not a lever. The only lever is removing the
-          need to decide.</strong> So the framework absorbed the decisions:
-        crafting now makes its own intermediates and smelts them, places its
-        own workbench, builds its own furnace when it has the stone, and
+          need to decide.</strong> So the framework absorbed the decisions.
+        Crafting now makes its own intermediates and smelts them, places its
+        own workbench, builds its own furnace when it holds the stone, and
         picks its own fuel. That is a real change to what the benchmark
-        measures &mdash; the task becomes "can it gather the materials"
-        rather than "can it plan the smelt" &mdash; and it was made
-        deliberately, on the evidence that this model cannot be told.
+        measures, turning the task into &ldquo;can it gather the
+        materials&rdquo; rather than &ldquo;can it plan the smelt&rdquo;, and
+        it was made deliberately, on the evidence that this model cannot be
+        told.
       </p>
     </section>
 
-    <!-- THE HONEST LIMIT -->
+    <!-- WHAT IT BOUGHT -->
     <section class="laith-section">
       <div class="head">
-        <h2 class="title">What all that work actually bought</h2>
-        <p class="dek">Two numbers moved enormously. The one that mattered didn't move at all.</p>
+        <h2 class="title">What all that work bought</h2>
+        <p class="dek">Fourteen framework fixes in one night. Two numbers moved enormously. The one that mattered
+          did not move at all.</p>
+      </div>
+
+      <div class="mc-delta">
+        <div class="mc-row">
+          <span class="mc-what">Turn efficiency</span>
+          <span class="mc-move"><span class="mc-was">9&nbsp;% &rarr;</span> 97&nbsp;%</span>
+          <span class="mc-why">Commands actually executed per model call. Most of a trial had been going
+            nowhere.</span>
+        </div>
+        <div class="mc-row">
+          <span class="mc-what">Hallucinations per trial</span>
+          <span class="mc-move"><span class="mc-was">292 &rarr;</span> 1</span>
+          <span class="mc-why">The single biggest efficiency change of the night.</span>
+        </div>
+        <div class="mc-row held">
+          <span class="mc-what">Success on the hardest rung</span>
+          <span class="mc-move">unchanged</span>
+          <span class="mc-why">Nine of eighteen across the night. Exactly 50&nbsp;%, start to finish, through all
+            fourteen fixes.</span>
+        </div>
       </div>
 
       <p class="blurb">
-        Fourteen framework fixes landed in one night. The agent got
-        dramatically healthier by every process measure available. Here is
-        what that did to the thing the whole exercise was for:
-      </p>
-
-      <div class="mc-flat">
-        <div class="mc-metric">
-          <span class="mc-metric-label">Turn efficiency</span>
-          <span class="mc-metric-val"><span class="mc-from">9% &rarr;</span> 97%</span>
-          <p>Commands actually executed per model call. Most of a trial had been going nowhere.</p>
-        </div>
-        <div class="mc-metric">
-          <span class="mc-metric-label">Hallucinations</span>
-          <span class="mc-metric-val"><span class="mc-from">292 &rarr;</span> 1</span>
-          <p>Per trial. The single biggest efficiency change of the night.</p>
-        </div>
-        <div class="mc-metric flat">
-          <span class="mc-metric-label">Success, hardest rung</span>
-          <span class="mc-metric-val">unchanged</span>
-          <p>Nine of eighteen across the night. Exactly 50%, start to finish, through all fourteen fixes.</p>
-        </div>
-      </div>
-
-      <p class="blurb" style="margin-top: 2rem;">
-        That is worth stating plainly rather than burying: <strong>the
-          framework work bought robustness and speed, not capability.</strong>
-        It made the agent much healthier without making it any smarter. What
-        did raise capability was the other thing entirely &mdash; taking
-        decisions away from the model and putting them in code that always
-        makes them correctly.
+        Worth stating plainly rather than burying: <strong>the framework work
+          bought robustness and speed, not capability.</strong> It made the
+        agent much healthier without making it any smarter. What did raise
+        capability was the other thing entirely, taking decisions away from
+        the model and putting them in code that always makes them correctly.
       </p>
     </section>
 
     <!-- LIMITS -->
     <section class="laith-section">
       <div class="head">
-        <h2 class="title">What it still can't do</h2>
-        <p class="dek">Scope, not a roadmap. None of this is promised.</p>
+        <h2 class="title">What it still cannot do</h2>
       </div>
 
       <p class="blurb">
-        Every number on this page comes from self-prompted task mode &mdash;
-        the bot given a goal and left alone. That's a narrow slice of what
-        "an AI that plays Minecraft" could mean, and it's worth being exact
-        about where the measurements stop.
+        Every number on this page comes from self-prompted task mode, with the
+        bot given a goal and left alone. That is a narrow slice of what
+        &ldquo;an AI that plays Minecraft&rdquo; could mean, so here is
+        exactly where the measurements stop. This is scope, not a roadmap.
+        None of it is promised.
       </p>
 
-      <ul class="mc-limits">
-        <li><strong>Conversation is unmeasured.</strong> Nobody has checked whether it answers a question well,
-          follows a chat request, or remembers the previous turn. It can talk. Whether it's any good to talk to is
-          not something this project measured.</li>
-        <li><strong>No multi-agent work.</strong> One bot, alone.</li>
-        <li><strong>The Nether and portals: zero coverage.</strong></li>
-        <li><strong>No code generation.</strong> The framework can have the model write new actions as code; that
-          path was never exercised here.</li>
-        <li><strong>No vision.</strong> The bot reads world state from packets, never from pixels.</li>
-        <li><strong>The three cloud models tied at 3/3.</strong> That rung is saturated, so which of them is
-          actually best here is unresolved &mdash; separating them needs a harder task or more trials.</li>
-      </ul>
+      <div class="stack-grid">
+        <div class="item">
+          <div class="role">Conversation</div>
+          <div class="name">Unmeasured</div>
+          <div class="note">Nobody has checked whether it answers a question well, follows a chat request, or
+            remembers the previous turn. It can talk. Whether it is any good to talk to is not something this
+            project measured.</div>
+        </div>
+        <div class="item">
+          <div class="role">Multi-agent</div>
+          <div class="name">No coverage</div>
+          <div class="note">One bot, alone, for every trial on this page.</div>
+        </div>
+        <div class="item">
+          <div class="role">The Nether</div>
+          <div class="name">No coverage</div>
+          <div class="note">Portals and everything past them are untested.</div>
+        </div>
+        <div class="item">
+          <div class="role">Code generation</div>
+          <div class="name">Never exercised</div>
+          <div class="note">The framework can have the model write new actions as code. That path was never run
+            here.</div>
+        </div>
+        <div class="item">
+          <div class="role">Vision</div>
+          <div class="name">Not used</div>
+          <div class="note">World state comes from packets, never from pixels.</div>
+        </div>
+        <div class="item">
+          <div class="role">The cloud models</div>
+          <div class="name">Unresolved</div>
+          <div class="note">Three of them tied at 3/3, so that rung is saturated. Separating them needs a harder
+            task or more trials.</div>
+        </div>
+      </div>
     </section>
 
     <!-- CTA -->
@@ -724,9 +653,9 @@
       <p>
         A benchmark reported 10/10 for a model that had not taken a single
         action, and the only tell was a command count. Most of this project
-        was learning to trust its own numbers &mdash; and the payoff was a
-        1.8-billion-parameter model on a 6 GB card walking out of an empty
-        world with an iron pickaxe.
+        was learning to trust its own numbers. The payoff was a
+        1.8-billion-parameter model on a 6&nbsp;GB card walking out of an
+        empty world holding an iron pickaxe.
       </p>
       <div class="links">
         <a href="/projects" class="btn">Other projects</a>
