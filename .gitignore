@@ -1,4 +1,6 @@
-# Claude Code local state (contains nested worktrees + copied assets)
+# Local-only agent instructions and state. Never publish these.
+CLAUDE.md
+CLAUDE.local.md
 .claude/
 
 # wrangler files

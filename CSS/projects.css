@@ -106,9 +106,14 @@
   margin: 0 0 6rem;
 }
 
-/* L.A.I.T.H.49 spans the full width above the packed columns, so it
-   still reads as the headline project rather than one of nineteen. */
-.cards .card.flagship {
+/* The picks span the full width above the packed columns so they read as
+   picks rather than as four of nineteen. Chosen on whether the card has
+   something worth looking at, with ranking only as a tiebreak: the Door
+   Opener outranks Bozo's but has no media, so it stays in the columns.
+   They sit together in the markup on purpose, since a card stranded
+   between two spanners becomes a lone item in a three-column block. */
+.cards .card.featured,
+.cards .card.lead {
   column-span: all;
 }
 
@@ -525,8 +530,11 @@
    as the l.a.i.t.h chat and Trade Bot chart above. */
 .cards .card .card-media.burhan-preview {
   display: flex;
-  align-items: center;
+  align-items: stretch;
   background: #141410;
+  /* A verse is a fixed amount of text and the fix is never to crop
+     scripture. The 16:10 box left 376px of it outside the card. */
+  aspect-ratio: auto;
 }
 .cards .card .card-media.burhan-preview::after { display: none; }
 
@@ -535,7 +543,7 @@
   flex-direction: column;
   align-items: center;
   gap: 0.55rem;
-  padding: 1.1rem 1.25rem;
+  padding: 3.2rem 1.15rem 1.2rem;
   width: 100%;
   min-width: 0;
   font-family: var(--font-sans);
@@ -639,12 +647,7 @@
    text and the fix is not to crop scripture -- let this one card
    size to its content, and drop the wordmark lockup. */
 @media (max-width: 720px) {
-  .cards .card .card-media.burhan-preview { aspect-ratio: auto; }
-  /* content now fills the box, so leave room for the floating badge */
-  .burhan-preview .bu-card-app { gap: 0.45rem; padding: 3.4rem 0.9rem 0.9rem; }
-  .burhan-preview .bu-card-wordmark,
-  .burhan-preview .bu-card-tagline { display: none; }
-  .burhan-preview .bu-card-ayah { font-size: 1.15rem; line-height: 2.05; }
+  .burhan-preview .bu-card-app { gap: 0.45rem; padding: 3.2rem 0.9rem 0.9rem; }
 }
 
 
@@ -756,7 +759,8 @@
    to the ordinary stacked card.
    ------------------------------------------------------------------ */
 @media (min-width: 861px) {
-  .cards .card.flagship {
+  .cards .card.featured,
+  .cards .card.lead {
     display: grid;
     grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
     grid-template-rows: auto auto auto 1fr auto;
@@ -765,22 +769,35 @@
     padding: 1.75rem;
   }
 
-  .cards .card.flagship > .card-head { grid-column: 1; grid-row: 1; }
-  .cards .card.flagship > h2 { grid-column: 1; grid-row: 2; }
-  .cards .card.flagship > .subtitle { grid-column: 1; grid-row: 3; }
-  .cards .card.flagship > p:not(.subtitle) { grid-column: 1; grid-row: 4; align-self: start; }
-  .cards .card.flagship > .card-foot { grid-column: 1; grid-row: 5; }
+  .cards .card.featured > .card-head,
+  .cards .card.lead > .card-head { grid-column: 1; grid-row: 1; }
+  .cards .card.featured > h2,
+  .cards .card.lead > h2 { grid-column: 1; grid-row: 2; }
+  .cards .card.featured > .subtitle,
+  .cards .card.lead > .subtitle { grid-column: 1; grid-row: 3; }
+  .cards .card.featured > p:not(.subtitle),
+  .cards .card.lead > p:not(.subtitle) { grid-column: 1; grid-row: 4; align-self: start; }
+  .cards .card.featured > .card-foot,
+  .cards .card.lead > .card-foot { grid-column: 1; grid-row: 5; }
+
+  .cards .card.featured > h2,
+  .cards .card.lead > h2 {
+    font-size: clamp(1.5rem, 1.2rem + 1vw, 2.1rem);
+    line-height: 1.08;
+  }
 
   .cards .card.flagship > h2 {
     font-size: clamp(1.75rem, 1.3rem + 1.4vw, 2.6rem);
     line-height: 1.05;
   }
 
-  .cards .card.flagship > p:not(.subtitle) {
+  .cards .card.featured > p:not(.subtitle),
+  .cards .card.lead > p:not(.subtitle) {
     font-size: 1rem;
   }
 
-  .cards .card.flagship > .card-media {
+  .cards .card.featured > .card-media,
+  .cards .card.lead > .card-media {
     grid-column: 2;
     grid-row: 1 / -1;
     aspect-ratio: auto;
