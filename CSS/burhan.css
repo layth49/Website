@@ -377,22 +377,6 @@
   margin: 0;
 }
 
-/* HERO FRAME -----------------------------------------------
-   .laith-hero-media pins a 16/10 box for video; the app screen
-   should size to its own content instead. */
-.laith-hero-media.bu-media {
-  aspect-ratio: auto;
-  background: var(--bu-bg);
-  box-shadow:
-    0 20px 60px -20px rgba(124, 196, 164, 0.22),
-    0 0 0 1px var(--border) inset;
-}
-
-/* laith.css draws a red hairline across the top of the frame */
-.laith-hero-media.bu-media::before {
-  background: linear-gradient(90deg, transparent, var(--bu-green), transparent);
-}
-
 /* The mock used outside the hero frame needs its own border */
 .bu-app-standalone {
   border: 1px solid var(--border);

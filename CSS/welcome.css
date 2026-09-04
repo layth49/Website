@@ -3,9 +3,8 @@
    ============================================================ */
 
 /* HERO -------------------------------------------------------
-   Type-led and asymmetric: the name takes the left column at
-   poster scale, the subtitle sits in the right column on the
-   name's baseline. No width cap, so the fold is actually used. */
+   Name at poster scale on the left, subtitle on its baseline to
+   the right. No width cap, so the fold gets used. */
 .hero {
   padding: 5rem 0 4rem;
 }
@@ -150,8 +149,8 @@
 }
 
 /* FEATURED ---------------------------------------------------
-   Deliberately uneven: the flagship gets the wide cell and the
-   only image, so the two entries don't read as interchangeable. */
+   Uneven on purpose: the flagship takes the wider cell so the two
+   entries don't read as interchangeable. */
 .featured {
   display: grid;
   grid-template-columns: 1fr;

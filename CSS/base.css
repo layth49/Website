@@ -126,12 +126,9 @@ body::after {
 /* Reset link defaults: components style their own */
 a { color: inherit; text-decoration: none; }
 
-/* ...but a link sitting inside a sentence still has to look like one.
-   The reset above is right for cards, buttons and nav, where the whole
-   block is the target; inline it left prose links indistinguishable from
-   the text around them. Underlined as well as coloured, so it doesn't
-   rely on colour alone. Burhan rebinds --accent to its sage, so this
-   picks up each page's own palette. */
+/* The reset above suits cards and nav, where the whole block is the
+   target, but leaves an inline link invisible. Underlined as well as
+   coloured, so it doesn't lean on colour alone. */
 p a:not(.btn),
 li a:not(.btn) {
   color: var(--accent);
@@ -172,11 +169,7 @@ li a:not(.btn):hover {
   top: 1rem;
 }
 
-/* Buttons ---------------------------------------------------
-   Lives here, not per page: every page uses these and the detail
-   pages were each carrying their own copy. laith/ had .btn markup
-   with no .btn rules in its cascade at all, so its buttons were
-   rendering as bare text. */
+/* Buttons. Shared by every page. */
 .btn {
   display: inline-flex;
   align-items: center;
@@ -201,7 +194,6 @@ li a:not(.btn):hover {
   border-color: var(--ink-dim);
 }
 
-/* Presses down. Buttons that lift on hover read as a template. */
 .btn:active { transform: translateY(1px); }
 
 .btn.primary {
@@ -235,11 +227,9 @@ li a:not(.btn):hover {
   z-index: 2;
 }
 
-/* The social rail is a fixed overlay pinned to the right edge, ~58px wide.
-   Between the mobile breakpoint and ~1316px the centred container's 24px
-   gutter is narrower than that, so the rail sits on top of live content --
-   it was covering the "Failed" filter chip and making it unclickable.
-   Widen the gutter through that band so the rail always has clearance. */
+/* The socials rail is a fixed overlay ~58px wide. Below 1316px the
+   container's 24px gutter is narrower than that, so the rail lands on
+   top of real content. Widen the gutter through that band. */
 @media (min-width: 769px) and (max-width: 1316px) {
   .container {
     width: min(100% - 8rem, var(--max-w));
@@ -270,18 +260,6 @@ section {
   animation: blink 1s steps(1) infinite;
   color: var(--accent);
 }
-
-/* Status dot. A shape, not a performance: it marks real state and holds still. */
-.dot {
-  display: inline-block;
-  width: 7px;
-  height: 7px;
-  border-radius: 50%;
-  background: var(--accent);
-  margin-right: 0.6em;
-  flex-shrink: 0;
-}
-.dot.ok { background: var(--ok); }
 
 /* Tag chip */
 .tag {

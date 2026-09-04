@@ -95,14 +95,11 @@
 }
 
 /* Masonry, via multi-column.
-   These nineteen entries vary hugely in height: a three-line text card
-   next to one carrying a screenshot, a video and six paragraphs. A grid
-   can't cope with that. Stretching cells to the tallest in the row put
-   dead space inside the short ones; letting them keep their own height
-   put it underneath them instead, up to 493px in one row.
-   Columns pack by height, so neither happens. The trade is reading
-   order: entries run down a column before moving across, which is what
-   masonry does. The flagship escapes the flow with column-span. */
+   These entries vary hugely in height, and a grid handles that badly:
+   stretching cells to the tallest in a row leaves dead space inside the
+   short ones, and not stretching them leaves it underneath. Columns
+   pack by height instead. The trade is reading order, which now runs
+   down a column before moving across. */
 .cards {
   column-count: 3;
   column-gap: 1.5rem;

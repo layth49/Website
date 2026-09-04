@@ -643,9 +643,8 @@
   position: relative;
   border: 1px solid var(--border);
   border-radius: var(--radius-lg);
-  /* The real desktop wallpaper, cropped. The bubble is a translucent overlay
-     on the screen, so showing it on a flat panel loses the whole point --
-     and its backdrop-filter had nothing to blur. */
+  /* The real wallpaper, cropped. The bubble is a translucent overlay on
+     the desktop, and its backdrop-filter needs something to blur. */
   background:
     linear-gradient(180deg, rgba(0, 0, 0, 0.15) 0%, rgba(0, 0, 0, 0.55) 100%),
     url("../assets/laith-wallpaper.jpg") center / cover no-repeat;

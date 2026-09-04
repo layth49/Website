@@ -15,10 +15,8 @@ document.addEventListener("DOMContentLoaded", () => {
       const value = link.dataset.value;
       let iteration = 0;
 
-      // Lock the settled width before scrambling. The nav is monospaced so it
-      // never moved, but the hero name is set in a proportional display face and
-      // random letters have different advances, so the word would visibly wobble.
-      // Measured on first hover, by which point webfonts have loaded.
+      // The hero name is set in a proportional face, so swapping in random
+      // letters would change its width and make the word wobble. Pin it.
       if (!link.style.width) {
         link.style.display = "inline-block";
         link.style.width = link.getBoundingClientRect().width + "px";
