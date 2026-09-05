@@ -1,56 +1,16 @@
 /* ============================================================
-   Minecraft AI deep-dive page
+   Minecraft AI showcase page
 
    Structure is the shared deep-dive kit in laith.css: laith-hero,
-   laith-specs, laith-section, flow, detail-list, roadmap, laith-cta.
-   What lives here is the clip: this page is built around footage of
-   the bot actually playing, the way /bozos is built around gameplay
-   capture, so the clip frame and its grid are the only real additions.
+   laith-specs, laith-section, laith-cta. This page is a showcase, not
+   a write-up, so the only real addition is the clip: short silent
+   loops of the bot doing one thing each.
    ============================================================ */
 
 
-/* SECTION DEK ----------------------------------------------
-   The standfirst under a section title. Same rule tradebot.css
-   defines; repeated rather than pulling a whole stylesheet in for one
-   declaration. Two sections use it, not all of them. */
-.laith-section .head .dek {
-  font-family: var(--font-sans);
-  font-size: 1rem;
-  line-height: 1.5;
-  color: var(--ink-muted);
-  max-width: var(--measure);
-  margin: 0.6rem 0 0;
-}
-
-/* Long headings break badly at some widths. */
-.laith-section .title,
-.laith-hero h1,
-.laith-cta h2 {
-  text-wrap: balance;
-}
-
-
-/* HERO CHIP -------------------------------------------------
-   The hardware is load-bearing here: every model choice falls out of
-   what fits on the card, so it sits beside the title the way Bozo's
-   build number does. */
-.laith-hero .mc-chip {
-  display: inline-block;
-  font-family: var(--font-mono);
-  font-size: 0.8rem;
-  padding: 0.4rem 0.7rem;
-  margin-bottom: 1.25rem;
-  background: rgba(16, 185, 129, 0.1);
-  border: 1px solid rgba(16, 185, 129, 0.3);
-  border-radius: var(--radius-sm);
-  color: var(--ink);
-}
-
-
 /* CLIP -------------------------------------------------------
-   One piece of footage of the bot doing a thing. The frame holds its
-   own 16:9 box whether or not the file has landed yet, so dropping a
-   recording in never moves the layout.
+   The frame holds its own 16:9 box whether or not the file has landed
+   yet, so dropping a recording in never moves the layout.
 
    Until a clip exists the frame shows the filename it is waiting for.
    That label sits behind the <video>, so the moment the file is in
@@ -60,7 +20,7 @@
   margin: 0;
   display: flex;
   flex-direction: column;
-  gap: 0.7rem;
+  gap: 0.75rem;
   min-width: 0;
 }
 
@@ -99,61 +59,77 @@
   padding: 0;
 }
 
+/* Caption is a verb and a short line. Nothing longer fits the pace of
+   a wall of five-second loops. */
 .mc-clip figcaption {
   font-family: var(--font-sans);
-  font-size: 0.88rem;
+  font-size: 0.92rem;
   line-height: 1.5;
   color: var(--ink-muted);
+  text-wrap: pretty;
 }
 
 .mc-clip figcaption b {
-  color: var(--ink);
-  font-weight: 600;
+  display: block;
   font-family: var(--font-display);
+  font-size: 1.05rem;
+  font-weight: 700;
   letter-spacing: -0.01em;
+  color: var(--ink);
+  margin-bottom: 0.2rem;
 }
 
-/* The state a capability is actually in, said plainly next to it. */
-.mc-clip figcaption .verdict {
-  font-family: var(--font-mono);
-  font-size: 0.72rem;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--ink-dim);
-}
-
-.mc-clip figcaption .verdict.ok { color: var(--ok); }
-
-
-/* A grid of them. Two up on desktop, one on a phone: these are
-   gameplay clips and shrinking them to a third of a column would make
-   them unreadable. */
+/* Count-agnostic on purpose: the number of actions worth filming is
+   still moving, and this holds up at four clips or eight. */
 .mc-clips {
   display: grid;
-  grid-template-columns: 1fr;
-  gap: 2rem 1.5rem;
+  grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr));
+  gap: 2.25rem 1.5rem;
   margin-top: 0.5rem;
 }
 
-@media (min-width: 760px) {
-  .mc-clips {
-    grid-template-columns: 1fr 1fr;
-  }
-}
-
-
-/* The hero clip carries the page, so it gets the softer corner the
+/* The hero clip carries the page, so it takes the softer corner the
    other deep-dive heroes use for their media. */
 .laith-hero .mc-clip .mc-clip-frame {
   border-radius: var(--radius-lg);
 }
 
 
-/* A run count sitting inline in prose, so the one number that matters
-   reads as a result rather than as a benchmark row. */
-.mc-score {
-  font-family: var(--font-mono);
-  font-variant-numeric: tabular-nums;
-  color: var(--ok);
-  font-weight: 700;
+/* THE LINE ----------------------------------------------------
+   One run, stated as four beats instead of a section. This is the
+   whole benchmark, and at this length it lands harder than the
+   write-up did. */
+.mc-line {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem 2.5rem;
+  margin: 0;
+  padding: 1.5rem 0 0;
+  border-top: 1px solid var(--border);
 }
+
+.mc-line > div {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.mc-line dt {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink-dim);
+}
+
+.mc-line dd {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: var(--step-2);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  font-variant-numeric: tabular-nums;
+  color: var(--ink);
+}
+
+.mc-line dd.win { color: var(--ok); }
