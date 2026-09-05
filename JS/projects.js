@@ -65,6 +65,17 @@ document.addEventListener("DOMContentLoaded", () => {
 
   if (!chips.length || !cards.length) return;
 
+  // Every view gets a lead item. Under "all" the four featured cards are
+  // already leads; a filter can hide all of them (Complete has thirteen
+  // entries and none featured), so the first survivor is promoted instead.
+  // Only ever the first, so it stays adjacent to the other spanners.
+  const setLead = () => {
+    cards.forEach((c) => c.classList.remove("lead"));
+    const shown = [...cards].filter((c) => c.style.display !== "none");
+    if (shown.some((c) => c.classList.contains("featured"))) return;
+    if (shown.length) shown[0].classList.add("lead");
+  };
+
   chips.forEach((chip) => {
     chip.addEventListener("click", () => {
       const filter = chip.dataset.filter;
@@ -90,6 +101,8 @@ document.addEventListener("DOMContentLoaded", () => {
           card.style.display = "none";
         }
       });
+
+      setLead();
     });
   });
 });
