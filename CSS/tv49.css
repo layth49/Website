@@ -1,0 +1,438 @@
+/* ============================================================
+   49 on my TV: preview for the projects card.
+   A drawn recreation of the real on-TV interface (not a screen
+   recording): the webOS home screen over a drifting banner, and 49's
+   transient overlay on top. The overlay is the car card's: the card
+   carries .car49-preview too, so the bubble, mark, status row and
+   thinking track come from CSS/car49.css and both cards stay in
+   step. This file adds the TV, the home screen, and what the TV bubble says
+   (transcript, answer, "Paused"). JS/tv49.js drives the loop.
+   ============================================================ */
+
+.cards .card .card-media.tv49-preview {
+  --c49-ink: rgba(19, 23, 22, 0.985);
+  padding: 2.75rem 0.75rem 0.7rem;
+}
+
+.tv49-preview .t49-stage {
+  container-type: inline-size;
+  font-family: Inter, var(--font-sans);
+}
+
+/* ---- The TV --------------------------------------------------- */
+
+.tv49-preview .t49-tv {
+  padding: 1.3cqi;
+  border-radius: 2cqi;
+  background: #0d0d0f;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.tv49-preview .t49-screen {
+  position: relative;
+  container-type: inline-size;
+  aspect-ratio: 16 / 9;
+  border-radius: 0.7cqi;
+  overflow: hidden;
+  background: #08080d;
+}
+
+.tv49-preview .t49-stand {
+  width: 24%;
+  height: 1.5cqi;
+  margin: 0 auto;
+  border-radius: 0 0 1.2cqi 1.2cqi;
+  background: #17171a;
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-top: 0;
+}
+
+/* ---- The hero banner: a generic dusk, moving like video ---------- */
+
+.tv49-preview .t49-scene {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 50cqi;
+  display: block;
+}
+
+/* The launcher sits on the lower half; the banner dissolves into it. */
+.tv49-preview .t49-fade {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 22cqi;
+  height: 30cqi;
+  background: linear-gradient(180deg, rgba(8, 8, 13, 0) 0%, rgba(8, 8, 13, 0.92) 70%, #08080d 100%);
+}
+
+/* ---- The home screen: webOS's launcher, drawn ------------------- */
+
+.tv49-preview .t49-ui {
+  position: absolute;
+  inset: 0;
+  color: #f4f4f6;
+  font-weight: 600;
+  line-height: 1.15;
+}
+
+.tv49-preview .t49-side {
+  position: absolute;
+  left: 1.3cqi;
+  top: 1.4cqi;
+  width: 4cqi;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.2cqi;
+}
+
+.tv49-preview .t49-side svg { width: 2.7cqi; height: 2.7cqi; }
+
+.tv49-preview .t49-avatar {
+  display: grid;
+  place-items: center;
+  width: 3.2cqi;
+  height: 3.2cqi;
+  border-radius: 50%;
+  background: #2f55e0;
+  font-size: 1.7cqi;
+}
+
+.tv49-preview .t49-bell { position: relative; display: grid; }
+
+.tv49-preview .t49-bell em {
+  position: absolute;
+  top: -0.7cqi;
+  right: -1cqi;
+  min-width: 1.7cqi;
+  padding: 0.15cqi 0;
+  border-radius: 1cqi;
+  background: #e8262b;
+  font-size: 1cqi;
+  font-style: normal;
+  text-align: center;
+}
+
+.tv49-preview .t49-focus {
+  display: grid;
+  place-items: center;
+  width: 3.7cqi;
+  height: 3.7cqi;
+  border-radius: 0.8cqi;
+  background: #dcecff;
+  color: #1c3f86;
+}
+
+.tv49-preview .t49-promo {
+  position: absolute;
+  right: 3cqi;
+  top: 11.2cqi;
+  font-size: 2.3cqi;
+  font-weight: 400;
+}
+
+.tv49-preview .t49-go {
+  position: absolute;
+  right: 3cqi;
+  top: 16.4cqi;
+  width: 13.7cqi;
+  padding: 0.9cqi 0;
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  border-radius: 0.8cqi;
+  background: rgba(58, 68, 88, 0.85);
+  text-align: center;
+  font-size: 1.5cqi;
+  font-weight: 500;
+}
+
+.tv49-preview .t49-launch {
+  position: absolute;
+  left: 0.3cqi;
+  right: 0;
+  top: 28cqi;
+  display: grid;
+  gap: 1.5cqi;
+}
+
+.tv49-preview .t49-row {
+  display: flex;
+  gap: 0.9cqi;
+  white-space: nowrap;
+}
+
+.tv49-preview .t49-pills span {
+  flex: none;
+  width: var(--w);
+  padding: 1.35cqi 0;
+  border-radius: 0.8cqi;
+  background: var(--bg);
+  text-align: center;
+  font-size: 1.9cqi;
+  font-weight: 500;
+}
+
+.tv49-preview .t49-apps { gap: 0.85cqi; }
+
+.tv49-preview .t49-apps span {
+  flex: none;
+  display: grid;
+  place-items: center;
+  align-content: center;
+  gap: 0.4cqi;
+  width: 7.4cqi;
+  height: 7.2cqi;
+  border-radius: 0.8cqi;
+  background: var(--bg);
+  color: var(--fg);
+  font-size: 1.45cqi;
+  font-weight: 700;
+  line-height: 1.1;
+  white-space: normal;
+  text-align: center;
+}
+
+.tv49-preview .t49-apps svg { width: 3.6cqi; height: 3.6cqi; }
+.tv49-preview .t49-apps .t49-now { font-size: 2.6cqi; font-style: italic; font-weight: 800; }
+.tv49-preview .t49-apps .t49-big { font-size: 5cqi; font-weight: 800; }
+.tv49-preview .t49-apps .t49-yt {
+  padding: 0.35cqi 0.9cqi;
+  border-radius: 0.7cqi;
+  background: #f00;
+  color: #fff;
+  font-size: 1cqi;
+}
+
+.tv49-preview .t49-cards { gap: 1.4cqi; }
+
+.tv49-preview .t49-col {
+  flex: none;
+  width: var(--w);
+  display: grid;
+  gap: 0.6cqi;
+  align-content: start;
+}
+
+.tv49-preview .t49-col b {
+  min-height: 1.9cqi;
+  font-size: 1.7cqi;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.tv49-preview .t49-card {
+  position: relative;
+  height: 9.8cqi;
+  padding: 1.4cqi;
+  border-radius: 0.6cqi;
+  background: var(--bg);
+  color: var(--fg);
+  font-size: 1.4cqi;
+  font-weight: 500;
+  line-height: 1.3;
+  white-space: normal;
+}
+
+.tv49-preview .t49-card strong {
+  display: block;
+  margin-bottom: 0.5cqi;
+  font-size: 1.9cqi;
+  font-weight: 500;
+}
+
+.tv49-preview .t49-live u {
+  position: absolute;
+  top: 1cqi;
+  left: 1cqi;
+  padding: 0.2cqi 0.7cqi;
+  border-radius: 0.4cqi;
+  background: #d8283c;
+  font-size: 1.2cqi;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.tv49-preview .t49-live i {
+  position: absolute;
+  left: 1cqi;
+  bottom: 0.9cqi;
+  font-style: normal;
+  font-size: 1.6cqi;
+}
+
+/* Each layer is two copies of one tile, slid by exactly one tile, so the
+   loop has no seam. Slower the further away. */
+.tv49-preview .t49-drift {
+  animation: t49-drift var(--t) linear infinite;
+  will-change: transform;
+}
+
+@keyframes t49-drift {
+  to { transform: translateX(-320px); }
+}
+
+/* Paused video: the banner holds still and a small player mark appears. */
+.tv49-preview .t49-stage.is-frozen .t49-drift { animation-play-state: paused; }
+
+.tv49-preview .t49-osd {
+  position: absolute;
+  left: 8cqi;
+  top: 18.5cqi;
+  display: grid;
+  place-items: center;
+  width: 7cqi;
+  height: 7cqi;
+  border-radius: 50%;
+  background: rgba(19, 23, 22, 0.9);
+  color: #f3f1ea;
+  opacity: 0;
+  transition: opacity var(--c49-fade) ease-out;
+}
+
+.tv49-preview .t49-osd svg { width: 3cqi; height: 3cqi; }
+.tv49-preview .t49-stage.is-frozen .t49-osd { opacity: 1; }
+
+/* ---- 49's overlay, fitted to the TV ----------------------------- */
+
+.tv49-preview .t49-screen .c49-presence {
+  top: 4cqi;
+  right: 3.2cqi;
+  font-size: 3.7cqi;
+}
+
+.tv49-preview .c49-body { color: var(--c49-primary); }
+
+.tv49-preview .t49-bars {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.14em;
+  height: 1em;
+}
+
+.tv49-preview .t49-bars i {
+  width: 0.15em;
+  height: 100%;
+  border-radius: 0.08em;
+  background: var(--c49-mint);
+  transform: scaleY(0.3);
+  animation: t49-bar 760ms ease-in-out infinite alternate;
+}
+
+.tv49-preview .t49-bars i:nth-child(2) { animation-delay: -420ms; }
+.tv49-preview .t49-bars i:nth-child(3) { animation-delay: -160ms; }
+.tv49-preview .t49-bars i:nth-child(4) { animation-delay: -580ms; }
+.tv49-preview .t49-bars i:nth-child(5) { animation-delay: -300ms; }
+
+@keyframes t49-bar {
+  from { transform: scaleY(0.28); }
+  to { transform: scaleY(1); }
+}
+
+/* Divs, not paragraphs: .cards .card p would restyle them. */
+.tv49-preview .t49-said,
+.tv49-preview .t49-answer {
+  max-width: 12.5em;
+  font-size: 1em;
+  line-height: 1.4;
+  color: var(--c49-primary);
+}
+
+.tv49-preview .t49-said { margin-top: 0.3em; }
+.tv49-preview .t49-answer { font-weight: 500; }
+
+.tv49-preview .t49-ack {
+  display: flex;
+  align-items: center;
+  gap: 0.5em;
+  font-size: 1em;
+  line-height: 1.5;
+  font-weight: 500;
+  color: var(--c49-primary);
+}
+
+.tv49-preview .t49-ack svg { width: 0.85em; height: 0.85em; }
+
+/* The speaking indicator lives in the mark's column, under the mark. */
+.tv49-preview .t49-speak {
+  position: absolute;
+  top: 2.5em;
+  right: 1.55em;
+  width: 0.5em;
+  height: 0.5em;
+  border-radius: 50%;
+  background: var(--c49-mint);
+  animation: t49-pulse 1100ms ease-in-out infinite;
+}
+
+@keyframes t49-pulse {
+  0%, 100% { opacity: 0.45; transform: scale(0.8); }
+  50% { opacity: 1; transform: scale(1.15); }
+}
+
+/* ---- States ---------------------------------------------------
+   The markup defaults to the answer frame, so the card still shows a
+   finished state if the script never runs. States and what each shows:
+   listen: status. heard: status + transcript. think: status (track).
+   answer: answer + speaking dot. ack: "Paused". out: whatever the
+   last state showed, while the overlay fades. */
+
+.tv49-preview .t49-said,
+.tv49-preview .t49-answer,
+.tv49-preview .t49-ack,
+.tv49-preview .t49-speak,
+.tv49-preview [data-state="think"] .t49-bars,
+.tv49-preview [data-state="ack"] .c49-status {
+  display: none;
+}
+
+.tv49-preview [data-beat="weather"][data-state="heard"] .t49-said-w,
+.tv49-preview [data-beat="pause"][data-state="heard"] .t49-said-p {
+  display: block;
+}
+
+.tv49-preview [data-beat="weather"][data-state="answer"] .t49-answer,
+.tv49-preview [data-beat="weather"][data-state="out"] .t49-answer {
+  display: block;
+}
+
+.tv49-preview [data-beat="weather"][data-state="answer"] .t49-speak,
+.tv49-preview [data-beat="weather"][data-state="out"] .t49-speak {
+  display: block;
+}
+
+.tv49-preview [data-beat="pause"][data-state="ack"] .t49-ack,
+.tv49-preview [data-beat="pause"][data-state="out"] .t49-ack {
+  display: flex;
+}
+
+/* New lines arrive with a short fade; the bubble resizes around them. */
+.tv49-preview.is-live .t49-said,
+.tv49-preview.is-live .t49-answer,
+.tv49-preview.is-live .t49-ack {
+  animation: t49-in var(--c49-fade) ease-out;
+}
+
+@keyframes t49-in {
+  from { opacity: 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tv49-preview .t49-drift,
+  .tv49-preview .t49-bars i,
+  .tv49-preview .t49-speak { animation: none; }
+  .tv49-preview .t49-bars i { transform: scaleY(0.7); }
+}
+
+/* ---- Caption --------------------------------------------------- */
+
+.cards .card .card-media .t49-caption {
+  margin: 0.65rem 0 0;
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  line-height: 1.4;
+  letter-spacing: 0.04em;
+  text-align: center;
+  color: var(--ink-dim);
+}

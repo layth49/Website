@@ -5,10 +5,10 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "type": "msedge",
+            "type": "editor-browser",
             "request": "launch",
             "name": "Open index.html",
-            "file": "c:\\Users\\15048\\vscode\\Personal Website\\index.html"
+            "url": "file:///c%3A/Users/layth/vscode/Web-Apps/Personal%20Website/index.html"
         }
     ]
 }

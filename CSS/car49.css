@@ -1,0 +1,496 @@
+/* ============================================================
+   49 in the car: preview for the projects card.
+   A drawn mockup of the car's own head unit (home screen, HOME /
+   BACK keys, volume knob) with 49's overlay on top. The bubble
+   borrows the TV overlay's tokens (ink, warm white, the tight
+   top-right "shoulder" corner the mark sits in). On the road the
+   answer is spoken, so the bubble only shows state and one
+   glanceable value; the spoken words are subtitles under the unit,
+   for the website, not the car. JS/car49.js drives the loop.
+   ============================================================ */
+
+.cards .card .card-media.car49-preview {
+  --c49-ink: #131716;
+  --c49-border: rgba(255, 255, 255, 0.09);
+  --c49-primary: #f3f1ea;
+  --c49-secondary: #aab3ae;
+  --c49-mint: #b8e6d2;
+  --c49-size: 180ms;
+  --c49-fade: 160ms;
+
+  container-type: inline-size;
+  aspect-ratio: auto;
+  padding: 2.75rem 0.9rem 0.9rem;
+  background: #08090a;
+}
+
+.car49-preview .c49-stage { position: relative; }
+
+/* ---- Head unit ------------------------------------------------
+   Drawn after the real unit: one charcoal slab with the keys
+   printed on it, the screen inset beside them. Every size is in cqi
+   so the whole unit scales with the card like a picture would. */
+
+.car49-preview .c49-unit {
+  display: grid;
+  grid-template-columns: 11% 1fr;
+  gap: 1.4cqi;
+  aspect-ratio: 1.95;
+  padding: 1.6cqi 1.8cqi 1.6cqi 1.2cqi;
+  border-radius: 2.4cqi;
+  background: linear-gradient(180deg, #38383b 0%, #2c2c2f 100%);
+  border-top: 1px solid #5c5d61;
+  box-shadow:
+    0 0 0 1px #45464a inset,
+    0 0 0 0.6cqi #4a4a4e,
+    0 1.5cqi 3cqi rgba(0, 0, 0, 0.5);
+  font-family: Inter, var(--font-sans);
+  color: #f4f5f7;
+}
+
+/* Keys */
+.car49-preview .c49-keys {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1.7cqi;
+  padding-top: 2cqi;
+  font-weight: 600;
+  line-height: 1;
+}
+
+.car49-preview .c49-keypair {
+  width: 82%;
+  border: 1px solid #111113;
+  border-radius: 1cqi;
+  background: #19191b;
+}
+
+.car49-preview .c49-key {
+  height: 8.6cqi;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5cqi;
+  font-size: 1.55cqi;
+  letter-spacing: 0.01em;
+}
+
+.car49-preview .c49-key + .c49-key { border-top: 1px solid #3a3a3e; }
+.car49-preview .c49-key svg { width: 2cqi; height: 2cqi; }
+
+.car49-preview .c49-vol {
+  margin-top: 1cqi;
+  text-align: center;
+  font-size: 1.4cqi;
+  line-height: 1.15;
+}
+
+.car49-preview .c49-vol svg { width: 1.2cqi; height: 1.2cqi; vertical-align: -0.12cqi; }
+
+/* Chrome ring around a black cap, knurled at the edge. */
+.car49-preview .c49-knob {
+  width: 7.8cqi;
+  aspect-ratio: 1;
+  margin-top: -0.6cqi;
+  padding: 0.45cqi;
+  border-radius: 50%;
+  background: repeating-conic-gradient(#8d9096 0 4deg, #26272a 4deg 8deg);
+}
+
+.car49-preview .c49-knob i {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background: radial-gradient(circle, #050506 0 60%, #f0f1f3 63%, #8a8d93 68%, #3a3b3f 73%, #1d1d20 76%);
+}
+
+.car49-preview .c49-skip {
+  display: flex;
+  gap: 2.6cqi;
+  color: #e6e7ea;
+}
+
+.car49-preview .c49-skip svg { width: 2.2cqi; height: 1.6cqi; }
+
+.car49-preview .c49-slot {
+  width: 7.6cqi;
+  height: 1.3cqi;
+  margin-top: -0.9cqi;
+  border: 1px solid #3a3b3f;
+  border-radius: 0.65cqi;
+  background: linear-gradient(#2a2b2e, #2a2b2e) center / 70% 1px no-repeat;
+}
+
+/* Screen */
+.car49-preview .c49-screen {
+  position: relative;
+  display: grid;
+  grid-template-rows: 5cqi 1fr 6.6cqi;
+  overflow: hidden;
+  border-radius: 0.4cqi;
+  background: radial-gradient(ellipse at 50% 45%, #2b2e33 0%, #1d1f23 75%);
+  box-shadow: 0 0 0 1px #141416;
+}
+
+.car49-preview .c49-top {
+  display: grid;
+  grid-template-columns: 14% 1fr 10% 9% 20%;
+  align-items: stretch;
+  min-height: 0;
+  overflow: hidden;
+  border-bottom: 1px solid #45484f;
+  background: linear-gradient(180deg, #1a1c20 0%, #121316 100%);
+}
+
+.car49-preview .c49-top > * {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.car49-preview .c49-top > * + * { border-left: 1px solid #34373d; }
+
+.car49-preview .c49-src {
+  text-align: center;
+  font-size: 1.45cqi;
+  line-height: 1.05;
+}
+
+.car49-preview .c49-device {
+  justify-content: flex-start !important;
+  gap: 1.3cqi;
+  padding-left: 1.6cqi;
+  font-size: 2.15cqi;
+  white-space: nowrap;
+}
+
+.car49-preview .c49-bt {
+  width: 2cqi;
+  height: 2.7cqi;
+  border-radius: 1cqi;
+  background: #f4f5f7;
+  color: #0a0b0d;
+}
+
+.car49-preview .c49-bt svg { width: 100%; height: 100%; }
+
+.car49-preview .c49-alert i {
+  display: grid;
+  place-items: center;
+  width: 1.8cqi;
+  height: 1.8cqi;
+  border-radius: 50%;
+  background: #e8553f;
+  font-size: 1.15cqi;
+  font-style: normal;
+  font-weight: 700;
+}
+
+.car49-preview .c49-signal { justify-content: flex-end !important; padding-right: 1cqi; color: #9aa0aa; }
+.car49-preview .c49-signal svg { width: 2.2cqi; height: 1.6cqi; }
+
+.car49-preview .c49-clock {
+  font-size: 4cqi;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  font-variant-numeric: tabular-nums;
+}
+
+.car49-preview .c49-home {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  align-content: center;
+  gap: 1.5cqi 1.6cqi;
+  padding: 0.4cqi 8.4cqi 2.2cqi 9.2cqi;
+}
+
+/* Each tile is flat grey with a coloured strip along the top, the
+   way the real home screen draws them. */
+.car49-preview .c49-tile {
+  aspect-ratio: 1.14;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5cqi;
+  padding: 0 0.3cqi;
+  border-radius: 0.3cqi;
+  background:
+    var(--top) top / 100% 0.6cqi no-repeat,
+    linear-gradient(180deg, #5a5d63 0%, #45474c 55%, #3a3c41 100%);
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.07) inset;
+  font-size: 1.9cqi;
+  line-height: 1.08;
+  text-align: center;
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.3);
+}
+
+.car49-preview .c49-tile svg {
+  width: 5.2cqi;
+  height: 5.2cqi;
+  filter: drop-shadow(0 1px 1px rgba(0, 0, 0, 0.3));
+}
+
+.car49-preview .c49-dots {
+  position: absolute;
+  left: 50%;
+  bottom: 0.5cqi;
+  display: flex;
+  gap: 1cqi;
+  transform: translateX(-50%);
+}
+
+.car49-preview .c49-dots i {
+  width: 0.9cqi;
+  height: 0.9cqi;
+  border-radius: 50%;
+  background: #5b5f66;
+}
+
+.car49-preview .c49-dots i:first-child { background: #f4f5f7; }
+
+.car49-preview .c49-next {
+  position: absolute;
+  right: 2.6cqi;
+  top: 50%;
+  width: 2.4cqi;
+  height: 6.4cqi;
+  transform: translateY(-50%);
+  color: #d4d8de;
+}
+
+.car49-preview .c49-dock {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  border-top: 1px solid #45484f;
+  background: linear-gradient(180deg, #1c1e22 0%, #141518 100%);
+  font-size: 1.55cqi;
+  line-height: 1.1;
+}
+
+.car49-preview .c49-dock span {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.8cqi;
+  padding: 0 0.4cqi;
+  text-align: center;
+}
+
+.car49-preview .c49-dock span + span { border-left: 1px solid #34373d; }
+.car49-preview .c49-dock svg { flex: none; width: 2.3cqi; height: 2.3cqi; }
+
+/* ---- The 49 presence ------------------------------------------ */
+
+.car49-preview .c49-presence {
+  position: absolute;
+  /* Sits in the tile area, under the status bar, so the clock stays readable. */
+  top: 1.2cqi;
+  right: 1.4cqi;
+  font-family: Inter, var(--font-sans);
+  font-size: clamp(11px, 3.3cqi, 14px);
+  transform-origin: 100% 0;
+  transition: opacity 240ms cubic-bezier(0.2, 0.9, 0.25, 1),
+              transform 240ms cubic-bezier(0.2, 0.9, 0.25, 1);
+}
+
+.car49-preview .c49-bubble {
+  position: relative;
+  padding: 0.7em 3em 0.75em 0.95em;
+  border-radius: 1.1em 0.4em 1.1em 1.1em;
+  background: var(--c49-ink);
+  border: 1px solid var(--c49-border);
+  box-shadow: 0 0.6em 1.6em rgba(0, 0, 0, 0.4);
+  overflow: hidden;
+}
+
+/* JS sizes the bubble from its content so a change of content becomes
+   a 180ms resize. Anchored top-right, so it grows left and down. */
+.car49-preview.is-live .c49-bubble {
+  transition: width var(--c49-size) var(--ease-snap),
+              height var(--c49-size) var(--ease-snap);
+}
+
+.car49-preview.is-live .c49-body {
+  position: absolute;
+  top: 0.7em;
+  right: 3em;
+  width: max-content;
+}
+
+.car49-preview .c49-body { transition: opacity var(--c49-fade) ease-out; }
+
+.car49-preview .c49-body.is-swapping {
+  opacity: 0;
+  transition-duration: 90ms;
+}
+
+/* .cards .card-media img stretches images to fill the box; not this one. */
+.cards .card .car49-preview .c49-mark {
+  position: absolute;
+  top: 0.62em;
+  right: 0.8em;
+  width: 1.8em;
+  height: auto;
+  object-fit: contain;
+}
+
+.car49-preview .c49-status {
+  display: flex;
+  align-items: center;
+  gap: 0.5em;
+  font-size: 0.92em;
+  line-height: 1.5;
+  font-weight: 500;
+  color: var(--c49-secondary);
+}
+
+.car49-preview .c49-dot {
+  width: 0.5em;
+  height: 0.5em;
+  border-radius: 50%;
+  background: var(--c49-mint);
+  animation: c49-breathe 1600ms ease-in-out infinite;
+}
+
+.car49-preview .c49-track {
+  position: relative;
+  width: 2.4em;
+  height: 0.22em;
+  border-radius: 0.11em;
+  background: rgba(184, 230, 210, 0.22);
+  overflow: hidden;
+}
+
+.car49-preview .c49-track i {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0.8em;
+  height: 100%;
+  border-radius: inherit;
+  background: var(--c49-mint);
+  animation: c49-sweep 1100ms ease-in-out infinite alternate;
+}
+
+@keyframes c49-breathe {
+  0%, 100% { opacity: 0.4; }
+  50% { opacity: 1; }
+}
+
+@keyframes c49-sweep {
+  from { transform: translateX(0); }
+  to { transform: translateX(2em); }
+}
+
+/* The one thing worth a glance while driving. Everything else is said. */
+.car49-preview .c49-body .c49-glance {
+  margin: 0;
+  max-width: none;
+  display: flex;
+  align-items: baseline;
+  gap: 0.4em;
+  font-size: 1em;
+  line-height: 1.25;
+  color: var(--c49-secondary);
+}
+
+.car49-preview .c49-glance b {
+  font-size: 1.45em;
+  font-weight: 600;
+  letter-spacing: -0.015em;
+  color: var(--c49-primary);
+  font-variant-numeric: tabular-nums;
+}
+
+/* ---- Subtitles: what's being said, for the page, not the car ---- */
+
+.car49-preview .c49-captions {
+  display: grid;
+  gap: 0.25rem;
+  margin-top: 0.75rem;
+}
+
+.car49-preview .c49-captions .c49-cap {
+  display: flex;
+  gap: 0.6rem;
+  margin: 0;
+  max-width: none;
+  font-family: var(--font-sans);
+  font-size: 0.85rem;
+  line-height: 1.4;
+  color: var(--ink-muted);
+  transition: opacity var(--c49-fade) ease-out;
+}
+
+.car49-preview .c49-captions .c49-cap.said { color: var(--ink); }
+
+.car49-preview .c49-cap span {
+  flex: none;
+  width: 2.2rem;
+  padding-top: 0.12rem;
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink-dim);
+}
+
+/* ---- States ---------------------------------------------------
+   "answer" is the default in the markup, so the card still shows a
+   finished frame if the script never runs. */
+
+.car49-preview .c49-track,
+.car49-preview .c49-think,
+.car49-preview [data-state="think"] .c49-dot,
+.car49-preview [data-state="think"] .c49-listen,
+.car49-preview [data-state="answer"] .c49-status,
+.car49-preview [data-state="out"] .c49-status,
+.car49-preview [data-state="idle"] .c49-glance,
+.car49-preview [data-state="listen"] .c49-glance,
+.car49-preview [data-state="heard"] .c49-glance,
+.car49-preview [data-state="think"] .c49-glance {
+  display: none;
+}
+
+.car49-preview [data-state="think"] .c49-track,
+.car49-preview [data-state="think"] .c49-think {
+  display: block;
+}
+
+.car49-preview [data-state="idle"] .c49-cap,
+.car49-preview [data-state="listen"] .c49-cap,
+.car49-preview [data-state="heard"] .c49-cap.said,
+.car49-preview [data-state="think"] .c49-cap.said,
+.car49-preview [data-state="out"] .c49-cap {
+  opacity: 0;
+}
+
+/* Arrive and leave: a small scale on entry like the TV overlay, a 6px
+   lift on exit. Nothing bounces. */
+.car49-preview [data-state="idle"] .c49-presence {
+  opacity: 0;
+  transform: scale(0.96);
+  transition: none;
+}
+
+.car49-preview [data-state="out"] .c49-presence {
+  opacity: 0;
+  transform: translateY(-6px);
+  transition: opacity 260ms ease-in, transform 260ms ease-in;
+}
+
+/* Off screen or in a background tab, freeze the indicators too. */
+.car49-preview.is-paused * {
+  animation-play-state: paused !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .car49-preview .c49-dot,
+  .car49-preview .c49-track i { animation: none; }
+}

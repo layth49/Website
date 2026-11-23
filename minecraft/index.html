@@ -4,51 +4,44 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Minecraft AI · an AI that plays Minecraft, by Layth (layth49)</title>
+  <title>Minecraft AI · Layth (layth49)</title>
   <meta name="description"
-    content="An AI that plays Minecraft, by Layth (layth49). It joins the server like any other player and works out what to do on its own. Nothing is modded in, and it will also run entirely on a 6 GB laptop GPU." />
+    content="An AI that can play Minecraft. Give it a task in chat and watch it work through the game on its own." />
   <link rel="canonical" href="https://layth49.com/minecraft" />
 
-  <!-- Open Graph -->
-  <meta property="og:type" content="article" />
+  <meta property="og:type" content="website" />
   <meta property="og:site_name" content="layth49" />
-  <meta property="og:title" content="Minecraft AI · an AI that plays Minecraft" />
+  <meta property="og:title" content="Minecraft AI · layth49" />
   <meta property="og:description"
-    content="It joins the server like any other player and works out what to do on its own. Nothing is modded in, and it will also run entirely on a 6 GB laptop GPU." />
+    content="Give it a task in Minecraft chat and watch it work through the game on its own." />
   <meta property="og:url" content="https://layth49.com/minecraft" />
   <meta property="og:image" content="https://layth49.com/assets/og-image.png" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
-  <meta property="og:image:alt" content="layth49, software &amp; automation" />
+  <meta property="og:image:alt" content="Minecraft AI by layth49" />
 
-  <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Minecraft AI · an AI that plays Minecraft" />
-  <meta name="twitter:description"
-    content="It joins the server like any other player and works out what to do on its own. Nothing is modded in." />
+  <meta name="twitter:title" content="Minecraft AI · layth49" />
+  <meta name="twitter:description" content="An AI that can play Minecraft. Give it a task in chat and it works through the game on its own." />
   <meta name="twitter:image" content="https://layth49.com/assets/og-image.png" />
 
   <meta name="theme-color" content="#050505" />
   <link rel="icon" href="/assets/logo.ico" />
 
-  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link
-    href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@75..125,400..800&family=Geist:wght@400;500;600&family=JetBrains+Mono:wght@400;700&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@75..125,400..800&family=Geist:wght@400;500;600&family=JetBrains+Mono:wght@400;600&family=Pixelify+Sans:wght@400;500&display=swap"
     rel="stylesheet" />
 
-  <!-- Stylesheets -->
   <link rel="stylesheet" href="/CSS/base.css" />
   <link rel="stylesheet" href="/CSS/navBar.css" />
   <link rel="stylesheet" href="/CSS/socials.css" />
-  <link rel="stylesheet" href="/CSS/laith.css" />
   <link rel="stylesheet" href="/CSS/minecraft.css" />
 
-  <!-- Scripts -->
   <script defer src="/JS/hackedEffect.js"></script>
+  <script defer src="/JS/minecraft.js"></script>
 
-  <!-- Structured Data -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -63,15 +56,13 @@
         "sameAs": ["https://github.com/layth49"]
       },
       {
-        "@type": "TechArticle",
-        "@id": "https://layth49.com/minecraft#article",
-        "headline": "Minecraft AI: an AI that plays Minecraft",
+        "@type": "CreativeWork",
+        "@id": "https://layth49.com/minecraft#project",
+        "name": "Minecraft AI",
         "url": "https://layth49.com/minecraft",
-        "description": "An AI that plays Minecraft, built by Layth (layth49) on mindcraft-ce and Mineflayer. It joins the server like an ordinary player and decides what to do on its own, with nothing modded into the game. Driven by gemma-4-31b, and small enough to run entirely on a 6 GB laptop GPU instead.",
-        "author": { "@id": "https://layth49.com/#person" },
-        "image": "https://layth49.com/assets/logo.png",
-        "dateModified": "2026-09-05",
-        "mainEntityOfPage": "https://layth49.com/minecraft"
+        "description": "An AI that can play Minecraft. Give it a task in chat and it works through the game on its own.",
+        "creator": { "@id": "https://layth49.com/#person" },
+        "dateModified": "2026-09-21"
       }
     ]
   }
@@ -81,196 +72,202 @@
 <body>
   <a href="#main" class="skip-link">Skip to content</a>
 
-  <!-- NAV -->
   <nav class="navBar">
     <div class="logo">
-      <a href="/">
-        <img src="/assets/logo.png" alt="layth49" />
-      </a>
+      <a href="/"><img src="/assets/logo.png" alt="layth49" /></a>
     </div>
-
     <div class="menuItems">
-      <div>
-        <a href="/" class="hackedEffect">HOME</a>
-      </div>
-      <div class="active">
-        <a href="/projects" class="hackedEffect">PROJECTS</a>
-      </div>
-      <div>
-        <a href="/about" class="hackedEffect">ABOUT</a>
-      </div>
+      <div><a href="/" class="hackedEffect">HOME</a></div>
+      <div class="active"><a href="/projects" class="hackedEffect">PROJECTS</a></div>
+      <div><a href="/about" class="hackedEffect">ABOUT</a></div>
     </div>
-
-    <div class="nav-end">
-    </div>
+    <div class="nav-end"></div>
   </nav>
 
-  <!-- FLOATING SOCIALS -->
   <aside class="social-link">
     <a href="https://github.com/layth49" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
-      <svg class="icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+      <svg class="icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12" /></svg>
     </a>
     <a href="mailto:layth.hammad49@gmail.com" aria-label="Email">
-      <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.5" y="4.5" width="19" height="15" rx="2"/><path d="m3 6.5 9 6 9-6"/></svg>
+      <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.5" y="4.5" width="19" height="15" rx="2" /><path d="m3 6.5 9 6 9-6" /></svg>
     </a>
   </aside>
 
-  <main class="container" id="main">
-    <!-- HERO -->
-    <section class="laith-hero">
-      <div>
-        <p class="kicker">Minecraft bot</p>
+  <main class="mc-page" id="main">
+    <a class="mc-back" href="/projects"><span aria-hidden="true">←</span> Projects</a>
 
+    <header class="mc-hero">
+      <div class="mc-hero-copy">
         <h1>Minecraft AI</h1>
-        <p class="tagline">An AI that plays Minecraft. Properly.</p>
-        <p class="lede">
-          <strong>It joins the server like any other player.</strong>
-          Nothing is modded in. You tell it what you want, and it goes and
-          works out how.
-        </p>
-
-        <div class="actions">
-          <a href="#clips" class="btn primary">Watch it play <span class="arrow">&rarr;</span></a>
-          <a href="/projects" class="btn">&larr; All projects</a>
+        <p>An AI that can play Minecraft. Give it a task in chat and it works through the game on its own.</p>
+      </div>
+      <figure class="mc-feature">
+        <div class="mc-media" data-media="hero.mp4">
+          <video muted loop playsinline preload="metadata" aria-label="LAITH49 starting to beat the game">
+            <source src="/assets/minecraft/hero.mp4" type="video/mp4" />
+          </video>
+          <div class="mc-placeholder">
+            <span>To record</span>
+            <strong>Ask “beat the game” in chat, then capture LAITH49 mining its first tree.</strong>
+            <small>hero.mp4 · about 10 seconds</small>
+          </div>
         </div>
+      </figure>
+    </header>
+
+    <section class="mc-conversation" aria-label="How a task starts">
+      <div class="mc-conversation-intro">
+        <h2>It starts in chat</h2>
+      </div>
+      <div class="mc-conversation-demo">
+        <div class="mc-chat" aria-label="Example Minecraft chat message">
+          <p><span>&lt;layth49&gt;</span> beat the game</p>
+        </div>
+        <p class="mc-action"><span>LAITH49's next action</span><code>!collectBlocks("oak_log", 4)</code></p>
+      </div>
+    </section>
+
+    <section class="mc-clips" id="clips">
+      <h2>In game</h2>
+      <div class="mc-clip-grid">
+        <figure class="mc-clip">
+          <div class="mc-media" data-media="mine.mp4">
+            <video muted loop playsinline preload="metadata" aria-label="LAITH49 mining ore">
+              <source src="/assets/minecraft/mine.mp4" type="video/mp4" />
+            </video>
+            <div class="mc-placeholder">
+              <span>To record</span>
+              <strong>Capture LAITH49 mining stone or ore after getting wood.</strong>
+              <small>mine.mp4 · up to 10 seconds</small>
+            </div>
+          </div>
+          <figcaption>Mining</figcaption>
+        </figure>
+
+        <figure class="mc-clip">
+          <div class="mc-media" data-media="craft-smelt.mp4">
+            <video muted loop playsinline preload="metadata" aria-label="LAITH49 crafting and smelting">
+              <source src="/assets/minecraft/craft-smelt.mp4" type="video/mp4" />
+            </video>
+            <div class="mc-placeholder">
+              <span>To record</span>
+              <strong>Cut together a quick craft and a furnace smelt.</strong>
+              <small>craft-smelt.mp4 · up to 10 seconds</small>
+            </div>
+          </div>
+          <figcaption>Crafting and smelting</figcaption>
+        </figure>
+
+        <figure class="mc-clip">
+          <div class="mc-media" data-media="fight.mp4">
+            <video muted loop playsinline preload="metadata" aria-label="LAITH49 fighting a mob">
+              <source src="/assets/minecraft/fight.mp4" type="video/mp4" />
+            </video>
+            <div class="mc-placeholder">
+              <span>To record</span>
+              <strong>Capture a mob fight during the run.</strong>
+              <small>fight.mp4 · up to 10 seconds</small>
+            </div>
+          </div>
+          <figcaption>Fighting</figcaption>
+        </figure>
+
+        <figure class="mc-clip">
+          <div class="mc-media" data-media="nether-portal.mp4">
+            <video muted loop playsinline preload="metadata" aria-label="LAITH49 building and lighting a Nether portal">
+              <source src="/assets/minecraft/nether-portal.mp4" type="video/mp4" />
+            </video>
+            <div class="mc-placeholder">
+              <span>To record</span>
+              <strong>Cut together the portal frame going up and LAITH49 lighting it.</strong>
+              <small>nether-portal.mp4 · up to 10 seconds</small>
+            </div>
+          </div>
+          <figcaption>Building and lighting a Nether portal</figcaption>
+        </figure>
+
+        <figure class="mc-clip">
+          <div class="mc-media" data-media="blazes.mp4">
+            <video muted loop playsinline preload="metadata" aria-label="LAITH49 killing blazes">
+              <source src="/assets/minecraft/blazes.mp4" type="video/mp4" />
+            </video>
+            <div class="mc-placeholder">
+              <span>To record</span>
+              <strong>Capture LAITH49 killing blazes in the Nether.</strong>
+              <small>blazes.mp4 · up to 10 seconds</small>
+            </div>
+          </div>
+          <figcaption>Killing blazes</figcaption>
+        </figure>
+
+        <figure class="mc-clip">
+          <div class="mc-media" data-media="endermen.mp4">
+            <video muted loop playsinline preload="metadata" aria-label="LAITH49 killing Endermen">
+              <source src="/assets/minecraft/endermen.mp4" type="video/mp4" />
+            </video>
+            <div class="mc-placeholder">
+              <span>To record</span>
+              <strong>Capture LAITH49 killing Endermen for pearls.</strong>
+              <small>endermen.mp4 · up to 10 seconds</small>
+            </div>
+          </div>
+          <figcaption>Killing Endermen</figcaption>
+        </figure>
+
+        <figure class="mc-clip">
+          <div class="mc-media" data-media="end-portal.mp4">
+            <video muted loop playsinline preload="metadata" aria-label="LAITH49 entering the End portal">
+              <source src="/assets/minecraft/end-portal.mp4" type="video/mp4" />
+            </video>
+            <div class="mc-placeholder">
+              <span>To record</span>
+              <strong>Capture LAITH49 entering the End portal.</strong>
+              <small>end-portal.mp4 · up to 10 seconds</small>
+            </div>
+          </div>
+          <figcaption>Entering the End portal</figcaption>
+        </figure>
+
+        <figure class="mc-clip">
+          <div class="mc-media" data-media="pillar.mp4">
+            <video muted loop playsinline preload="metadata" aria-label="LAITH49 climbing an End pillar">
+              <source src="/assets/minecraft/pillar.mp4" type="video/mp4" />
+            </video>
+            <div class="mc-placeholder">
+              <span>To record</span>
+              <strong>Capture LAITH49 climbing an obsidian pillar in the End.</strong>
+              <small>pillar.mp4 · up to 10 seconds</small>
+            </div>
+          </div>
+          <figcaption>Climbing the End pillar</figcaption>
+        </figure>
+
       </div>
 
-      <figure class="mc-clip">
-        <div class="mc-clip-frame" data-slot="highlights.mp4">
-          <video loop muted playsinline webkit-playsinline autoplay preload="metadata" width="1280" height="720"
-            aria-label="The bot playing Minecraft" poster="/assets/posters/mc-highlights.jpg">
-            <source src="/assets/minecraft/highlights.mp4" type="video/mp4" />
+      <figure class="mc-finale">
+        <figcaption><h3>Killing the Ender Dragon</h3></figcaption>
+        <div class="mc-media" data-media="dragon.mp4">
+          <video muted loop playsinline preload="metadata" aria-label="LAITH49 killing the Ender Dragon">
+            <source src="/assets/minecraft/dragon.mp4" type="video/mp4" />
           </video>
+          <div class="mc-placeholder">
+            <span>To record</span>
+            <strong>Capture the dragon kill.</strong>
+            <small>dragon.mp4 · up to 10 seconds</small>
+          </div>
         </div>
       </figure>
     </section>
 
-    <!-- SPECS -->
-    <dl class="laith-specs">
-      <div><dt>Status</dt><dd><span class="tag ok">Complete</span></dd></div>
-      <div><dt>Server</dt><dd><code>Fabric 1.21.6</code></dd></div>
-      <div><dt>Model</dt><dd><code>gemma-4-31b</code></dd></div>
-      <div><dt>Also runs</dt><dd><code>1.8B</code> on <code>6&nbsp;GB</code></dd></div>
-    </dl>
-
-    <!-- CLIPS -->
-    <section class="laith-section" id="clips">
-      <div class="head">
-        <h2 class="title">It mines. It fights. It smelts.</h2>
-      </div>
-
-      <div class="mc-clips">
-        <figure class="mc-clip">
-          <div class="mc-clip-frame" data-slot="mining.mp4">
-            <video loop muted playsinline webkit-playsinline autoplay preload="metadata" width="1280" height="720"
-              aria-label="The bot mining" poster="/assets/posters/mc-mining.jpg">
-              <source src="/assets/minecraft/mining.mp4" type="video/mp4" />
-            </video>
-          </div>
-          <figcaption><b>Mining</b>Finds the vein. Digs it out.</figcaption>
-        </figure>
-
-        <figure class="mc-clip">
-          <div class="mc-clip-frame" data-slot="fighting.mp4">
-            <video loop muted playsinline webkit-playsinline autoplay preload="metadata" width="1280" height="720"
-              aria-label="The bot fighting a mob" poster="/assets/posters/mc-fighting.jpg">
-              <source src="/assets/minecraft/fighting.mp4" type="video/mp4" />
-            </video>
-          </div>
-          <figcaption><b>Fighting</b>Picks the fight. Usually wins.</figcaption>
-        </figure>
-
-        <figure class="mc-clip">
-          <div class="mc-clip-frame" data-slot="smelting.mp4">
-            <video loop muted playsinline webkit-playsinline autoplay preload="metadata" width="1280" height="720"
-              aria-label="The bot building a furnace and smelting iron" poster="/assets/posters/mc-smelting.jpg">
-              <source src="/assets/minecraft/smelting.mp4" type="video/mp4" />
-            </video>
-          </div>
-          <figcaption><b>Smelting</b>Builds the furnace. Lights it. Waits.</figcaption>
-        </figure>
-
-        <!-- Crafting: pending ImmersiveMC. Delete this whole <figure> if it
-             doesn't end up worth filming. -->
-        <figure class="mc-clip">
-          <div class="mc-clip-frame" data-slot="crafting.mp4">
-            <video loop muted playsinline webkit-playsinline autoplay preload="metadata" width="1280" height="720"
-              aria-label="The bot crafting at a table it placed" poster="/assets/posters/mc-crafting.jpg">
-              <source src="/assets/minecraft/crafting.mp4" type="video/mp4" />
-            </video>
-          </div>
-          <figcaption><b>Crafting</b>Works out the recipe underneath the recipe.</figcaption>
-        </figure>
-
-        <figure class="mc-clip">
-          <div class="mc-clip-frame" data-slot="orders.mp4">
-            <video loop muted playsinline webkit-playsinline autoplay preload="metadata" width="1280" height="720"
-              aria-label="Giving the bot an order in chat and watching it go"
-              poster="/assets/posters/mc-orders.jpg">
-              <source src="/assets/minecraft/orders.mp4" type="video/mp4" />
-            </video>
-          </div>
-          <figcaption><b>Taking orders</b>Ask in chat. It goes.</figcaption>
-        </figure>
-      </div>
+    <section class="mc-acknowledgements">
+      <h2>Acknowledgements</h2>
+      <p>Built on <a href="https://github.com/mindcraft-ce/mindcraft-ce" target="_blank" rel="noopener noreferrer">mindcraft-ce</a>, which uses <a href="https://github.com/PrismarineJS/mineflayer" target="_blank" rel="noopener noreferrer">Mineflayer</a> to join a Minecraft server as a player.</p>
     </section>
 
-    <!-- HOW -->
-    <section class="laith-section">
-      <div class="head">
-        <h2 class="title">Nobody is driving.</h2>
-      </div>
-
-      <p class="blurb">
-        There is no controller and no keyboard. The AI writes
-        <code>!collectBlocks("oak_log", 4)</code> into its own output, and
-        the game client underneath does what it says. Every move you just
-        watched started as a line of text it chose to type.
-      </p>
-
-      <p class="blurb">
-        Two models can drive it. gemma-4-31b does the flying now. The other
-        is small enough to sit on my own laptop GPU beside the server it is
-        playing on, and that is the one that did this:
-      </p>
-
-      <dl class="mc-line">
-        <div>
-          <dt>Starts with</dt>
-          <dd>Nothing</dd>
-        </div>
-        <div>
-          <dt>On the clock</dt>
-          <dd>15 min</dd>
-        </div>
-        <div>
-          <dt>Comes back with</dt>
-          <dd class="win">Iron pickaxe</dd>
-        </div>
-        <div>
-          <dt>Runs cleared</dt>
-          <dd class="win">3 of 3</dd>
-        </div>
-      </dl>
-    </section>
-
-    <!-- CTA -->
-    <section class="laith-cta">
-      <span class="kicker">The code</span>
-      <h2>This one isn't on GitHub</h2>
-      <p>
-        It is a patched fork of
-        <a href="https://github.com/mindcraft-ce/mindcraft-ce" target="_blank"
-          rel="noopener noreferrer">mindcraft-ce</a>, driving the game through
-        <a href="https://github.com/PrismarineJS/mineflayer" target="_blank"
-          rel="noopener noreferrer">Mineflayer</a>. It lives next to the server it plays on and never got cleaned up
-        into something you could clone. It has also never seen the Nether, and only ever plays alone.
-      </p>
-      <div class="links">
-        <a href="/projects" class="btn">&larr; Other projects</a>
-        <a href="#clips" class="btn primary">Back to the clips <span class="arrow">&rarr;</span></a>
-      </div>
-    </section>
+    <footer class="mc-footer">
+      <h2>Other projects</h2>
+      <a class="btn" href="/projects">See all projects</a>
+    </footer>
   </main>
 </body>
 

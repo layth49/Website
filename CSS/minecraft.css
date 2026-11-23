@@ -1,135 +1,257 @@
-/* ============================================================
-   Minecraft AI showcase page
-
-   Structure is the shared deep-dive kit in laith.css: laith-hero,
-   laith-specs, laith-section, laith-cta. This page is a showcase, not
-   a write-up, so the only real addition is the clip: short silent
-   loops of the bot doing one thing each.
-   ============================================================ */
-
-
-/* CLIP -------------------------------------------------------
-   The frame holds its own 16:9 box whether or not the file has landed
-   yet, so dropping a recording in never moves the layout.
-
-   Until a clip exists the frame shows the filename it is waiting for.
-   That label sits behind the <video>, so the moment the file is in
-   place the video paints over it and the slot disappears on its own,
-   with no markup change. */
-.mc-clip {
-  margin: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 0.75rem;
-  min-width: 0;
-}
-
-.mc-clip-frame {
+.mc-page {
   position: relative;
-  aspect-ratio: 16 / 9;
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  overflow: hidden;
-  background: var(--bg-elevated);
-  display: grid;
-  place-items: center;
+  z-index: 1;
+  width: min(100% - 3rem, 1200px);
+  margin: 0 auto;
+  padding: clamp(2.5rem, 5vw, 4rem) 0 5rem;
 }
 
-.mc-clip-frame::before {
-  content: "awaiting " attr(data-slot);
+.mc-back {
+  color: var(--ink-dim);
   font-family: var(--font-mono);
   font-size: 0.72rem;
-  letter-spacing: 0.06em;
-  color: var(--ink-dim);
-  padding: 0.5rem 0.8rem;
-  border: 1px dashed var(--border-strong);
-  border-radius: var(--radius-sm);
-  text-align: center;
-  max-width: 90%;
 }
 
-.mc-clip-frame video {
+.mc-back:hover { color: var(--ink); }
+.mc-back span { margin-right: 0.35rem; }
+
+.mc-hero {
+  display: grid;
+  grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
+  gap: clamp(2.5rem, 6vw, 5rem);
+  align-items: center;
+  padding: clamp(3.5rem, 6vw, 6rem) 0 clamp(4.5rem, 8vw, 7rem);
+}
+
+.mc-hero h1 {
+  max-width: 7ch;
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: clamp(4rem, 6.7vw, 6.7rem);
+  font-weight: 750;
+  line-height: 0.9;
+  letter-spacing: -0.06em;
+}
+
+.mc-hero-copy > p {
+  max-width: 34ch;
+  margin: 1.8rem 0 0;
+  color: var(--ink-muted);
+  font-size: clamp(1.05rem, 1.35vw, 1.2rem);
+  line-height: 1.55;
+}
+
+.mc-feature,
+.mc-clip,
+.mc-finale { margin: 0; }
+
+.mc-media {
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: 16 / 9;
+  border: 1px solid var(--border-strong);
+  background: var(--bg-elevated);
+}
+
+.mc-media video {
   position: absolute;
   inset: 0;
+  display: none;
   width: 100%;
   height: 100%;
   object-fit: cover;
-  display: block;
-  border-radius: 0;
-  padding: 0;
 }
 
-/* Caption is a verb and a short line. Nothing longer fits the pace of
-   a wall of five-second loops. */
-.mc-clip figcaption {
-  font-family: var(--font-sans);
-  font-size: 0.92rem;
-  line-height: 1.5;
-  color: var(--ink-muted);
-  text-wrap: pretty;
+.mc-media.is-ready { cursor: pointer; }
+.mc-media.is-ready video { display: block; }
+.mc-media.is-ready .mc-placeholder { display: none; }
+
+.mc-placeholder {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: clamp(1rem, 2.5vw, 1.6rem);
 }
 
-.mc-clip figcaption b {
-  display: block;
-  font-family: var(--font-display);
-  font-size: 1.05rem;
-  font-weight: 700;
-  letter-spacing: -0.01em;
+.mc-placeholder > span {
+  position: absolute;
+  top: clamp(1rem, 2.5vw, 1.6rem);
+  left: clamp(1rem, 2.5vw, 1.6rem);
+  color: var(--ink-dim);
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+}
+
+.mc-placeholder strong {
+  max-width: 40ch;
   color: var(--ink);
-  margin-bottom: 0.2rem;
+  font-size: clamp(0.9rem, 1.25vw, 1.05rem);
+  font-weight: 500;
+  line-height: 1.4;
 }
 
-/* Count-agnostic on purpose: the number of actions worth filming is
-   still moving, and this holds up at four clips or eight. */
-.mc-clips {
+.mc-placeholder small {
+  margin-top: 0.4rem;
+  color: var(--ink-dim);
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+}
+
+.mc-conversation {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr));
-  gap: 2.25rem 1.5rem;
-  margin-top: 0.5rem;
+  grid-template-columns: minmax(0, 0.65fr) minmax(0, 1.35fr);
+  gap: clamp(2rem, 6vw, 5rem);
+  align-items: center;
+  padding: clamp(2.5rem, 5vw, 4rem) 0;
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
 }
 
-/* The hero clip carries the page, so it takes the softer corner the
-   other deep-dive heroes use for their media. */
-.laith-hero .mc-clip .mc-clip-frame {
-  border-radius: var(--radius-lg);
+.mc-conversation h2,
+.mc-clips h2,
+.mc-acknowledgements h2,
+.mc-footer h2 {
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 700;
+  letter-spacing: -0.035em;
+  line-height: 1.1;
 }
 
+.mc-conversation h2 { font-size: clamp(1.75rem, 3vw, 2.7rem); }
 
-/* THE LINE ----------------------------------------------------
-   One run, stated as four beats instead of a section. This is the
-   whole benchmark, and at this length it lands harder than the
-   write-up did. */
-.mc-line {
+.mc-conversation-demo {
+  padding: clamp(1.25rem, 3vw, 2rem);
+  border: 1px solid var(--border);
+  background: #191b18;
+}
+
+.mc-chat {
+  width: fit-content;
+  max-width: 100%;
+  padding: 0.5rem 0.8rem;
+  background: rgba(0, 0, 0, 0.62);
+  color: #f1f1f1;
+  font-family: "Pixelify Sans", var(--font-mono);
+  font-size: clamp(1.15rem, 1.8vw, 1.45rem);
+  line-height: 1.2;
+  text-shadow: 2px 2px 0 #303030;
+}
+
+.mc-chat p { margin: 0; }
+.mc-chat span { color: #d5d5d5; }
+
+.mc-action {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.75rem 2.5rem;
-  margin: 0;
-  padding: 1.5rem 0 0;
+  align-items: center;
+  gap: 0.5rem 1rem;
+  margin: 1.75rem 0 0;
+  padding-top: 0.9rem;
   border-top: 1px solid var(--border);
 }
 
-.mc-line > div {
-  display: flex;
-  flex-direction: column;
-  gap: 0.3rem;
-}
-
-.mc-line dt {
-  font-family: var(--font-mono);
-  font-size: 0.72rem;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
+.mc-action span {
   color: var(--ink-dim);
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
 }
 
-.mc-line dd {
+.mc-action code {
+  color: var(--ink);
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+}
+
+.mc-clips { padding: clamp(4.5rem, 8vw, 7rem) 0; }
+.mc-clips h2 { margin-bottom: 1.75rem; font-size: clamp(2.25rem, 4vw, 3.5rem); }
+
+.mc-clip-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 2.4rem 1rem;
+}
+
+.mc-clip .mc-placeholder { padding: 1rem; }
+.mc-clip .mc-placeholder > span { top: 1rem; left: 1rem; }
+.mc-clip .mc-placeholder strong { font-size: 0.82rem; }
+.mc-clip .mc-placeholder small { font-size: 0.57rem; }
+
+.mc-clip figcaption {
+  margin-top: 0.65rem;
+  color: var(--ink);
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.mc-finale {
+  display: grid;
+  grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
+  gap: clamp(2.5rem, 6vw, 5rem);
+  align-items: center;
+  margin-top: clamp(4.5rem, 8vw, 7rem);
+  padding-top: clamp(3rem, 6vw, 5rem);
+  border-top: 1px solid var(--border);
+}
+
+.mc-finale h3 {
+  max-width: 11ch;
   margin: 0;
   font-family: var(--font-display);
-  font-size: var(--step-2);
-  font-weight: 700;
-  letter-spacing: -0.02em;
-  font-variant-numeric: tabular-nums;
-  color: var(--ink);
+  font-size: clamp(2.5rem, 4.8vw, 4.7rem);
+  font-weight: 750;
+  line-height: 1;
+  letter-spacing: -0.05em;
 }
 
-.mc-line dd.win { color: var(--ok); }
+.mc-acknowledgements {
+  padding: 2.5rem 0 3.5rem;
+  border-top: 1px solid var(--border);
+}
+
+.mc-acknowledgements h2 { font-size: clamp(1.8rem, 3vw, 2.5rem); }
+
+.mc-acknowledgements p {
+  max-width: 65ch;
+  margin: 1rem 0 0;
+  color: var(--ink-muted);
+  font-size: 0.9rem;
+}
+
+.mc-acknowledgements a {
+  color: var(--accent);
+  text-decoration: underline;
+  text-underline-offset: 0.18em;
+}
+
+.mc-footer {
+  padding: 3.5rem 0 0;
+  border-top: 1px solid var(--border);
+}
+
+.mc-footer h2 { margin-bottom: 1.5rem; font-size: clamp(2rem, 4vw, 3rem); }
+
+@media (max-width: 900px) {
+  .mc-hero,
+  .mc-conversation,
+  .mc-finale { grid-template-columns: 1fr; }
+  .mc-hero { gap: 2.5rem; }
+  .mc-hero h1 { max-width: none; }
+  .mc-hero-copy > p { max-width: 55ch; }
+  .mc-finale { gap: 2rem; }
+  .mc-finale h3 { max-width: none; }
+  .mc-clip-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+@media (max-width: 620px) {
+  .mc-page { width: min(100% - 1.25rem, 1200px); padding-top: 2rem; padding-bottom: 7rem; }
+  .mc-hero { gap: 1.75rem; padding: 2.5rem 0 4rem; }
+  .mc-hero h1 { font-size: clamp(3.6rem, 16vw, 5rem); }
+  .mc-hero-copy > p { margin-top: 1.25rem; font-size: 1rem; }
+  .mc-conversation { gap: 1.5rem; }
+  .mc-clip-grid { grid-template-columns: 1fr; }
+  .mc-clip .mc-placeholder strong { font-size: 0.92rem; }
+  .mc-footer { padding-bottom: 3rem; }
+}

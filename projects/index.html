@@ -5,14 +5,14 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Projects · Layth (layth49)</title>
-  <meta name="description" content="20 projects by Layth (layth49): L.A.I.T.H.49 voice assistant, the Burhan Qur'an app, Bozo's Adventure, a trading bot, and a running log of bots, automations, and games." />
+  <meta name="description" content="22 projects by Layth (layth49): L.A.I.T.H.49 voice assistant, the Burhan Qur'an app, Bozo's Adventure, a trading bot, and a running log of bots, automations, and games." />
   <link rel="canonical" href="https://layth49.com/projects" />
 
   <!-- Open Graph -->
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="layth49" />
   <meta property="og:title" content="Projects · Layth (layth49)" />
-  <meta property="og:description" content="20 projects by Layth (layth49): L.A.I.T.H.49 voice assistant, the Burhan Qur'an app, Bozo's Adventure, a trading bot, and a running log of bots, automations, and games." />
+  <meta property="og:description" content="22 projects by Layth (layth49): L.A.I.T.H.49 voice assistant, the Burhan Qur'an app, Bozo's Adventure, a trading bot, and a running log of bots, automations, and games." />
   <meta property="og:url" content="https://layth49.com/projects" />
   <meta property="og:image" content="https://layth49.com/assets/og-image.png" />
   <meta property="og:image:width" content="1200" />
@@ -31,7 +31,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link
-    href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@75..125,400..800&family=Geist:wght@400;500;600&family=JetBrains+Mono:wght@400;700&family=Scheherazade+New:wght@400;700&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@75..125,400..800&family=Geist:wght@400;500;600&family=Inter:ital,wght@0,400;0,500;0,600;1,400&family=JetBrains+Mono:wght@400;700&family=Scheherazade+New:wght@400;700&display=swap"
     rel="stylesheet" />
 
   <!-- Stylesheets -->
@@ -39,10 +39,14 @@
   <link rel="stylesheet" href="/CSS/navBar.css" />
   <link rel="stylesheet" href="/CSS/socials.css" />
   <link rel="stylesheet" href="/CSS/projects.css" />
+  <link rel="stylesheet" href="/CSS/car49.css" />
+  <link rel="stylesheet" href="/CSS/tv49.css" />
 
   <!-- Scripts -->
   <script defer src="/JS/hackedEffect.js"></script>
   <script defer src="/JS/projects.js"></script>
+  <script defer src="/JS/car49.js"></script>
+  <script defer src="/JS/tv49.js"></script>
 
   <!-- Structured Data -->
   <script type="application/ld+json">
@@ -63,10 +67,10 @@
         "@id": "https://layth49.com/projects#webpage",
         "url": "https://layth49.com/projects",
         "name": "Projects · Layth (layth49)",
-        "description": "20 projects by Layth (layth49): bots, automations, games, and pranks.",
+        "description": "22 projects by Layth (layth49): bots, automations, games, and pranks.",
         "isPartOf": { "@id": "https://layth49.com/#website" },
         "about": { "@id": "https://layth49.com/#person" },
-        "dateModified": "2026-08-17",
+        "dateModified": "2026-10-18",
         "mainEntity": {
           "@type": "ItemList",
           "itemListElement": [
@@ -123,7 +127,7 @@
   <main id="main" class="container">
     <!-- HERO -->
     <section class="projects-hero">
-      <p class="kicker">20 projects</p>
+      <p class="kicker">22 projects</p>
       <h1>Projects</h1>
       <p class="lede">A running log of bots, automations, games, and pranks. Some are shipped, one is forever in progress, and some
         are failed experiments.</p>
@@ -228,6 +232,260 @@
         </div>
       </a>
 
+        <!-- 49 on my TV. The preview is a drawn recreation of the on-TV overlay, not a recording (CSS/tv49.css, JS/tv49.js). -->
+        <div class="card" data-status="ok">
+        <div class="card-head">
+          <span class="status ok">Complete</span>
+        </div>
+        <h2>49 on my TV</h2>
+        <p class="subtitle">A voice assistant that lives on my LG TV</p>
+        <div class="card-media car49-preview tv49-preview" data-tv49>
+          <span class="badge">Recreation</span>
+          <div class="t49-stage" data-state="answer" data-beat="weather" role="img"
+            aria-label="Animation: the 49 voice assistant appearing over the TV home screen, answering a weather question, then pausing the video on request">
+            <div class="t49-tv" aria-hidden="true">
+              <div class="t49-screen">
+                <svg class="t49-scene" viewBox="0 0 320 180" preserveAspectRatio="xMidYMid slice" focusable="false">
+                  <defs>
+                    <linearGradient id="t49-sky" x1="0" y1="0" x2="0" y2="1">
+                      <stop offset="0" stop-color="#141c3a" />
+                      <stop offset="0.5" stop-color="#3d3d7a" />
+                      <stop offset="0.8" stop-color="#b8736f" />
+                      <stop offset="1" stop-color="#e3996b" />
+                    </linearGradient>
+                    <radialGradient id="t49-sun">
+                      <stop offset="0" stop-color="#ffd9a6" stop-opacity="0.85" />
+                      <stop offset="1" stop-color="#f6b98a" stop-opacity="0" />
+                    </radialGradient>
+                    <g id="t49-clouds" fill="#9a90c4" opacity="0.4">
+                      <ellipse cx="60" cy="44" rx="26" ry="4.5" />
+                      <ellipse cx="78" cy="40" rx="14" ry="3.5" />
+                      <ellipse cx="190" cy="66" rx="34" ry="5" />
+                      <ellipse cx="262" cy="32" rx="20" ry="3.5" />
+                    </g>
+                    <path id="t49-far" fill="#4a3f7c" d="M0 118C35 118 45 136 90 136S150 108 190 108S285 118 320 118V180H0Z" />
+                    <path id="t49-mid" fill="#2b2a5a" d="M0 138C30 138 50 122 95 122S160 150 210 150S290 138 320 138V180H0Z" />
+                    <path id="t49-near" fill="#14172b" d="M0 160C40 160 60 150 110 150S190 168 240 168S290 160 320 160V180H0Z" />
+                  </defs>
+                  <rect width="320" height="180" fill="url(#t49-sky)" />
+                  <g fill="#cfd6ff" opacity="0.65">
+                    <circle cx="24" cy="20" r="0.7" /><circle cx="70" cy="12" r="0.6" /><circle cx="150" cy="22" r="0.7" />
+                    <circle cx="206" cy="10" r="0.6" /><circle cx="48" cy="46" r="0.5" /><circle cx="236" cy="48" r="0.5" />
+                  </g>
+                  <circle cx="112" cy="116" r="42" fill="url(#t49-sun)" />
+                  <circle cx="112" cy="116" r="11" fill="#ffe3b8" />
+                  <g class="t49-drift" style="--t:150s"><use href="#t49-clouds" /><use href="#t49-clouds" x="320" /></g>
+                  <g class="t49-drift" style="--t:100s"><use href="#t49-far" /><use href="#t49-far" x="320" /></g>
+                  <g class="t49-drift" style="--t:56s"><use href="#t49-mid" /><use href="#t49-mid" x="320" /></g>
+                  <g class="t49-drift" style="--t:30s"><use href="#t49-near" /><use href="#t49-near" x="320" /></g>
+                </svg>
+
+                <div class="t49-fade"></div>
+                <div class="t49-ui">
+                  <div class="t49-side">
+                    <span class="t49-avatar">A</span>
+                    <span class="t49-bell"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 17V11a6 6 0 0 1 12 0v6l1.5 2h-15z" /><path d="M10 21h4" /></svg><em>41</em></span>
+                    <span class="t49-focus"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3" /><path d="M12 2.8v2.6M12 18.6v2.6M2.8 12h2.6M18.6 12h2.6M5.5 5.5l1.8 1.8M16.7 16.7l1.8 1.8M5.5 18.5l1.8-1.8M16.7 7.3l1.8-1.8" /></svg></span>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="6.5" /><path d="m16 16 4.5 4.5" /></svg>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="15" height="12" rx="1.5" /><path d="M6 8h9M6 11h6" /><circle cx="18" cy="17" r="3.2" fill="#08080d" /></svg>
+                  </div>
+
+                  <div class="t49-promo">Start a new experience with webOS.</div>
+                  <div class="t49-go">Go to Apps</div>
+
+                  <div class="t49-launch">
+                    <div class="t49-row t49-pills">
+                      <span style="--bg:#f2203f;--w:24cqi">LG Streaming Week</span>
+                      <span style="--bg:#74b52c;--w:22.5cqi">Sports</span>
+                      <span style="--bg:#5a60e8;--w:21.6cqi">Gaming</span>
+                      <span style="--bg:#b13fe6;--w:21.2cqi">Music</span>
+                      <span style="--bg:#10b3c4;--w:20cqi">Live</span>
+                    </div>
+                    <div class="t49-row t49-apps">
+                      <span style="--bg:#27c28a;--fg:#fff"><svg viewBox="0 0 20 20" fill="currentColor"><rect x="2" y="2" width="7" height="7" rx="2" /><rect x="11" y="2" width="7" height="7" rx="2" /><rect x="2" y="11" width="7" height="7" rx="2" /><rect x="11" y="11" width="7" height="7" rx="2" /></svg>APPS</span>
+                      <span style="--bg:#e8262b;--fg:#fff">LG Channels</span>
+                      <span class="t49-now" style="--bg:#176f84;--fg:#fff">NOW</span>
+                      <span style="--bg:#f2f2f4;--fg:#1a1a1a"><b class="t49-yt">▶</b>YouTube</span>
+                      <span style="--bg:#1f6fe0;--fg:#fff"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="9.5" /><ellipse cx="12" cy="12" rx="4" ry="9.5" /><path d="M2.5 12h19M4 7h16M4 17h16" /></svg></span>
+                      <span style="--bg:#f2f2f4;--fg:#d81f26">NETFLIX</span>
+                      <span style="--bg:#16161a;--fg:#fff;font-size:1.2cqi">BBC<br />iPLAYER</span>
+                      <span class="t49-big" style="--bg:#4fd286;--fg:#10361f">4</span>
+                      <span class="t49-big" style="--bg:#14246e;--fg:#ffd21f">5</span>
+                      <span style="--bg:#1b66d8;--fg:#fff">prime<br />video</span>
+                      <span style="--bg:#1d4a8f;--fg:#fff">Disney+</span>
+                      <span style="--bg:#e30613;--fg:#fff">Rakuten TV</span>
+                      <span style="--bg:#f2f2f4;--fg:#222;font-size:1.2cqi">LG<br />Movies<br />&amp;TV</span>
+                    </div>
+                    <div class="t49-row t49-cards">
+                      <div class="t49-col" style="--w:21cqi"><b>Recent Input</b><div class="t49-card t49-live" style="--bg:linear-gradient(110deg,#4a37e8 0%,#c43fe6 38%,#2b4ff0 62%,#1e5cf5 100%);--fg:#fff"><u>LIVE</u><i>Live TV</i></div></div>
+                      <div class="t49-col" style="--w:19.7cqi"><b>Device Functions</b><div class="t49-card" style="--bg:linear-gradient(135deg,#143a8c,#1f6fd8 60%,#0e2a66);--fg:#fff"><strong>Edit App List</strong>Edit the list of apps on the Home to include your preferences.</div></div>
+                      <div class="t49-col" style="--w:18.8cqi"><b></b><div class="t49-card" style="--bg:linear-gradient(135deg,#7d828b,#3a3d44);--fg:#fff"><strong>TV Guide</strong>Check the broadcast schedule and information.</div></div>
+                      <div class="t49-col" style="--w:18.4cqi"><b></b><div class="t49-card" style="--bg:linear-gradient(135deg,#f0be3a,#c9962a);--fg:#fff"><strong>User Guide</strong>Check how to use the device's features.</div></div>
+                      <div class="t49-col" style="--w:19cqi"><b></b><div class="t49-card" style="--bg:linear-gradient(135deg,#b98147,#5e4630);--fg:#fff"><strong>Home Hub</strong>Conveniently control home appliances on your device.</div></div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="t49-osd">
+                  <svg viewBox="0 0 12 12" fill="currentColor"><rect x="2" y="1" width="3" height="10" rx="0.8" /><rect x="7" y="1" width="3" height="10" rx="0.8" /></svg>
+                </div>
+
+                <div class="c49-presence">
+                  <div class="c49-bubble">
+                    <div class="c49-body">
+                      <div class="c49-status">
+                        <span class="t49-bars"><i></i><i></i><i></i><i></i><i></i></span>
+                        <span class="c49-listen">Listening</span>
+                        <span class="c49-track"><i></i></span><span class="c49-think">Thinking</span>
+                      </div>
+                      <div class="t49-said t49-said-w">49, how hot is it going to get today?</div>
+                      <div class="t49-said t49-said-p">49, pause.</div>
+                      <div class="t49-answer">Up to 74 degrees this afternoon, with clear skies.</div>
+                      <div class="t49-ack">
+                        <svg viewBox="0 0 12 12" fill="currentColor"><rect x="2" y="1" width="3" height="10" rx="0.8" /><rect x="7" y="1" width="3" height="10" rx="0.8" /></svg>Paused
+                      </div>
+                    </div>
+                    <img class="c49-mark" src="/assets/49-mark.svg" alt="" />
+                    <span class="t49-speak"></span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="t49-stand" aria-hidden="true"></div>
+          </div>
+          <p class="t49-caption">Recreation of the real on-TV interface</p>
+        </div>
+        <p>49 running on my rooted LG webOS TV. Say its name and a small overlay appears over whatever's playing,
+          listens, answers, and disappears. It can answer questions and run the TV, like pausing or changing the volume.
+          Speech-to-text, the language model and text-to-speech all run on my home server, so <b>nothing goes to the
+            cloud</b>. The preview is a recreation of the overlay, not a screen recording.</p>
+        <div class="card-foot">
+          <span>VOICE · LOCAL AI · WEBOS</span>
+        </div>
+      </div>
+
+        <!-- 49 in the car. The preview is a drawn mockup of the head unit, not a recording (CSS/car49.css, JS/car49.js). -->
+        <div class="card" data-status="warn">
+        <div class="card-head">
+          <span class="status warn">In Progress</span>
+        </div>
+        <h2>49 in the car</h2>
+        <p class="subtitle">My voice assistant, moving onto my car's screen</p>
+        <div class="card-media car49-preview" data-car49>
+          <span class="badge">Mockup · In progress</span>
+          <div class="c49-stage" data-state="answer" role="img"
+            aria-label="Animation: the 49 voice assistant answering a question out loud on a car's head unit screen">
+            <div class="c49-unit" aria-hidden="true">
+              <div class="c49-keys">
+                <div class="c49-keypair">
+                  <div class="c49-key">
+                    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M3 11.5 12 3l9 8.5h-2.5V21h-4.5v-6h-4v6H5.5v-9.5z" /></svg>
+                    HOME
+                  </div>
+                  <div class="c49-key">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"
+                      stroke-linejoin="round"><path d="M8 4 4 8l4 4" /><path d="M4 8h12a4 4 0 0 1 0 8H6" /></svg>
+                    BACK
+                  </div>
+                </div>
+                <div class="c49-vol">VOL<br /><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"
+                    stroke-linecap="round"><path d="M12 3v8" /><path d="M6.3 6.8a8 8 0 1 0 11.4 0" /></svg>AUDIO</div>
+                <div class="c49-knob"><i></i></div>
+                <div class="c49-skip">
+                  <svg viewBox="0 0 22 16" fill="currentColor"><rect x="1" y="2" width="2" height="12" /><path d="M12 2 4 8l8 6zM21 2l-8 6 8 6z" /></svg>
+                  <svg viewBox="0 0 22 16" fill="currentColor"><path d="m1 2 8 6-8 6zM10 2l8 6-8 6z" /><rect x="19" y="2" width="2" height="12" /></svg>
+                </div>
+                <div class="c49-slot"></div>
+              </div>
+
+              <div class="c49-screen">
+                <div class="c49-top">
+                  <span class="c49-src">Audio<br />Source</span>
+                  <span class="c49-device">
+                    <span class="c49-bt"><svg viewBox="0 0 20 28" fill="none" stroke="currentColor" stroke-width="2.4"
+                        stroke-linecap="round" stroke-linejoin="round"><path d="m5 9.5 10 9-5 4.5V5l5 4.5-10 9" /></svg></span>
+                    No Device Connected
+                  </span>
+                  <span class="c49-alert"><i>1</i></span>
+                  <span class="c49-signal"><svg viewBox="0 0 22 16" fill="currentColor"><path d="M2 15h3v-3H2zM8 15h3V8H8zM14 15h3V3h-3z" /></svg></span>
+                  <span class="c49-clock">10:00</span>
+                </div>
+
+                <div class="c49-home">
+                  <div class="c49-tile" style="--top:linear-gradient(90deg,#f2b134,#86c447 55%,#3d8fd8)">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10" /><g fill="currentColor" stroke="none"><rect x="6.3" y="8.6" width="3.2" height="2.6" rx=".4" /><rect x="10.4" y="8.6" width="3.2" height="2.6" rx=".4" /><rect x="14.5" y="8.6" width="3.2" height="2.6" rx=".4" /><rect x="6.3" y="12.6" width="3.2" height="2.6" rx=".4" /><rect x="10.4" y="12.6" width="3.2" height="2.6" rx=".4" /><rect x="14.5" y="12.6" width="3.2" height="2.6" rx=".4" /></g></svg>
+                    All Apps
+                  </div>
+                  <div class="c49-tile" style="--top:linear-gradient(#d8373f,#d8373f)">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10" /><path d="M12 6.5 15.8 16.8 12 14.8 8.2 16.8z" fill="currentColor" stroke="none" /></svg>
+                    Navigation
+                  </div>
+                  <div class="c49-tile" style="--top:linear-gradient(#6cc04a,#6cc04a)">
+                    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M6.4 2.5h3.2l1.7 4.7-2.2 1.6a11.5 11.5 0 0 0 6.1 6.1l1.6-2.2 4.7 1.7v3.2a2 2 0 0 1-2 2A17.5 17.5 0 0 1 4.4 4.5a2 2 0 0 1 2-2z" /></svg>
+                    Phone
+                  </div>
+                  <div class="c49-tile" style="--top:linear-gradient(#3d8fd8,#3d8fd8)">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="11" r="9.5" /><circle cx="12" cy="11" r="5.5" /><circle cx="12" cy="11" r="1.8" fill="currentColor" /><path d="M12 13v10" stroke-width="2" /></svg>
+                    FM
+                  </div>
+                  <div class="c49-tile" style="--top:linear-gradient(#3d8fd8,#3d8fd8)">
+                    <svg viewBox="0 0 24 24"><rect x="6.5" y="2" width="11" height="20" rx="5.5" fill="currentColor" /><path d="m8.5 8.5 7 6.5-3.5 3V6l3.5 3-7 6.5" fill="none" stroke="#45484e" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" /></svg>
+                    Bluetooth Audio
+                  </div>
+                  <div class="c49-tile" style="--top:linear-gradient(#f2b134,#f2b134)">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="7" y="2" width="10" height="20" rx="1.6" /><path d="M7 5h10M7 18.5h10M11 20.3h2" /></svg>
+                    Smartphone Connection
+                  </div>
+                  <div class="c49-tile" style="--top:linear-gradient(#3d8fd8,#3d8fd8)">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M4.5 8a11 11 0 0 1 15 0M7.5 10.5a6.5 6.5 0 0 1 9 0M4.5 16a11 11 0 0 0 15 0M7.5 13.5a6.5 6.5 0 0 0 9 0" /></svg>
+                    SiriusXM
+                  </div>
+                  <div class="c49-tile" style="--top:linear-gradient(#f29a36,#f29a36)">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 21V4.5A1.5 1.5 0 0 1 6.5 3h7A1.5 1.5 0 0 1 15 4.5V21M3.5 21h13M15 9.5h1.3a1.3 1.3 0 0 1 1.3 1.3v4.7a1.4 1.4 0 0 0 2.8 0V8l-2.6-2.6" /><path d="M10 6.5v5M7.5 9h5" /></svg>
+                    Trip Computer
+                  </div>
+                  <div class="c49-dots"><i></i><i></i><i></i></div>
+                  <svg class="c49-next" viewBox="0 0 10 26" fill="none" stroke="currentColor" stroke-width="1"><path d="m1.5 1.5 7 11.5-7 11.5" /></svg>
+
+                  <div class="c49-presence">
+                    <div class="c49-bubble">
+                      <div class="c49-body">
+                        <div class="c49-status">
+                          <span class="c49-dot"></span><span class="c49-listen">Listening</span>
+                          <span class="c49-track"><i></i></span><span class="c49-think">Thinking</span>
+                        </div>
+                        <p class="c49-glance"><b>18 min</b>to home</p>
+                      </div>
+                      <img class="c49-mark" src="/assets/49-mark.svg" alt="" />
+                    </div>
+                  </div>
+                </div>
+
+                <div class="c49-dock">
+                  <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="10" /><path d="M12 6.5 15.8 16.8 12 14.8 8.2 16.8z" fill="currentColor" stroke="none" /></svg>Navigation</span>
+                  <span><svg viewBox="0 0 24 24" fill="currentColor"><path d="M6.4 2.5h3.2l1.7 4.7-2.2 1.6a11.5 11.5 0 0 0 6.1 6.1l1.6-2.2 4.7 1.7v3.2a2 2 0 0 1-2 2A17.5 17.5 0 0 1 4.4 4.5a2 2 0 0 1 2-2z" /></svg>Phone</span>
+                  <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="10" /><circle cx="12" cy="12" r="5.5" /><circle cx="12" cy="12" r="1.8" fill="currentColor" /></svg>FM</span>
+                  <span><svg viewBox="0 0 24 24"><rect x="6.5" y="2" width="11" height="20" rx="5.5" fill="currentColor" /><path d="m8.5 8.5 7 6.5-3.5 3V6l3.5 3-7 6.5" fill="none" stroke="#050506" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" /></svg>Bluetooth<br />Audio</span>
+                  <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><circle cx="12" cy="12" r="5" /><path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.9 4.9 7 7M17 17l2.1 2.1M4.9 19.1 7 17M17 7l2.1-2.1" /></svg>Smart<br />Shortcuts</span>
+                  <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><circle cx="8" cy="12" r="3" /><path d="M8 5v1.5M8 17.5V19M2 12h1.5M3.8 7.8l1 1M3.8 16.2l1-1M11.2 8.8l1-1M11.2 15.2l1 1" /><path d="M19 7a5 5 0 1 0 0 10 4 4 0 0 1 0-10z" fill="currentColor" stroke="none" /></svg>Display<br />Mode</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="c49-captions" aria-hidden="true">
+              <p class="c49-cap"><span>You</span>How long until we get home?</p>
+              <p class="c49-cap said"><span>49</span>About 18 minutes. Traffic is light.</p>
+            </div>
+          </div>
+        </div>
+        <p>49, the voice assistant on my TV, moving onto my car's head unit. Same transient overlay: ask, it answers out
+          loud, and it gets out of the way. While driving, the screen only shows what 49 is doing and one glanceable
+          result. The words are spoken, not shown. The preview is a mockup, not a screen recording.</p>
+        <div class="card-foot">
+          <span>VOICE · OVERLAY · IN-CAR</span>
+        </div>
+      </div>
+
         <a class="card" data-status="archived" href="/bozos">
         <div class="card-head">
           <span class="status archived">Archived</span>
@@ -312,64 +570,14 @@
           <span class="status ok">Complete</span>
         </div>
         <h2>Minecraft AI</h2>
-        <p class="subtitle">An LLM that plays Minecraft by writing commands to itself</p>
+        <p class="subtitle">An AI that can play Minecraft</p>
         <div class="card-media no-media minecraft-preview">
-          <span class="badge">Local · 6 GB VRAM</span>
-          <svg class="mc-ladder" viewBox="0 0 400 250" aria-hidden="true">
-            <line class="mc-base" x1="24" y1="210" x2="380" y2="210"></line>
-
-            <text class="mc-callout" x="346" y="42" text-anchor="middle">3/3 FROM EMPTY</text>
-
-            <g class="mc-step">
-              <rect x="30" y="182" width="52" height="28"></rect>
-              <circle class="mc-pip hit" cx="44" cy="196" r="3.5"></circle>
-              <circle class="mc-pip hit" cx="56" cy="196" r="3.5"></circle>
-              <circle class="mc-pip hit" cx="68" cy="196" r="3.5"></circle>
-              <text class="mc-label" x="56" y="222" text-anchor="middle">LOG</text>
-            </g>
-            <g class="mc-step">
-              <rect x="88" y="156" width="52" height="54"></rect>
-              <circle class="mc-pip hit" cx="102" cy="170" r="3.5"></circle>
-              <circle class="mc-pip hit" cx="114" cy="170" r="3.5"></circle>
-              <circle class="mc-pip hit" cx="126" cy="170" r="3.5"></circle>
-              <text class="mc-label" x="114" y="222" text-anchor="middle">STICK</text>
-            </g>
-            <g class="mc-step">
-              <rect x="146" y="130" width="52" height="80"></rect>
-              <circle class="mc-pip hit" cx="160" cy="144" r="3.5"></circle>
-              <circle class="mc-pip hit" cx="172" cy="144" r="3.5"></circle>
-              <circle class="mc-pip hit" cx="184" cy="144" r="3.5"></circle>
-              <text class="mc-label" x="172" y="222" text-anchor="middle">WOOD</text>
-            </g>
-            <g class="mc-step">
-              <rect x="204" y="104" width="52" height="106"></rect>
-              <circle class="mc-pip hit" cx="218" cy="118" r="3.5"></circle>
-              <circle class="mc-pip hit" cx="230" cy="118" r="3.5"></circle>
-              <circle class="mc-pip" cx="242" cy="118" r="3.5"></circle>
-              <text class="mc-label" x="230" y="222" text-anchor="middle">STONE</text>
-            </g>
-            <g class="mc-step">
-              <rect x="262" y="78" width="52" height="132"></rect>
-              <circle class="mc-pip hit" cx="276" cy="92" r="3.5"></circle>
-              <circle class="mc-pip hit" cx="288" cy="92" r="3.5"></circle>
-              <circle class="mc-pip" cx="300" cy="92" r="3.5"></circle>
-              <text class="mc-label" x="288" y="222" text-anchor="middle">IRON</text>
-            </g>
-            <g class="mc-step top">
-              <rect x="320" y="52" width="52" height="158"></rect>
-              <circle class="mc-pip hit" cx="334" cy="66" r="3.5"></circle>
-              <circle class="mc-pip hit" cx="346" cy="66" r="3.5"></circle>
-              <circle class="mc-pip hit" cx="358" cy="66" r="3.5"></circle>
-              <text class="mc-label" x="346" y="222" text-anchor="middle">SCRATCH</text>
-            </g>
-          </svg>
+          <strong>Gameplay clips</strong>
+          <small>Recordings to add</small>
         </div>
-        <p>A bot that plays Minecraft by emitting text commands like
-          <code>!collectBlocks("oak_log", 4)</code>, which a protocol-level client executes. <b>Nothing is modded
-            in</b>; it reads the same network packets your game client does. From an empty inventory, a 1.8B model on a
-          6&nbsp;GB card gathers wood, mines ore, builds and fuels a furnace, and comes out holding an iron pickaxe.</p>
+        <p>Give it a task in chat and it plays through the steps, from collecting resources to fighting the Ender Dragon.</p>
         <div class="card-foot">
-          <span>NODE · MINEFLAYER · OLLAMA · GEMINI · BASH</span>
+          <span>MINDCRAFT-CE · MINEFLAYER</span>
           <span class="arrow">→</span>
         </div>
       </a>
